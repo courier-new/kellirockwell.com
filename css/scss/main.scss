@@ -1,0 +1,23 @@
+#container {
+	display: table;
+	width: 100%;
+	border-spacing:.5em;
+
+	#main-row,
+	#footer-row {
+		display: table-row;
+
+		#left-side,
+		#right-side {
+			display: table-cell;
+		}
+
+		#left-side {
+			width: 60%;
+		}
+
+		#right-side {
+			width: 40%;
+		}
+	}
+}

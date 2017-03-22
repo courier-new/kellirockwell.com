@@ -1,0 +1,20 @@
+#container {
+  display: table;
+  width: 100%;
+  border-spacing: .5em; }
+  #container #main-row,
+  #container #footer-row {
+    display: table-row; }
+    #container #main-row #left-side,
+    #container #main-row #right-side,
+    #container #footer-row #left-side,
+    #container #footer-row #right-side {
+      display: table-cell; }
+    #container #main-row #left-side,
+    #container #footer-row #left-side {
+      width: 60%; }
+    #container #main-row #right-side,
+    #container #footer-row #right-side {
+      width: 40%; }
+
+/*# sourceMappingURL=main.css.map */

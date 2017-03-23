@@ -1,20 +1,220 @@
+body {
+  margin: 0; }
+
+* {
+  color: #797784;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none; }
+
 #container {
+  background-color: #000;
   display: table;
-  width: 100%;
-  border-spacing: .5em; }
-  #container #main-row,
-  #container #footer-row {
-    display: table-row; }
-    #container #main-row #left-side,
-    #container #main-row #right-side,
-    #container #footer-row #left-side,
-    #container #footer-row #right-side {
-      display: table-cell; }
-    #container #main-row #left-side,
-    #container #footer-row #left-side {
-      width: 60%; }
-    #container #main-row #right-side,
-    #container #footer-row #right-side {
-      width: 40%; }
+  width: 100vw; }
+  #container #main-block,
+  #container #main-block > * {
+    height: -webkit-calc(100vh - 3em);
+    height: -moz-calc(100vh - 3em);
+    height: calc(100vh - 3em); }
+  #container #main-block.full .left-side,
+  #container #main-block.full .right-side.full {
+    display: inline-block; }
+  #container #main-block.full .left-side {
+    float: left;
+    background-image: url("../img/happy-head.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 60vw; }
+  #container #main-block.full .right-side.full {
+    float: right;
+    position: relative;
+    background-color: #fff;
+    width: 40vw; }
+    #container #main-block.full .right-side.full .inner-col {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      text-align: center; }
+      #container #main-block.full .right-side.full .inner-col #intro {
+        height: 10vh;
+        min-height: 80px;
+        width: 80%;
+        min-width: 530px;
+        margin: auto; }
+        #container #main-block.full .right-side.full .inner-col #intro #logo-holder {
+          float: left;
+          position: relative;
+          display: inline-block;
+          width: 30%;
+          height: 100%; }
+          #container #main-block.full .right-side.full .inner-col #intro #logo-holder img {
+            height: 100%;
+            width: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); }
+        #container #main-block.full .right-side.full .inner-col #intro #title-outer-holder {
+          float: right;
+          display: table;
+          width: 70%;
+          height: 100%;
+          text-align: left; }
+          #container #main-block.full .right-side.full .inner-col #intro #title-outer-holder #title-middle-holder {
+            display: table-cell;
+            vertical-align: middle; }
+            #container #main-block.full .right-side.full .inner-col #intro #title-outer-holder #title-middle-holder #title-inner-holder {
+              margin-left: auto;
+              margin-right: auto; }
+              #container #main-block.full .right-side.full .inner-col #intro #title-outer-holder #title-middle-holder #title-inner-holder h1 {
+                font-family: 'Raleway', sans-serif;
+                font-weight: 800;
+                font-size: 2.2em;
+                color: #30322b;
+                text-transform: uppercase;
+                text-align: left;
+                margin: 5px 0; }
+              #container #main-block.full .right-side.full .inner-col #intro #title-outer-holder #title-middle-holder #title-inner-holder h2 {
+                font-family: 'Raleway', sans-serif;
+                font-weight: 400;
+                font-size: 0.75em;
+                text-transform: lowercase;
+                text-align: left;
+                margin: 5px 1px; }
+  #container #main-block .right-side.mob {
+    float: right;
+    position: relative;
+    background-color: #fff;
+    width: 40vw; }
+    #container #main-block .right-side.mob .inner-col {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      text-align: center; }
+      #container #main-block .right-side.mob .inner-col #intro {
+        height: 25vh;
+        min-height: 200px;
+        width: 80%;
+        margin: auto; }
+        #container #main-block .right-side.mob .inner-col #intro #logo-holder {
+          height: 10vh;
+          min-height: 60px;
+          margin: 5vh 0; }
+          #container #main-block .right-side.mob .inner-col #intro #logo-holder img {
+            height: 100%;
+            width: auto; }
+        #container #main-block .right-side.mob .inner-col #intro #title-outer-holder {
+          width: 100%;
+          display: table; }
+          #container #main-block .right-side.mob .inner-col #intro #title-outer-holder #title-middle-holder {
+            display: table-cell;
+            vertical-align: middle; }
+            #container #main-block .right-side.mob .inner-col #intro #title-outer-holder #title-middle-holder #title-inner-holder {
+              margin-left: auto;
+              margin-right: auto; }
+              #container #main-block .right-side.mob .inner-col #intro #title-outer-holder #title-middle-holder #title-inner-holder h1 {
+                font-family: 'Raleway', sans-serif;
+                font-weight: 800;
+                font-size: 2.2em;
+                color: #30322b;
+                text-transform: uppercase;
+                margin: 5px 0; }
+              #container #main-block .right-side.mob .inner-col #intro #title-outer-holder #title-middle-holder #title-inner-holder h2 {
+                font-family: 'Raleway', sans-serif;
+                font-weight: 400;
+                font-size: 0.75em;
+                text-transform: lowercase;
+                margin: 5px 1px; }
+  #container #main-block.mob .right-side {
+    width: 100vw; }
+  #container #main-block.mob .left-side {
+    background-image: url("../img/happy-head.jpg");
+    background-repeat: no-repeat;
+    background-position: 50% 20%;
+    background-size: cover;
+    width: 100vw;
+    height: 50vh; }
+  #container #main-block.mob .right-side #intro {
+    min-width: 0px; }
+
+#links {
+  display: table;
+  height: 10vh;
+  width: 80%;
+  margin: 10px auto 0 auto; }
+  #links #dummy {
+    display: table-cell;
+    width: 30%; }
+  #links #inner-cell {
+    display: table-cell;
+    width: 70%; }
+    #links #inner-cell * {
+      transition: all 170ms linear;
+      -webkit-transition: all 170ms linear;
+      -moz-transition: all 170ms linear; }
+    #links #inner-cell #inner-table {
+      display: table;
+      width: 100%; }
+      #links #inner-cell #inner-table .github.hover,
+      #links #inner-cell #inner-table .email.hover,
+      #links #inner-cell #inner-table .linkedin.hover,
+      #links #inner-cell #inner-table .facebook.hover,
+      #links #inner-cell #inner-table .codepen.hover,
+      #links #inner-cell #inner-table .resume.hover {
+        background-color: #B0C75D; }
+      #links #inner-cell #inner-table .github.hover *,
+      #links #inner-cell #inner-table .email.hover *,
+      #links #inner-cell #inner-table .linkedin.hover *,
+      #links #inner-cell #inner-table .facebook.hover *,
+      #links #inner-cell #inner-table .codepen.hover *,
+      #links #inner-cell #inner-table .resume.hover * {
+        color: #fff; }
+  #links #inner-table > a {
+    display: table-cell;
+    width: 16.6%; }
+    #links #inner-table > a i {
+      font-size: 2.2em;
+      padding: 10px 15px 10px 15px; }
+    #links #inner-table > a span {
+      font-size: 0.6em;
+      padding-bottom: 10px;
+      text-transform: uppercase;
+      display: block; }
+
+.right-side.mob #links #dummy {
+  display: none;
+  width: 0.001%; }
+.right-side.mob #links #inner-cell {
+  display: table;
+  width: 100%; }
+
+#footer {
+  display: table-cell;
+  background-color: #1e1d18;
+  width: 100vw;
+  height: 3em; }
+  #footer span {
+    font-size: 0.8em;
+    line-height: 0.8em;
+    color: #797784; }
+    #footer span i {
+      color: #977674;
+      font-size: 0.9em;
+      padding: 0px 2px 1px 2px; }
+  #footer a,
+  #footer a:link,
+  #footer a:active,
+  #footer a:visited {
+    font-size: 0.8em;
+    line-height: 0.8em;
+    color: #a3a1b5; }
+  #footer a:hover {
+    color: #9dad60; }
 
 /*# sourceMappingURL=main.css.map */

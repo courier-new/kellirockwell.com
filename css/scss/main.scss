@@ -1,23 +1,280 @@
+body {
+    margin: 0;
+}
+
+* {
+    color: #797784;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+}
+
 #container {
+    background-color: #000;
+    display: table;
+    width: 100vw;
+    #main-block,
+    #main-block > * {
+        height: -webkit-calc(100vh - 3em);
+        height: -moz-calc(100vh - 3em);
+        height: calc(100vh - 3em);
+    }
+    #main-block.full {
+        .left-side,
+        .right-side.full {
+            display: inline-block;
+        }
+        .left-side {
+            float: left;
+            background-image: url('../img/happy-head.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            width: 60vw;
+        }
+        .right-side.full {
+            float: right;
+            position: relative;
+            background-color: #fff;
+            width: 40vw;
+            .inner-col {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                text-align: center;
+                #intro {
+                    height: 10vh;
+                    min-height: 80px;
+                    width: 80%;
+                    min-width: 530px;
+                    margin: auto;
+                    #logo-holder {
+                        float: left;
+                        position: relative;
+                        display: inline-block;
+                        width: 30%;
+                        height: 100%;
+                        img {
+                            height: 100%;
+                            width: auto;
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                        }
+                    }
+                    #title-outer-holder {
+                        float: right;
+                        display: table;
+                        width: 70%;
+                        height: 100%;
+                        text-align: left;
+                        #title-middle-holder {
+                        	display: table-cell;
+                        	vertical-align: middle;
+                        	#title-inner-holder {
+                        		margin-left: auto;
+                        		margin-right: auto;
+		                        h1 {
+		                        	font-family: 'Raleway', sans-serif;
+		                        	font-weight: 800;
+		                        	font-size: 2.2em;
+		                        	color: #30322b;
+		                        	text-transform: uppercase;
+		                        	text-align: left;
+		                        	margin: 5px 0;
+
+		                        }
+		                        h2 {
+		                        	font-family: 'Raleway', sans-serif;
+		                        	font-weight: 400;
+		                        	font-size: 0.75em;
+		                        	text-transform: lowercase;
+		                        	text-align: left;
+		                        	margin: 5px 1px;
+		                        }
+		                    }
+	                    }
+                    }
+                }
+            }
+        }
+    }
+    #main-block {
+        .right-side.mob {
+            float: right;
+            position: relative;
+            background-color: #fff;
+            width: 40vw;
+            .inner-col {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                text-align: center;
+                #intro {
+                    height: 25vh;
+                    min-height: 200px;
+                    width: 80%;
+                    margin: auto;
+                    #logo-holder {
+                    	height: 10vh;
+                    	min-height: 60px;
+                    	margin: 5vh 0;
+                        img {
+                            height: 100%;
+                            width: auto;
+                        }
+                    }
+                    #title-outer-holder {
+                    	width: 100%;
+                        display: table;
+                        #title-middle-holder {
+                        	display: table-cell;
+                        	vertical-align: middle;
+                        	#title-inner-holder {
+                        		margin-left: auto;
+                        		margin-right: auto;
+		                        h1 {
+		                        	font-family: 'Raleway', sans-serif;
+		                        	font-weight: 800;
+		                        	font-size: 2.2em;
+		                        	color: #30322b;
+		                        	text-transform: uppercase;
+		                        	margin: 5px 0;
+
+		                        }
+		                        h2 {
+		                        	font-family: 'Raleway', sans-serif;
+		                        	font-weight: 400;
+		                        	font-size: 0.75em;
+		                        	text-transform: lowercase;
+		                        	margin: 5px 1px;
+		                        }
+		                    }
+	                    }
+                    }
+                }
+            }
+        }
+    }
+    #main-block.mob {
+    	.right-side {
+    		width: 100vw;
+    	}
+    	.left-side {
+    	    background-image: url('../img/happy-head.jpg');
+    	    background-repeat: no-repeat;
+    	    background-position: 50% 20%;
+    	    background-size: cover;
+    	    width: 100vw;
+    	    height: 50vh;
+    	}
+        .right-side {
+	        #intro {
+	            min-width: 0px;            
+	        }
+	    }
+    }
+}
+
+#links {
 	display: table;
-	width: 100%;
-	border-spacing:.5em;
-
-	#main-row,
-	#footer-row {
-		display: table-row;
-
-		#left-side,
-		#right-side {
-			display: table-cell;
+	height: 10vh;
+	width: 80%;
+	margin: 10px auto 0 auto;
+	#dummy {
+		display: table-cell;
+		width: 30%;
+	}
+	#inner-cell {
+		display: table-cell;
+		width: 70%;
+		* {
+			transition: all 170ms linear;
+			-webkit-transition: all 170ms linear;
+			-moz-transition: all 170ms linear;
 		}
-
-		#left-side {
-			width: 60%;
-		}
-
-		#right-side {
-			width: 40%;
+		#inner-table {
+			display: table;
+			width: 100%;
+			.github.hover,
+			.email.hover,
+			.linkedin.hover,
+			.facebook.hover,
+			.codepen.hover,
+			.resume.hover {
+				background-color: #B0C75D;
+			}
+			.github.hover *,
+			.email.hover *,
+			.linkedin.hover *,
+			.facebook.hover *,
+			.codepen.hover *,
+			.resume.hover * {
+				color: #fff;
+			}
 		}
 	}
+	#inner-table > a {
+		display: table-cell;
+		width: 16.6%;
+		i {
+			font-size: 2.2em;
+			padding: 10px 15px 10px 15px;
+		}
+		span {
+			font-size: 0.6em;
+			padding-bottom: 10px;
+			text-transform: uppercase;
+			display: block;
+		}
+	}
+}
+
+.right-side.mob #links {
+	#dummy {
+		display: none;
+		width: 0.001%;
+	}
+	#inner-cell {
+		display: table;
+		width: 100%;
+	}
+}
+
+
+
+
+
+#footer {
+    display: table-cell;
+    background-color: #1e1d18;
+    width: 100vw;
+    height: 3em;
+    span {
+    	font-size: 0.8em;
+    	line-height: 0.8em;
+    	color: #797784;
+    	i {
+    		color: #977674;
+    		font-size: 0.9em;
+    		padding: 0px 2px 1px 2px;
+    	}
+    }
+    a,
+    a:link,
+    a:active,
+    a:visited {
+    	font-size: 0.8em;
+    	line-height: 0.8em;
+    	color: #a3a1b5;
+    }
+    a:hover {
+    	color: #9dad60;
+    }
 }

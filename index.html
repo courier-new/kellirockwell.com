@@ -11,23 +11,113 @@
 <link rel="stylesheet" href="css/main.css" type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css">
 
+<!-- FONTS -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700|Raleway:300,300i,400,400i,500,500i,700,700i,800" rel="stylesheet">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 <div id="container">
 	
-	<div id="main-row">
-		<div id="left-side">
-			This is the left side.
+	<div id="main-block" class="full">
+		<div class="left-side">
 		</div>
 
-		<div id="right-side">
-			This is the right side.
+		<div class="right-side full">
+			<div class="inner-col">
+				<div id="intro">
+					<div id="logo-holder">
+						<img src="./img/kr-logo.png" alt="My personal logo" />
+					</div>
+					<div id="title-outer-holder">
+						<div id="title-middle-holder">
+							<div id="title-inner-holder">
+								<h1>Kelli Rockwell</h1>
+								<h2>Engineer | Developer | Scientist | Designer | Typography Enthusiast</h2>
+							</div>
+						</div>
+					</div>			
+				</div>
+				<div id="links">
+					<div id="dummy"></div>
+					<div id="inner-cell">
+						<div id="inner-table">
+							<a target="_blank" href="https://github.com/courier-new/"><div class="github"><i class="fa fa-github" aria-hidden="true"></i><span class="hidden">GitHub</span></div></a>
+							<a target="_blank" href="mailto:click-to-send-me-email!" onclick="this.href=this.href
+						   			.replace(/click-to-send-me/,&#39;kelli&#39;).replace(/-/,&#39;@&#39;).replace(/email!/,&#39;thiinkposters.com&#39;)"><div class="email"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="hidden">Email</span></div></a>
+							<a target="_blank" href="https://www.linkedin.com/in/kellirockwell/"><div class="linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i><span class="hidden">LinkedIn</span></div></a>
+							<a target="_blank" href="https://www.facebook.com/kellirockwell/"><div class="facebook"><i class="fa fa-facebook-official" aria-hidden="true"></i><span class="hidden">Facebook</span></div></a>
+							<a target="_blank" href="http://codepen.io/courier-new/"><div class="codepen"><i class="fa fa-codepen" aria-hidden="true"></i><span class="hidden">Codepen</span></div></a>
+							<a target="_blank" href="https://github.com/courier-new/"><div class="resume"><i class="fa fa-file-text-o" aria-hidden="true"></i><span class="hidden">Resume</span></div></a>
+						</div>
+					</div>
+				</div>		
+			</div>
 		</div>
-	</div>
-
-	<div id="footer-row">
-		This is the footer.
 	</div>
 
 </div>
+
+<div id="footer">
+	<span>Designed and developed with <i class="fa fa-heart" aria-hidden="true"></i> by Kelli Rockwell (</span><a target="_blank" href="https://github.com/courier-new/">@courier-new</a><span>).</span>
+</div>
 	
 </body>
+
+<script type="text/javascript">
+	function checkWidths() {
+		$windowWidth = $(window).width();
+		$rightWidth = $windowWidth - $('.left-side').width();
+		if ($rightWidth < 600 || $windowWidth < 1025) {
+			$('.right-side').addClass('mob');
+			$('.right-side').removeClass('full');
+		} else {
+			$('.right-side').removeClass('mob');
+			$('.right-side').addClass('full');
+		}
+		if ($windowWidth < 1025) {
+			$('#main-block').addClass('mob');
+			$('#main-block').removeClass('full');
+		} else {		
+			$('#main-block').removeClass('mob');			
+			$('#main-block').addClass('full');
+		}
+		
+	}
+	$(window).resize(function(){
+		checkWidths();
+	});
+	checkWidths();
+
+	$('.github').hover(function() {
+		$('.github').addClass('hover');
+	}, function() {
+		$('.github').removeClass('hover');
+	});
+	$('.email').hover(function() {
+		$('.email').addClass('hover');
+	}, function() {
+		$('.email').removeClass('hover');
+	});
+	$('.linkedin').hover(function() {
+		$('.linkedin').addClass('hover');
+	}, function() {
+		$('.linkedin').removeClass('hover');
+	});
+	$('.facebook').hover(function() {
+		$('.facebook').addClass('hover');
+	}, function() {
+		$('.facebook').removeClass('hover');
+	});
+	$('.codepen').hover(function() {
+		$('.codepen').addClass('hover');
+	}, function() {
+		$('.codepen').removeClass('hover');
+	});
+	$('.resume').hover(function() {
+		$('.resume').addClass('hover');
+	}, function() {
+		$('.resume').removeClass('hover');
+	});
+</script>
+
 </html>

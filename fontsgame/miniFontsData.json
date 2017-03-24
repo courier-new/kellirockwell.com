@@ -1,0 +1,35 @@
+{
+  "_comment": "DOES NOT WORK ON HARD MODE -- FOR TESTING END GAME RESULTS ONLY.",
+  "fonts": [
+    {
+      "fontName": "Modern No 20",
+      "fontFile": "MOD20.TTF",
+      "category": "display"
+    },
+    {
+      "fontName": "Isidora",
+      "fontFile": "Isidora-Regular.otf",
+      "category": "sans-serif"
+    },
+    {
+      "fontName": "Amsi",
+      "fontFile": "AmsiPro-SemiBold.ttf",
+      "category": "sans-serif"
+    },
+    {
+      "fontName": "King Basil",
+      "fontFile": "Spiffy-McGee-Lite.otf",
+      "category": "calligraphy/hand"
+    },
+    {
+      "fontName": "Zag",
+      "fontFile": "ZagRegular.otf",
+      "category": "display"
+    },
+    {
+      "fontName": "Officina",
+      "fontFile": "OfficinaSansStd-Book.otf",
+      "category": "sans-serif"
+    }
+  ]
+}

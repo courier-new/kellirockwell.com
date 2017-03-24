@@ -8,7 +8,7 @@ var fontsRemaining = 0;
 
 function getData() {
 
-	$.getJSON('http://localhost:8000/fontsData.json', function(data) {
+	$.getJSON('fontsData.json', function(data) {
 	//$.getJSON('http://localhost:8000/miniFontsData.json', function(data) { // for testing end game results only
 
         var output="<h2>Legend</h2>\n" +

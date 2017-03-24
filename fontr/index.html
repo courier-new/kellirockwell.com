@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+
+  <!-- SITE META INFO -->
+    <title>Fontr | The Font Identifying Game</title>
+    <meta name="description" content="A fun and easy game to study fonts by matching their images to their names.">
+    <meta name="author" content="Kelli Rockwell">
+    <link href="logo.jpg" rel="icon" type="image/png" />
+
+    <!-- FONTS --> 
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,200,300,800italic,400" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Cardo:400,400i,700" rel="stylesheet" type="text/css" />
+
+    <!-- IMPORT CSS -->
+    <link rel="stylesheet" href="fontr.css" type="text/css" />
+
+    <!-- IMPORT JS -->
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>    
+    <script src="fontr.js"></script>
+
+    <!-- EMBEDDED CSS -->
+    <style>
+
+    </style>
+
+</head>
+
+
+<body> 
+
+  <div id="container">
+
+    <h1 id="title">Fontr</h1>
+    <p>Welcome to the font learning game, where you can test and improve your font recognition skills simply and enjoyably! Study the fonts below, and select hard mode when you're ready for a challenge.</p>
+
+    <hr />
+
+    <div id="controls">
+
+      <div>
+        <a id="play-btn" class="btn easy" role="button">New</a>
+      </div>
+
+      <div>
+        <a id="quit-btn" class="btn" role="button">Quit</a>
+      </div>
+
+      <div id="switch-btn-holder">
+        <table style="height: 68px; padding: 0 20px; margin: 20px 0;">
+          <tr>
+            <td><h3>Enable Hard Mode</h3></td>
+            <td><div id="switch-btn" class="switch">
+              <input id="hard-mode-button" type="checkbox" class="switch-input">
+              <label for="hard-mode-button" class="switch-label">Switch</label>
+            </div></td>
+            <td>
+              <a id="hard-expl"><h3>?</h3></a>
+              <div id="hard-expl-box" class="hidden" style="opacity: 0"><div>
+                <table height="100%" width=100%><tr><td height="100%" width="100%">
+                  Hard mode gives shorter words to identify the font with and suggests three wrong fonts that are very similar to the right font.
+                </td></tr></table>
+              </div></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+
+    <hr />
+
+    <!-- CONTENT PLACEHOLDERS -->
+    <div id="record-box">
+      <table id="records">
+        <tr>
+          <td><h3>Current<br /><span id="curr-record">0</span></h3></td>
+          <td><h3>Best<br /><span id="best-record">0</span></h3></td>
+          <td><h3>Total<br /><span id="total-record">0</span></h3></td>
+          <td><h3>Mode<br /><span id="curr-mode" class="easy"></span></h3></td>
+          <td><h3>Remaining<br /><span id="fonts-remaining">-</span></h3></td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="legend-box"></div>
+    <div id="game-box"></div>
+    <div id="finish-box" style="display: none"></div>
+  
+  </div>
+
+</body>
+
+<script>
+  
+  $(document).ready(function() {
+    $(".switch-label").on("click", function() {
+      $("#play-btn").toggleClass("hard").toggleClass("easy");
+      $("#curr-mode").toggleClass("hard").toggleClass("easy");
+      $("#curr-mode").css("background-color", "#e0e0e0");
+      window.setTimeout(function() {$("#curr-mode").css("background", "none")}, 500);
+      if($("#play-btn").attr("class").match("ingame")) {
+        play();
+      };
+    });
+
+    var box = $("#hard-expl-box");
+    $("#hard-expl").hover(function() {
+        window.setTimeout(function() {box.css("opacity", "100")}, 100);
+      }, function() {
+        window.setTimeout(function() {box.css("opacity", "0")}, 100);
+    });
+
+    $("#play-btn").on("click", play);
+    $("#quit-btn").on("click", quit);
+    getData();
+  });
+
+</script>
+
+</html>

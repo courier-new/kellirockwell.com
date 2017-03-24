@@ -83,6 +83,7 @@ body {
                 font-weight: 400;
                 font-size: 0.75em;
                 text-transform: lowercase;
+                letter-spacing: 0.5px;
                 text-align: left;
                 margin: 5px 1px; }
   #container #main-block .right-side.mob {
@@ -130,6 +131,7 @@ body {
                 font-weight: 400;
                 font-size: 0.75em;
                 text-transform: lowercase;
+                letter-spacing: 0.5px;
                 margin: 5px 1px; }
   #container #main-block.mob .right-side {
     width: 100vw; }

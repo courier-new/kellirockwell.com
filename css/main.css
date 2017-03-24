@@ -104,7 +104,7 @@ body {
         width: 80%;
         margin: auto; }
         #container #main-block .right-side.mob .inner-col #intro #logo-holder {
-          height: 10vh;
+          height: 8vh;
           min-height: 60px;
           margin: 5vh 0; }
           #container #main-block .right-side.mob .inner-col #intro #logo-holder img {
@@ -122,26 +122,29 @@ body {
               #container #main-block .right-side.mob .inner-col #intro #title-outer-holder #title-middle-holder #title-inner-holder h1 {
                 font-family: 'Raleway', sans-serif;
                 font-weight: 800;
-                font-size: 2.2em;
+                font-size: 1.7em;
                 color: #30322b;
                 text-transform: uppercase;
                 margin: 5px 0; }
               #container #main-block .right-side.mob .inner-col #intro #title-outer-holder #title-middle-holder #title-inner-holder h2 {
                 font-family: 'Raleway', sans-serif;
                 font-weight: 400;
-                font-size: 0.75em;
+                font-size: 0.6em;
                 text-transform: lowercase;
                 letter-spacing: 0.5px;
                 margin: 5px 1px; }
   #container #main-block.mob .right-side {
-    width: 100vw; }
+    width: 100vw;
+    height: -webkit-calc(60vh - 3em);
+    height: -moz-calc(60vh - 3em);
+    height: calc(60vh - 3em); }
   #container #main-block.mob .left-side {
     background-image: url("../img/happy-head.jpg");
     background-repeat: no-repeat;
     background-position: 50% 20%;
     background-size: cover;
     width: 100vw;
-    height: 50vh; }
+    height: 40vh; }
   #container #main-block.mob .right-side #intro {
     min-width: 0px; }
 

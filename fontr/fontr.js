@@ -336,6 +336,8 @@ function shuffle(array) {
 }
 
 function quit() {
+	stopCountdown();
+
 	$("#game-box").css("display", "none");
 
 	$("#play-btn").removeClass("ingame");
@@ -344,6 +346,8 @@ function quit() {
 }
 
 function finish() {
+	stopCountdown();
+	
 	$("#game-box").css("display", "none");
 
 	var finishText = "<table id='finish-message'>\n" +

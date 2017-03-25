@@ -8,6 +8,11 @@ body {
   vertical-align: middle;
   text-decoration: none; }
 
+#logo-holder img {
+  -moz-transition: -moz-transform .8s linear;
+  -webkit-transition: -webkit-transform .8s linear;
+  transition: transform .8s linear; }
+
 #container {
   background-color: #fff;
   display: table;

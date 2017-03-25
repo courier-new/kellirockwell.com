@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta id="meta" name="viewport" content="width=device-width; initial-scale=1.0">
+	<meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="UTF-8">
 	<title>KELLI ROCKWELL | Home</title>
 </head>
@@ -65,60 +65,81 @@
 </body>
 
 <script type="text/javascript">
-	function checkWidths() {
-		$windowWidth = $(window).width();
-		$rightWidth = $windowWidth - $('.left-side').width();
-		if ($rightWidth < 600 || $windowWidth < 1025) {
-			$('.right-side').addClass('mob');
-			$('.right-side').removeClass('full');
-		} else {
-			$('.right-side').removeClass('mob');
-			$('.right-side').addClass('full');
-		}
-		if ($windowWidth < 1025) {
-			$('#main-block').addClass('mob');
-			$('#main-block').removeClass('full');
-		} else {		
-			$('#main-block').removeClass('mob');			
-			$('#main-block').addClass('full');
-		}
-		
-	}
-	$(window).resize(function(){
-		checkWidths();
-	});
-	checkWidths();
+	$(document).ready(function() {
 
-	$('.github').hover(function() {
-		$('.github').addClass('hover');
-	}, function() {
-		$('.github').removeClass('hover');
+		function checkWidths() {
+			$windowWidth = $(window).width();
+			$('#logo-holder img').attr('style', '');
+			$rightWidth = $windowWidth - $('.left-side').width();
+			if ($rightWidth < 600 || $windowWidth < 1025) {
+				$('.right-side').addClass('mob');
+				$('.right-side').removeClass('full');
+			} else {
+				$('.right-side').removeClass('mob');
+				$('.right-side').addClass('full');
+			}
+			if ($windowWidth < 1025) {
+				$('#main-block').addClass('mob');
+				$('#main-block').removeClass('full');
+			} else {		
+				$('#main-block').removeClass('mob');			
+				$('#main-block').addClass('full');
+			}
+			
+		}
+		$(window).resize(function(){
+			checkWidths();
+		});
+		checkWidths();
+
+		$('.github').hover(function() {
+			$('.github').addClass('hover');
+		}, function() {
+			$('.github').removeClass('hover');
+		});
+		$('.email').hover(function() {
+			$('.email').addClass('hover');
+		}, function() {
+			$('.email').removeClass('hover');
+		});
+		$('.linkedin').hover(function() {
+			$('.linkedin').addClass('hover');
+		}, function() {
+			$('.linkedin').removeClass('hover');
+		});
+		$('.facebook').hover(function() {
+			$('.facebook').addClass('hover');
+		}, function() {
+			$('.facebook').removeClass('hover');
+		});
+		$('.codepen').hover(function() {
+			$('.codepen').addClass('hover');
+		}, function() {
+			$('.codepen').removeClass('hover');
+		});
+		$('.resume').hover(function() {
+			$('.resume').addClass('hover');
+		}, function() {
+			$('.resume').removeClass('hover');
+		});
+
+		$('#logo-holder img').hover(function() {
+			var transform = "";
+			if (!$(this).closest(".right-side").is(".mob")) {
+				transform += "translate(-50%, -50%)";
+			}
+			if ($(this).is(".hovering")) {
+				transform += " rotateY(360deg)";				
+				$(this).removeClass("hovering");
+			} else {
+				transform += " rotateY(180deg)";			
+				$(this).addClass("hovering");
+			}
+			$(this).css('transform', transform);
+		});
+	
 	});
-	$('.email').hover(function() {
-		$('.email').addClass('hover');
-	}, function() {
-		$('.email').removeClass('hover');
-	});
-	$('.linkedin').hover(function() {
-		$('.linkedin').addClass('hover');
-	}, function() {
-		$('.linkedin').removeClass('hover');
-	});
-	$('.facebook').hover(function() {
-		$('.facebook').addClass('hover');
-	}, function() {
-		$('.facebook').removeClass('hover');
-	});
-	$('.codepen').hover(function() {
-		$('.codepen').addClass('hover');
-	}, function() {
-		$('.codepen').removeClass('hover');
-	});
-	$('.resume').hover(function() {
-		$('.resume').addClass('hover');
-	}, function() {
-		$('.resume').removeClass('hover');
-	});
+
 </script>
 
 </html>

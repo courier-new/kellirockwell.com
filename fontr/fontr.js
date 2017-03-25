@@ -12,27 +12,24 @@ var easyInc = 0.06;
 var hardInc = 0.12;
 
 function getData() {
-
-	var data;
 	
 	$.getJSON('fontsData.json', function(data) {
 	//$.getJSON('miniFontsData.json', function(data) { // for testing end game results only
-		console.log(data);
 		fontsRemainingArr = fontsArr = data;
- 	});
-	
-
+ 	})
 }
 
 function displayLegend(data) {
+	
+	console.log(data);
 
 	var output="<h2>Legend</h2>\n" +
 		"<p>(This will not be visible while you play!)</p>\n" +
 		"<table id='legend'>\n";
-	for (var i in data.fonts) {
-		var currFont = data.fonts[i].fontName;
+	for (var i in fontsArr.fonts) {
+		var currFont = fontsArr.fonts[i].fontName;
 		var fontAsClass = currFont.toLowerCase().replace(/ /g, "-");
-		var currFile = "fonts/" + data.fonts[i].fontFile;
+		var currFile = "fonts/" + fontsArr.fonts[i].fontFile;
 	    output += "<style>\n" +
 	    	"@font-face {\n" +
 	    		"font-family: " + currFont + ";\n" +

@@ -60,7 +60,7 @@
               <a id="hard-expl"><h3>?</h3></a>
               <div id="hard-expl-box" class="hidden" style="opacity: 0"><div>
                 <table height="100%" width=100%><tr><td height="100%" width="100%">
-                  Hard mode gives shorter words to identify the font with and suggests three wrong fonts that are very similar to the right font.
+                  Hard mode gives shorter sample text, less time to decide, and frustratingly similar options to pick from.
                 </td></tr></table>
               </div></div>
             </td>
@@ -100,22 +100,35 @@
       $("#play-btn").toggleClass("hard").toggleClass("easy");
       $("#curr-mode").toggleClass("hard").toggleClass("easy");
       $("#curr-mode").css("background-color", "#e0e0e0");
-      window.setTimeout(function() {$("#curr-mode").css("background", "none")}, 500);
+      window.setTimeout(function() {$("#curr-mode").css("background", "none");}, 500);
       if($("#play-btn").attr("class").match("ingame")) {
         play();
-      };
+      }
     });
 
     var box = $("#hard-expl-box");
     $("#hard-expl").hover(function() {
-        window.setTimeout(function() {box.css("opacity", "100")}, 100);
+        window.setTimeout(function() {box.css("opacity", "100");}, 100);
       }, function() {
-        window.setTimeout(function() {box.css("opacity", "0")}, 100);
+        window.setTimeout(function() {box.css("opacity", "0");}, 100);
+    });
+
+    $(document).keydown(function(e) {
+      if (e.keyCode==32) {
+        if (counter !== null) {          
+          stopCountdown();
+        } else {
+          currWidth = $("#countdown").width() / $("#countdown-cell").width() * 100;
+          startCountdown({startingWidth: currWidth});
+        }
+      }
     });
 
     $("#play-btn").on("click", play);
     $("#quit-btn").on("click", quit);
     getData();
+    displayLegend(fontsArr);    
+
   });
 
 </script>

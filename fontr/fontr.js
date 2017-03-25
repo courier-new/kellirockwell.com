@@ -16,14 +16,13 @@ function getData() {
 	$.getJSON('fontsData.json', function(data) {
 	//$.getJSON('miniFontsData.json', function(data) { // for testing end game results only
 		fontsRemainingArr = fontsArr = data;
+		console.log(fontsArr);
  	});
-	
-	return fontsArr;
 }
 
-function displayLegend(data) {
+function displayLegend() {
 	
-	console.log(data);
+	console.log(fontsArr);
 
 	var output="<h2>Legend</h2>\n" +
 		"<p>(This will not be visible while you play!)</p>\n" +

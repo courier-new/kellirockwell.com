@@ -1,3 +1,4 @@
+
 var fontsArr;
 var fontsRemainingArr;
 var bestRecord = 0;
@@ -8,22 +9,22 @@ var correctFont;
 var mode;
 var counter = null;
 var easyInc = 0.06;
-var hardInc = 0.12;
+var hardInc = 0.14;
+var postRound = false;
 
 function getData() {
-	
+
 	$.getJSON('fontsData.json', function(data) {
-	//$.getJSON('miniFontsData.json', function(data) { // for testing end game results only
-		fontsRemainingArr = fontsArr = data;
-		console.log(fontsArr);
- 	});
-	
-	setTimeout(function(){ displayLegend(); }, 200);
+		//$.getJSON('miniFontsData.json', function(data) { // for testing end game results only
+			fontsRemainingArr = fontsArr = data;
+			console.log(fontsArr);
+	 	});
+		
+		setTimeout(function(){ displayLegend(); }, 200);
+
 }
 
 function displayLegend() {
-	
-	console.log(fontsArr);
 
 	var output="<h2>Legend</h2>\n" +
 		"<p>(This will not be visible while you play!)</p>\n" +
@@ -53,7 +54,7 @@ function displayLegend() {
 
 function getRandomWord(mode) {
 
-	var easyWords = ["bitter", "border", "impact", "pigeon", "camera", "mutual", "burial", "cherry", "marine", "annual", "unfair", "offset", "prayer", "carbon", "helmet", "gossip", "credit", "flavor", "mutter", "insist", "thread", "carrot", "dilute", "unrest", "narrow", "injury", "please", "bother", "follow", "relief", "hotdog", "planet", "module", "method", "cheese", "orange", "useful", "patent", "spider", "vision", "legend", "silver", "ribbon", "family", "threat", "refuse", "dinner", "trance", "slogan", "parade", "racism", "flawed", "shorts", "future", "gallon", "valley", "preach", "likely", "design", "immune", "wander", "glance", "double", "viable", "inject", "timber", "rabbit", "excuse", "kidney", "crouch", "forget", "galaxy", "moment", "jockey", "change", "peanut", "embryo", "banish", "reduce", "settle", "harass", "office", "copper", "appear", "moving", "smooth", "desert", "object", "lesson", "jungle", "closed", "acquit", "apathy", "vacuum", "depart", "outfit", "policy", "wonder", "garlic", "muscle", "defeat", "summit", "latest", "refund", "avenue", "linear", "extent", "father", "attack", "cereal", "gutter", "murder", "rotten", "agency", "pastel", "school", "access", "circle", "mosque", "stroll", "packet", "virtue", "bullet", "corpse", "matter", "friend", "scream", "porter", "margin", "indoor", "effort", "prison", "bottom", "winner", "second", "screen", "locate", "mother", "adjust", "accent", "expose", "spring", "absorb", "decade", "depend", "appeal", "denial", "sample", "switch", "resist", "mosaic", "volume", "writer", "affair", "hiccup", "canvas", "drawer", "assume", "letter", "sleeve", "unique", "listen", "update", "dollar", "basket", "bucket", "corner", "figure", "offend", "spirit", "random", "favour", "coffin", "window", "subway", "virgin", "worker", "pledge", "foster", "repeat", "finish", "exempt", "chance", "carpet", "coffee", "ballet", "system", "candle", "velvet", "social", "thanks", "colony", "earwax", "resign", "expect", "battle", "infect", "stress", "kidnap", "finger", "nuance", "clinic", "bloody", "harbor", "insure", "expand", "broken", "suntan", "cheque", "public", "choice", "relate", "medium", "tactic", "patrol", "redeem", "reader", "winter", "junior", "sketch", "waiter", "native", "cancer", "stroke", "secure", "matrix", "define", "trench", "bounce", "choose", "resort", "meadow", "shadow", "bridge", "branch", "aspect", "behave", "outlet", "common", "nature", "energy", "driver", "revise", "regret", "demand", "rocket", "cattle", "remark", "pepper", "banana", "survey", "notion", "bubble", "degree", "cancel", "manner", "freeze", "column", "height", "ballot", "wealth", "stable", "cousin", "ensure", "belief", "revoke", "hunter", "employ", "leader", "afford", "tycoon", "charge", "endure", "answer", "animal", "ritual", "accept", "center", "excess", "thesis", "Europe", "palace", "topple", "effect", "sector", "prefer", "extort", "church", "runner", "linger", "praise", "efflux", "cinema", "tenant", "option", "mirror", "deadly", "squash", "museum", "tumour", "admire", "arrest", "tiptoe", "killer", "turkey", "polite", "danger", "weight", "budget", "chorus", "belong", "number", "lawyer", "sermon", "insert", "sticky", "fossil", "happen", "revive", "clique", "strict", "extend", "season", "damage", "grudge", "weapon", "prosper", "seminar", "falsify", "control", "approve", "arrange", "costume", "gallery", "eternal", "splurge", "custody", "meaning", "welcome", "eyebrow", "pasture", "welfare", "wording", "wrestle", "retreat", "tension", "whisper", "recruit", "charity", "collect", "premium", "suggest", "opposed", "compose", "looting", "jealous", "harvest", "storage", "receipt", "version", "harmony", "highway", "thinker", "improve", "trouser", "obscure", "exploit", "pension", "garbage", "deprive", "develop", "glasses", "habitat", "rainbow", "tourist", "battery", "achieve", "stadium", "complex", "provide", "kitchen", "confuse", "compete", "company", "extract", "absence", "soldier", "feather", "auction", "minimum", "apology", "insight", "replace", "payment", "village", "sustain", "climate", "liberal", "wedding", "process", "dictate", "symptom", "sweater", "impress", "drawing", "release", "reverse", "finance", "adviser", "comment", "cutting", "feature", "concept", "ecstasy", "purpose", "monster", "explode", "auditor", "reality", "banquet", "officer", "concert", "dignity", "abridge", "wriggle", "terrify", "partner", "emotion", "reserve", "undress", "husband", "soprano", "old age", "current", "trolley", "breathe", "support", "contain", "profile", "context", "scatter", "serious", "cluster", "compact", "suspect", "maximum", "dynamic", "distant", "fitness", "fortune", "reflect", "promote", "nervous", "justice", "descent", "deposit", "program", "explain", "glacier", "trivial", "outline", "balance", "element", "variety", "counter", "visible", "gesture", "network", "enlarge", "protest", "inflate", "referee", "secular", "freckle", "outlook", "teacher", "imagine", "crystal", "shelter", "royalty", "funeral", "council", "despise", "quality", "relieve", "speaker", "alcohol", "outside", "pottery", "texture", "command", "convert", "impulse", "century", "failure", "painter", "stretch", "warning", "uniform", "housing", "channel", "recover", "tribute", "kinship", "history", "verdict", "scratch", "confine", "laborer", "posture", "produce", "scholar", "testify", "applied", "reactor", "diagram", "exclude", "snuggle", "warrant", "lineage", "abandon", "clarify", "biology", "hallway", "recycle", "project", "portion", "torture", "steward", "fantasy", "ceiling", "society", "endorse", "vehicle", "gradual", "hunting", "formula", "reptile", "privacy", "victory", "pumpkin", "precede", "retiree", "passive", "account", "courage", "indulge", "student", "pursuit", "laundry", "similar", "shallow", "primary", "country", "dilemma", "inspire", "curtain", "unaware", "dismiss", "contact", "picture", "licence", "anxiety", "witness", "variant", "present", "tragedy", "penalty", "theater", "culture", "neutral", "comfort", "musical", "grimace", "perfume", "convict", "meeting", "plastic", "sunrise", "request", "dialect", "physics", "mislead", "monarch", "passage", "abolish", "morning", "parking", "rubbish", "chapter", "concede", "protect", "message", "chicken", "subject", "mention", "initial", "journal", "passion", "respect", "measure", "prevent", "silence", "enhance", "despair", "healthy", "shatter", "attract", "average", "sulphur", "diamond", "dentist", "display", "pattern", "icicle", "record", "scrape", "square", "elapse", "global", "throat", "decide", "agenda", "launch", "notice", "minute", "strong", "heaven", "scheme", "format", "memory", "deputy", "rhythm", "morsel", "artist", "cotton", "island", "exotic", "breeze", "factor", "theory", "bottle", "script", "garage", "ethics", "normal", "return", "origin", "advice", "bishop", "output", "course", "occupy", "voyage", "critic", "facade", "borrow", "shiver", "reject", "export", "behead", "banner", "modest", "lonely", "player", "kettle", "sacred", "hammer", "barrel", "ignore", "formal", "ground", "mobile", "ladder", "length", "tumble", "honest", "spread", "twitch", "tender", "cellar", "source", "reason", "ethnic", "shrink", "crutch", "sailor", "collar", "Sunday", "punish", "dragon", "reward", "salmon", "powder", "castle", "remedy", "suburb", "tongue", "active", "affect", "series", "dealer", "safety", "singer", "tissue", "strike", "absent", "snatch", "mature", "labour", "supply", "button", "treaty", "shower", "detail", "census", "market", "throne", "middle", "empire", "flight", "visual", "review", "period", "morale", "forest", "divide", "doctor", "guitar", "install", "ticket", "sodium", "oppose", "retain", "blonde", "direct", "profit", "string", "embark", "defend", "member", "estate", "pocket", "tablet", "invite", "couple", "safari", "manage", "studio", "temple", "pillow", "growth", "differ", "bronze", "rescue", "master", "lounge", "escape", "manual", "proper", "pierce", "seller", "unlike", "result", "sister", "buffet", "rotate", "crisis", "exceed", "poetry", "filter", "reform", "speech", "needle", "desire", "makeup", "gravel", "remind"];
+	var easyWords = ["bitter", "border", "impact", "pigeon", "camera", "mutual", "burial", "cherry", "marine", "annual", "unfair", "offset", "prayer", "carbon", "helmet", "gossip", "credit", "flavor", "mutter", "insist", "thread", "carrot", "dilute", "unrest", "narrow", "injury", "please", "bother", "follow", "relief", "hotdog", "planet", "module", "method", "cheese", "orange", "useful", "patent", "spider", "vision", "legend", "silver", "ribbon", "family", "threat", "refuse", "dinner", "trance", "slogan", "parade", "flawed", "shorts", "future", "gallon", "valley", "preach", "likely", "design", "immune", "wander", "glance", "double", "viable", "inject", "timber", "rabbit", "excuse", "learns", "kidney", "crouch", "forget", "galaxy", "moment", "jockey", "change", "peanut", "embryo", "banish", "reduce", "settle", "harass", "office", "copper", "appear", "moving", "smooth", "desert", "object", "reject", "lesson", "jungle", "closed", "acquit", "apathy", "vacuum", "depart", "outfit", "policy", "wonder", "garlic", "muscle", "defeat", "summit", "latest", "refund", "avenue", "linear", "zigzag", "jinxed", "hijack", "extent", "father", "attack", "cereal", "gutter", "rotten", "agency", "recite", "pastel", "school", "access", "circle", "mosque", "stroll", "packet", "virtue", "bullet", "corpse", "matter", "friend", "porter", "margin", "indoor", "effort", "bottom", "winner", "second", "screen", "locate", "mother", "adjust", "justly", "accent", "expose", "spring", "absorb", "decade", "depend", "appeal", "denial", "sample", "switch", "resist", "mosaic", "volume", "writer", "affair", "hiccup", "upsize", "canvas", "drawer", "assume", "letter", "sleeve", "unique", "listen", "update", "dollar", "basket", "bucket", "corner", "figure", "offend", "spirit", "random", "favour", "coffin", "window", "subway", "jumnble", "virgin", "worker", "pledge", "foster", "repeat", "finish", "exempt", "chance", "carpet", "coffee", "ballet", "system", "candle", "velvet", "social", "thanks", "colony", "earwax", "resign", "expect", "battle", "infect", "stress", "kidnap", "finger", "nuance", "clinic", "bloody", "harbor", "insure", "expand", "puzzle", "broken", "cheque", "cyclic", "hazard", "hockey", "keypad", "zenith", "public", "choice", "relate", "medium", "tactic", "patrol", "redeem", "reader", "winter", "junior", "sketch", "waiter", "native", "cancer", "stroke", "secure", "matrix", "define", "trench", "bounce", "choose", "resort", "meadow", "shadow", "bridge", "branch", "aspect", "behave", "outlet", "common", "nature", "energy", "driver", "revise", "regret", "demand", "rocket", "cattle", "remark", "pumped", "pepper", "banana", "survey", "notion", "notate", "bubble", "degree", "cancel", "manner", "freeze", "column", "height", "ballot", "tatter", "wealth", "stable", "cousin", "ensure", "belief", "revoke", "wheeze", "hunter", "employ", "leader", "afford", "tycoon", "charge", "endure", "answer", "animal", "ritual", "accept", "center", "excess", "thesis", "Europe", "palace", "topple", "effect", "sector", "prefer", "extort", "church", "runner", "linger", "praise", "efflux", "cinema", "tenant", "toasty", "option", "mirror", "deadly", "squash", "museum", "tumour", "admire", "arrest", "tiptoe", "turkey", "polite", "danger", "weight", "budget", "chorus", "belong", "number", "lawyer", "sermon", "insert", "sticky", "fossil", "happen", "revive", "clique", "strict", "extend", "season", "damage", "grudge", "weapon", "prosper", "seminar", "falsify", "control", "approve", "arrange", "costume", "gallery", "eternal", "splurge", "custody", "meaning", "welcome", "eyebrow", "pasture", "welfare", "wording", "wrestle", "retreat", "tension", "whisper", "recruit", "charity", "collect", "premium", "suggest", "opposed", "compose", "looting", "jealous", "harvest", "storage", "receipt", "version", "harmony", "highway", "thinker", "improve", "trouser", "obscure", "exploit", "expired", "pension", "garbage", "deprive", "develop", "glasses", "habitat", "rainbow", "tourist", "battery", "achieve", "stadium", "complex", "provide", "kitchen", "confuse", "compete", "company", "extract", "absence", "soldier", "feather", "auction", "minimum", "apology", "insight", "replace", "payment", "village", "sustain", "climate", "liberal", "wedding", "process", "dictate", "symptom", "sweater", "impress", "drawing", "release", "reverse", "finance", "adviser", "comment", "cutting", "feature", "concept", "ecstasy", "purpose", "monster", "explode", "auditor", "reality", "banquet", "officer", "concert", "dignity", "abridge", "wriggle", "terrify", "partner", "emotion", "reserve", "undress", "husband", "soprano", "old age", "current", "trolley", "breathe", "support", "contain", "profile", "context", "scatter", "serious", "cluster", "compact", "suspect", "maximum", "dynamic", "distant", "fitness", "fortune", "reflect", "promote", "nervous", "justice", "descent", "deposit", "program", "explain", "glacier", "trivial", "outline", "balance", "element", "variety", "counter", "visible", "gesture", "network", "enlarge", "protest", "inflate", "referee", "secular", "freckle", "outlook", "teacher", "capsize", "imagine", "crystal", "shelter", "royalty", "funeral", "council", "despise", "quality", "relieve", "speaker", "alcohol", "outside", "pottery", "texture", "command", "convert", "impulse", "century", "failure", "painter", "stretch", "warning", "uniform", "housing", "channel", "recover", "tribute", "kinship", "history", "verdict", "scratch", "confine", "laborer", "posture", "pajamas", "squeeze", "produce", "scholar", "testify", "applied", "reactor", "diagram", "exclude", "snuggle", "warrant", "lineage", "abandon", "clarify", "biology", "hallway", "recycle", "project", "portion", "torture", "steward", "fantasy", "ceiling", "society", "endorse", "vehicle", "gradual", "hunting", "formula", "reptile", "privacy", "victory", "pumpkin", "precede", "retiree", "passive", "account", "courage", "indulge", "student", "pursuit", "laundry", "similar", "shallow", "primary", "country", "dilemma", "inspire", "curtain", "unaware", "dismiss", "contact", "picture", "licence", "anxiety", "witness", "variant", "present", "penalty", "theater", "culture", "neutral", "comfort", "musical", "grimace", "perfume", "convict", "meeting", "plastic", "sunrise", "request", "dialect", "physics", "mislead", "monarch", "passage", "abolish", "morning", "parking", "rubbish", "chapter", "concede", "protect", "message", "chicken", "subject", "mention", "initial", "journal", "passion", "respect", "measure", "prevent", "silence", "enhance", "despair", "healthy", "shatter", "attract", "average", "sulphur", "diamond", "dentist", "display", "pattern", "icicle", "record", "scrape", "square", "elapse", "global", "throat", "decide", "agenda", "launch", "notice", "minute", "strong", "heaven", "outdate", "scheme", "format", "memory", "deputy", "rhythm", "morsel", "artist", "cotton", "island", "exotic", "breeze", "factor", "theory", "bottle", "script", "garage", "ethics", "normal", "return", "origin", "advice", "bishop", "output", "course", "occupy", "voyage", "critic", "facade", "borrow", "shiver", "reject", "export", "behead", "banner", "modest", "lonely", "player", "kettle", "sacred", "hammer", "barrel", "ignore", "formal", "ground", "mobile", "ladder", "length", "tumble", "honest", "spread", "twitch", "tender", "cellar", "source", "reason", "ethnic", "shrink", "crutch", "sailor", "collar", "Sunday", "punish", "dragon", "reward", "salmon", "powder", "castle", "remedy", "suburb", "tongue", "active", "affect", "series", "dealer", "safety", "singer", "tissue", "strike", "absent", "snatch", "mature", "labour", "supply", "button", "treaty", "shower", "detail", "census", "market", "throne", "middle", "empire", "flight", "visual", "review", "period", "morale", "forest", "divide", "doctor", "guitar", "install", "ticket", "sodium", "oppose", "retain", "blonde", "direct", "profit", "string", "embark", "defend", "member", "estate", "pocket", "tablet", "invite", "couple", "safari", "manage", "studio", "temple", "pillow", "growth", "differ", "bronze", "rescue", "master", "lounge", "escape", "manual", "proper", "pierce", "seller", "unlike", "result", "sister", "buffet", "rotate", "crisis", "exceed", "poetry", "filter", "reform", "speech", "needle", "desire", "makeup", "gravel", "remind"];
 	var hardWords = ["pan", "bus", "way", "fix", "arm", "lay", "joy", "bin", "buy", "pop", "end", "hot", "put", "lid", "rob", "era", "see", "nun", "bed", "jet", "ice", "kit", "day", "due", "dry", "fox", "lot", "use", "add", "aid", "row", "key", "fun", "tin", "ash", "set", "tie", "eye", "ask", "can", "sit", "sum", "pie", "act", "fax", "jaw", "rub", "far", "fit", "law", "dip", "nap", "shy", "eat", "lie", "pot", "nut", "age", "say", "kid", "sun", "tap", "bag", "pat", "top", "cap", "war", "hut", "leg", "sea", "hip", "art", "air", "red", "cry", "die", "low", "oak", "tip", "fly", "pen", "man", "pin", "tax", "win", "fog", "map", "inn", "net", "old", "mug", "ton", "bat", "fee", "bar", "hit", "run", "rib", "bee", "ear", "pit", "bad", "van", "job", "raw", "new", "sow", "bet", "jam", "pay", "bay", "cut", "ant", "hay", "few", "sip", "boy", "cup", "hen", "owl", "oil"];
 
 	var wordsList = [];
@@ -74,6 +75,7 @@ function play() {
 	totalRecord = 0;
 	fontsRemainingArr = fontsArr;
 	fontsRemaining = fontsRemainingArr.fonts.length;
+	postRound = false;
 
 	$("#game-box").css("display", "block");
 
@@ -216,35 +218,44 @@ function getNextFont(currMessage) {
 	    }
 
 	    // start countdown for this round
-	    startCountdown({});
+	    startCountdown();
 	}
 
 }
 
-function startCountdown(options) {
-	var width = options.startingWidth || 0;
-	var increment = options.increment || 1;
+function startCountdown(width = 0) {
+
+	if (postRound) {
+		if(mode == "easy") {
+			increment = 0.2;
+		} else {
+			increment = 0.2;
+		}
+	} else {
+		if(mode == "easy") {
+			increment = easyInc;
+		} else {
+			increment = hardInc;
+		}
+	}
+
 	var countdown = document.getElementById('countdown');
     clearInterval(counter);
 
-    if(mode == "easy") {
-    	increment = increment * easyInc;
-    } else {
-    	increment = increment * hardInc;
-    }
-
     counter = window.setInterval(function() {
     	if (width >= 100) {
-    		if (!options.postround) {
+    		if (!postRound) {
 				var timeoutMessage = "<strong class='incorrect'>Time's up!</strong> " + correctFont + " was the correct choice.";
 				handleCase("timeout", timeoutMessage);
 			} else {
+				postRound = false;
 				getNextFont("");
 			}
     	}
 		$("#countdown").css("width",width + "%");
 		width += increment;    	
-    }, 5);	        
+    }, 5);	
+
 }
 
 function stopCountdown() {
@@ -252,20 +263,34 @@ function stopCountdown() {
 	counter = null;
 }
 
+function handlePause() {
+	if (counter !== null) { // if a countdown is currently going  
+	  // stop it      
+	  stopCountdown();
+	} else if ($("#play-btn").attr("class").match("ingame")) { // if in game and no countdown going
+	  // get "time" we stopped at (as percentage of bar filled)
+	  currWidth = $("#countdown").width() / $("#countdown-cell").width() * 100;
+	  // start countdown
+	  startCountdown(currWidth);
+	}
+}
+
 function checkChoiceHandler() {
 
 	if($("input[name='selection']").is(":checked")) { // if radio box is checked
 
-		stopCountdown();
+		if (!postRound) { // if not in postround
+			stopCountdown();
 
-		var selectedFont = $("input[name='selection']:checked").val();
-			var correctMessage = selectedFont + " is <strong class='correct'>correct</strong>!";
-			handleCase("good", correctMessage);
-		if(selectedFont == correctFont) { // if correct radio box is checked
-			
-		} else { // if incorrect radio box is checked
-			var incorrectMessage = "<strong class='incorrect'>Incorrect</strong>... " + correctFont + " was the correct choice.";
-			handleCase("bad", incorrectMessage);
+			var selectedFont = $("input[name='selection']:checked").val();
+				
+			if(selectedFont == correctFont) { // if correct radio box is checked
+				var correctMessage = selectedFont + " is <strong class='correct'>correct</strong>!";
+				handleCase("good", correctMessage);			
+			} else { // if incorrect radio box is checked
+				var incorrectMessage = "<strong class='incorrect'>Incorrect</strong>... " + correctFont + " was the correct choice.";
+				handleCase("bad", incorrectMessage);
+			}
 		}
 	} else { // if no radio box is checked
 		$("#notification-cell").html("<h3><strong class='incorrect'>You must select a choice first.</strong></h3>");
@@ -278,12 +303,13 @@ function handleCase(type, message) {
 
 	var incremType;
 	if(mode == "easy") {
-		incremType = 0.3 / easyInc;
+		incremType = 0.2 / easyInc;
 	} else {
-		incremType = 0.3 / hardInc;
+		incremType = 0.2 / hardInc;
 	}
 
-	startCountdown({increment: incremType, postround: true});
+	postRound = true;
+	startCountdown();
 
 	if (type == "good") {
 		currRecord++;
@@ -297,7 +323,7 @@ function handleCase(type, message) {
 
 function updateScore() {
 
-	if(currRecord >= bestRecord && currRecord !== 0) {
+	if(currRecord > bestRecord && currRecord !== 0) {
 		bestRecord = currRecord;
 		$("#best-record").html(bestRecord).css({"background-color":"#e0e0e0","color":"#000"});
     	window.setTimeout(function() {$("#best-record").css({"background":"none","color":"#BDBDBD"});}, 500);

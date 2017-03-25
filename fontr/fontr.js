@@ -19,7 +19,7 @@ function getData() {
 		console.log(fontsArr);
  	});
 	
-	setTimeout(function(){ displayLegend(); }, 3000);
+	setTimeout(function(){ displayLegend(); }, 500);
 }
 
 function displayLegend() {

@@ -15,10 +15,12 @@ function getData() {
 
 	var data;
 	
-	$.getJSON('https://courier-new.github.io/fontr/fontsData.json', function(data) {
+	$.getJSON('fontsData.json', function(data) {
 	//$.getJSON('miniFontsData.json', function(data) { // for testing end game results only
 		fontsRemainingArr = fontsArr = data;
  	});
+
+ 	return fontsArr;
 
 }
 

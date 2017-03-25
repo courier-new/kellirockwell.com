@@ -5,6 +5,8 @@
 <head>
 
   <!-- SITE META INFO -->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
     <title>Fontr | The Font Identifying Game</title>
     <meta name="description" content="A fun and easy game to study fonts by matching their images to their names.">
     <meta name="author" content="Kelli Rockwell">
@@ -15,11 +17,14 @@
     <link href="https://fonts.googleapis.com/css?family=Cardo:400,400i,700" rel="stylesheet" type="text/css" />
 
     <!-- IMPORT CSS -->
-    <link rel="stylesheet" href="fontr.css" type="text/css" />
+    <link rel="stylesheet" href="css/fontr.css" type="text/css" />
+    <link rel="stylesheet" href="css/instructions.css" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- IMPORT JS -->
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>    
-    <script src="fontr.js"></script>
+    <script src="js/fontr-local.js"></script>
+    <script src="js/instructions.js"></script>
 
     <!-- EMBEDDED CSS -->
     <style>
@@ -33,8 +38,63 @@
 
   <div id="container">
 
+    <div id="instructions">
+      <div id="exit"></div>
+      <div id="prev" class="hidden">
+        <i class="fa fa-angle-left" aria-hidden="true"></i>
+      </div>
+      <div id="next">
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+      </div>
+      
+      <div class="card c1">
+        <h2>Step 1: Start a new game.</h2>
+        <p>As soon as you click the "New" button, you will see a font sample and four font options.</p>
+        <img src="instructions/start.gif" />
+      </div>
+
+      <div class="card c2 hidden">
+        <h2>Step 2: Make your best guess.</h2>
+        <p>If you think you recognize the font, click to select it and then press submit.</p>
+        <img src="instructions/select.gif" />
+      </div>
+
+      <div class="card c3 hidden">
+        <h2>Step 3: See if you were right.</h2>
+        <p>Your scoreboard will update to reflect how you're doing. "Current" represents your current streak, "Best" your best streak, and "Total" the total number of times you guessed correctly.</p>
+        <img src="instructions/correct.gif" />
+      </div>
+
+      <div class="card c4 hidden">
+        <h2>Step 4: Keep going!</h2>
+        <p>The next round will begin automatically after a moment. "Remaining" tells you how many fonts you have left in the game.</p>
+        <img src="instructions/next.gif" />
+      </div>
+
+      <div class="card c5 hidden">
+        <h2>Tip: Don't let time run out!</h2>
+        <p>You only have a set amount of time to make your guess. Use the bar at the bottom to watch your time.</p>
+        <img src="instructions/timeout.gif" />
+      </div>
+
+      <div class="card c6 hidden">
+        <h2>Tip: Quit or start over anytime.</h2>
+        <p>You can quit or start a new game at any point. This will reset the fonts list back to the full list.</p>
+        <img src="instructions/restart.gif" />
+      </div>
+
+      <div class="card c7 hidden">
+        <h2>Tip: Try it on hard mode.</h2>
+        <p>When you're ready for a challenge, give hard mode a go!</p>
+        <img src="instructions/hard.gif" />
+      </div>
+      
+
+    </div>
+
+
     <h1 id="title">Fontr</h1>
-    <p>Welcome to the font learning game, where you can test and improve your font recognition skills simply and enjoyably! Study the fonts below and select hard mode when you're ready for a challenge, or <a id="instructions">watch here to learn how to play</a>.</p>
+    <p>Welcome to <strong class="fontr">Fontr</strong>, the font learning game! With <strong class="fontr">Fontr</strong>, you can improve your font recognition skills or challenge your friends to a font-off with ease! Study the fonts below and click "New" to start the game when you're ready, or <a id="instructions-link">watch how to play here</a>.</p>
 
     <hr />
 
@@ -114,19 +174,16 @@
     });
 
     $(document).keydown(function(e) {
-      if (e.keyCode==32) {
-        if (counter !== null) {          
-          stopCountdown();
-        } else {
-          currWidth = $("#countdown").width() / $("#countdown-cell").width() * 100;
-          startCountdown({startingWidth: currWidth});
-        }
+      if (e.keyCode == 32) {
+        handlePause();
+        return false;
       }
     });
 
     $("#play-btn").on("click", play);
     $("#quit-btn").on("click", quit);
-    getData(); 
+    getData();
+    controlInstructions(); 
 
   });
 

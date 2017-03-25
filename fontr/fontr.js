@@ -16,7 +16,9 @@ function getData() {
 	$.getJSON('fontsData.json', function(data) {
 	//$.getJSON('miniFontsData.json', function(data) { // for testing end game results only
 		fontsRemainingArr = fontsArr = data;
- 	})
+ 	});
+	
+	return fontsArr;
 }
 
 function displayLegend(data) {

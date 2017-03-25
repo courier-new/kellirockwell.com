@@ -18,6 +18,8 @@ function getData() {
 		fontsRemainingArr = fontsArr = data;
 		console.log(fontsArr);
  	});
+	
+	displayLegend();
 }
 
 function displayLegend() {

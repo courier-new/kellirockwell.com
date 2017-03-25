@@ -16,9 +16,9 @@ function getData() {
 	var data;
 	
 	$.getJSON('fontsData.json', function(data) {
-	//$.getJSON('miniFontsData.json', function(data) { // for testing end game results only
-		fontsRemainingArr = fontsArr = data.fonts;
+	//$.getJSON('miniFontsData.json', function(data) { // for testing end game results only		
  	});
+	fontsRemainingArr = fontsArr = data.;
 
 }
 

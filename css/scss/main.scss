@@ -10,6 +10,61 @@ body {
     text-decoration: none;
 }
 
+#logo-holder img {
+    -moz-transition: -moz-transform .8s linear;
+    -webkit-transition: -webkit-transform .8s linear;
+    transition:         transform .8s linear;
+}
+
+#title-middle-holder {
+    display: table-cell;
+    vertical-align: middle;
+    #title-inner-holder {
+        margin-left: auto;
+        margin-right: auto;
+        h1 {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 800;
+            font-size: 2.2em;
+            color: #30322b;
+            text-transform: uppercase;
+            text-align: left;
+            margin: 5px 0;
+
+        }
+        h2 {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            font-size: 0.75em;
+            text-transform: lowercase;
+            letter-spacing: 0.5px;
+            text-align: left;
+            margin: 5px 1px;
+        }
+        h3 {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
+            font-size: 0.9em;
+            line-height: 0.9em;
+            text-align: left;
+            margin: 10px 1px 0 1px;
+            color: #9dad60;
+            transition: all 170ms linear;
+            -webkit-transition: all 170ms linear;
+            -moz-transition: all 170ms linear;
+        }
+        h3:hover {
+            color: #30322b;
+            cursor: pointer;
+        }
+        h3 i {
+            display: inline-block;
+            margin-top: -2px;
+            color: rgba(55, 58, 70, 1);
+        }
+    }
+}
+
 #container {
     background-color: #fff;
     display: table;
@@ -72,33 +127,6 @@ body {
                         width: 70%;
                         height: 100%;
                         text-align: left;
-                        #title-middle-holder {
-                        	display: table-cell;
-                        	vertical-align: middle;
-                        	#title-inner-holder {
-                        		margin-left: auto;
-                        		margin-right: auto;
-		                        h1 {
-		                        	font-family: 'Raleway', sans-serif;
-		                        	font-weight: 800;
-		                        	font-size: 2.2em;
-		                        	color: #30322b;
-		                        	text-transform: uppercase;
-		                        	text-align: left;
-		                        	margin: 5px 0;
-
-		                        }
-		                        h2 {
-		                        	font-family: 'Raleway', sans-serif;
-		                        	font-weight: 400;
-		                        	font-size: 0.75em;
-		                        	text-transform: lowercase;
-		                        	letter-spacing: 0.5px;
-		                        	text-align: left;
-		                        	margin: 5px 1px;
-		                        }
-		                    }
-	                    }
                     }
                 }
             }
@@ -135,31 +163,11 @@ body {
                     #title-outer-holder {
                     	width: 100%;
                         display: table;
-                        #title-middle-holder {
-                        	display: table-cell;
-                        	vertical-align: middle;
-                        	#title-inner-holder {
-                        		margin-left: auto;
-                        		margin-right: auto;
-		                        h1 {
-		                        	font-family: 'Raleway', sans-serif;
-		                        	font-weight: 800;
-		                        	font-size: 1.7em;
-		                        	color: #30322b;
-		                        	text-transform: uppercase;
-		                        	margin: 5px 0;
-
-		                        }
-		                        h2 {
-		                        	font-family: 'Raleway', sans-serif;
-		                        	font-weight: 400;
-		                        	font-size: 0.6em;
-		                        	text-transform: lowercase;
-		                        	letter-spacing: 0.5px;
-		                        	margin: 5px 1px;
-		                        }
-		                    }
-	                    }
+                        h1,
+                        h2,
+                        h3 {
+                            text-align: center;
+                        }
                     }
                 }
             }
@@ -243,6 +251,7 @@ body {
 }
 
 .right-side.mob #links {
+    text-align: center;
 	#dummy {
 		display: none;
 		width: 0.001%;
@@ -250,6 +259,7 @@ body {
 	#inner-cell {
 		display: table;
 		width: 90%;
+        margin: auto;
 	}
 	#inner-table > a {
 		i {

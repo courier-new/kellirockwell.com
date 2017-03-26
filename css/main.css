@@ -13,6 +13,47 @@ body {
   -webkit-transition: -webkit-transform .8s linear;
   transition: transform .8s linear; }
 
+#title-middle-holder {
+  display: table-cell;
+  vertical-align: middle; }
+  #title-middle-holder #title-inner-holder {
+    margin-left: auto;
+    margin-right: auto; }
+    #title-middle-holder #title-inner-holder h1 {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 800;
+      font-size: 2.2em;
+      color: #30322b;
+      text-transform: uppercase;
+      text-align: left;
+      margin: 5px 0; }
+    #title-middle-holder #title-inner-holder h2 {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 400;
+      font-size: 0.75em;
+      text-transform: lowercase;
+      letter-spacing: 0.5px;
+      text-align: left;
+      margin: 5px 1px; }
+    #title-middle-holder #title-inner-holder h3 {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+      font-size: 0.9em;
+      line-height: 0.9em;
+      text-align: left;
+      margin: 10px 1px 0 1px;
+      color: #9dad60;
+      transition: all 170ms linear;
+      -webkit-transition: all 170ms linear;
+      -moz-transition: all 170ms linear; }
+    #title-middle-holder #title-inner-holder h3:hover {
+      color: #30322b;
+      cursor: pointer; }
+    #title-middle-holder #title-inner-holder h3 i {
+      display: inline-block;
+      margin-top: -2px;
+      color: #373a46; }
+
 #container {
   background-color: #fff;
   display: table;
@@ -69,28 +110,6 @@ body {
           width: 70%;
           height: 100%;
           text-align: left; }
-          #container #main-block.full .right-side.full .inner-col #intro #title-outer-holder #title-middle-holder {
-            display: table-cell;
-            vertical-align: middle; }
-            #container #main-block.full .right-side.full .inner-col #intro #title-outer-holder #title-middle-holder #title-inner-holder {
-              margin-left: auto;
-              margin-right: auto; }
-              #container #main-block.full .right-side.full .inner-col #intro #title-outer-holder #title-middle-holder #title-inner-holder h1 {
-                font-family: 'Raleway', sans-serif;
-                font-weight: 800;
-                font-size: 2.2em;
-                color: #30322b;
-                text-transform: uppercase;
-                text-align: left;
-                margin: 5px 0; }
-              #container #main-block.full .right-side.full .inner-col #intro #title-outer-holder #title-middle-holder #title-inner-holder h2 {
-                font-family: 'Raleway', sans-serif;
-                font-weight: 400;
-                font-size: 0.75em;
-                text-transform: lowercase;
-                letter-spacing: 0.5px;
-                text-align: left;
-                margin: 5px 1px; }
   #container #main-block .right-side.mob {
     float: right;
     position: relative;
@@ -119,26 +138,10 @@ body {
         #container #main-block .right-side.mob .inner-col #intro #title-outer-holder {
           width: 100%;
           display: table; }
-          #container #main-block .right-side.mob .inner-col #intro #title-outer-holder #title-middle-holder {
-            display: table-cell;
-            vertical-align: middle; }
-            #container #main-block .right-side.mob .inner-col #intro #title-outer-holder #title-middle-holder #title-inner-holder {
-              margin-left: auto;
-              margin-right: auto; }
-              #container #main-block .right-side.mob .inner-col #intro #title-outer-holder #title-middle-holder #title-inner-holder h1 {
-                font-family: 'Raleway', sans-serif;
-                font-weight: 800;
-                font-size: 1.7em;
-                color: #30322b;
-                text-transform: uppercase;
-                margin: 5px 0; }
-              #container #main-block .right-side.mob .inner-col #intro #title-outer-holder #title-middle-holder #title-inner-holder h2 {
-                font-family: 'Raleway', sans-serif;
-                font-weight: 400;
-                font-size: 0.6em;
-                text-transform: lowercase;
-                letter-spacing: 0.5px;
-                margin: 5px 1px; }
+          #container #main-block .right-side.mob .inner-col #intro #title-outer-holder h1,
+          #container #main-block .right-side.mob .inner-col #intro #title-outer-holder h2,
+          #container #main-block .right-side.mob .inner-col #intro #title-outer-holder h3 {
+            text-align: center; }
   #container #main-block.mob .right-side {
     width: 100vw;
     height: -webkit-calc(60vh - 3em);
@@ -198,16 +201,19 @@ body {
       text-transform: uppercase;
       display: block; }
 
-.right-side.mob #links #dummy {
-  display: none;
-  width: 0.001%; }
-.right-side.mob #links #inner-cell {
-  display: table;
-  width: 90%; }
-.right-side.mob #links #inner-table > a i {
-  font-size: 1.5em; }
-.right-side.mob #links #inner-table > a span {
-  font-size: 0.5em; }
+.right-side.mob #links {
+  text-align: center; }
+  .right-side.mob #links #dummy {
+    display: none;
+    width: 0.001%; }
+  .right-side.mob #links #inner-cell {
+    display: table;
+    width: 90%;
+    margin: auto; }
+  .right-side.mob #links #inner-table > a i {
+    font-size: 1.5em; }
+  .right-side.mob #links #inner-table > a span {
+    font-size: 0.5em; }
 
 #footer {
   display: table-cell;

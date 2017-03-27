@@ -10,10 +10,52 @@ body {
     text-decoration: none;
 }
 
+
+.nav {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.nav,
+.nav * {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.6em;
+}
+
+.nav-item {
+    font-size: 2.4em;
+    display: inline-block;
+    color: #373a46;
+    margin: 3px 3%;
+    padding: 4px 5px;
+}
+
+.nav-item:hover {
+    cursor: pointer;
+}
+
+.nav-item.active,
+.nav-item.active:hover {
+    color: #9dad60;
+    cursor: initial;
+}
+
 #logo-holder img {
     -moz-transition: -moz-transform .8s linear;
     -webkit-transition: -webkit-transform .8s linear;
     transition:         transform .8s linear;
+}
+
+.left-side {
+    position: relative;
+    z-index: 10;
+}
+
+.right-side,
+.right-side * {
+    z-index: 1;
 }
 
 #title-middle-holder {
@@ -60,7 +102,7 @@ body {
         h3 i {
             display: inline-block;
             margin-top: -2px;
-            color: rgba(55, 58, 70, 1);
+            color: #373a46;
         }
     }
 }
@@ -69,6 +111,7 @@ body {
     background-color: #fff;
     display: table;
     width: 100vw;
+    overflow: hidden;
     #main-block,
     #main-block > * {
         height: -webkit-calc(100vh - 3em);

@@ -78,7 +78,6 @@ $(document).ready(function() {
 	function showSection(sectionName, dir) {
 		// get window height
 		var offScreen = $(document).height();
-		console.log(dir);
 		$('.inner-col').not('.hidden').each(function() {
 			// get column height
 			var colHeight = $(this).outerHeight();
@@ -97,10 +96,10 @@ $(document).ready(function() {
 			var colHeight = $(this).outerHeight();
 			// move column to just off screen
 			var move = (dir === "up") ? "-" + colHeight/1.5 : offScreen + colHeight/1.5;
-			$(this).css('top', move);
+			$(this).css('top', move + "px");
 			// make column visible
 		  	$(this).css('display', 'block');
-		  	$(this).animate({top: 50 + "%"}, "2s");
+		  	$(this).animate({top: 50 + "%"}, '3s');
 		});
 	}
 

@@ -88,9 +88,12 @@ $(document).ready(function() {
 			$(this).animate(move, '3s');
 		});
 		$('.inner-col.' + sectionName).removeClass('hidden');
-		$('.inner-col.hidden').each(function() {
-			$(this).animate({display: 'none'}, '3s');
-		});
+		setTimeout(function() {
+			$('.inner-col.hidden').each(function() {
+				console.log("hiding");
+				$(this).css('display', 'none');
+			 });
+		}, 500);
 		$('.inner-col').not('.hidden').each(function() {
 			// get column height
 			var colHeight = $(this).outerHeight();

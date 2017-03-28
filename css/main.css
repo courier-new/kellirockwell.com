@@ -76,7 +76,8 @@ hr {
   font-weight: 600;
   text-transform: uppercase;
   font-size: 0.8em;
-  color: #a3a1b5; }
+  color: #a3a1b5;
+  margin-top: 20px; }
 
 .nav-item {
   font-size: 1.2em;
@@ -315,7 +316,8 @@ hr {
   .right-side.mob #links #inner-table > a span {
     font-size: 0.5em; }
 
-.right-side {
+.inner-col {
+  max-height: 100%;
   overflow: auto; }
 
 #footer {

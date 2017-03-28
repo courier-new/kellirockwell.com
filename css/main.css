@@ -6,28 +6,92 @@ body {
   font-family: 'Open Sans', sans-serif;
   text-align: center;
   vertical-align: middle;
-  text-decoration: none; }
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased; }
 
-.nav {
+hr {
+  width: 40%;
+  min-width: 120px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  margin: 20px auto 25px auto; }
+
+.nav,
+.blurb {
+  width: 75%;
+  min-width: 400px;
+  margin: 0 auto; }
+
+.blurb,
+.blurb * {
+  text-align: left; }
+
+.blurb h1 {
+  font-family: 'Raleway', sans-serif;
+  text-transform: uppercase;
+  font-weight: 200;
+  font-size: 1em;
+  letter-spacing: 0em; }
+  .blurb h1 strong {
+    font-family: 'Raleway', sans-serif;
+    color: #373a46;
+    font-size: 1.7em;
+    display: block;
+    font-weight: 800;
+    letter-spacing: 0.05em; }
+.blurb .mini-head {
+  width: 30px;
+  margin-bottom: 5px;
+  border-bottom: 3px solid #b78b91; }
+  .blurb .mini-head h2 {
+    width: 1000%;
+    text-transform: uppercase;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+    font-size: 0.7em;
+    letter-spacing: 0.05em;
+    color: #373a46; }
+.blurb .steps {
   width: 100%;
-  margin-bottom: 30px; }
+  margin: 20px 0 30px 0; }
+.blurb p {
+  font-size: 0.8em;
+  line-height: 1.6em;
+  margin: 20px 0 0 0; }
+.blurb .steps > div {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 48%; }
+  .blurb .steps > div:first-child {
+    margin-right: 2%; }
+  .blurb .steps > div p {
+    margin: 0; }
+.blurb .steps > div:first-child {
+  padding-right: 10px; }
 
 .nav,
 .nav * {
   font-family: 'Raleway', sans-serif;
-  font-weight: 800;
+  font-weight: 600;
   text-transform: uppercase;
-  font-size: 0.6em; }
+  font-size: 0.8em;
+  color: #a3a1b5; }
 
 .nav-item {
-  font-size: 2.4em;
+  font-size: 1.2em;
   display: inline-block;
-  color: #373a46;
-  margin: 3px 3%;
-  padding: 4px 5px; }
+  margin: 3px 3% 3px 3%;
+  padding: 0 5px;
+  letter-spacing: 0.05em;
+  color: #797784;
+  -moz-transition: color 170ms linear;
+  -webkit-transition: color 170ms linear;
+  transition: color 170ms linear; }
 
 .nav-item:hover {
-  cursor: pointer; }
+  cursor: pointer;
+  color: #373a46; }
 
 .nav-item.active,
 .nav-item.active:hover {
@@ -60,6 +124,7 @@ body {
       color: #30322b;
       text-transform: uppercase;
       text-align: left;
+      letter-spacing: 0.05em;
       margin: 5px 0; }
     #title-middle-holder #title-inner-holder h2 {
       font-family: 'Raleway', sans-serif;
@@ -249,6 +314,9 @@ body {
     font-size: 1.5em; }
   .right-side.mob #links #inner-table > a span {
     font-size: 0.5em; }
+
+.right-side {
+  overflow: auto; }
 
 #footer {
   display: table-cell;

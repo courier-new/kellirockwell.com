@@ -1,0 +1,68 @@
+@import "../bourbon/bourbon";
+
+$green: #9dad60;
+
+.skills {
+	list-style: none;
+	font-size: 20px;
+	padding: 0;
+	.skill {
+	    position: relative;
+	    height: 60px;
+	    width: 100%;
+	    display: inline-block;
+	    width: 48%;
+	    &:nth-child(2n-1) {
+	    	margin-right: 2%;
+	    }
+	    &:before,
+	    &:after {
+	    	content: "";
+	    	position: absolute;
+	    	border-radius: 20px;
+	    	margin-top: 40px;
+	    }
+	    &:before {
+	    	top: 0;
+	    	right: 0;
+	    	bottom: 0;
+	    	left: 0;
+	    	height: 20px;
+	    	background: #eeeeee;
+	    }
+	    &:after {
+	    	background-color: $green;
+	    	background: repeating-linear-gradient(-45deg, $green, $green 8px, lighten($green, 3) 8px, lighten($green, 3) 16px);
+	    	height: 16px; 
+	    	top: 2px;
+	    	right: 95%;
+	    	bottom: 2px;
+	    	left: 2px;
+	    	@include animation(fill 2s both);
+	    }
+	    &[aria-label="novice"]:after {
+	    	right: 75%;
+	    }
+	    &[aria-label="average"]:after {
+	    	right: 50%;
+	    }
+	    &[aria-label="adept"]:after {
+	    	right: 35%;
+	    }
+	    &[aria-label="advanced"]:after {
+	    	right: 20%;
+	    }
+	    &[aria-label="elite"]:after {
+	    	right: 10%;
+	    }
+	    &[aria-label="pro"]:after {
+	    	right: 2px;
+	    }
+	}
+}
+
+@include keyframes(fill) {
+	from {
+		right: 100%;
+	}
+}

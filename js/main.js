@@ -130,7 +130,7 @@ $(document).ready(function() {
 			nav += className;
 			nav += "\n</div>\n";
 			if (count !== $('.inner-col').length) { // for all but the last nav item
-				nav += " ◼ \n";
+				nav += " ♦ \n";
 			}
 			count++;
 		});

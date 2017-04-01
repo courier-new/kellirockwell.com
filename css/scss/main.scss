@@ -61,7 +61,21 @@ hr {
             font-weight: 800;
             font-size: 0.7em;
             letter-spacing: 0.05em;
-            color: #373a46;        
+            & > * {
+                -moz-transition: color 170ms linear;
+                -webkit-transition: color 170ms linear;
+                transition:         color 170ms linear;
+            }
+            .active{
+                color: #373a46;     
+            }
+            .inactive {
+                color: rgba(121, 119, 132, 0.5);
+                &:hover {
+                    color: rgba(121, 119, 132, 0.8);                    
+                    cursor: pointer;
+                }
+            }    
         }
     }
 
@@ -74,6 +88,10 @@ hr {
         font-size: 0.8em;
         line-height: 1.6em;
         margin: 20px 0 0 0;
+    }
+    strong {
+        line-height: 1.6em;
+        vertical-align: top;
     }
     .steps > div {
         box-sizing: border-box;
@@ -400,7 +418,8 @@ hr {
 
 .inner-col {
     max-height: 100%;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 #footer {

@@ -1,59 +1,87 @@
-.skills {
+.meters {
   list-style: none;
-  font-size: 20px;
-  padding: 0; }
-  .skills .skill {
-    position: relative;
-    height: 60px;
-    width: 100%;
-    display: inline-block;
-    width: 48%; }
-    .skills .skill:nth-child(2n-1) {
-      margin-right: 2%; }
-    .skills .skill:before, .skills .skill:after {
-      content: "";
-      position: absolute;
-      border-radius: 20px;
-      margin-top: 40px; }
-    .skills .skill:before {
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      height: 20px;
-      background: #eeeeee; }
-    .skills .skill:after {
-      background-color: #9dad60;
-      background: repeating-linear-gradient(-45deg, #9dad60, #9dad60 8px, #a3b26a 8px, #a3b26a 16px);
-      height: 16px;
-      top: 2px;
-      right: 95%;
-      bottom: 2px;
-      left: 2px;
-      -webkit-animation: fill 2s both;
-      -moz-animation: fill 2s both;
-      animation: fill 2s both; }
-    .skills .skill[aria-label="novice"]:after {
-      right: 75%; }
-    .skills .skill[aria-label="average"]:after {
-      right: 50%; }
-    .skills .skill[aria-label="adept"]:after {
-      right: 35%; }
-    .skills .skill[aria-label="advanced"]:after {
-      right: 20%; }
-    .skills .skill[aria-label="elite"]:after {
-      right: 10%; }
-    .skills .skill[aria-label="pro"]:after {
-      right: 2px; }
+  font-size: 0.7em;
+  padding-left: 0;
+}
+.meters .meter {
+  position: relative;
+  height: 3em;
+  width: 100%;
+  display: inline-block;
+  padding: 0.2em 0;
+  width: 46%;
+}
+.meters .meter:nth-child(2n-1) {
+  margin-right: 4%;
+}
+.meters .meter:before, .meters .meter:after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  border-radius: 16px;
+  margin-top: 1.5em;
+}
+.meters .meter:before {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 16px;
+  border: 1px solid #797784;
+}
+.meters .meter:after {
+  background-color: #9dad60;
+  background: repeating-linear-gradient(-45deg, #9dad60, #9dad60 7px, #a3b26a 7px, #a3b26a 14px);
+  height: 10px;
+  top: 3px;
+  right: 0;
+  bottom: 0;
+  left: 3px;
+  -webkit-animation: fill 1.5s both;
+  -moz-animation: fill 1.5s both;
+  animation: fill 1.5s both;
+}
+.meters .meter.b:after {
+  background-color: #8f8c69;
+  background: repeating-linear-gradient(-45deg, #8f8c69, #8f8c69 7px, #979471 7px, #979471 14px);
+}
+.meters .meter.l:after {
+  background-color: #89919e;
+  background: repeating-linear-gradient(-45deg, #89919e, #89919e 7px, #9199a5 7px, #9199a5 14px);
+}
+.meters .meter[aria-label="lv1"]:after {
+  right: 75%;
+}
+.meters .meter[aria-label="lv2"]:after {
+  right: 50%;
+}
+.meters .meter[aria-label="lv3"]:after {
+  right: 35%;
+}
+.meters .meter[aria-label="lv4"]:after {
+  right: 20%;
+}
+.meters .meter[aria-label="lv5"]:after {
+  right: 10%;
+}
+.meters .meter[aria-label="lvmax"]:after {
+  right: 3px;
+}
 
 @-webkit-keyframes fill {
   from {
-    right: 100%; } }
+    right: 100%;
+  }
+}
 @-moz-keyframes fill {
   from {
-    right: 100%; } }
+    right: 100%;
+  }
+}
 @keyframes fill {
   from {
-    right: 100%; } }
+    right: 100%;
+  }
+}
 
 /*# sourceMappingURL=meters.css.map */

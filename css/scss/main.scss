@@ -1,30 +1,63 @@
+@import 'variables';
+
+@charset "UTF-8";
+
+@import 'projects';
+@import 'meters';
+
 body {
     margin: 0;
 }
 
 * {
     color: #797784;
-    font-family: 'Open Sans', sans-serif;
-    text-align: center;
-    vertical-align: middle;
-    text-decoration: none;
+    font-family: $main-stack;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.overlay-container {
+    background-position: center center;
+    background-size: cover;
+    border-right: 20px solid $lightest-gray;
+    box-sizing: border-box;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    -webkit-transition: background 300ms linear;
+    -moz-transition: background 300ms linear;
+    transition:         background 300ms linear;
+    width: 100%;
+    .overlay-caption {
+        background-color: $lightest-gray;
+        border-bottom: 10px solid $green;
+        bottom: 30px;
+        color: #797784;
+        padding: 20px;
+        position: absolute;
+        right: 0;
+        text-align: right;
+    }
 }
 
 hr {
-    width: 40%;
-    min-width: 120px;
     background: none;
     border: none;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid $lightest-gray;
     margin: 20px auto 25px auto;
+    min-width: 120px;
+    width: 50%;
 }
 
 .nav,
 .blurb {
-    width: 75%;
-    min-width: 400px;
     margin: 0 auto;
+    min-width: 400px;
+    width: 75%;
 }
 
 .blurb,
@@ -33,40 +66,38 @@ hr {
 }
 
 .blurb {
-
     h1 {
-        font-family: 'Raleway', sans-serif;
-        text-transform: uppercase;
-        font-weight: 200;
+        font-family: $headers-stack;
         font-size: 1em;
+        font-weight: 200;
         letter-spacing: 0em;
+        text-transform: uppercase;
         strong {
-            font-family: 'Raleway', sans-serif;
             color: #373a46;
-            font-size: 1.7em;
             display: block;
+            font-family: $headers-stack;
+            font-size: 1.7em;
             font-weight: 800;
             letter-spacing: 0.05em;
         }
     }
     .mini-head {
-        width: 30px;
+        border-bottom: 3px solid $pink;
         margin-bottom: 5px;
-        border-bottom: 3px solid #b78b91;
-        h2,
-         {
-            width: 1000%;
-            text-transform: uppercase;
-            font-family: 'Raleway', sans-serif;
-            font-weight: 800;
+        width: 30px;
+        h2, {
+            font-family: $headers-stack;
             font-size: 0.7em;
+            font-weight: 800;
             letter-spacing: 0.05em;
+            text-transform: uppercase;
+            width: 1000%;
             & > * {
-                -moz-transition: color 170ms linear;
                 -webkit-transition: color 170ms linear;
+                -moz-transition: color 170ms linear;
                 transition:         color 170ms linear;
             }
-            .active{
+            .active {
                 color: #373a46;     
             }
             .inactive {
@@ -78,11 +109,9 @@ hr {
             }    
         }
     }
-
-
     .steps {
-        width: 100%;
         margin: 20px 0 30px 0;
+        width: 100%;
     }
     p {
         font-size: 0.8em;
@@ -107,46 +136,68 @@ hr {
     .steps > div:first-child {
         padding-right: 10px;
     }
-
 }
 
-.nav,
+.resume {
+    i {
+        font-size: 6em;
+    }
+    #pdf-view,
+    .pdfobject {
+        width: 100%;
+        @include respond-to('tiny') {
+            height: 35vh;
+        }
+        @include respond-to('medium') {
+            height: 80vh;
+        }
+    }
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px auto 0 auto;
+    max-width: 600px;
+    width: 70%;
+}
+
 .nav * {
-    font-family: 'Raleway', sans-serif;
+    color: #a3a1b5;
+    font-family: $headers-stack;
     font-weight: 600;
     text-transform: uppercase;
-    font-size: 0.8em;
-    color: #a3a1b5;
-    margin-top: 20px;
+}
+
+.nav span {
+    font-size: 0.7em;
 }
 
 .nav-item {
-    font-size: 1.2em;
-    display: inline-block;
-    margin: 3px 3% 3px 3%;
-    padding: 0 5px;
-    letter-spacing: 0.05em;
     color: #797784;
-    -moz-transition: color 170ms linear;
+    font-size: 0.8em;
+    letter-spacing: 0.05em;
+    padding: 0 3%;
     -webkit-transition: color 170ms linear;
+    -moz-transition: color 170ms linear;
     transition:         color 170ms linear;
 }
 
 .nav-item:hover {
-    cursor: pointer;
     color: #373a46;
+    cursor: pointer;
 }
 
 .nav-item.active,
 .nav-item.active:hover {
-    color: #9dad60;
+    color: $green;
     cursor: initial;
 }
 
 #logo-holder img {
-    -moz-transition: -moz-transform .8s linear;
-    -webkit-transition: -webkit-transform .8s linear;
-    transition:         transform .8s linear;
+    -webkit-transition: -webkit-transform 0.8s linear;
+    -moz-transition: -moz-transform 0.8s linear;
+    transition:         transform 0.8s linear;
 }
 
 .left-side {
@@ -154,8 +205,7 @@ hr {
     z-index: 10;
 }
 
-.right-side,
-.right-side * {
+.right-side {
     z-index: 1;
 }
 
@@ -166,112 +216,111 @@ hr {
         margin-left: auto;
         margin-right: auto;
         h1 {
-            font-family: 'Raleway', sans-serif;
-            font-weight: 800;
-            font-size: 2.2em;
             color: #30322b;
-            text-transform: uppercase;
-            text-align: left;
+            font-family: $headers-stack;
+            font-size: 2.2em;
+            font-weight: 800;
             letter-spacing: 0.05em;
             margin: 5px 0;
-
+            text-align: left;
+            text-transform: uppercase;
         }
         h2 {
-            font-family: 'Raleway', sans-serif;
-            font-weight: 400;
+            font-family: $headers-stack;
             font-size: 0.75em;
-            text-transform: lowercase;
+            font-weight: 400;
             letter-spacing: 0.5px;
-            text-align: left;
             margin: 5px 1px;
+            text-align: left;
+            text-transform: lowercase;
         }
         h3 {
-            font-family: 'Raleway', sans-serif;
-            font-weight: 600;
+            color: $green;
+            font-family: $headers-stack;
             font-size: 0.9em;
+            font-weight: 600;
             line-height: 0.9em;
-            text-align: left;
             margin: 10px 1px 10px 1px;
-            color: #9dad60;
-            transition: all 170ms linear;
+            text-align: left;
             -webkit-transition: all 170ms linear;
             -moz-transition: all 170ms linear;
+            transition: all 170ms linear;
         }
         h3:hover {
             color: #30322b;
             cursor: pointer;
         }
         h3 i {
+            color: #373a46;
             display: inline-block;
             margin-top: -2px;
-            color: #373a46;
         }
     }
 }
 
 #container {
-    background-color: #fff;
+    background-color: #ffffff;
     display: table;
-    width: 100vw;
     overflow: hidden;
+    width: 100vw;
     #main-block,
-    #main-block > * {
+#main-block > * {
         height: -webkit-calc(100vh - 3em);
         height: -moz-calc(100vh - 3em);
         height: calc(100vh - 3em);
     }
     #main-block.full {
         .left-side,
-        .right-side.full {
+.right-side.full {
             display: inline-block;
         }
         .left-side {
-            float: left;
             background-image: url('../img/happy-head.jpg');
-            background-repeat: no-repeat;
             background-position: center;
+            background-repeat: no-repeat;
             background-size: cover;
+            float: left;
             width: 50vw;
         }
         .right-side.full {
+            background-color: #ffffff;
             float: right;
             position: relative;
-            background-color: #fff;
             width: 50vw;
             .inner-col {
-                position: absolute;
-                top: 50%;
                 left: 50%;
+                position: absolute;
+                text-align: center;
+                top: 50%;
                 transform: translate(-50%, -50%);
                 width: 100%;
-                text-align: center;
                 #intro {
                     height: 10vh;
-                    min-height: 80px;
-                    width: 80%;
-                    min-width: 530px;
                     margin: auto;
+                    min-height: 80px;
+                    min-width: 530px;
+                    width: 80%;
                     #logo-holder {
-                        float: left;
-                        position: relative;
                         display: inline-block;
-                        width: 30%;
+                        float: left;
                         height: 100%;
+                        position: relative;
+                        width: 30%;
                         img {
                             height: 100%;
-                            width: auto;
+                            left: 50%;
                             position: absolute;
                             top: 50%;
-                            left: 50%;
                             transform: translate(-50%, -50%);
+                            width: auto;
                         }
                     }
                     #title-outer-holder {
-                        float: right;
                         display: table;
-                        width: 70%;
+                        float: right;
                         height: 100%;
                         text-align: left;
+                        width: 70%;
                     }
                 }
             }
@@ -279,38 +328,38 @@ hr {
     }
     #main-block {
         .right-side.mob {
+            background-color: #ffffff;
             float: right;
             position: relative;
-            background-color: #fff;
             width: 50vw;
             .inner-col {
-                position: absolute;
-                top: 50%;
                 left: 50%;
+                position: absolute;
+                text-align: center;
+                top: 50%;
                 transform: translate(-50%, -50%);
                 width: 100%;
-                text-align: center;
                 #intro {
                     height: 25vh;
-                    min-height: 0px;
-                    width: 80%;
                     margin: auto;
                     margin-bottom: 20px;
+                    min-height: 0px;
+                    width: 80%;
                     #logo-holder {
-                    	height: 6vh;
-                    	min-height: 35px;
-                    	margin: 5vh 0;
+                        height: 6vh;
+                        margin: 5vh 0;
+                        min-height: 35px;
                         img {
                             height: 100%;
                             width: auto;
                         }
                     }
                     #title-outer-holder {
-                    	width: 100%;
                         display: table;
+                        width: 100%;
                         h1,
-                        h2,
-                        h3 {
+h2,
+h3 {
                             text-align: center;
                         }
                     }
@@ -319,133 +368,133 @@ hr {
         }
     }
     #main-block.mob {
-    	.right-side {
-    		width: 100vw;
-    		height: -webkit-calc(60vh - 3em);
-    		height: -moz-calc(60vh - 3em);
-    		height: calc(60vh - 3em);
-    	}
-    	.left-side {
-    	    background-image: url('../img/happy-head.jpg');
-    	    background-repeat: no-repeat;
-    	    background-position: 50% 20%;
-    	    background-size: cover;
-    	    width: 100vw;
-    	    height: 40vh;
-    	}
         .right-side {
-	        #intro {
-	            min-width: 0px;            
-	        }
-	    }
+            height: -webkit-calc(60vh - 3em);
+            height: -moz-calc(60vh - 3em);
+            height: calc(60vh - 3em);
+            width: 100vw;
+        }
+        .left-side {
+            background-image: url('../img/happy-head.jpg');
+            background-position: 50% 20%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 40vh;
+            width: 100vw;
+        }
+        .right-side {
+            #intro {
+                min-width: 0px;            
+            }
+        }
     }
 }
 
 #links {
-	display: table;
-	height: 10vh;
-	width: 80%;
-	margin: 10px auto 0 auto;
-	#dummy {
-		display: table-cell;
-		width: 30%;
-	}
-	#inner-cell {
-		display: table-cell;
-		width: 70%;
-		* {
-			transition: all 170ms linear;
-			-webkit-transition: all 170ms linear;
-			-moz-transition: all 170ms linear;
-		}
-		#inner-table {
-			display: table;
-			width: 100%;
-			.github.hover,
-			.email.hover,
-			.linkedin.hover,
-			.facebook.hover,
-			.codepen.hover,
-			.resume.hover {
-				background-color: #B0C75D;
-			}
-			.github.hover *,
-			.email.hover *,
-			.linkedin.hover *,
-			.facebook.hover *,
-			.codepen.hover *,
-			.resume.hover * {
-				color: #fff;
-			}
-		}
-	}
-	#inner-table > a {
-		display: table-cell;
-		width: 16.6%;
-		i {
-			font-size: 2.2em;
-			padding: 10px 15px 10px 15px;
-		}
-		span {
-			font-size: 0.6em;
-			padding-bottom: 10px;
-			text-transform: uppercase;
-			display: block;
-		}
-	}
+    display: table;
+    height: 10vh;
+    margin: 10px auto 0 auto;
+    width: 80%;
+    #dummy {
+        display: table-cell;
+        width: 30%;
+    }
+    #inner-cell {
+        display: table-cell;
+        width: 70%;
+        * {
+            -webkit-transition: all 170ms linear;
+            -moz-transition: all 170ms linear;
+            transition: all 170ms linear;
+        }
+        #inner-table {
+            display: table;
+            width: 100%;
+            .github.hover,
+.email.hover,
+.linkedin.hover,
+.facebook.hover,
+.codepen.hover,
+.resume.hover {
+                background-color: #B0C75D;
+            }
+            .github.hover *,
+.email.hover *,
+.linkedin.hover *,
+.facebook.hover *,
+.codepen.hover *,
+.resume.hover * {
+                color: #ffffff;
+            }
+        }
+    }
+    #inner-table > a {
+        display: table-cell;
+        width: 16.6%;
+        i {
+            font-size: 2.2em;
+            padding: 10px 15px 10px 15px;
+        }
+        span {
+            display: block;
+            font-size: 0.6em;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+        }
+    }
 }
 
 .right-side.mob #links {
     text-align: center;
-	#dummy {
-		display: none;
-		width: 0.001%;
-	}
-	#inner-cell {
-		display: table;
-		width: 90%;
+    #dummy {
+        display: none;
+        width: 0.001%;
+    }
+    #inner-cell {
+        display: table;
         margin: auto;
-	}
-	#inner-table > a {
-		i {
-			font-size: 1.5em;
-		}
-		span {
-			font-size: 0.5em;
-		}
-	}
+        width: 90%;
+    }
+    #inner-table > a {
+        i {
+            font-size: 1.5em;
+        }
+        span {
+            font-size: 0.5em;
+        }
+    }
 }
 
 .inner-col {
     max-height: 100%;
-    overflow-y: auto;
     overflow-x: hidden;
+    overflow-y: auto;
 }
 
 #footer {
-    display: table-cell;
     background-color: #1e1d18;
-    width: 100vw;
+    display: table-cell;
     height: 3em;
+    width: 100vw;
     span {
-    	font-size: 0.8em;
-    	line-height: 0.8em;
-    	color: #797784;
-    	i {
-    		color: #977674;
-    		font-size: 0.9em;
-    		padding: 0px 2px 1px 2px;
-    	}
+        color: #797784;
+        font-size: 0.8em;
+        line-height: 0.8em;
+        i {
+            color: #977674;
+            font-size: 0.9em;
+            padding: 0px 2px 1px 2px;
+        }
     }
     a,
-    a:link,
-    a:active,
-    a:visited {
-    	font-size: 0.8em;
-    	line-height: 0.8em;
-    	color: #a3a1b5;
+a:link,
+a:active,
+a:visited {
+        color: #a3a1b5;
+        font-size: 0.8em;
+        line-height: 0.8em;
     }
     a:hover {
-    	color: #9dad60;
+        color: $green;
     }
 }

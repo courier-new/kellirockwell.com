@@ -1,0 +1,66 @@
+@font-face {
+	font-family: 'Brandon';
+	src: url('../../fonts/brandon-grotesque-regular.otf');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Brandon';
+	src: url('../../fonts/brandon-grotesque-regular-italic.otf');
+	font-weight: 400;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Brandon';
+	src: url('../../fonts/brandon-grotesque-bold.otf');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Brandon';
+	src: url('../../fonts/brandon-grotesque-bold-italic.otf');
+	font-weight: 600;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Brandon';
+	src: url('../../fonts/brandon-grotesque-black.otf');
+	font-weight: 800;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Brandon';
+	src: url('../../fonts/brandon-grotesque-black-italic.otf');
+	font-weight: 800;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Brandon';
+	src: url('../../fonts/brandon-grotesque-light.otf');
+	font-weight: 200;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Brandon';
+	src: url('../../fonts/brandon-grotesque-light-italic.otf');
+	font-weight: 200;
+	font-style: italic;
+}
+
+
+$green: #9dad60;
+$brown: #8f8c69;
+$light: #89919e;
+$lightest-gray: #e0e0e0;
+$pink: #b78b91;
+
+$alt-headers-stack: 'Brandon', sans-serif;
+$headers-stack: 'Raleway', sans-serif;
+$main-stack: 'Open Sans', sans-serif;

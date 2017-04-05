@@ -1,0 +1,86 @@
+.blurb .teaser {
+  width: 40%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-box-shadow: 4px 6px 14px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 4px 6px 14px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 4px 6px 14px 0px rgba(0, 0, 0, 0.3);
+  background: #e0e0e0;
+  padding: 25px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: 1.2em;
+}
+.blurb .teaser:hover {
+  cursor: pointer;
+}
+
+.projects-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 20px 0;
+}
+.projects-list .project-card-box {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 30%;
+  margin-left: -0.9%;
+  margin-right: 3.5%;
+}
+.projects-list .project-card-box:nth-child(3n), .projects-list .project-card-box:nth-child(3n) .project-card {
+  margin-right: 0;
+}
+.projects-list .project-card-box:nth-child(3n-2) .project-card {
+  margin-left: 0;
+}
+.projects-list .project-card-box .project-card {
+  width: 100%;
+  max-width: 190px;
+  padding: 4%;
+  margin: 0 auto 15px auto;
+  box-sizing: border-box;
+  -webkit-box-shadow: 4px 6px 14px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 4px 6px 14px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 4px 6px 14px 0px rgba(0, 0, 0, 0.3);
+  -moz-transition: all 170ms linear;
+  -webkit-transition: all 170ms linear;
+  transition: all 170ms linear;
+}
+.projects-list .project-card-box .project-card:hover {
+  cursor: pointer;
+  -ms-transform: translate(2px, 2px);
+  -webkit-transform: translate(2px, 2px);
+  transform: translate(2px, 2px);
+  -webkit-box-shadow: 5px 12px 16px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 5px 12px 16px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 5px 12px 16px 0px rgba(0, 0, 0, 0.25);
+}
+.projects-list .project-card-box .project-card div {
+  border: 1px solid rgba(121, 119, 132, 0.6);
+  padding: 8%;
+}
+.projects-list .project-card-box .project-card .project-img {
+  display: block;
+  width: 90%;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 70px;
+  margin: 0 auto;
+}
+.projects-list .project-card-box .project-card h1 {
+  font-family: 'Open Sans', sans-serif;
+  text-transform: none;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+.projects-list .project-card-box .project-card span {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.7em;
+}
+
+/*# sourceMappingURL=projects.css.map */

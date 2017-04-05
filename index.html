@@ -2,7 +2,7 @@
 <html lang='en'>
 <head>
 	<meta id='meta' name='viewport' content='width=device-width, initial-scale=1.0'>
-	<meta charset='UTF-8'>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<title>KELLI ROCKWELL | Home</title>
 </head>
 <body>
@@ -10,18 +10,21 @@
 <!-- CSS -->
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'>
 <link rel='stylesheet' href='css/main.css' type='text/css'>
-<link rel='stylesheet' href='css/meters.css' type='text/css'>
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' type='text/css'>
 
 <!-- FONTS -->
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700|Raleway:300,300i,400,400i,500,500i,700,700i,800' rel='stylesheet'>
 
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+<script src='js/pdfobject.min.js'></script>
 
 <div id='container'>
 	
 	<div id='main-block' class='full'>
 		<div class='left-side'>
+			<div class='overlay-container' style='opacity: 0'>
+				<div class='overlay-caption'></div>
+			</div>
 		</div>
 
 		<div class='right-side full'>
@@ -121,21 +124,25 @@
 				<div class='nav'></div>
 				<hr />
 				<div class='blurb projects'>
-					<div class='mini-head'><h2>Projects</h2></div>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-
-					<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod	tempor incididunt ut labore et dolore magna aliqua.</p>
+					<div class='mini-head'><h2>Current Projects</h2></div>
+					<div class='extra-info hidden'>
+						<!-- to be filled -->
+					</div>			
+					<ul class='projects-list current'>
+						<!-- to be filled -->
+					</ul>
+					<div class='mini-head'><h2>Past Projects</h2></div>
+					<ul class='projects-list old'>
+						<!-- to be filled -->	
+					</ul>
 				</div>				
 			</div>
 			<div class='inner-col resume hidden' style='display: none;'>
 				<div class='nav'></div>
 				<hr />
 				<div class='blurb resume'>
-					<div class='mini-head'><h2>Resume</h2></div>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-
-					<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod	tempor incididunt ut labore et dolore magna aliqua.</p>
-				</div>				
+					<div id="pdf-view"></div>
+				</div>			
 			</div>
 		</div>
 	</div>
@@ -148,6 +155,10 @@
 	
 </body>
 
-<script src='js/main.js'></script>
+<script src='js/main-dist.js'></script>
+<script src='js/projects-dist.js'></script>
+<script>
+	PDFObject.embed("/resume.pdf", "#pdf-view");
+</script>
 
 </html>

@@ -5,6 +5,17 @@ $breakpoints: (
   'medium' : ( min-width: 1024px ),
   'large'  : ( min-width: 1200px )
 );
+
+// Example use case:
+// @include respond-to('tiny') {
+//     display: flex;
+//     justify-content: space-between;
+//     padding: 5%;
+// }
+// @include respond-to('small') {
+//     display: block;
+//     padding: 8%;
+// }
  
 @mixin respond-to($name) {
   // If the key exists in the map

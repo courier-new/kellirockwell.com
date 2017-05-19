@@ -1,9 +1,9 @@
 // List of breakpoints
 $breakpoints: (
-  'tiny'   : ( min-width:    0px ),
-  'small'  : ( min-width:  600px ),
-  'medium' : ( min-width: 1024px ),
-  'large'  : ( min-width: 1200px )
+  'tiny'   : ( max-width:   800px ),
+  'small'  : ( max-width:  1024px ),
+  'medium' : ( max-width:  1200px ),
+  'large'  : ( max-width: 10000px )
 );
 
 // Example use case:

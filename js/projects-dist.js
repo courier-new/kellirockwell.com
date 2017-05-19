@@ -8,9 +8,9 @@ $(document).ready(function () {
 		addProjects();
 	}, 200);
 
-	var lorem = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio voluptatibus enim esse quis quaerat quam suscipit necessitatibus provident, nostrum perspiciatis voluptatem perferendis dolor, hic officia ipsam laboriosam possimus doloremque tenetur atque aspernatur? Molestias sit nulla vel, dolores ab incidunt officia veritatis. Iusto recusandae dolore unde repellat vel ipsa iste accusamus?";
+	var lorem = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio voluptatibus enim esse quis quaerat quam suscipit necessitatibus provident, nostrum perspiciatis voluptatem perferendis dolor, hic officia ipsam laboriosam possimus doloremque tenetur atque aspernatur.";
 	var lorem2 = " Nesciunt ad ratione quis consequuntur doloribus animi in architecto itaque delectus esse consectetur iste nobis voluptatum, quibusdam alias eveniet enim rerum eos debitis odit.";
-	var lorem3 = "Saepe quisquam nobis, magni voluptate asperiores molestiae recusandae excepturi officia porro, nam maxime architecto corporis id nulla omnis, possimus adipisci eum animi alias cumque mollitia fuga dignissimos commodi odio. Tempore, dolores, animi! Quisquam, ullam. Consectetur quasi, exercitationem. Sint soluta quae pariatur? Similique omnis ipsum optio perferendis tempore fugit aliquam odio, adipisci et tempora perspiciatis labore, sit aperiam ducimus suscipit. Nesciunt, doloremque, magnam.";
+	var lorem3 = "Saepe quisquam nobis, magni voluptate asperiores molestiae recusandae excepturi officia porro, nam maxime architecto corporis id nulla omnis, possimus adipisci eum animi alias cumque mollitia fuga dignissimos commodi odio. Quisquam, ullam consectetur quasi, exercitationem sint soluta quae pariatur.";
 
 	function getProjects() {
 		$.getJSON('./js/projects.json', function (data) {
@@ -23,8 +23,7 @@ $(document).ready(function () {
 		var oldProjList = "";
 		$(projData.projects).each(function () {
 			var curr = $(this)[0];
-			var output = "<li class='project-card-box'>\n";
-			output += "<div class='project-card'>\n";
+			var output = "<li class='project-card'>\n";
 			output += "<div>\n";
 			output += "<span class='project-img' style='background-image:url(\"";
 			output += curr.logo;

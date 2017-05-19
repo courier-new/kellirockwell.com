@@ -7,20 +7,20 @@ $(document).ready(function() {
 		var $windowWidth = $(window).width();
 		$('#logo-holder img').attr('style', '');
 		var $rightWidth = $windowWidth - $('.left-side').width();
-		if ($rightWidth < 600 || $windowWidth < 1025) {
-			$('.right-side').addClass('mob');
-			$('.right-side').removeClass('full');
-		} else {
-			$('.right-side').removeClass('mob');
-			$('.right-side').addClass('full');
-		}
-		if ($windowWidth < 1025) {
-			$('#main-block').addClass('mob');
-			$('#main-block').removeClass('full');
-		} else {		
-			$('#main-block').removeClass('mob');			
-			$('#main-block').addClass('full');
-		}
+		// if ($rightWidth < 600 || $windowWidth < 1025) {
+		// 	$('.right-side').addClass('mob');
+		// 	$('.right-side').removeClass('full');
+		// } else {
+		// 	$('.right-side').removeClass('mob');
+		// 	$('.right-side').addClass('full');
+		// }
+		// if ($windowWidth < 1025) {
+		// 	$('#main-block').addClass('mob');
+		// 	$('#main-block').removeClass('full');
+		// } else {		
+		// 	$('#main-block').removeClass('mob');			
+		// 	$('#main-block').addClass('full');
+		// }
 		
 	}
 	$(window).resize(function(){

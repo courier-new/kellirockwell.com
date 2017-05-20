@@ -127,6 +127,7 @@ $(document).ready(function () {
 	}
 
 	function switchMeters(boxToShow) {
+		// set all boxes to hidden except boxToShow's
 		$('.about .box').each(function () {
 			if ($(this).is('.' + boxToShow)) {
 				$(this).removeClass('hidden').css('display', 'block');
@@ -134,18 +135,37 @@ $(document).ready(function () {
 				$(this).addClass('hidden').css('display', 'none');
 			}
 		});
+		// set all meter headers to inactive except boxToShow's
+		$('#meters span').each(function () {
+			if ($(this).is('.' + boxToShow)) {
+				$(this).removeClass('inactive').addClass('active');
+			} else {
+				$(this).removeClass('active').addClass('inactive');
+			}
+		});
 	}
 
 	$('#meters span').click(function () {
 		if ($(this).is('.inactive')) {
-			var choice = $(this).text().toLowerCase();
-			$('#meters span').each(function () {
-				$(this).removeClass('active');
-				$(this).addClass('inactive');
-			});
-			$(this).removeClass('inactive');
-			$(this).addClass('active');
+			// identify choice of next meters
+			var choice = $(this).attr('class').split(" ")[0];
+			// switch to choice of meters
 			switchMeters(choice);
 		}
+	});
+
+	$('.box').click(function () {
+		var curr = $(this).attr('class').split(" ")[0];
+		var next = '';
+		// rotate to next meters
+		if (curr === 'skills') {
+			next = 'qualities';
+		} else if (curr === 'qualities') {
+			next = 'interests';
+		} else {
+			next = 'skills';
+		}
+		// switch to next meters
+		switchMeters(next);
 	});
 });

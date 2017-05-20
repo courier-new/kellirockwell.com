@@ -1,8 +1,8 @@
 $(document).ready(function() {
 	
 	const MOBILE_SIZE = 800
-	var sections = [];
-	var mobile = false;
+	let sections = [];
+	let mobile = false;
 	addNavs();
 
 	function checkWidths() {
@@ -30,38 +30,55 @@ $(document).ready(function() {
 			$('.inner-col.home').removeClass('mobile').css('top', '50%');
 		}	
 	}
+
+	// check window width on any screen resize
 	$(window).resize(function(){
 		checkWidths();
 	});
+
+	// also check window width immediately after page loads
 	checkWidths();
 
+	// rotate logo on hover if in non-mobile view
 	$('#logo-holder img').hover(function() {
-		var transform = "";
-		if (!$(this).closest('.right-side').is('.mob')) {
-			transform += "translate(-50%, -50%)";
+		if (!mobile) {
+			rotateLogo();
 		}
-		if ($(this).is('.hovering')) {
+	});
+
+	// rotate logo on tap if in mobile view
+	$('#logo-holder img').click(function() {
+		if (mobile) {
+			rotateLogo();
+		}
+	});
+
+	function rotateLogo() {
+		let $logo = $('#logo-holder img');
+		let transform = "";
+		transform += "translate(-50%, -50%)";
+		if ($logo.is('.rotating')) {
 			transform += " rotateY(360deg)";				
-			$(this).removeClass('hovering');
+			$logo.removeClass('rotating');
 		} else {
 			transform += " rotateY(180deg)";			
-			$(this).addClass('hovering');
+			$logo.addClass('rotating');
 		}
-		$(this).css('transform', transform);
-	});
+		$logo.css('transform', transform);
+	}
 
 	function showSection(sectionName, dir) {
 		// only for non-mobile
 		if (!mobile) {
 			// get window height
-			var offScreen = $(document).height();
+			let offScreen = $(document).height();
 			$('.inner-col').not('.hidden').each(function() {
 				// get column height
-				var colHeight = $(this).outerHeight();
+				let colHeight = $(this).outerHeight();
 				// remember column should be hidden
 				$(this).addClass('hidden');
 				// move column to just off screen
-				var move = (dir === "up") ? {top: (offScreen + colHeight/1.5) + "px"} : {top: "-" + colHeight/1.5  + "px"};
+				let move = (dir === "up") ? {top: (offScreen + colHeight/1.5) + "px"} : {top: "-" + colHeight/1.5  + "px"};
 				$(this).animate(move, '3s');
 			});
 			$('.inner-col.' + sectionName).removeClass('hidden');
@@ -72,9 +89,9 @@ $(document).ready(function() {
 			}, 500);
 			$('.inner-col').not('.hidden').each(function() {
 				// get column height
-				var colHeight = $(this).outerHeight();
+				let colHeight = $(this).outerHeight();
 				// move column to just off screen
-				var move = (dir === "up") ? "-" + colHeight/1.5 : offScreen + colHeight/1.5;
+				let move = (dir === "up") ? "-" + colHeight/1.5 : offScreen + colHeight/1.5;
 				$(this).css('top', move + "px");
 				// make column visible
 			  	$(this).css('display', 'block');
@@ -88,18 +105,19 @@ $(document).ready(function() {
 	});
 
 	$('.nav-item').not('.active').click(function() {
-		var selSection = $(this).attr('class').split(" ")[1];
-		var currSection = "";
+		let selSection = $(this).attr('class').split(" ")[1];
+		let currSection = "";
 		$(this).siblings().each(function() {
 			currSection += ($(this).is('.active')) ? $(this).attr('class').split(" ")[1] : "";
 		});
 		// check whether moving to section before (up) or after (down) current section
-		var dir = (sections.indexOf(currSection) > sections.indexOf(selSection)) ? "up" : "down";
+		let dir = (sections.indexOf(currSection) > sections.indexOf(selSection)) ? "up" : "down";
 		showSection(selSection, dir);
 	});
 
 
 	function addNavs() {
+
 		let nav = "";
 		let count = 1;
 		$('.inner-col').each(function() {
@@ -120,9 +138,13 @@ $(document).ready(function() {
 			let className = $(this).closest('.inner-col').attr('class').split(" ")[1];
 			$(this).find('.nav-item.' + className).each(function() {$(this).addClass('active');});
 		});
+
 	}
 
+	// main function for performing a switch of meters display
+	// @param boxToShow (string) | the name of the meters box to change to
 	function switchMeters(boxToShow) {
+
 		// set all boxes to hidden except boxToShow's
 		$('.about .box').each(function() {
 			if ($(this).is('.' + boxToShow)) {
@@ -139,8 +161,10 @@ $(document).ready(function() {
 				$(this).removeClass('active').addClass('inactive');
 			}
 		});
+
 	}
 
+	// change meters on click of an inactive meters header
 	$('#meters span').click(function() {
 		if ($(this).is('.inactive')) {
 			// identify choice of next meters
@@ -150,6 +174,7 @@ $(document).ready(function() {
 		}
 	});
 
+	// change meters on click of the meters box
 	$('.box').click(function() {
 		let curr = $(this).attr('class').split(" ")[0]
 		let next = '';

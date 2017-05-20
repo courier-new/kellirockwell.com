@@ -32,25 +32,42 @@ $(document).ready(function () {
 			$('.inner-col.home').removeClass('mobile').css('top', '50%');
 		}
 	}
+
+	// check window width on any screen resize
 	$(window).resize(function () {
 		checkWidths();
 	});
+
+	// also check window width immediately after page loads
 	checkWidths();
 
+	// rotate logo on hover if in non-mobile view
 	$('#logo-holder img').hover(function () {
-		var transform = "";
-		if (!$(this).closest('.right-side').is('.mob')) {
-			transform += "translate(-50%, -50%)";
+		if (!mobile) {
+			rotateLogo();
 		}
-		if ($(this).is('.hovering')) {
+	});
+
+	// rotate logo on tap if in mobile view
+	$('#logo-holder img').click(function () {
+		if (mobile) {
+			rotateLogo();
+		}
+	});
+
+	function rotateLogo() {
+		var $logo = $('#logo-holder img');
+		var transform = "";
+		transform += "translate(-50%, -50%)";
+		if ($logo.is('.rotating')) {
 			transform += " rotateY(360deg)";
-			$(this).removeClass('hovering');
+			$logo.removeClass('rotating');
 		} else {
 			transform += " rotateY(180deg)";
-			$(this).addClass('hovering');
+			$logo.addClass('rotating');
 		}
-		$(this).css('transform', transform);
-	});
+		$logo.css('transform', transform);
+	}
 
 	function showSection(sectionName, dir) {
 		// only for non-mobile
@@ -101,6 +118,7 @@ $(document).ready(function () {
 	});
 
 	function addNavs() {
+
 		var nav = "";
 		var count = 1;
 		$('.inner-col').each(function () {
@@ -126,7 +144,10 @@ $(document).ready(function () {
 		});
 	}
 
+	// main function for performing a switch of meters display
+	// @param boxToShow (string) | the name of the meters box to change to
 	function switchMeters(boxToShow) {
+
 		// set all boxes to hidden except boxToShow's
 		$('.about .box').each(function () {
 			if ($(this).is('.' + boxToShow)) {
@@ -145,6 +166,7 @@ $(document).ready(function () {
 		});
 	}
 
+	// change meters on click of an inactive meters header
 	$('#meters span').click(function () {
 		if ($(this).is('.inactive')) {
 			// identify choice of next meters
@@ -154,6 +176,7 @@ $(document).ready(function () {
 		}
 	});
 
+	// change meters on click of the meters box
 	$('.box').click(function () {
 		var curr = $(this).attr('class').split(" ")[0];
 		var next = '';

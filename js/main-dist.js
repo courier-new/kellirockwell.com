@@ -3,26 +3,34 @@
 $(document).ready(function () {
 
 	var sections = [];
+	var mobile = false;
 	addNavs();
 
 	function checkWidths() {
 		var $windowWidth = $(window).width();
-		$('#logo-holder img').attr('style', '');
-		var $rightWidth = $windowWidth - $('.left-side').width();
-		// if ($rightWidth < 600 || $windowWidth < 1025) {
-		// 	$('.right-side').addClass('mob');
-		// 	$('.right-side').removeClass('full');
-		// } else {
-		// 	$('.right-side').removeClass('mob');
-		// 	$('.right-side').addClass('full');
-		// }
-		// if ($windowWidth < 1025) {
-		// 	$('#main-block').addClass('mob');
-		// 	$('#main-block').removeClass('full');
-		// } else {		
-		// 	$('#main-block').removeClass('mob');			
-		// 	$('#main-block').addClass('full');
-		// }
+		if ($windowWidth <= 800) {
+			mobile = true;
+			$('.nav').each(function () {
+				$(this).css('display', 'none');
+			});
+			$('.inner-col').each(function () {
+				// make column visible
+				$(this).removeClass('hidden').addClass('mobile');
+				$(this).css('display', 'block');
+			});
+		} else if (mobile) {
+			mobile = false;
+			$('.nav').each(function () {
+				$(this).css('display', 'flex');
+			});
+			$('.inner-col').not('.home').each(function () {
+				// make column visible
+				$(this).removeClass('mobile');
+				$(this).css('display', 'none');
+			});
+			$('.inner-col.home').removeClass('mobile');
+			$('.inner-col.about').css('top', '0px');
+		}
 	}
 	$(window).resize(function () {
 		checkWidths();
@@ -76,33 +84,36 @@ $(document).ready(function () {
 	});
 
 	function showSection(sectionName, dir) {
-		// get window height
-		var offScreen = $(document).height();
-		$('.inner-col').not('.hidden').each(function () {
-			// get column height
-			var colHeight = $(this).outerHeight();
-			// remember column should be hidden
-			$(this).addClass('hidden');
-			// move column to just off screen
-			var move = dir === "up" ? { top: offScreen + colHeight / 1.5 + "px" } : { top: "-" + colHeight / 1.5 + "px" };
-			$(this).animate(move, '3s');
-		});
-		$('.inner-col.' + sectionName).removeClass('hidden');
-		setTimeout(function () {
-			$('.inner-col.hidden').each(function () {
-				$(this).css('display', 'none');
+		// only for non-mobile
+		if (!mobile) {
+			// get window height
+			var offScreen = $(document).height();
+			$('.inner-col').not('.hidden').each(function () {
+				// get column height
+				var colHeight = $(this).outerHeight();
+				// remember column should be hidden
+				$(this).addClass('hidden');
+				// move column to just off screen
+				var move = dir === "up" ? { top: offScreen + colHeight / 1.5 + "px" } : { top: "-" + colHeight / 1.5 + "px" };
+				$(this).animate(move, '3s');
 			});
-		}, 500);
-		$('.inner-col').not('.hidden').each(function () {
-			// get column height
-			var colHeight = $(this).outerHeight();
-			// move column to just off screen
-			var move = dir === "up" ? "-" + colHeight / 1.5 : offScreen + colHeight / 1.5;
-			$(this).css('top', move + "px");
-			// make column visible
-			$(this).css('display', 'block');
-			$(this).animate({ top: 50 + "%" }, '3s');
-		});
+			$('.inner-col.' + sectionName).removeClass('hidden');
+			setTimeout(function () {
+				$('.inner-col.hidden').each(function () {
+					$(this).css('display', 'none');
+				});
+			}, 500);
+			$('.inner-col').not('.hidden').each(function () {
+				// get column height
+				var colHeight = $(this).outerHeight();
+				// move column to just off screen
+				var move = dir === "up" ? "-" + colHeight / 1.5 : offScreen + colHeight / 1.5;
+				$(this).css('top', move + "px");
+				// make column visible
+				$(this).css('display', 'block');
+				$(this).animate({ top: 50 + "%" }, '3s');
+			});
+		}
 	}
 
 	$('#intro h3').click(function () {

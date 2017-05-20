@@ -257,11 +257,8 @@ hr {
 	width: 100vw;
 	#main-block,
 	#main-block > * {
-		@include respond-to('small') {
-			height: -webkit-calc(100vh - 3em);
-			height: -moz-calc(100vh - 3em);
-			height: calc(100vh - 3em);
-		}
+		height: calc(100vh - 3em);
+		overflow: hidden;
 	}
 	#main-block {
 		.left-side {
@@ -289,7 +286,7 @@ hr {
 			}
 			@include respond-to('tiny') {
 				min-height: calc(60vh - 3em);
-				height: auto;
+				height: 300vh;
 				width: 100vw;
 			}
 			background-color: #ffffff;

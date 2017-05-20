@@ -291,7 +291,8 @@
   from {
     right: 100%; } }
 body {
-  margin: 0; }
+  margin: 0;
+  overflow-x: hidden; }
 
 * {
   color: #797784;
@@ -336,6 +337,11 @@ hr {
   margin: 0 auto;
   min-width: 430px;
   width: 75%; }
+  @media (max-width: 800px) {
+    .nav,
+    .blurb {
+      min-width: 0;
+      width: 90%; } }
 
 .blurb,
 .blurb * {
@@ -395,19 +401,28 @@ hr {
 .blurb .steps > div:first-child {
   padding-right: 10px; }
 
-.resume i {
-  font-size: 6em; }
-.resume #pdf-view,
-.resume .pdfobject {
-  width: 100%; }
-  @media (max-width: 800px) {
-    .resume #pdf-view,
-    .resume .pdfobject {
-      height: 35vh; } }
-  @media (max-width: 1200px) {
-    .resume #pdf-view,
-    .resume .pdfobject {
-      height: 80vh; } }
+.resume {
+  min-height: 5vh; }
+  .resume i {
+    font-size: 6em; }
+  .resume #pdf-view,
+  .resume .pdfobject {
+    width: 100%; }
+    @media (max-width: 1200px) {
+      .resume #pdf-view,
+      .resume .pdfobject {
+        height: 80vh; } }
+    @media (max-width: 800px) {
+      .resume #pdf-view,
+      .resume .pdfobject {
+        display: none; } }
+  .resume #pdf-link {
+    display: none;
+    text-align: center;
+    margin-bottom: 50px; }
+    @media (max-width: 800px) {
+      .resume #pdf-link {
+        display: block; } }
 
 .nav {
   display: -webkit-flex;
@@ -508,6 +523,11 @@ hr {
   #container #main-block > * {
     height: calc(100vh - 3em);
     overflow: hidden; }
+    @media (max-width: 800px) {
+      #container #main-block,
+      #container #main-block > * {
+        overflow-y: initial;
+        height: initial; } }
   #container #main-block .left-side {
     background-image: url("../img/happy-head.jpg");
     background-position: center;
@@ -524,7 +544,7 @@ hr {
     @media (max-width: 800px) {
       #container #main-block .left-side {
         background-position: 50% 20%;
-        height: 40vh;
+        height: 60vh;
         width: 100vw; } }
   #container #main-block .right-side {
     background-color: #ffffff;
@@ -538,7 +558,7 @@ hr {
     @media (max-width: 800px) {
       #container #main-block .right-side {
         min-height: calc(60vh - 3em);
-        height: 300vh;
+        height: auto;
         width: 100vw; } }
     #container #main-block .right-side .inner-col {
       left: 50%;
@@ -552,6 +572,14 @@ hr {
       max-height: 100%;
       overflow-x: hidden;
       overflow-y: auto; }
+      #container #main-block .right-side .inner-col.mobile {
+        position: initial;
+        height: auto;
+        top: initial;
+        left: initial;
+        -webkit-transform: none;
+        -ms-transform: none;
+        transform: none; }
       #container #main-block .right-side .inner-col #intro {
         height: 10vh;
         margin: auto;
@@ -578,7 +606,7 @@ hr {
               width: 100%;
               text-align: center;
               height: 6vh;
-              margin: 5vh 0 2vh 0;
+              margin: 5vh 0 0 0;
               min-height: 35px; } }
           #container #main-block .right-side .inner-col #intro #logo-holder img {
             height: 100%;
@@ -595,6 +623,11 @@ hr {
           height: 100%;
           text-align: left;
           width: 70%; }
+          @media (max-width: 800px) {
+            #container #main-block .right-side .inner-col #intro #title-outer-holder {
+              height: 70%; }
+              #container #main-block .right-side .inner-col #intro #title-outer-holder h3 {
+                display: none; } }
           @media (max-width: 1200px) {
             #container #main-block .right-side .inner-col #intro #title-outer-holder {
               width: 100%; }

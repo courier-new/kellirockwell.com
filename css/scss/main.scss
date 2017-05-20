@@ -7,6 +7,7 @@
 
 body {
 	margin: 0;
+	overflow-x: hidden;
 }
 
 * {
@@ -53,6 +54,10 @@ hr {
 
 .nav,
 .blurb {
+	@include respond-to('tiny') {
+		min-width: 0;
+		width: 90%;
+	}
 	margin: 0 auto;
 	min-width: 430px;
 	width: 75%;
@@ -135,18 +140,27 @@ hr {
 }
 
 .resume {
+	min-height: 5vh;
 	i {
 		font-size: 6em;
 	}
 	#pdf-view,
 	.pdfobject {
 		width: 100%;
-		@include respond-to('tiny') {
-			height: 35vh;
-		}
 		@include respond-to('medium') {
 			height: 80vh;
 		}
+		@include respond-to('tiny') {
+			display: none;
+		}
+	}
+	#pdf-link {
+		@include respond-to('tiny') {
+			display: block;
+		}
+		display: none;
+		text-align: center;
+		margin-bottom: 50px;
 	}
 }
 
@@ -257,6 +271,10 @@ hr {
 	width: 100vw;
 	#main-block,
 	#main-block > * {
+		@include respond-to('tiny') {
+			overflow-y: initial;
+			height: initial;
+		}
 		height: calc(100vh - 3em);
 		overflow: hidden;
 	}
@@ -268,7 +286,7 @@ hr {
 			}
 			@include respond-to('tiny') {
 				background-position: 50% 20%;
-				height: 40vh;
+				height: 60vh;
 				width: 100vw;
 			}
 			background-image: url('../img/happy-head.jpg');
@@ -286,7 +304,7 @@ hr {
 			}
 			@include respond-to('tiny') {
 				min-height: calc(60vh - 3em);
-				height: 300vh;
+				height: auto;
 				width: 100vw;
 			}
 			background-color: #ffffff;
@@ -304,6 +322,13 @@ hr {
 				max-height: 100%;
 				overflow-x: hidden;
 				overflow-y: auto;
+				&.mobile {
+					position: initial;
+					height: auto;
+					top: initial;
+					left: initial;
+					transform: none;
+				}
 				#intro {
 					@include respond-to('small') {
 						width: 100%;
@@ -324,7 +349,7 @@ hr {
 							width: 100%;
 							text-align: center;
 							height: 6vh;
-							margin: 5vh 0 2vh 0;
+							margin: 5vh 0 0 0;
 							min-height: 35px;
 						}
 						display: inline-block;
@@ -342,6 +367,12 @@ hr {
 						}
 					}
 					#title-outer-holder {
+						@include respond-to('tiny') {
+							height: 70%;
+							h3 {
+								display: none;
+							}
+						}
 						@include respond-to('medium') {
 							width: 100%;
 							h1,

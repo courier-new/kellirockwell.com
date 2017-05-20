@@ -164,8 +164,10 @@ hr {
 	}
 }
 
+// nav menus at tops of each section
 .nav {
 	@include respond-to('tiny') {
+		// hide nav menus at mobile size
 		display: none;
 	}
 	display: flex;

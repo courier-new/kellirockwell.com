@@ -30,8 +30,11 @@ $(document).ready(function () {
 			output += "\");'></span>\n";
 			output += "<div>\n";
 			output += "<h1>" + curr.name + "</h1>\n";
-			output += "<span>" + curr.short + "</span>\n";
-			output += "</div>\n</div>\n</div>\n</li>\n";
+			output += "<span class='desc'>" + curr.short + "</span>\n";
+			output += "<span class='cats'>\n";
+			//output += "<i class='fa fa-users' aria-hidden='true'><i>\n";
+			output += "<label>Team of </label><span>" + curr.team + "</span>\n</span>\n";
+			output += "</div>\n</div>\n</li>\n";
 			if (curr.type === "current") {
 				currProjList += output;
 			} else {

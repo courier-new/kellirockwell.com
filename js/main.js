@@ -1,63 +1,39 @@
 $(document).ready(function() {
 	
+	const MOBILE_SIZE = 800
 	var sections = [];
+	var mobile = false;
 	addNavs();
 
 	function checkWidths() {
-		var $windowWidth = $(window).width();
-		$('#logo-holder img').attr('style', '');
-		var $rightWidth = $windowWidth - $('.left-side').width();
-		// if ($rightWidth < 600 || $windowWidth < 1025) {
-		// 	$('.right-side').addClass('mob');
-		// 	$('.right-side').removeClass('full');
-		// } else {
-		// 	$('.right-side').removeClass('mob');
-		// 	$('.right-side').addClass('full');
-		// }
-		// if ($windowWidth < 1025) {
-		// 	$('#main-block').addClass('mob');
-		// 	$('#main-block').removeClass('full');
-		// } else {		
-		// 	$('#main-block').removeClass('mob');			
-		// 	$('#main-block').addClass('full');
-		// }
-		
+		// remember window width
+		let $windowWidth = $(window).width();
+		// if window is mobile size but mobile view is not yet enabled
+		if ($windowWidth <= MOBILE_SIZE && !mobile) {
+			// remember that mobile view is active
+			mobile = true;
+			// show each section
+			$('.inner-col').each(function() {
+				// make section visible and add "mobile" class to make each display in a line at static positions
+				$(this).removeClass('hidden').addClass('mobile').css('display', 'block');
+			});
+		// if window is full size and mobile view is currently enabled
+		} else if ($windowWidth > MOBILE_SIZE && mobile) { 
+			// remember that mobile view is no longer active
+			mobile = false;
+			// hide each section except the home section
+			$('.inner-col').not('.home').each(function() {
+				// make section hidden and remove "mobile" class
+				$(this).removeClass('mobile').addClass('hidden').css('display', 'none');
+			});
+			// reset home section to top middle position and remove "mobile" class
+			$('.inner-col.home').removeClass('mobile').css('top', '50%');
+		}	
 	}
 	$(window).resize(function(){
 		checkWidths();
 	});
 	checkWidths();
-
-	$('.github').hover(function() {
-		$('.github').addClass('hover');
-	}, function() {
-		$('.github').removeClass('hover');
-	});
-	$('.email').hover(function() {
-		$('.email').addClass('hover');
-	}, function() {
-		$('.email').removeClass('hover');
-	});
-	$('.linkedin').hover(function() {
-		$('.linkedin').addClass('hover');
-	}, function() {
-		$('.linkedin').removeClass('hover');
-	});
-	$('.facebook').hover(function() {
-		$('.facebook').addClass('hover');
-	}, function() {
-		$('.facebook').removeClass('hover');
-	});
-	$('.codepen').hover(function() {
-		$('.codepen').addClass('hover');
-	}, function() {
-		$('.codepen').removeClass('hover');
-	});
-	$('.resume').hover(function() {
-		$('.resume').addClass('hover');
-	}, function() {
-		$('.resume').removeClass('hover');
-	});
 
 	$('#logo-holder img').hover(function() {
 		var transform = "";
@@ -75,33 +51,36 @@ $(document).ready(function() {
 	});
 
 	function showSection(sectionName, dir) {
-		// get window height
-		var offScreen = $(document).height();
-		$('.inner-col').not('.hidden').each(function() {
-			// get column height
-			var colHeight = $(this).outerHeight();
-			// remember column should be hidden
-			$(this).addClass('hidden');
-			// move column to just off screen
-			var move = (dir === "up") ? {top: (offScreen + colHeight/1.5) + "px"} : {top: "-" + colHeight/1.5  + "px"};
-			$(this).animate(move, '3s');
-		});
-		$('.inner-col.' + sectionName).removeClass('hidden');
-		setTimeout(function() {
-			$('.inner-col.hidden').each(function() {
-				$(this).css('display', 'none');
-			 });
-		}, 500);
-		$('.inner-col').not('.hidden').each(function() {
-			// get column height
-			var colHeight = $(this).outerHeight();
-			// move column to just off screen
-			var move = (dir === "up") ? "-" + colHeight/1.5 : offScreen + colHeight/1.5;
-			$(this).css('top', move + "px");
-			// make column visible
-		  	$(this).css('display', 'block');
-		  	$(this).animate({top: 50 + "%"}, '3s');
-		});
+		// only for non-mobile
+		if (!mobile) {
+			// get window height
+			var offScreen = $(document).height();
+			$('.inner-col').not('.hidden').each(function() {
+				// get column height
+				var colHeight = $(this).outerHeight();
+				// remember column should be hidden
+				$(this).addClass('hidden');
+				// move column to just off screen
+				var move = (dir === "up") ? {top: (offScreen + colHeight/1.5) + "px"} : {top: "-" + colHeight/1.5  + "px"};
+				$(this).animate(move, '3s');
+			});
+			$('.inner-col.' + sectionName).removeClass('hidden');
+			setTimeout(function() {
+				$('.inner-col.hidden').each(function() {
+					$(this).css('display', 'none');
+				 });
+			}, 500);
+			$('.inner-col').not('.hidden').each(function() {
+				// get column height
+				var colHeight = $(this).outerHeight();
+				// move column to just off screen
+				var move = (dir === "up") ? "-" + colHeight/1.5 : offScreen + colHeight/1.5;
+				$(this).css('top', move + "px");
+				// make column visible
+			  	$(this).css('display', 'block');
+			  	$(this).animate({top: 50 + "%"}, '3s');
+			});
+		}
 	}
 
 	$('#intro h3').click(function() {

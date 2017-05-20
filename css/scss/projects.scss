@@ -116,9 +116,10 @@
 	margin: 20px 0;
 	padding: 0;
 	.project-card {
-		@include respond-to('tiny') {
-			flex-basis: 90%;
-			padding: 1%;
+		@include respond-to('medium') {
+			flex-basis: 99%;
+			margin-bottom: 10px;
+			padding: 0;
 		}
 		box-sizing: border-box;
 		hyphens: manual;
@@ -130,7 +131,7 @@
 			transform: translate(2px, 2px);
 		}
 		& > div {
-			@include respond-to('tiny') {
+			@include respond-to('medium') {
 				display: flex;
 				justify-content: space-between;
 				padding: 5%;
@@ -146,36 +147,69 @@
 			}
 		}
 		& > div > div {
-			@include respond-to('tiny') {
-				flex-basis: 60%;
+			@include respond-to('medium') {
+				flex-basis: 70%;
 			}
-		}
-		.project-img {
 			@include respond-to('tiny') {
+				flex-basis: 80%;
+			}
+			position: relative; // to place child, categories row, at position: absolute; bottom: 0;
+		}
+		// image logo for project
+		.project-img {
+			@include respond-to('medium') {
 				display: inline-block;
-				flex-basis: 30%;
+				flex-basis: 22%;
 				margin: 0;
-				max-width: 30%;
+				max-width: 22%;
+			}
+			@include respond-to('tiny') {
+				flex-basis: 15%;
+				max-width: 15%;
 			}
 			display: block;
 			height: 70px;
 			margin: 0 auto;
-			max-width: 90%;
-			width: 90%;
+			max-width: 80%;
+			width: 80%;
 			background-position: center center;
 			background-repeat: no-repeat;
 			background-size: contain;
 		}
 		h1 {
+			@include respond-to('tiny') {
+				font-size: 0.9em;
+			}
 			font-family: $main-stack;
-			font-weight: 400;
-			margin-bottom: 0;
-			margin-bottom: 10px;
+			font-size: 0.8em;
+			font-weight: 600;
+			margin: 4px 0 8px 0;
 			text-transform: none;
 		}
-		span {
+		.desc {
+			@include respond-to('tiny') {
+				font-size: 0.8em;
+			}
+			display: inline-block;
 			font-family: $main-stack;
 			font-size: 0.7em;
+			line-height: 1.1em;
+		}
+		.cats {
+			@include respond-to('tiny') {
+				right: 4px;
+				& > * {
+					font-size: 0.8em;
+				}
+			}
+			bottom: 4px; // same as top margin on h1
+			display: block;
+			font-family: $main-stack;
+			position: absolute; // inside of a div with position: relative;
+			& > * {				
+				font-size: 0.7em;
+				line-height: 1.1em;
+			}
 		}
 	}
 }

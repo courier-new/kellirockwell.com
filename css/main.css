@@ -165,12 +165,13 @@
     -webkit-flex-basis: 31%;
     -ms-flex-preferred-size: 31%;
     flex-basis: 31%; }
-    @media (max-width: 800px) {
+    @media (max-width: 1200px) {
       .projects-list .project-card {
-        -webkit-flex-basis: 90%;
-        -ms-flex-preferred-size: 90%;
-        flex-basis: 90%;
-        padding: 1%; } }
+        -webkit-flex-basis: 99%;
+        -ms-flex-preferred-size: 99%;
+        flex-basis: 99%;
+        margin-bottom: 10px;
+        padding: 0; } }
     .projects-list .project-card:hover {
       cursor: pointer;
       -webkit-transform: translate(2px, 2px);
@@ -183,7 +184,7 @@
       padding: 8%;
       border: 1px solid #e0e0e0;
       transition: border 180ms linear; }
-      @media (max-width: 800px) {
+      @media (max-width: 1200px) {
         .projects-list .project-card > div {
           display: -webkit-flex;
           display: -ms-flexbox;
@@ -194,37 +195,71 @@
           padding: 5%; } }
       .projects-list .project-card > div:hover {
         border: 1px solid rgba(121, 119, 132, 0.6); }
-    @media (max-width: 800px) {
-      .projects-list .project-card > div > div {
-        -webkit-flex-basis: 60%;
-        -ms-flex-preferred-size: 60%;
-        flex-basis: 60%; } }
+    .projects-list .project-card > div > div {
+      position: relative; }
+      @media (max-width: 1200px) {
+        .projects-list .project-card > div > div {
+          -webkit-flex-basis: 70%;
+          -ms-flex-preferred-size: 70%;
+          flex-basis: 70%; } }
+      @media (max-width: 800px) {
+        .projects-list .project-card > div > div {
+          -webkit-flex-basis: 80%;
+          -ms-flex-preferred-size: 80%;
+          flex-basis: 80%; } }
     .projects-list .project-card .project-img {
       display: block;
       height: 70px;
       margin: 0 auto;
-      max-width: 90%;
-      width: 90%;
+      max-width: 80%;
+      width: 80%;
       background-position: center center;
       background-repeat: no-repeat;
       background-size: contain; }
-      @media (max-width: 800px) {
+      @media (max-width: 1200px) {
         .projects-list .project-card .project-img {
           display: inline-block;
-          -webkit-flex-basis: 30%;
-          -ms-flex-preferred-size: 30%;
-          flex-basis: 30%;
+          -webkit-flex-basis: 22%;
+          -ms-flex-preferred-size: 22%;
+          flex-basis: 22%;
           margin: 0;
-          max-width: 30%; } }
+          max-width: 22%; } }
+      @media (max-width: 800px) {
+        .projects-list .project-card .project-img {
+          -webkit-flex-basis: 15%;
+          -ms-flex-preferred-size: 15%;
+          flex-basis: 15%;
+          max-width: 15%; } }
     .projects-list .project-card h1 {
       font-family: "Open Sans", sans-serif;
-      font-weight: 400;
-      margin-bottom: 0;
-      margin-bottom: 10px;
+      font-size: 0.8em;
+      font-weight: 600;
+      margin: 4px 0 8px 0;
       text-transform: none; }
-    .projects-list .project-card span {
+      @media (max-width: 800px) {
+        .projects-list .project-card h1 {
+          font-size: 0.9em; } }
+    .projects-list .project-card .desc {
+      display: inline-block;
       font-family: "Open Sans", sans-serif;
-      font-size: 0.7em; }
+      font-size: 0.7em;
+      line-height: 1.1em; }
+      @media (max-width: 800px) {
+        .projects-list .project-card .desc {
+          font-size: 0.8em; } }
+    .projects-list .project-card .cats {
+      bottom: 4px;
+      display: block;
+      font-family: "Open Sans", sans-serif;
+      position: absolute; }
+      @media (max-width: 800px) {
+        .projects-list .project-card .cats {
+          right: 4px; }
+          .projects-list .project-card .cats > * {
+            font-size: 0.8em; } }
+      .projects-list .project-card .cats > * {
+        font-size: 0.7em;
+        line-height: 1.1em; }
 
 .meters {
   font-size: 0.7em;
@@ -291,7 +326,8 @@
   from {
     right: 100%; } }
 body {
-  margin: 0; }
+  margin: 0;
+  overflow-x: hidden; }
 
 * {
   color: #797784;
@@ -336,6 +372,11 @@ hr {
   margin: 0 auto;
   min-width: 430px;
   width: 75%; }
+  @media (max-width: 800px) {
+    .nav,
+    .blurb {
+      min-width: 0;
+      width: 90%; } }
 
 .blurb,
 .blurb * {
@@ -395,19 +436,28 @@ hr {
 .blurb .steps > div:first-child {
   padding-right: 10px; }
 
-.resume i {
-  font-size: 6em; }
-.resume #pdf-view,
-.resume .pdfobject {
-  width: 100%; }
-  @media (max-width: 800px) {
-    .resume #pdf-view,
-    .resume .pdfobject {
-      height: 35vh; } }
-  @media (max-width: 1200px) {
-    .resume #pdf-view,
-    .resume .pdfobject {
-      height: 80vh; } }
+.resume {
+  min-height: 5vh; }
+  .resume i {
+    font-size: 6em; }
+  .resume #pdf-view,
+  .resume .pdfobject {
+    width: 100%; }
+    @media (max-width: 1200px) {
+      .resume #pdf-view,
+      .resume .pdfobject {
+        height: 80vh; } }
+    @media (max-width: 800px) {
+      .resume #pdf-view,
+      .resume .pdfobject {
+        display: none; } }
+  .resume #pdf-link {
+    display: none;
+    text-align: center;
+    margin-bottom: 50px; }
+    @media (max-width: 800px) {
+      .resume #pdf-link {
+        display: block; } }
 
 .nav {
   display: -webkit-flex;
@@ -419,6 +469,9 @@ hr {
   margin: 20px auto 0 auto;
   max-width: 600px;
   width: 70%; }
+  @media (max-width: 800px) {
+    .nav {
+      display: none; } }
 
 .nav * {
   color: #a3a1b5;
@@ -508,6 +561,11 @@ hr {
   #container #main-block > * {
     height: calc(100vh - 3em);
     overflow: hidden; }
+    @media (max-width: 800px) {
+      #container #main-block,
+      #container #main-block > * {
+        overflow-y: initial;
+        height: initial; } }
   #container #main-block .left-side {
     background-image: url("../img/happy-head.jpg");
     background-position: center;
@@ -524,7 +582,7 @@ hr {
     @media (max-width: 800px) {
       #container #main-block .left-side {
         background-position: 50% 20%;
-        height: 40vh;
+        height: 60vh;
         width: 100vw; } }
   #container #main-block .right-side {
     background-color: #ffffff;
@@ -538,7 +596,7 @@ hr {
     @media (max-width: 800px) {
       #container #main-block .right-side {
         min-height: calc(60vh - 3em);
-        height: 300vh;
+        height: auto;
         width: 100vw; } }
     #container #main-block .right-side .inner-col {
       left: 50%;
@@ -552,6 +610,14 @@ hr {
       max-height: 100%;
       overflow-x: hidden;
       overflow-y: auto; }
+      #container #main-block .right-side .inner-col.mobile {
+        position: initial;
+        height: auto;
+        top: initial;
+        left: initial;
+        -webkit-transform: none;
+        -ms-transform: none;
+        transform: none; }
       #container #main-block .right-side .inner-col #intro {
         height: 10vh;
         margin: auto;
@@ -578,7 +644,7 @@ hr {
               width: 100%;
               text-align: center;
               height: 6vh;
-              margin: 5vh 0 2vh 0;
+              margin: 5vh 0 0 0;
               min-height: 35px; } }
           #container #main-block .right-side .inner-col #intro #logo-holder img {
             height: 100%;
@@ -595,6 +661,11 @@ hr {
           height: 100%;
           text-align: left;
           width: 70%; }
+          @media (max-width: 800px) {
+            #container #main-block .right-side .inner-col #intro #title-outer-holder {
+              height: 70%; }
+              #container #main-block .right-side .inner-col #intro #title-outer-holder h3 {
+                display: none; } }
           @media (max-width: 1200px) {
             #container #main-block .right-side .inner-col #intro #title-outer-holder {
               width: 100%; }
@@ -628,19 +699,19 @@ hr {
         #container #main-block .right-side #links #inner-cell #inner-table {
           display: table;
           width: 100%; }
-          #container #main-block .right-side #links #inner-cell #inner-table .github.hover,
-          #container #main-block .right-side #links #inner-cell #inner-table .email.hover,
-          #container #main-block .right-side #links #inner-cell #inner-table .linkedin.hover,
-          #container #main-block .right-side #links #inner-cell #inner-table .facebook.hover,
-          #container #main-block .right-side #links #inner-cell #inner-table .codepen.hover,
-          #container #main-block .right-side #links #inner-cell #inner-table .resume.hover {
+          #container #main-block .right-side #links #inner-cell #inner-table .github:hover,
+          #container #main-block .right-side #links #inner-cell #inner-table .email:hover,
+          #container #main-block .right-side #links #inner-cell #inner-table .linkedin:hover,
+          #container #main-block .right-side #links #inner-cell #inner-table .facebook:hover,
+          #container #main-block .right-side #links #inner-cell #inner-table .codepen:hover,
+          #container #main-block .right-side #links #inner-cell #inner-table .resume:hover {
             background-color: #B0C75D; }
-          #container #main-block .right-side #links #inner-cell #inner-table .github.hover *,
-          #container #main-block .right-side #links #inner-cell #inner-table .email.hover *,
-          #container #main-block .right-side #links #inner-cell #inner-table .linkedin.hover *,
-          #container #main-block .right-side #links #inner-cell #inner-table .facebook.hover *,
-          #container #main-block .right-side #links #inner-cell #inner-table .codepen.hover *,
-          #container #main-block .right-side #links #inner-cell #inner-table .resume.hover * {
+          #container #main-block .right-side #links #inner-cell #inner-table .github:hover *,
+          #container #main-block .right-side #links #inner-cell #inner-table .email:hover *,
+          #container #main-block .right-side #links #inner-cell #inner-table .linkedin:hover *,
+          #container #main-block .right-side #links #inner-cell #inner-table .facebook:hover *,
+          #container #main-block .right-side #links #inner-cell #inner-table .codepen:hover *,
+          #container #main-block .right-side #links #inner-cell #inner-table .resume:hover * {
             color: #ffffff; }
       #container #main-block .right-side #links #inner-table > a {
         display: table-cell;

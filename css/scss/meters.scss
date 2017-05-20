@@ -1,5 +1,25 @@
 @import "../bourbon/bourbon";
 
+.instructions > span {
+    font-size: 0.8em;
+    line-height: 1.6em;
+    &.click {
+        @include respond-to('tiny') {
+            display: none;
+        }
+    }
+    &.tap {
+        @include respond-to('tiny') {
+            display: initial;
+        }
+        display: none;
+    }
+}
+
+.box:hover {
+    cursor: pointer;
+}
+
 .meters {
     font-size: 0.7em;
     list-style: none;
@@ -14,7 +34,7 @@
             margin-right: 4%;
         }
         &:before,
-&:after {
+        &:after {
             border-radius: 16px;
             box-sizing: border-box;
             content: "";

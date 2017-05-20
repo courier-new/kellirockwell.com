@@ -23,10 +23,10 @@ $(document).ready(function() {
 			});
 			$('.inner-col').not('.home').each(function() {
 				// make column visible
-				$(this).removeClass('mobile');
+				$(this).removeClass('mobile').addClass('hidden');
 			  	$(this).css('display', 'none');
 			});
-			$('.inner-col.home').removeClass('mobile');
+			$('.inner-col.home').removeClass('mobile').css('top', '50%');
 		}	
 	}
 	$(window).resize(function(){
@@ -61,6 +61,8 @@ $(document).ready(function() {
 				$(this).addClass('hidden');
 				// move column to just off screen
 				var move = (dir === "up") ? {top: (offScreen + colHeight/1.5) + "px"} : {top: "-" + colHeight/1.5  + "px"};
+				var movee = (dir === "up") ? "top " + (offScreen + colHeight/1.5) + "px" : "top " + "-" + colHeight/1.5  + "px";
+				console.log(movee);
 				$(this).animate(move, '3s');
 			});
 			$('.inner-col.' + sectionName).removeClass('hidden');

@@ -661,19 +661,19 @@ hr {
         #container #main-block .right-side #links #inner-cell #inner-table {
           display: table;
           width: 100%; }
-          #container #main-block .right-side #links #inner-cell #inner-table .github.hover,
-          #container #main-block .right-side #links #inner-cell #inner-table .email.hover,
-          #container #main-block .right-side #links #inner-cell #inner-table .linkedin.hover,
-          #container #main-block .right-side #links #inner-cell #inner-table .facebook.hover,
-          #container #main-block .right-side #links #inner-cell #inner-table .codepen.hover,
-          #container #main-block .right-side #links #inner-cell #inner-table .resume.hover {
+          #container #main-block .right-side #links #inner-cell #inner-table .github:hover,
+          #container #main-block .right-side #links #inner-cell #inner-table .email:hover,
+          #container #main-block .right-side #links #inner-cell #inner-table .linkedin:hover,
+          #container #main-block .right-side #links #inner-cell #inner-table .facebook:hover,
+          #container #main-block .right-side #links #inner-cell #inner-table .codepen:hover,
+          #container #main-block .right-side #links #inner-cell #inner-table .resume:hover {
             background-color: #B0C75D; }
-          #container #main-block .right-side #links #inner-cell #inner-table .github.hover *,
-          #container #main-block .right-side #links #inner-cell #inner-table .email.hover *,
-          #container #main-block .right-side #links #inner-cell #inner-table .linkedin.hover *,
-          #container #main-block .right-side #links #inner-cell #inner-table .facebook.hover *,
-          #container #main-block .right-side #links #inner-cell #inner-table .codepen.hover *,
-          #container #main-block .right-side #links #inner-cell #inner-table .resume.hover * {
+          #container #main-block .right-side #links #inner-cell #inner-table .github:hover *,
+          #container #main-block .right-side #links #inner-cell #inner-table .email:hover *,
+          #container #main-block .right-side #links #inner-cell #inner-table .linkedin:hover *,
+          #container #main-block .right-side #links #inner-cell #inner-table .facebook:hover *,
+          #container #main-block .right-side #links #inner-cell #inner-table .codepen:hover *,
+          #container #main-block .right-side #links #inner-cell #inner-table .resume:hover * {
             color: #ffffff; }
       #container #main-block .right-side #links #inner-table > a {
         display: table-cell;

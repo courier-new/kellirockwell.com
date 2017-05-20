@@ -417,20 +417,20 @@ hr {
 					#inner-table {
 						display: table;
 						width: 100%;
-						.github.hover,
-						.email.hover,
-						.linkedin.hover,
-						.facebook.hover,
-						.codepen.hover,
-						.resume.hover {
+						.github:hover,
+						.email:hover,
+						.linkedin:hover,
+						.facebook:hover,
+						.codepen:hover,
+						.resume:hover {
 							background-color: $bright-green;
 						}
-						.github.hover *,
-						.email.hover *,
-						.linkedin.hover *,
-						.facebook.hover *,
-						.codepen.hover *,
-						.resume.hover * {
+						.github:hover *,
+						.email:hover *,
+						.linkedin:hover *,
+						.facebook:hover *,
+						.codepen:hover *,
+						.resume:hover * {
 							color: #ffffff;
 						}
 					}

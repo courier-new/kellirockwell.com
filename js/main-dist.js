@@ -29,44 +29,12 @@ $(document).ready(function () {
 				$(this).css('display', 'none');
 			});
 			$('.inner-col.home').removeClass('mobile');
-			$('.inner-col.about').css('top', '0px');
 		}
 	}
 	$(window).resize(function () {
 		checkWidths();
 	});
 	checkWidths();
-
-	$('.github').hover(function () {
-		$('.github').addClass('hover');
-	}, function () {
-		$('.github').removeClass('hover');
-	});
-	$('.email').hover(function () {
-		$('.email').addClass('hover');
-	}, function () {
-		$('.email').removeClass('hover');
-	});
-	$('.linkedin').hover(function () {
-		$('.linkedin').addClass('hover');
-	}, function () {
-		$('.linkedin').removeClass('hover');
-	});
-	$('.facebook').hover(function () {
-		$('.facebook').addClass('hover');
-	}, function () {
-		$('.facebook').removeClass('hover');
-	});
-	$('.codepen').hover(function () {
-		$('.codepen').addClass('hover');
-	}, function () {
-		$('.codepen').removeClass('hover');
-	});
-	$('.resume').hover(function () {
-		$('.resume').addClass('hover');
-	}, function () {
-		$('.resume').removeClass('hover');
-	});
 
 	$('#logo-holder img').hover(function () {
 		var transform = "";

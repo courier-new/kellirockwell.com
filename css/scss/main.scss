@@ -165,6 +165,9 @@ hr {
 }
 
 .nav {
+	@include respond-to('tiny') {
+		display: none;
+	}
 	display: flex;
 	justify-content: space-between;
 	margin: 20px auto 0 auto;

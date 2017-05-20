@@ -12,10 +12,6 @@ $(document).ready(function() {
 		if ($windowWidth <= MOBILE_SIZE && !mobile) {
 			// remember that mobile view is active
 			mobile = true;
-			// hide nav menus at top of each section
-			$('.nav').each(function() {
-				$(this).css('display', 'none');
-			});
 			// show each section
 			$('.inner-col').each(function() {
 				// make section visible and add "mobile" class to make each display in a line at static positions
@@ -25,10 +21,6 @@ $(document).ready(function() {
 		} else if ($windowWidth > MOBILE_SIZE && mobile) { 
 			// remember that mobile view is no longer active
 			mobile = false;
-			// show nav menus at top of each section
-			$('.nav').each(function() {
-				$(this).css('display', 'flex');
-			});
 			// hide each section except the home section
 			$('.inner-col').not('.home').each(function() {
 				// make section hidden and remove "mobile" class

@@ -434,6 +434,9 @@ hr {
   margin: 20px auto 0 auto;
   max-width: 600px;
   width: 70%; }
+  @media (max-width: 800px) {
+    .nav {
+      display: none; } }
 
 .nav * {
   color: #a3a1b5;

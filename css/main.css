@@ -261,6 +261,21 @@
         font-size: 0.7em;
         line-height: 1.1em; }
 
+.instructions > span {
+  font-size: 0.8em;
+  line-height: 1.6em; }
+  @media (max-width: 800px) {
+    .instructions > span.click {
+      display: none; } }
+  .instructions > span.tap {
+    display: none; }
+    @media (max-width: 800px) {
+      .instructions > span.tap {
+        display: initial; } }
+
+.box:hover {
+  cursor: pointer; }
+
 .meters {
   font-size: 0.7em;
   list-style: none;
@@ -409,7 +424,7 @@ hr {
     .blurb .mini-head h2 > * {
       transition: color 170ms linear; }
     .blurb .mini-head h2 .active {
-      color: #373a46; }
+      color: #797784; }
     .blurb .mini-head h2 .inactive {
       color: rgba(121, 119, 132, 0.5); }
       .blurb .mini-head h2 .inactive:hover {

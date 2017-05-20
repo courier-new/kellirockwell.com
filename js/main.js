@@ -1,31 +1,40 @@
 $(document).ready(function() {
 	
+	const MOBILE_SIZE = 800
 	var sections = [];
 	var mobile = false;
 	addNavs();
 
 	function checkWidths() {
+		// remember window width
 		let $windowWidth = $(window).width();
-		if ($windowWidth <= 800) {
+		// if window is mobile size but mobile view is not yet enabled
+		if ($windowWidth <= MOBILE_SIZE && !mobile) {
+			// remember that mobile view is active
 			mobile = true;
+			// hide nav menus at top of each section
 			$('.nav').each(function() {
 				$(this).css('display', 'none');
 			});
+			// show each section
 			$('.inner-col').each(function() {
-				// make column visible
-				$(this).removeClass('hidden').addClass('mobile');
-			  	$(this).css('display', 'block');
+				// make section visible and add "mobile" class to make each display in a line at static positions
+				$(this).removeClass('hidden').addClass('mobile').css('display', 'block');
 			});
-		} else if (mobile) {
+		// if window is full size and mobile view is currently enabled
+		} else if ($windowWidth > MOBILE_SIZE && mobile) { 
+			// remember that mobile view is no longer active
 			mobile = false;
+			// show nav menus at top of each section
 			$('.nav').each(function() {
 				$(this).css('display', 'flex');
 			});
+			// hide each section except the home section
 			$('.inner-col').not('.home').each(function() {
-				// make column visible
-				$(this).removeClass('mobile').addClass('hidden');
-			  	$(this).css('display', 'none');
+				// make section hidden and remove "mobile" class
+				$(this).removeClass('mobile').addClass('hidden').css('display', 'none');
 			});
+			// reset home section to top middle position and remove "mobile" class
 			$('.inner-col.home').removeClass('mobile').css('top', '50%');
 		}	
 	}
@@ -61,8 +70,6 @@ $(document).ready(function() {
 				$(this).addClass('hidden');
 				// move column to just off screen
 				var move = (dir === "up") ? {top: (offScreen + colHeight/1.5) + "px"} : {top: "-" + colHeight/1.5  + "px"};
-				var movee = (dir === "up") ? "top " + (offScreen + colHeight/1.5) + "px" : "top " + "-" + colHeight/1.5  + "px";
-				console.log(movee);
 				$(this).animate(move, '3s');
 			});
 			$('.inner-col.' + sectionName).removeClass('hidden');

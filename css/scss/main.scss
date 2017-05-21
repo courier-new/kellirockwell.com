@@ -484,6 +484,9 @@ hr {
 }
 
 #footer {
+	@include respond-to('tiny') {
+		font-size: 0.75em;
+	}
 	background-color: $footer-gray;
 	display: table-cell;
 	height: 3em;

@@ -363,12 +363,12 @@ hr {
 							width: 100%;
 							text-align: center;
 							height: 6vh;
-							margin: 5vh 0 0 0;
+							margin: 5vh 0 3vh 0;
 							min-height: 35px;
 						}
 						@include respond-to('tiny') {
 							height: 8vh;
-							margin-top: 7vh;
+							margin: 7vh 0 0 0;
 						}
 						display: inline-block;
 						float: left;
@@ -385,7 +385,11 @@ hr {
 						}
 					}
 					#title-outer-holder {
+						@include respond-to('medium') {
+							margin-bottom: 1.5vh;
+						}
 						@include respond-to('tiny') {
+							margin-bottom: 0;
 							margin-top: 1.5vh;
 							height: 14vh;
 							h3 {

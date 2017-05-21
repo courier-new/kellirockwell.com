@@ -200,19 +200,11 @@
           -webkit-justify-content: space-between;
           -ms-flex-pack: justify;
           justify-content: space-between;
-          padding: 5%; } }
-      @media (max-width: 800px) {
-        .projects-list .project-card > div {
           padding: 5% 0; } }
       .projects-list .project-card > div:hover {
         box-shadow: 0 0 10px rgba(121, 119, 132, 0.6);
         border: 1px solid #e0e0e0; }
       @media (max-width: 1200px) {
-        .projects-list .project-card > div .project-info {
-          -webkit-flex-basis: 70%;
-          -ms-flex-preferred-size: 70%;
-          flex-basis: 70%; } }
-      @media (max-width: 800px) {
         .projects-list .project-card > div .project-info {
           -webkit-flex-basis: 66%;
           -ms-flex-preferred-size: 66%;
@@ -227,18 +219,18 @@
         background-position: center center;
         background-repeat: no-repeat;
         background-size: contain; }
-        @media (max-width: 800px) {
-          .projects-list .project-card > div .project-img {
-            margin-bottom: 0;
-            margin-top: 0;
-            min-height: initial; } }
         @media (max-width: 1200px) {
           .projects-list .project-card > div .project-img {
             display: inline-block;
             -webkit-flex-basis: 22%;
             -ms-flex-preferred-size: 22%;
             flex-basis: 22%;
+            margin-bottom: 0;
+            margin-top: 0;
             max-width: 22%; } }
+        @media (max-width: 800px) {
+          .projects-list .project-card > div .project-img {
+            min-height: initial; } }
     .projects-list .project-card h1 {
       font-family: "Open Sans", sans-serif;
       font-size: 0.8em;
@@ -685,12 +677,12 @@ hr {
               width: 100%;
               text-align: center;
               height: 6vh;
-              margin: 5vh 0 0 0;
+              margin: 5vh 0 3vh 0;
               min-height: 35px; } }
           @media (max-width: 800px) {
             #container #main-block .right-side .inner-col #intro #logo-holder {
               height: 8vh;
-              margin-top: 7vh; } }
+              margin: 7vh 0 0 0; } }
           #container #main-block .right-side .inner-col #intro #logo-holder img {
             height: 100%;
             left: 50%;
@@ -706,8 +698,12 @@ hr {
           height: 100%;
           text-align: left;
           width: 70%; }
+          @media (max-width: 1200px) {
+            #container #main-block .right-side .inner-col #intro #title-outer-holder {
+              margin-bottom: 1.5vh; } }
           @media (max-width: 800px) {
             #container #main-block .right-side .inner-col #intro #title-outer-holder {
+              margin-bottom: 0;
               margin-top: 1.5vh;
               height: 14vh; }
               #container #main-block .right-side .inner-col #intro #title-outer-holder h3 {

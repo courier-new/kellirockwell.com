@@ -381,6 +381,9 @@ hr {
   margin: 20px auto 25px auto;
   min-width: 120px;
   width: 50%; }
+  @media (max-width: 800px) {
+    hr {
+      margin: 6vh auto 6.5vh auto; } }
 
 .nav,
 .blurb {
@@ -540,6 +543,9 @@ hr {
       margin: 5px 0;
       text-align: left;
       text-transform: uppercase; }
+      @media (max-width: 800px) {
+        #title-middle-holder #title-inner-holder h1 {
+          font-size: 2em; } }
     #title-middle-holder #title-inner-holder h2 {
       font-family: "Raleway", sans-serif;
       font-size: 0.75em;
@@ -548,6 +554,9 @@ hr {
       margin: 5px 1px;
       text-align: left;
       text-transform: lowercase; }
+      @media (max-width: 800px) {
+        #title-middle-holder #title-inner-holder h2 {
+          font-size: 0.6em; } }
     #title-middle-holder #title-inner-holder h3 {
       color: #9dad60;
       font-family: "Raleway", sans-serif;
@@ -633,6 +642,8 @@ hr {
         -webkit-transform: none;
         -ms-transform: none;
         transform: none; }
+        #container #main-block .right-side .inner-col.mobile.home {
+          margin: 5vh 0; }
       #container #main-block .right-side .inner-col #intro {
         height: 10vh;
         margin: auto;
@@ -661,6 +672,10 @@ hr {
               height: 6vh;
               margin: 5vh 0 0 0;
               min-height: 35px; } }
+          @media (max-width: 800px) {
+            #container #main-block .right-side .inner-col #intro #logo-holder {
+              height: 9vh;
+              margin-bottom: 2.5vh; } }
           #container #main-block .right-side .inner-col #intro #logo-holder img {
             height: 100%;
             left: 50%;
@@ -678,7 +693,7 @@ hr {
           width: 70%; }
           @media (max-width: 800px) {
             #container #main-block .right-side .inner-col #intro #title-outer-holder {
-              height: 70%; }
+              height: 20vh; }
               #container #main-block .right-side .inner-col #intro #title-outer-holder h3 {
                 display: none; } }
           @media (max-width: 1200px) {

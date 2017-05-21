@@ -44,6 +44,9 @@ body {
 }
 
 hr {
+	@include respond-to('tiny') {
+		margin: 6vh auto 6.5vh auto;
+	}
 	background: none;
 	border: none;
 	border-bottom: 1px solid $lightest-gray;
@@ -227,6 +230,9 @@ hr {
 		margin-left: auto;
 		margin-right: auto;
 		h1 {
+			@include respond-to('tiny') {
+				font-size: 2em;
+			}
 			color: $darkest-gray;
 			font-family: $headers-stack;
 			font-size: 2.2em;
@@ -237,6 +243,9 @@ hr {
 			text-transform: uppercase;
 		}
 		h2 {
+			@include respond-to('tiny') {
+				font-size: 0.6em;
+			}
 			font-family: $headers-stack;
 			font-size: 0.75em;
 			font-weight: 400;
@@ -333,6 +342,9 @@ hr {
 					top: initial;
 					left: initial;
 					transform: none;
+					&.home {
+						margin: 5vh 0;
+					}
 				}
 				#intro {
 					@include respond-to('small') {
@@ -357,6 +369,10 @@ hr {
 							margin: 5vh 0 0 0;
 							min-height: 35px;
 						}
+						@include respond-to('tiny') {
+							height: 9vh;
+							margin-bottom: 2.5vh;
+						}
 						display: inline-block;
 						float: left;
 						height: 100%;
@@ -373,7 +389,7 @@ hr {
 					}
 					#title-outer-holder {
 						@include respond-to('tiny') {
-							height: 70%;
+							height: 20vh;
 							h3 {
 								display: none;
 							}

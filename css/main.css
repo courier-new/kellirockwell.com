@@ -201,6 +201,9 @@
           -ms-flex-pack: justify;
           justify-content: space-between;
           padding: 5%; } }
+      @media (max-width: 800px) {
+        .projects-list .project-card > div {
+          padding: 5% 0; } }
       .projects-list .project-card > div:hover {
         box-shadow: 0 0 10px rgba(121, 119, 132, 0.6);
         border: 1px solid #e0e0e0; }
@@ -209,6 +212,12 @@
           -webkit-flex-basis: 70%;
           -ms-flex-preferred-size: 70%;
           flex-basis: 70%; } }
+      @media (max-width: 800px) {
+        .projects-list .project-card > div .project-info {
+          -webkit-flex-basis: 66%;
+          -ms-flex-preferred-size: 66%;
+          flex-basis: 66%;
+          margin-right: 4%; } }
       .projects-list .project-card > div .project-img {
         display: block;
         margin: 5% auto 12% auto;

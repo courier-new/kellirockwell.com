@@ -186,6 +186,9 @@
       transition: border 180ms linear; }
       @media (max-width: 1200px) {
         .projects-list .project-card > div {
+          -webkit-align-items: stretch;
+          -ms-flex-align: stretch;
+          align-items: stretch;
           display: -webkit-flex;
           display: -ms-flexbox;
           display: flex;
@@ -195,41 +198,27 @@
           padding: 5%; } }
       .projects-list .project-card > div:hover {
         border: 1px solid rgba(121, 119, 132, 0.6); }
-    .projects-list .project-card > div > div {
-      position: relative; }
       @media (max-width: 1200px) {
-        .projects-list .project-card > div > div {
+        .projects-list .project-card > div .project-info {
           -webkit-flex-basis: 70%;
           -ms-flex-preferred-size: 70%;
           flex-basis: 70%; } }
-      @media (max-width: 800px) {
-        .projects-list .project-card > div > div {
-          -webkit-flex-basis: 80%;
-          -ms-flex-preferred-size: 80%;
-          flex-basis: 80%; } }
-    .projects-list .project-card .project-img {
-      display: block;
-      height: 70px;
-      margin: 0 auto;
-      max-width: 80%;
-      width: 80%;
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: contain; }
-      @media (max-width: 1200px) {
-        .projects-list .project-card .project-img {
-          display: inline-block;
-          -webkit-flex-basis: 22%;
-          -ms-flex-preferred-size: 22%;
-          flex-basis: 22%;
-          margin: 0;
-          max-width: 22%; } }
-      @media (max-width: 800px) {
-        .projects-list .project-card .project-img {
-          -webkit-flex-basis: 15%;
-          -ms-flex-preferred-size: 15%;
-          flex-basis: 15%;
-          max-width: 15%; } }
+      .projects-list .project-card > div .project-img {
+        display: block;
+        margin: 0 auto;
+        max-width: 80%;
+        width: 80%;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: contain; }
+        @media (max-width: 1200px) {
+          .projects-list .project-card > div .project-img {
+            display: inline-block;
+            -webkit-flex-basis: 22%;
+            -ms-flex-preferred-size: 22%;
+            flex-basis: 22%;
+            margin: 0;
+            max-width: 22%; } }
     .projects-list .project-card h1 {
       font-family: "Open Sans", sans-serif;
       font-size: 0.8em;
@@ -240,26 +229,30 @@
         .projects-list .project-card h1 {
           font-size: 0.9em; } }
     .projects-list .project-card .desc {
+      box-sizing: border-box;
       display: inline-block;
       font-family: "Open Sans", sans-serif;
       font-size: 0.7em;
-      line-height: 1.1em; }
+      line-height: 1.3em; }
       @media (max-width: 800px) {
         .projects-list .project-card .desc {
           font-size: 0.8em; } }
     .projects-list .project-card .cats {
-      bottom: 4px;
-      display: block;
+      margin-bottom: 4px;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
       font-family: "Open Sans", sans-serif;
-      position: absolute; }
+      margin-top: 15px;
+      font-size: 0.6em;
+      line-height: 1.3em; }
       @media (max-width: 800px) {
         .projects-list .project-card .cats {
-          right: 4px; }
-          .projects-list .project-card .cats > * {
-            font-size: 0.8em; } }
+          font-size: 0.7em; } }
       .projects-list .project-card .cats > * {
-        font-size: 0.7em;
-        line-height: 1.1em; }
+        -webkit-flex-basis: 32%;
+        -ms-flex-preferred-size: 32%;
+        flex-basis: 32%; }
 
 .instructions > span {
   font-size: 0.8em;

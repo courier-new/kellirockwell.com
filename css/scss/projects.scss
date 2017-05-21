@@ -132,6 +132,7 @@
 		}
 		& > div {
 			@include respond-to('medium') {
+				align-items: stretch;
 				display: flex;
 				justify-content: space-between;
 				padding: 5%;
@@ -145,36 +146,28 @@
 			&:hover {
 				border: 1px solid rgba(121, 119, 132, 0.6)
 			}
-		}
-		& > div > div {
-			@include respond-to('medium') {
-				flex-basis: 70%;
+			// info text area for project
+			.project-info {
+				@include respond-to('medium') {
+					flex-basis: 70%;
+				}
 			}
-			@include respond-to('tiny') {
-				flex-basis: 80%;
+			// image logo for project
+			.project-img {
+				@include respond-to('medium') {
+					display: inline-block;
+					flex-basis: 22%;
+					margin: 0;
+					max-width: 22%;
+				}
+				display: block;
+				margin: 0 auto;
+				max-width: 80%;
+				width: 80%;
+				background-position: center center;
+				background-repeat: no-repeat;
+				background-size: contain;
 			}
-			position: relative; // to place child, categories row, at position: absolute; bottom: 0;
-		}
-		// image logo for project
-		.project-img {
-			@include respond-to('medium') {
-				display: inline-block;
-				flex-basis: 22%;
-				margin: 0;
-				max-width: 22%;
-			}
-			@include respond-to('tiny') {
-				flex-basis: 15%;
-				max-width: 15%;
-			}
-			display: block;
-			height: 70px;
-			margin: 0 auto;
-			max-width: 80%;
-			width: 80%;
-			background-position: center center;
-			background-repeat: no-repeat;
-			background-size: contain;
 		}
 		h1 {
 			@include respond-to('tiny') {
@@ -190,25 +183,24 @@
 			@include respond-to('tiny') {
 				font-size: 0.8em;
 			}
+			box-sizing: border-box;
 			display: inline-block;
 			font-family: $main-stack;
 			font-size: 0.7em;
-			line-height: 1.1em;
+			line-height: 1.3em;
 		}
 		.cats {
 			@include respond-to('tiny') {
-				right: 4px;
-				& > * {
-					font-size: 0.8em;
-				}
-			}
-			bottom: 4px; // same as top margin on h1
-			display: block;
-			font-family: $main-stack;
-			position: absolute; // inside of a div with position: relative;
-			& > * {				
 				font-size: 0.7em;
-				line-height: 1.1em;
+			}
+			margin-bottom: 4px; // same as top margin on h1
+			display: flex;
+			font-family: $main-stack;
+			margin-top: 15px;
+			font-size: 0.6em;
+			line-height: 1.3em;
+			& > * {
+				flex-basis: 32%;
 			}
 		}
 	}

@@ -691,7 +691,8 @@ hr {
           width: 70%; }
           @media (max-width: 800px) {
             #container #main-block .right-side .inner-col #intro #title-outer-holder {
-              height: 20vh; }
+              margin-top: 1.5vh;
+              height: 14vh; }
               #container #main-block .right-side .inner-col #intro #title-outer-holder h3 {
                 display: none; } }
           @media (max-width: 1200px) {

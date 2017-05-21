@@ -300,7 +300,7 @@ hr {
 			}
 			@include respond-to('tiny') {
 				background-position: 50% 20%;
-				height: 60vh;
+				height: 45vh;
 				width: 100vw;
 			}
 			background-image: url('../img/happy-head.jpg');
@@ -342,9 +342,6 @@ hr {
 					top: initial;
 					left: initial;
 					transform: none;
-					&.home {
-						margin: 5vh 0;
-					}
 				}
 				#intro {
 					@include respond-to('small') {
@@ -370,8 +367,8 @@ hr {
 							min-height: 35px;
 						}
 						@include respond-to('tiny') {
-							height: 9vh;
-							margin-bottom: 2.5vh;
+							height: 8vh;
+							margin-top: 7vh;
 						}
 						display: inline-block;
 						float: left;

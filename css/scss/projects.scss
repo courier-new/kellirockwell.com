@@ -147,11 +147,8 @@
 			border: 1px solid $lightest-gray;
 			transition: all 180ms linear;
 			&:hover {
-				@include respond-to('tiny') {
-					box-shadow: 0 0 10px rgba($medium-gray, 0.6);
-					border: 1px solid $lightest-gray;
-				}
-				border: 1px solid $medium-gray;
+				box-shadow: 0 0 10px rgba($medium-gray, 0.6);
+				border: 1px solid $lightest-gray;
 			}
 			// info text area for project
 			.project-info {
@@ -161,15 +158,20 @@
 			}
 			// image logo for project
 			.project-img {
+				@include respond-to('tiny') {
+					margin-bottom: 0;
+					margin-top: 0;
+					min-height: initial;
+				}
 				@include respond-to('medium') {
 					display: inline-block;
 					flex-basis: 22%;
-					margin: 0;
 					max-width: 22%;
 				}
 				display: block;
-				margin: 0 auto;
+				margin: 5% auto 12% auto;
 				max-width: 80%;
+				min-height: 70px;
 				width: 80%;
 				background-position: center center;
 				background-repeat: no-repeat;
@@ -207,7 +209,10 @@
 			font-size: 0.6em;
 			line-height: 1.3em;
 			& > * {
-				flex-basis: 32%;
+				flex-basis: 74%;
+				&:first-child {
+					flex-basis: 25%;
+				}
 			}
 		}
 	}

@@ -202,11 +202,8 @@
           justify-content: space-between;
           padding: 5%; } }
       .projects-list .project-card > div:hover {
-        border: 1px solid #797784; }
-        @media (max-width: 800px) {
-          .projects-list .project-card > div:hover {
-            box-shadow: 0 0 10px rgba(121, 119, 132, 0.6);
-            border: 1px solid #e0e0e0; } }
+        box-shadow: 0 0 10px rgba(121, 119, 132, 0.6);
+        border: 1px solid #e0e0e0; }
       @media (max-width: 1200px) {
         .projects-list .project-card > div .project-info {
           -webkit-flex-basis: 70%;
@@ -214,19 +211,24 @@
           flex-basis: 70%; } }
       .projects-list .project-card > div .project-img {
         display: block;
-        margin: 0 auto;
+        margin: 5% auto 12% auto;
         max-width: 80%;
+        min-height: 70px;
         width: 80%;
         background-position: center center;
         background-repeat: no-repeat;
         background-size: contain; }
+        @media (max-width: 800px) {
+          .projects-list .project-card > div .project-img {
+            margin-bottom: 0;
+            margin-top: 0;
+            min-height: initial; } }
         @media (max-width: 1200px) {
           .projects-list .project-card > div .project-img {
             display: inline-block;
             -webkit-flex-basis: 22%;
             -ms-flex-preferred-size: 22%;
             flex-basis: 22%;
-            margin: 0;
             max-width: 22%; } }
     .projects-list .project-card h1 {
       font-family: "Open Sans", sans-serif;
@@ -259,9 +261,13 @@
         .projects-list .project-card .cats {
           font-size: 0.7em; } }
       .projects-list .project-card .cats > * {
-        -webkit-flex-basis: 32%;
-        -ms-flex-preferred-size: 32%;
-        flex-basis: 32%; }
+        -webkit-flex-basis: 74%;
+        -ms-flex-preferred-size: 74%;
+        flex-basis: 74%; }
+        .projects-list .project-card .cats > *:first-child {
+          -webkit-flex-basis: 25%;
+          -ms-flex-preferred-size: 25%;
+          flex-basis: 25%; }
 
 .instructions > span {
   font-size: 0.8em;

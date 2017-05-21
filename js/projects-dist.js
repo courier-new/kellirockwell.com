@@ -35,14 +35,14 @@ $(document).ready(function () {
 			output += "<i class='fa fa-male' aria-hidden='true'></i>\n";
 			output += "<span>" + curr.team + "</span>\n";
 			output += "</div>\n<div>\n";
+			// split timescale into ["start", "end"]
+			var arr = curr.timescale.split(" - ");
+			// split timescale into ["s mm", "s yyyy", "e mm", "e yyyy"]
+			arr = jQuery.map(arr, function (n, i) {
+				return n.split("/");
+			});
 			// if project is a past project
 			if (curr.type === "past") {
-				// split timescale into ["start", "end"]
-				var arr = curr.timescale.split(" - ");
-				// split timescale into ["s mm", "s yyyy", "e mm", "e yyyy"]
-				arr = jQuery.map(arr, function (n, i) {
-					return n.split("/");
-				});
 				// if timescale years are the same
 				if (arr[1] == arr[3]) {
 					// just show one
@@ -51,6 +51,9 @@ $(document).ready(function () {
 					// otherwise show year range
 					output += arr[1] + " - " + arr[3];
 				}
+				// if project is current project
+			} else {
+				output += "since " + arr[1];
 			}
 			output += "</div>\n";
 			output += "</span>\n";

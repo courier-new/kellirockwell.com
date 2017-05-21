@@ -140,6 +140,9 @@
 				justify-content: space-between;
 				padding: 5%;
 			}
+			@include respond-to('tiny') {
+				padding: 5% 0;
+			}
 			box-sizing: border-box;
 			display: block;
 			height: 100%;
@@ -154,6 +157,10 @@
 			.project-info {
 				@include respond-to('medium') {
 					flex-basis: 70%;
+				}
+				@include respond-to('tiny') {
+					flex-basis: 66%;
+					margin-right: 4%;
 				}
 			}
 			// image logo for project

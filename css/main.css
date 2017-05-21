@@ -395,7 +395,7 @@ hr {
   background: none;
   border: none;
   border-bottom: 1px solid #e0e0e0;
-  margin: 20px auto 25px auto;
+  margin: 0.5vh auto 2.25vh auto;
   min-width: 120px;
   width: 50%; }
   @media (max-width: 800px) {

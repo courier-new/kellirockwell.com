@@ -8,8 +8,9 @@ $(document).ready(function () {
 	// empty array to hold list of page sections
 	var sections = [];
 
-	// boolean to remember if mobile view is active
-	var mobile = false;
+	// immediately add navs after page finishes loading
+	// needs to happen before jquery nav item event listeners
+	addNavs();
 
 	/**
   * function checkWidths
@@ -54,6 +55,7 @@ $(document).ready(function () {
 
 	// rotate logo on hover if in non-mobile view
 	$('#logo-holder img').hover(function () {
+		// only for non-mobile
 		if (!mobile) {
 			rotateLogo();
 		}
@@ -61,6 +63,7 @@ $(document).ready(function () {
 
 	// rotate logo on tap if in mobile view
 	$('#logo-holder img').click(function () {
+		// only for mobile
 		if (mobile) {
 			rotateLogo();
 		}
@@ -207,9 +210,6 @@ $(document).ready(function () {
 			});
 		});
 	}
-
-	// immediately add navs after page finishes loading
-	addNavs();
 
 	/**
   * function switchMeters

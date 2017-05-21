@@ -24,16 +24,39 @@ $(document).ready(function () {
 		$(projData.projects).each(function () {
 			var curr = $(this)[0];
 			var output = "<li class='project-card'>\n";
-			output += "<div>\n";
-			output += "<span class='project-img' style='background-image:url(\"";
+			output += "<div>\n<div class='project-img' style='background-image:url(\"";
 			output += curr.logo;
-			output += "\");'></span>\n";
-			output += "<div>\n";
+			output += "\");'></div>\n";
+			output += "<div class='project-info'>\n";
 			output += "<h1>" + curr.name + "</h1>\n";
 			output += "<span class='desc'>" + curr.short + "</span>\n";
 			output += "<span class='cats'>\n";
-			//output += "<i class='fa fa-users' aria-hidden='true'><i>\n";
-			output += "<label>Team of </label><span>" + curr.team + "</span>\n</span>\n";
+			output += "<div>\n";
+			output += "<i class='fa fa-male' aria-hidden='true'></i>\n";
+			output += "<span>" + curr.team + "</span>\n";
+			output += "</div>\n<div>\n";
+			// split timescale into ["start", "end"]
+			var arr = curr.timescale.split(" - ");
+			// split timescale into ["s mm", "s yyyy", "e mm", "e yyyy"]
+			arr = jQuery.map(arr, function (n, i) {
+				return n.split("/");
+			});
+			// if project is a past project
+			if (curr.type === "past") {
+				// if timescale years are the same
+				if (arr[1] == arr[3]) {
+					// just show one
+					output += arr[1];
+				} else {
+					// otherwise show year range
+					output += arr[1] + " - " + arr[3];
+				}
+				// if project is current project
+			} else {
+				output += "since " + arr[1];
+			}
+			output += "</div>\n";
+			output += "</span>\n";
 			output += "</div>\n</div>\n</li>\n";
 			if (curr.type === "current") {
 				currProjList += output;
@@ -46,7 +69,7 @@ $(document).ready(function () {
 	}
 
 	function toggleInfo(dir, proj) {
-		var card;
+		var card = void 0;
 		// Find matching project card
 		$('.project-card h1').each(function () {
 			if ($(this).text() == proj) {
@@ -54,7 +77,7 @@ $(document).ready(function () {
 			}
 		});
 		// Find data in projData from json
-		var projObj;
+		var projObj = void 0;
 		for (var i = 0; i < projData.projects.length; i++) {
 			if (projData.projects[i].name === proj) {
 				projObj = projData.projects[i];
@@ -151,41 +174,48 @@ $(document).ready(function () {
 		toggleInfo("in", proj);
 	});
 
+	// Animate screenshot of project over left side of page
 	$('body').on('mouseenter', '.project-card', function () {
-		// Get overlay container
-		var dest = $('.left-side .overlay-container');
-		// Get name of hovered project
-		var head = $(this).find('h1').text();
-		// Only allow changing background if info view is hidden
-		if ($('.extra-info').not('.hidden').length === 0) {
-			// Cut any ongoing animations short
-			dest.stop(true);
-			// Search for hovered project's data
-			$(projData.projects).each(function () {
-				var curr = $(this)[0];
-				// When project is found
-				if (head === curr.name) {
-					// Set overlay's background image to url stored in data
-					dest.css('background-image', 'url("' + curr.screen + '")');
-					dest.find('.overlay-caption').html(curr.caption).animate({});
-				}
-			});
-			// Bring overlay to full opaqueness
-			dest.animate({
-				'opacity': '1'
-			});
+		// only for non-mobile
+		if (!mobile) {
+			// Get overlay container
+			var dest = $('.left-side .overlay-container');
+			// Get name of hovered project
+			var head = $(this).find('h1').text();
+			// Only allow changing background if info view is hidden
+			if ($('.extra-info').not('.hidden').length === 0) {
+				// Cut any ongoing animations short
+				dest.stop(true);
+				// Search for hovered project's data
+				$(projData.projects).each(function () {
+					var curr = $(this)[0];
+					// When project is found
+					if (head === curr.name) {
+						// Set overlay's background image to url stored in data
+						dest.css('background-image', 'url("' + curr.screen + '")');
+						dest.find('.overlay-caption').html(curr.caption).animate({});
+					}
+				});
+				// Bring overlay to full opaqueness
+				dest.animate({
+					'opacity': '1'
+				});
+			}
 		}
 	});
 
 	$('body').on('mouseleave', '.project-card', function () {
-		// Get overlay container
-		var dest = $('.left-side .overlay-container');
-		// Only allow changing background if info view is hidden
-		if ($('.extra-info').not('.hidden').length === 0) {
-			// Reduce overlay to full transparency
-			dest.animate({
-				'opacity': '0'
-			});
+		// only for non-mobile
+		if (!mobile) {
+			// Get overlay container
+			var dest = $('.left-side .overlay-container');
+			// Only allow changing background if info view is hidden
+			if ($('.extra-info').not('.hidden').length === 0) {
+				// Reduce overlay to full transparency
+				dest.animate({
+					'opacity': '0'
+				});
+			}
 		}
 	});
 });

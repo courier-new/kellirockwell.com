@@ -50,7 +50,7 @@
       "screen": "./img/proj/fontr-screen.jpg",
       "caption": "In-game with a sample of 'Raleway' font (obviously!)",
       "subtitle": "Fun with Fonts",
-      "timescale": "02/2017 - 03/2017",
+      "timescale": "02/2017 - 04/2017",
       "team": "1",
       "tags": "Fonts, Fun, Game, Jquery, PHP",
       "short": "A font learning and memory game.",
@@ -65,7 +65,7 @@
       "caption": "Finished product furnished with sample data",
       "subtitle": "PM Intern 2017",
       "timescale": "05/2016 - 08/2016",
-      "team": "5",
+      "team": "4",
       "tags": "Agile, Design, Jquery, Internship, MySQL, PHP, Professional",
       "short": "Imple&shy;men&shy;ta&shy;tion of a data cen&shy;ter dash&shy;board.",
       "desc": "More project details coming soon."
@@ -79,37 +79,9 @@
       "caption": "Flyer for first ever PCG social event",
       "subtitle": "Physics Cohort Guides",
       "timescale": "04/2016 - 12/2016",
-      "team": "5",
+      "team": "7",
       "tags": "Academic, Leadership, Organization, Physics",
       "short": "Physics stu&shy;dent men&shy;tor&shy;ing and sup&shy;port pro&shy;gram.",
-      "desc": "More project details coming soon."
-    },
-    {
-      "name": "Thiink",
-      "type": "past",
-      "link": "http://thiinkposters.com/",
-      "logo": "./img/proj/thiink-logo.jpg",
-      "screen": "./img/proj/thiink-screen.jpg",
-      "caption": "Gallery view of a completed poster on the website",
-      "subtitle": "Unique Posters for Unique People",
-      "timescale": "05/2013 - 01/2016",
-      "team": "1",
-      "tags": "Design, Jquery, Organization, PHP, Professional",
-      "short": "Custom poster de&shy;sign ser&shy;vice.",
-      "desc": "More project details coming soon."
-    },
-    {
-      "name": "KAPAO",
-      "type": "past",
-      "link": "",
-      "logo": "./img/proj/kapao-logo.jpg",
-      "screen": "./img/proj/kapao-screen.jpg",
-      "caption": "Taking in the scenery at Table Mountain Observatory",
-      "subtitle": "Advancing Adaptive Optics",
-      "timescale": "04/2015 - 08/2015",
-      "team": "7",
-      "tags": "Academic, Data Analysis, Engineering, Internship, JavaScript, Physics, Python",
-      "short": "NSF-funded tel&shy;escope in&shy;stru&shy;men&shy;ta&shy;tion project.",
       "desc": "More project details coming soon."
     },
     {
@@ -124,6 +96,34 @@
       "team": "15",
       "tags": "Design, Drupal, Internship, Organization, Professional",
       "short": "Migration and re&shy;design of web&shy;site con&shy;tent.",
+      "desc": "More project details coming soon."
+    },
+    {
+      "name": "Thiink",
+      "type": "past",
+      "link": "http://thiinkposters.com/",
+      "logo": "./img/proj/thiink-logo.jpg",
+      "screen": "./img/proj/thiink-screen.jpg",
+      "caption": "Gallery view of a completed poster on the website",
+      "subtitle": "Unique Posters for Unique People",
+      "timescale": "06/2007 - 01/2016",
+      "team": "1",
+      "tags": "Design, Jquery, Organization, PHP, Professional",
+      "short": "Custom poster de&shy;sign ser&shy;vice.",
+      "desc": "More project details coming soon."
+    },
+    {
+      "name": "KAPAO",
+      "type": "past",
+      "link": "",
+      "logo": "./img/proj/kapao-logo.jpg",
+      "screen": "./img/proj/kapao-screen.jpg",
+      "caption": "Taking in the scenery at Table Mountain Observatory",
+      "subtitle": "Advancing Adaptive Optics",
+      "timescale": "04/2014 - 08/2015",
+      "team": "14",
+      "tags": "Academic, Data Analysis, Engineering, Internship, JavaScript, Physics, Python",
+      "short": "NSF-funded tel&shy;escope in&shy;stru&shy;men&shy;ta&shy;tion project.",
       "desc": "More project details coming soon."
     }
   ]

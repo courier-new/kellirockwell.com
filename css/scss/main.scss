@@ -386,7 +386,8 @@ hr {
 					}
 					#title-outer-holder {
 						@include respond-to('tiny') {
-							height: 20vh;
+							margin-top: 1.5vh;
+							height: 14vh;
 							h3 {
 								display: none;
 							}

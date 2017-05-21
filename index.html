@@ -64,7 +64,7 @@
 				<div class='blurb about'>
 					<div class='mini-head'><h2>About Me</h2></div>
 					<h1><strong>Kelli Rockwell</strong>Web Developer / Project Manager</h1>
-					<p><strong>Who am I?</strong> I am a fourth-year undergraduate at Pomona College studying physics and computer science. I am an ambitious thinker, a versatile learner, an enthusiastic doer, and a confident teacher. I want to speak up for women and minorities in STEM.</p>
+					<p><strong>Who am I?</strong> I am a recent graduate of Pomona College, where I studied physics and computer science. I am an ambitious thinker, a versatile learner, an enthusiastic doer, and a confident teacher. I want to empower women and other marginalized communities in STEM.</p>
 
 					<p><strong>What am I up to?</strong> Currently I am producing a web app for visualizing electric fields as my senior thesis in physics education research; devising a schedule manager to successfully bridge the gap between calendar, to-do list, and notepad; and forging a team of students and faculty to program a women in physics conference next January.</p>
 					<div class='steps'>
@@ -160,10 +160,15 @@
 	
 </body>
 
-<script src='js/main-dist.js'></script>
-<script src='js/projects-dist.js'></script>
 <script>
+	// global boolean to remember if mobile view is active
+	var mobile = false;
+
+	// embed resume pdf
 	PDFObject.embed("/resume.pdf", "#pdf-view");
 </script>
+
+<script src='js/main-dist.js'></script>
+<script src='js/projects-dist.js'></script>
 
 </html>

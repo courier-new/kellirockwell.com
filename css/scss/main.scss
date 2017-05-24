@@ -87,32 +87,6 @@ hr {
 			letter-spacing: 0.05em;
 		}
 	}
-	.mini-head {
-		border-bottom: 3px solid $pink;
-		margin-bottom: 5px;
-		width: 30px;
-		h2, {
-			font-family: $headers-stack;
-			font-size: 0.7em;
-			font-weight: 800;
-			letter-spacing: 0.05em;
-			text-transform: uppercase;
-			width: 1000%;
-			& > * {
-				transition: color 170ms linear;
-			}
-			.active {
-				color: $medium-gray;     
-			}
-			.inactive {
-				color: rgba(121, 119, 132, 0.5);
-				&:hover {
-					color: rgba(121, 119, 132, 0.8);                    
-					cursor: pointer;
-				}
-			}    
-		}
-	}
 	.steps {
 		margin: 20px 0 30px 0;
 		width: 100%;
@@ -139,6 +113,33 @@ hr {
 	}
 	.steps > div:first-child {
 		padding-right: 10px;
+	}
+}
+
+.mini-head {
+	border-bottom: 3px solid $pink;
+	margin-bottom: 5px;
+	width: 30px;
+	h2, {
+		font-family: $headers-stack;
+		font-size: 0.7em;
+		font-weight: 800;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		width: 1000%;
+		& > * {
+			transition: color 170ms linear;
+		}
+		.active {
+			color: $medium-gray;     
+		}
+		.inactive {
+			color: rgba(121, 119, 132, 0.5);
+			&:hover {
+				color: rgba(121, 119, 132, 0.8);                    
+				cursor: pointer;
+			}
+		}    
 	}
 }
 
@@ -489,7 +490,7 @@ hr {
 	}
 	background-color: $footer-gray;
 	display: table-cell;
-	height: 3em;
+	height: 6vh;
 	width: 100vw;
 	span {
 		color: $medium-gray;

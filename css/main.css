@@ -78,13 +78,19 @@
   .extra-info > div {
     border: 1px solid rgba(121, 119, 132, 0.6);
     box-sizing: border-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
     height: 100%;
     max-height: 100%;
     padding: 4%; }
   .extra-info p {
     font-size: 0.8em;
     line-height: 1.6em;
-    margin: 20px 0 0 0; }
+    margin: 14px 0; }
   .extra-info h1 {
     font-family: "Raleway", sans-serif;
     font-size: 1em;
@@ -150,6 +156,9 @@
         font-weight: 400;
         letter-spacing: 0.05em;
         text-transform: uppercase; }
+  .extra-info .desc {
+    overflow-x: hidden;
+    overflow-y: auto; }
 
 .projects-list {
   -webkit-align-items: stretch;

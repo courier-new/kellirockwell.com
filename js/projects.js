@@ -1,6 +1,7 @@
 $(document).ready(function() {	
 
 	let infoOpen = false;
+	let scrollPosition;
 
 	let projData;
 	getProjects();
@@ -165,8 +166,10 @@ $(document).ready(function() {
 
 			// Remember that infoview is open
 			infoOpen = true;
-			// Temporarily disable scroll
-			disableScroll();
+			// Temporarily disable scroll on mobile
+			if (mobile) {
+				disableScroll();
+			}
 		} else {
 			// Fade out infoview content
 			$('.extra-info *, .exit').animate({
@@ -192,8 +195,10 @@ $(document).ready(function() {
 
 			// Remember that infoview is no longer open
 			infoOpen = false;
-			// Re-enable scroll
-			enableScroll();
+			// Re-enable scroll on mobile
+			if (mobile) {
+				enableScroll();
+			}
 		}
 	}
 
@@ -291,23 +296,23 @@ $(document).ready(function() {
 	});
 });
 
-// Lock scroll position, but retain current scroll position
+// Lock scroll position for outer window, but retain current scroll position (for mobile)
 function disableScroll() {
+	// Remember current scroll position
 	let scrollPosition = [
 		self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft,
 		self.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop
 	];
-	let html = jQuery('html');
-	html.data('scroll-position', scrollPosition);
-	html.data('previous-overflow', html.css('overflow'));
-	html.css('overflow', 'hidden');
+	// Make outer window (html) unscrollable
+	$('html').css('overflow', 'hidden');
+	// Jump back to last scroll position
 	window.scrollTo(scrollPosition[0], scrollPosition[1]);
 }
 
 // Unlock scroll position
 function enableScroll() {
-	let html = jQuery('html');
-	let scrollPosition = html.data('scroll-position');
-	html.css('overflow', html.data('previous-overflow'));
+	// Make outer window (html) scrollable again
+	$('html').css('overflow', 'initial');
+	// Jump back to last scroll position
 	window.scrollTo(scrollPosition[0], scrollPosition[1])
 }

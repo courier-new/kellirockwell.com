@@ -9,6 +9,10 @@
 body {
 	margin: 0;
 	overflow-x: hidden;
+	overflow-y: hidden;
+	&.loaded {
+		overflow-y: initial;
+	}
 }
 
 * {
@@ -50,18 +54,22 @@ body {
 			right: 0;
 		}
 	}
-	&.loaded {
-		transition: all 0.6s 0.8s ease-out;
-		visibility: hidden;
-		.loader-section.left {
-	    	transform: translateX(-100%);
-		}
-	 	.loader-section.right {
-	    	transform: translateX(100%);
-		}
-		#spinner-container {
-			opacity: 0;
-			transition: all 0.3s linear;
+}
+
+.loaded #loading-overlay {
+	transition: all 0.5s 0.8s ease-out;
+	visibility: hidden;
+	.loader-section.left {
+    	transform: translateX(-100%);
+	}
+ 	.loader-section.right {
+    	transform: translateX(100%);
+	}
+	#spinner-container {
+		opacity: 0;
+		transition: all 0.3s linear;
+		.spinner.sphere .disc {
+			border: 0.3em dotted white;
 		}
 	}
 }

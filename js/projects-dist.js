@@ -2,7 +2,9 @@
 
 $(document).ready(function () {
 
-	var projData;
+	var infoOpen = false;
+
+	var projData = void 0;
 	getProjects();
 	setTimeout(function () {
 		addProjects();
@@ -11,6 +13,25 @@ $(document).ready(function () {
 	var lorem = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio voluptatibus enim esse quis quaerat quam suscipit necessitatibus provident, nostrum perspiciatis voluptatem perferendis dolor, hic officia ipsam laboriosam possimus doloremque tenetur atque aspernatur.";
 	var lorem2 = " Nesciunt ad ratione quis consequuntur doloribus animi in architecto itaque delectus esse consectetur iste nobis voluptatum, quibusdam alias eveniet enim rerum eos debitis odit.";
 	var lorem3 = "Saepe quisquam nobis, magni voluptate asperiores molestiae recusandae excepturi officia porro, nam maxime architecto corporis id nulla omnis, possimus adipisci eum animi alias cumque mollitia fuga dignissimos commodi odio. Quisquam, ullam consectetur quasi, exercitationem sint soluta quae pariatur.";
+
+	function getRandomColor() {
+		var letters = '0123456789ABCDEF';
+		var color = '#';
+		for (var i = 0; i < 6; i++) {
+			color += letters[Math.floor(Math.random() * 16)];
+		}
+		return color;
+	}
+
+	// function test() {
+	// 	setTimeout(function() {
+	// 		$('.inner-col.projects').css('background-color', getRandomColor());
+	// 		console.log($('.inner-col.projects').scrollTop());
+	// 		test();
+	// 	}, 1000);
+	// }
+
+	// test();
 
 	function getProjects() {
 		$.getJSON('./js/projects.json', function (data) {
@@ -88,6 +109,12 @@ $(document).ready(function () {
 		middle.top = cardPos.top + card.height() / 2;
 		middle.left = cardPos.left + card.width() / 2;
 
+		// Find appropriate position to originate infoview from
+		var $scrollTop = mobile ? window.pageYOffset || document.documentElement.scrollTop : $('.inner-col.projects').scrollTop();
+		var $origin = mobile ? middle.top : middle.top + $scrollTop;
+		console.log('middle top ' + middle.top);
+		console.log('scroll top ' + $scrollTop);
+
 		if (dir == "out") {
 			// Form content of infoview
 			var content = "<span class='exit'>✖</span>\n";
@@ -124,34 +151,84 @@ $(document).ready(function () {
 			}
 			content += "</div>";
 
-			$('.extra-info').html(content);
-			$('.extra-info').css({
-				'top': middle.top,
+			// Find appropriate position from top to place infoview at
+			var $top = findTop();
+
+			// Set initial position of infoview as originating from the middle of the card
+			$('.extra-info').html(content).css({
+				'top': $origin,
 				'left': middle.left
+				// Grow infoview out of card to fill screen
 			}).animate({
-				'top': '-=' + middle.top,
+				'top': $top,
 				'left': '-=' + middle.left,
 				'width': 'toggle',
-				'height': 'toggle'
+				'height': 'toggle',
+				'padding': '3% 3%'
 			}).toggleClass('hidden');
-			$('.extra-info *').animate({
-				'opacity': 1
+
+			// After infoview finishes growing and reaches top position
+			$.when($('.extra-info').position().top === $top).then(function () {
+				// Fade in infoview content after 200ms
+				setTimeout(function () {
+					$('.extra-info *').animate({
+						'opacity': 1
+					});
+				}, 200);
 			});
+
+			// Remember that infoview is open
+			infoOpen = true;
 		} else {
+			// Fade out infoview content
 			$('.extra-info *, .exit').animate({
 				'opacity': 0
 			});
-			$('.extra-info').animate({
-				'top': '+=' + middle.top,
-				'left': '+=' + middle.left,
-				'width': 'toggle',
-				'height': 'toggle'
-			}).toggleClass('hidden');
-			$('.left-side .overlay-container').animate({
-				'opacity': '0'
+
+			// After infoview content finishes fading
+			$.when($('.extra-info *').css('opacity') === 0).then(function () {
+				// Shrink infoview back into card after 200ms
+				setTimeout(function () {
+					$('.extra-info').animate({
+						'top': $origin,
+						'left': middle.left,
+						'width': 'toggle',
+						'height': 'toggle',
+						'padding': '0'
+					}).toggleClass('hidden');
+					$('.left-side .overlay-container').animate({
+						'opacity': '0'
+					});
+				}, 200);
 			});
+
+			// Remember that infoview is no longer open
+			infoOpen = false;
 		}
 	}
+
+	function findTop() {
+		var $scrollTop = mobile ? window.pageYOffset || document.documentElement.scrollTop : $('.inner-col.projects').scrollTop();
+		var $buffer = window.innerHeight / 20;
+		var $headerHeight = mobile ? $('.left-side').outerHeight() : 0;
+		return $scrollTop + $buffer - $headerHeight;
+	}
+
+	// For mobile, move infoview with document scroll
+	$(window).bind('scroll', function () {
+		if (infoOpen) {
+			var top = findTop();
+			$('.extra-info').css('top', top);
+		}
+	});
+
+	// For non-mobile, move infoview with right side column scroll
+	$('.inner-col.projects').bind('scroll', function () {
+		if (infoOpen) {
+			var top = findTop();
+			$('.extra-info').css('top', top);
+		}
+	});
 
 	$('.nav-item').not('.active').click(function () {
 		// Make sure project infoview is not open when trying to switch section
@@ -165,7 +242,10 @@ $(document).ready(function () {
 	// Open infoview
 	$('body').on('click', '.project-card', function () {
 		var proj = $(this).find('h1').text();
-		toggleInfo("out", proj);
+		// Only open infoview if another is not already open
+		if (!infoOpen) {
+			toggleInfo("out", proj);
+		}
 	});
 
 	// Close infoview

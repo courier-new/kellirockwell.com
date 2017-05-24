@@ -38,21 +38,25 @@
   src: url("../../fonts/brandon-grotesque-light-italic.otf");
   font-weight: 200;
   font-style: italic; }
-.blurb.projects {
+.inner-col.projects {
   position: relative; }
 
 .extra-info {
   background-color: #ffffff;
   box-shadow: 4px 6px 14px 0px rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
-  height: 100%;
+  max-height: 84vh;
   left: 0;
-  margin: -1% 0 0 -1.5%;
-  padding: 3% 3%;
+  margin: 0 10%;
+  padding: 0;
   position: absolute;
+  text-align: left;
   top: 0;
-  width: 103%;
+  width: 80%;
   z-index: 3; }
+  @media (max-width: 800px) {
+    .extra-info {
+      max-height: 90vh; } }
   .extra-info.hidden {
     display: none; }
   .extra-info .exit {
@@ -67,12 +71,17 @@
     cursor: pointer;
     color: rgba(121, 119, 132, 0.5); }
   .extra-info * {
-    opacity: 0; }
+    opacity: 0;
+    text-align: left; }
   .extra-info > div {
     border: 1px solid rgba(121, 119, 132, 0.6);
     box-sizing: border-box;
-    height: 100%;
+    max-height: 100%;
     padding: 4%; }
+  .extra-info p {
+    font-size: 0.8em;
+    line-height: 1.6em;
+    margin: 20px 0 0 0; }
   .extra-info h1 {
     font-family: "Raleway", sans-serif;
     font-size: 1em;
@@ -422,26 +431,6 @@ hr {
     font-size: 1.7em;
     font-weight: 800;
     letter-spacing: 0.05em; }
-.blurb .mini-head {
-  border-bottom: 3px solid #b78b91;
-  margin-bottom: 5px;
-  width: 30px; }
-  .blurb .mini-head h2 {
-    font-family: "Raleway", sans-serif;
-    font-size: 0.7em;
-    font-weight: 800;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    width: 1000%; }
-    .blurb .mini-head h2 > * {
-      transition: color 170ms linear; }
-    .blurb .mini-head h2 .active {
-      color: #797784; }
-    .blurb .mini-head h2 .inactive {
-      color: rgba(121, 119, 132, 0.5); }
-      .blurb .mini-head h2 .inactive:hover {
-        color: rgba(121, 119, 132, 0.8);
-        cursor: pointer; }
 .blurb .steps {
   margin: 20px 0 30px 0;
   width: 100%; }
@@ -462,6 +451,27 @@ hr {
     margin: 0; }
 .blurb .steps > div:first-child {
   padding-right: 10px; }
+
+.mini-head {
+  border-bottom: 3px solid #b78b91;
+  margin-bottom: 5px;
+  width: 30px; }
+  .mini-head h2 {
+    font-family: "Raleway", sans-serif;
+    font-size: 0.7em;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    width: 1000%; }
+    .mini-head h2 > * {
+      transition: color 170ms linear; }
+    .mini-head h2 .active {
+      color: #797784; }
+    .mini-head h2 .inactive {
+      color: rgba(121, 119, 132, 0.5); }
+      .mini-head h2 .inactive:hover {
+        color: rgba(121, 119, 132, 0.8);
+        cursor: pointer; }
 
 .resume {
   min-height: 5vh; }
@@ -776,7 +786,7 @@ hr {
 #footer {
   background-color: #1e1d18;
   display: table-cell;
-  height: 3em;
+  height: 6vh;
   width: 100vw; }
   @media (max-width: 800px) {
     #footer {

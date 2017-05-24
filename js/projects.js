@@ -123,7 +123,8 @@ function toggleInfo(dir, proj) {
 		content += "<div class='tags'><span>";
 		content += projObj.tags + "</span></div>\n";
 		content += "</div>\n</div>";
-		content += "<div class='desc'>"
+		content += "<div class='desc'>\n";
+		content += "<img src='" + projObj.screen + "' style='display: none' >\n";
 		content += "<p>" + projObj.short + "</p>\n";
 		let descArr = projObj.desc.split("\n");
 		for (let j = 0; j < descArr.length; j++) {

@@ -778,6 +778,9 @@ hr {
   display: table-cell;
   height: 3em;
   width: 100vw; }
+  @media (max-width: 800px) {
+    #footer {
+      font-size: 0.75em; } }
   #footer span {
     color: #797784;
     font-size: 0.8em;

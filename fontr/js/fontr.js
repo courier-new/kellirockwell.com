@@ -18,9 +18,9 @@ function getData() {
 		//$.getJSON('miniFontsData.json', function(data) { // for testing end game results only
 			fontsRemainingArr = fontsArr = data;
 			console.log(fontsArr);
+	 	}).then(function() {
+	 		displayLegend();
 	 	});
-		
-		setTimeout(function(){ displayLegend(); }, 200);
 
 }
 

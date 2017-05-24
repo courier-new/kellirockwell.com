@@ -69,6 +69,9 @@
     right: 8%;
     color: rgba(121, 119, 132, 0.25);
     transition: color 200ms linear; }
+    @media (max-width: 800px) {
+      .extra-info .exit {
+        top: 5%; } }
   .extra-info .exit:hover {
     cursor: pointer;
     color: rgba(121, 119, 132, 0.5); }
@@ -127,6 +130,9 @@
     padding-bottom: 10px; }
     .extra-info .stats > div {
       padding-bottom: 10px; }
+      @media (max-width: 800px) {
+        .extra-info .stats > div {
+          padding-bottom: 0; } }
     .extra-info .stats .timescale {
       -webkit-flex-basis: 25%;
       -ms-flex-preferred-size: 25%;
@@ -160,6 +166,9 @@
         color: #373a46;
         font-size: 2em;
         font-weight: 800; }
+        @media (max-width: 800px) {
+          .extra-info .stats .team span {
+            font-size: 1.4em; } }
     .extra-info .stats .tags {
       -webkit-flex-basis: 40%;
       -ms-flex-preferred-size: 40%;

@@ -27,6 +27,9 @@
 		display: none;        
 	}
 	.exit {
+		@include respond-to('tiny') {
+			top: 5%;
+		}
 		font-size: 1.8em;
 		position: absolute;
 		display: block;
@@ -88,6 +91,9 @@
 		justify-content: space-between;
 		padding-bottom: 10px;
 		& > div {
+			@include respond-to('tiny') {
+				padding-bottom: 0;
+			}
 			padding-bottom: 10px;
 		}
 		.timescale, {
@@ -114,6 +120,9 @@
 			}
 			flex-basis: 25%;
 			span {
+				@include respond-to('tiny') {
+					font-size: 1.4em;
+				}
 				color: $dark-gray;
 				font-size: 2em;
 				font-weight: 800;

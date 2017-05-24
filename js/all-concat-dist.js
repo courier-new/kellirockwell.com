@@ -33,7 +33,7 @@
 
 	function preload(arrayOfImages) {
 		$(arrayOfImages).each(function () {
-			$('<img/>')[0].src = this;
+			$('<img />').attr('src', this).appendTo('body').css('display', 'none');
 		});
 	}
 	// size of window corresponding to minimum size considered "desktop"

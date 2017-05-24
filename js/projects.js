@@ -9,8 +9,7 @@ $(document).ready(function() {
 	}, 200);
 
 	let lorem = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio voluptatibus enim esse quis quaerat quam suscipit necessitatibus provident, nostrum perspiciatis voluptatem perferendis dolor, hic officia ipsam laboriosam possimus doloremque tenetur atque aspernatur.";
-	let lorem2 = " Nesciunt ad ratione quis consequuntur doloribus animi in architecto itaque delectus esse consectetur iste nobis voluptatum, quibusdam alias eveniet enim rerum eos debitis odit.";
-	let lorem3 = "Saepe quisquam nobis, magni voluptate asperiores molestiae recusandae excepturi officia porro, nam maxime architecto corporis id nulla omnis, possimus adipisci eum animi alias cumque mollitia fuga dignissimos commodi odio. Quisquam, ullam consectetur quasi, exercitationem sint soluta quae pariatur.";
+	let lorem2 = " Nesciunt ad ratione quis consequuntur doloribus animi in architecto itaque delectus esse consectetur iste nobis voluptatum, quibusdam alias eveniet enim rerum eos debitis odit. Saepe quisquam nobis, magni voluptate asperiores molestiae recusandae excepturi officia porro, nam maxime architecto corporis id nulla.";
 	
 	function getRandomColor() {
 	    let letters = '0123456789ABCDEF';
@@ -20,16 +19,6 @@ $(document).ready(function() {
 	    }
 	    return color;
 	}
-
-	// function test() {
-	// 	setTimeout(function() {
-	// 		$('.inner-col.projects').css('background-color', getRandomColor());
-	// 		console.log($('.inner-col.projects').scrollTop());
-	// 		test();
-	// 	}, 1000);
-	// }
-
-	// test();
 
 	function getProjects() {
 		$.getJSON('./js/projects.json', function(data) {
@@ -110,8 +99,6 @@ $(document).ready(function() {
 		// Find appropriate position to originate infoview from
 		let $scrollTop = (mobile) ? window.pageYOffset || document.documentElement.scrollTop : $('.inner-col.projects').scrollTop();
 		let $origin = (mobile) ? middle.top : (middle.top + $scrollTop);
-		console.log('middle top ' + middle.top);
-		console.log('scroll top ' + $scrollTop);
 
 		if (dir == "out") {
 			// Form content of infoview
@@ -144,7 +131,6 @@ $(document).ready(function() {
 				if (descArr.length === 1) {
 					content += "<p>" + lorem + "</p>\n";
 					content += "<p>" + lorem2 + "</p>\n";
-					content += "<p>" + lorem3 + "</p>\n";
 				}
 			}			
 			content += "</div>";
@@ -207,7 +193,7 @@ $(document).ready(function() {
 
 	function findTop() {
 		let $scrollTop = (mobile) ? window.pageYOffset || document.documentElement.scrollTop : $('.inner-col.projects').scrollTop();
-		let $buffer = window.innerHeight/20;
+		let $buffer = window.innerHeight/50;
 		let $headerHeight = (mobile) ? $('.left-side').outerHeight() : 0;
 		return ($scrollTop + $buffer - $headerHeight);
 	}

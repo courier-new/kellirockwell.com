@@ -45,18 +45,20 @@
   background-color: #ffffff;
   box-shadow: 4px 6px 14px 0px rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
-  max-height: 84vh;
+  height: 90vh;
+  max-height: 90vh;
   left: 0;
-  margin: 0 10%;
+  margin: 0 5%;
   padding: 0;
   position: absolute;
   text-align: left;
   top: 0;
-  width: 80%;
+  width: 90%;
   z-index: 3; }
   @media (max-width: 800px) {
     .extra-info {
-      max-height: 90vh; } }
+      height: 96vh;
+      max-height: 96vh; } }
   .extra-info.hidden {
     display: none; }
   .extra-info .exit {
@@ -76,6 +78,7 @@
   .extra-info > div {
     border: 1px solid rgba(121, 119, 132, 0.6);
     box-sizing: border-box;
+    height: 100%;
     max-height: 100%;
     padding: 4%; }
   .extra-info p {

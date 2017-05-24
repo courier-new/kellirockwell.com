@@ -166,7 +166,7 @@ $(document).ready(function() {
 			// Remember that infoview is open
 			infoOpen = true;
 			// Temporarily disable scroll
-			$('body').bind('touchmove', function(e){e.preventDefault()})
+			disableScroll();
 		} else {
 			// Fade out infoview content
 			$('.extra-info *, .exit').animate({
@@ -193,7 +193,7 @@ $(document).ready(function() {
 			// Remember that infoview is no longer open
 			infoOpen = false;
 			// Re-enable scroll
-			$('body').unbind('touchmove')
+			enableScroll();
 		}
 	}
 
@@ -290,3 +290,24 @@ $(document).ready(function() {
 		}
 	});
 });
+
+// Lock scroll position, but retain current scroll position
+function disableScroll() {
+	let scrollPosition = [
+		self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft,
+		self.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop
+	];
+	let html = jQuery('html');
+	html.data('scroll-position', scrollPosition);
+	html.data('previous-overflow', html.css('overflow'));
+	html.css('overflow', 'hidden');
+	window.scrollTo(scrollPosition[0], scrollPosition[1]);
+}
+
+// Unlock scroll position
+function enableScroll() {
+	let html = jQuery('html');
+	let scrollPosition = html.data('scroll-position');
+	html.css('overflow', html.data('previous-overflow'));
+	window.scrollTo(scrollPosition[0], scrollPosition[1])
+}

@@ -19,15 +19,23 @@
 // Outer wrapper
 (function () {
 	$(window).on("load", function () {
-		var everythingLoaded = setInterval(function () {
-			if (/loaded|complete/.test(document.readyState)) {
-				clearInterval(everythingLoaded);
-				setTimeout(function () {
-					$('body').addClass('loaded');
-				}, 500);
-			}
-		}, 10);
+		$.when(preload(projScreensArr)).then(function () {
+			var everythingLoaded = setInterval(function () {
+				if (/loaded|complete/.test(document.readyState)) {
+					clearInterval(everythingLoaded);
+					setTimeout(function () {
+						$('body').addClass('loaded');
+					}, 500);
+				}
+			}, 10);
+		});
 	});
+
+	function preload(arrayOfImages) {
+		$(arrayOfImages).each(function () {
+			$('<img/>')[0].src = this;
+		});
+	}
 	// size of window corresponding to minimum size considered "desktop"
 	var MOBILE_SIZE = 800;
 
@@ -299,6 +307,7 @@
 	var scrollPosition = [0, 0];
 
 	var projData = void 0;
+	var projScreensArr = [];
 	getProjects();
 	setTimeout(function () {
 		addProjects();
@@ -327,6 +336,7 @@
 		var oldProjList = "";
 		$(projData.projects).each(function () {
 			var curr = $(this)[0];
+			projScreensArr.push(curr.screen);
 			var output = "<li class='project-card'>\n";
 			output += "<div>\n<div class='project-img' style='background-image:url(\"";
 			output += curr.logo;

@@ -167,6 +167,10 @@ $(document).ready(function () {
 
 			// Remember that infoview is open
 			infoOpen = true;
+			// Temporarily disable scroll
+			$('body').bind('touchmove', function (e) {
+				e.preventDefault();
+			});
 		} else {
 			// Fade out infoview content
 			$('.extra-info *, .exit').animate({
@@ -192,6 +196,8 @@ $(document).ready(function () {
 
 			// Remember that infoview is no longer open
 			infoOpen = false;
+			// Re-enable scroll
+			$('body').unbind('touchmove');
 		}
 	}
 

@@ -295,7 +295,7 @@ $('body').on('mouseleave', '.project-card', function() {
 // Lock scroll position for outer window, but retain current scroll position (for mobile)
 function disableScroll() {
 	// Remember current scroll position
-	let scrollPosition = [
+	scrollPosition = [
 		self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft,
 		self.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop
 	];

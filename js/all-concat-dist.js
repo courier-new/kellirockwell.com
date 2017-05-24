@@ -583,7 +583,7 @@
 	// Lock scroll position for outer window, but retain current scroll position (for mobile)
 	function disableScroll() {
 		// Remember current scroll position
-		var scrollPosition = [self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft, self.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop];
+		scrollPosition = [self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft, self.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop];
 		// Make outer window (html) unscrollable
 		$('html').css('overflow', 'hidden');
 		// Jump back to last scroll position

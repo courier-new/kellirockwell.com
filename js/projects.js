@@ -1,6 +1,7 @@
 let scrollPosition = [0, 0];
 
 let projData;
+let projScreensArr = [];
 getProjects();
 setTimeout(function(){
 	addProjects();
@@ -29,6 +30,7 @@ function addProjects() {
 	let oldProjList  = "";
 	$(projData.projects).each(function() {
 		let curr   = $(this)[0];
+		projScreensArr.push(curr.screen);
 		let output = "<li class='project-card'>\n";
 		output += "<div>\n<div class='project-img' style='background-image:url(\"";
 		output += curr.logo;

@@ -21,20 +21,11 @@
 	var everythingLoaded = setInterval(function () {
 		if (/loaded|complete/.test(document.readyState)) {
 			clearInterval(everythingLoaded);
-			init();
+			setTimeout(function () {
+				$('#loading-overlay').addClass('loaded');
+			}, 500);
 		}
 	}, 10);
-
-	function init() {
-		$.when(setTimeout(function () {
-			$('#loading-overlay').animate({ 'opacity': '0' }, 1000);
-		}, 500)).then(function () {
-			setTimeout(function () {
-				$('#loading-overlay').css('display', 'none');
-				$('#container, #footer').css('display', 'block').animate({ 'opacity': '1' }, 1000);
-			}, 600);
-		});
-	}
 	// size of window corresponding to minimum size considered "desktop"
 	var MOBILE_SIZE = 800;
 

@@ -31,6 +31,10 @@ $(document).ready(function () {
 				// make section visible and add "mobile" class to make each display in a line at static positions
 				$(this).removeClass('hidden').addClass('mobile').css('display', 'block');
 			});
+			if (infoOpen) {
+				var proj = $('.extra-info .exit').parent().find('h1 strong').text();
+				toggleInfo("in", proj);
+			}
 			// if window is full size and mobile view is currently enabled
 		} else if ($windowWidth > MOBILE_SIZE && mobile) {
 			// remember that mobile view is no longer active
@@ -42,6 +46,10 @@ $(document).ready(function () {
 			});
 			// reset home section to top middle position and remove "mobile" class
 			$('.inner-col.home').removeClass('mobile').css('top', '50%');
+			if (infoOpen) {
+				var _proj = $('.extra-info .exit').parent().find('h1 strong').text();
+				toggleInfo("in", _proj);
+			}
 		}
 	}
 

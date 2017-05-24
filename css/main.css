@@ -123,24 +123,39 @@
     flex-wrap: wrap;
     -webkit-justify-content: space-between;
     -ms-flex-pack: justify;
-    justify-content: space-between; }
+    justify-content: space-between;
+    padding-bottom: 10px; }
     .extra-info .stats > div {
       padding-bottom: 10px; }
     .extra-info .stats .timescale {
       -webkit-flex-basis: 25%;
       -ms-flex-preferred-size: 25%;
       flex-basis: 25%; }
+      @media (max-width: 800px) {
+        .extra-info .stats .timescale {
+          -webkit-flex-basis: 49.5%;
+          -ms-flex-preferred-size: 49.5%;
+          flex-basis: 49.5%; } }
       .extra-info .stats .timescale span {
         color: rgba(121, 119, 132, 0.7);
         font-family: "Open Sans", sans-serif;
         font-size: 0.7em;
         font-weight: 400;
         letter-spacing: 0.05em;
+        padding-right: 20%;
         text-transform: uppercase; }
+        @media (max-width: 800px) {
+          .extra-info .stats .timescale span {
+            padding-right: 0; } }
     .extra-info .stats .team {
       -webkit-flex-basis: 25%;
       -ms-flex-preferred-size: 25%;
       flex-basis: 25%; }
+      @media (max-width: 800px) {
+        .extra-info .stats .team {
+          -webkit-flex-basis: 49.5%;
+          -ms-flex-preferred-size: 49.5%;
+          flex-basis: 49.5%; } }
       .extra-info .stats .team span {
         color: #373a46;
         font-size: 2em;
@@ -149,6 +164,18 @@
       -webkit-flex-basis: 40%;
       -ms-flex-preferred-size: 40%;
       flex-basis: 40%; }
+      @media (max-width: 800px) {
+        .extra-info .stats .tags {
+          -webkit-flex-basis: 99%;
+          -ms-flex-preferred-size: 99%;
+          flex-basis: 99%;
+          -webkit-order: 100;
+          -ms-flex-order: 100;
+          order: 100; }
+          .extra-info .stats .tags.title {
+            -webkit-order: 99;
+            -ms-flex-order: 99;
+            order: 99; } }
       .extra-info .stats .tags span {
         color: rgba(121, 119, 132, 0.7);
         font-family: "Open Sans", sans-serif;

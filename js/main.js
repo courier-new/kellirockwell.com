@@ -61,7 +61,7 @@ checkWidths();
 $('#logo-holder img').hover(function() {
 	// only for non-mobile
 	if (!mobile) {
-		rotateLogo();
+		rotateLogo($('#logo-holder img'));
 	}
 });
 
@@ -69,7 +69,7 @@ $('#logo-holder img').hover(function() {
 $('#logo-holder img').click(function() {
 	// only for mobile
 	if (mobile) {
-		rotateLogo();
+		rotateLogo($('#logo-holder img'));
 	}
 });
 
@@ -80,10 +80,8 @@ $('#logo-holder img').click(function() {
  * 
  * @return null
  */
-function rotateLogo() {
-
-	// identify the logo
-	let $logo = $('#logo-holder img');
+function rotateLogo($logo) {
+	
 	// begin by maintaining the logo's centered position
 	let transform = "translate(-50%, -50%)";
 	// if the logo is already rotated

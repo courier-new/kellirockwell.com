@@ -8,8 +8,8 @@
 <body>
 
 <!-- CSS -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'>
 <link rel='stylesheet' href='css/main.css' type='text/css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'>
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' type='text/css'>
 
 <!-- FONTS -->
@@ -18,7 +18,19 @@
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
 <script src='js/pdfobject.min.js'></script>
 
-<div id='container'>
+<div id='loading-overlay'>
+	<div id='spinner-container'>
+		<div class='spinner sphere' id='sphere'>
+			<div class='inner'>
+				<div class='disc'></div>
+				<div class='disc'></div>
+				<div class='disc'></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id='container' style='opacity: 0; display: none'>
 	
 	<div id='main-block'>
 		<div class='left-side'>
@@ -161,7 +173,7 @@
 
 </div>
 
-<div id='footer'>
+<div id='footer' style='opacity: 0; display: none'>
 	<span>Designed and developed with <i class='fa fa-heart' aria-hidden='true'></i> by Kelli Rockwell (</span><a target='_blank' href='https://github.com/courier-new/'>@courier-new</a><span>).</span>
 </div>
 	

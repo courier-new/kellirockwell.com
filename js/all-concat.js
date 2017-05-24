@@ -9,6 +9,7 @@
  */
 
 // @prepros-append begin.js
+// @prepros-append loading.js
 // @prepros-append main.js
 // @prepros-append projects.js
 // @prepros-append end.js

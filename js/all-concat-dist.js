@@ -11,12 +11,30 @@
  */
 
 // @prepros-append begin.js
+// @prepros-append loading.js
 // @prepros-append main.js
 // @prepros-append projects.js
 // @prepros-append end.js
 
 // Outer wrapper
 (function () {
+	var everythingLoaded = setInterval(function () {
+		if (/loaded|complete/.test(document.readyState)) {
+			clearInterval(everythingLoaded);
+			init();
+		}
+	}, 10);
+
+	function init() {
+		$.when(setTimeout(function () {
+			$('#loading-overlay').animate({ 'opacity': '0' }, 1000);
+		}, 500)).then(function () {
+			setTimeout(function () {
+				$('#loading-overlay').css('display', 'none');
+				$('#container, #footer').css('display', 'block').animate({ 'opacity': '1' }, 1000);
+			}, 600);
+		});
+	}
 	// size of window corresponding to minimum size considered "desktop"
 	var MOBILE_SIZE = 800;
 
@@ -80,7 +98,7 @@
 	$('#logo-holder img').hover(function () {
 		// only for non-mobile
 		if (!mobile) {
-			rotateLogo();
+			rotateLogo($('#logo-holder img'));
 		}
 	});
 
@@ -88,7 +106,7 @@
 	$('#logo-holder img').click(function () {
 		// only for mobile
 		if (mobile) {
-			rotateLogo();
+			rotateLogo($('#logo-holder img'));
 		}
 	});
 
@@ -99,10 +117,8 @@
   * 
   * @return null
   */
-	function rotateLogo() {
+	function rotateLogo($logo) {
 
-		// identify the logo
-		var $logo = $('#logo-holder img');
 		// begin by maintaining the logo's centered position
 		var transform = "translate(-50%, -50%)";
 		// if the logo is already rotated

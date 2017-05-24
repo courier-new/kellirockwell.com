@@ -104,6 +104,7 @@ $(document).ready(function() {
 			// Form content of infoview
 			let content = "<span class='exit'>✖</span>\n";
 			content += "<div>\n";
+			content += "<div class='non-desc'>"
 			content += "<h1><strong>" + proj;
 			if (projObj.link !== "") {
 				content += "<a href='" + projObj.link + "' target='_blank'>";
@@ -123,7 +124,8 @@ $(document).ready(function() {
 			content += projObj.team + "</span></div>\n";
 			content += "<div class='tags'><span>";
 			content += projObj.tags + "</span></div>\n";
-			content += "</div>\n";
+			content += "</div>\n</div>";
+			content += "<div class='desc'>"
 			content += "<p>" + projObj.short + "</p>\n";
 			let descArr = projObj.desc.split("\n");
 			for (let j = 0; j < descArr.length; j++) {
@@ -133,7 +135,7 @@ $(document).ready(function() {
 					content += "<p>" + lorem2 + "</p>\n";
 				}
 			}			
-			content += "</div>";
+			content += "</div>\n</div>";
 
 			// Find appropriate position from top to place infoview at
 			let $top = findTop();			

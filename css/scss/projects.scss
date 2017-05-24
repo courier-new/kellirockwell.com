@@ -46,6 +46,8 @@
 	& > div {
 		border: 1px solid rgba(121, 119, 132, 0.6);
 		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
 		height: 100%;
 		max-height: 100%;
 		padding: 4%;
@@ -53,7 +55,7 @@
 	p {
 		font-size: 0.8em;
 		line-height: 1.6em;
-		margin: 20px 0 0 0;
+		margin: 14px 0;
 	}
 	h1 {
 		font-family: $headers-stack;
@@ -117,6 +119,10 @@
 				text-transform: uppercase;
 			}
 		}
+	}
+	.desc {
+		overflow-x: hidden;
+		overflow-y: auto;
 	}
 }
 

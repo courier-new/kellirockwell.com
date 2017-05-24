@@ -2,6 +2,7 @@
 
 @charset "UTF-8";
 
+@import 'spinner';
 @import 'projects';
 @import 'meters';
 
@@ -18,6 +19,51 @@ body {
 	text-align: center;
 	text-decoration: none;
 	vertical-align: middle;
+}
+
+#loading-overlay {
+	height: 100vh;
+	left: 0;
+	width: 100vw;
+	position: absolute;
+	top: 0;
+	z-index: 50;
+	#spinner-container {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 50;
+	}
+	.loader-section {
+		position: fixed;
+		top: 0;
+		width: 51%;
+		height: 100%;
+		background: $darkest-gray;
+		transition: all 0.6s ease-out;
+		z-index: 49;
+		&.left {
+			left: 0;
+		}
+		&.right {
+			right: 0;
+		}
+	}
+	&.loaded {
+		transition: all 0.3s 0.6s ease-out;
+		visibility: hidden;
+		.loader-section.left {
+	    	transform: translateX(-100%);
+		}
+	 	.loader-section.right {
+	    	transform: translateX(100%);
+		}
+		#spinner-container {
+			opacity: 0;
+			transition: all 0.3s ease-out;
+		}
+	}
 }
 
 .overlay-container {
@@ -283,7 +329,9 @@ hr {
 	}
 	background-color: #ffffff;
 	display: table;
+	position: relative;
 	width: 100vw;
+	z-index: 1;
 	#main-block,
 	#main-block > * {
 		@include respond-to('tiny') {

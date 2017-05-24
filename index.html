@@ -8,8 +8,8 @@
 <body>
 
 <!-- CSS -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'>
 <link rel='stylesheet' href='css/main.css' type='text/css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css'>
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' type='text/css'>
 
 <!-- FONTS -->
@@ -17,6 +17,20 @@
 
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
 <script src='js/pdfobject.min.js'></script>
+
+<div id='loading-overlay'>
+	<div id='spinner-container'>
+		<div class='spinner sphere' id='sphere'>
+			<div class='inner'>
+				<div class='disc'></div>
+				<div class='disc'></div>
+				<div class='disc'></div>
+			</div>
+		</div>
+	</div>
+	<div class="loader-section left"></div>
+	<div class="loader-section right"></div>
+</div>
 
 <div id='container'>
 	
@@ -152,7 +166,7 @@
 				<div class='nav'></div>
 				<hr />
 				<div class='blurb resume'>
-					<div id='pdf-link'>View my resume.</div>
+					<div id='pdf-link'><a href="/resume.pdf">Tap to view my resume!</a></div>
 					<div id='pdf-view'></div>
 				</div>			
 			</div>
@@ -168,14 +182,14 @@
 </body>
 
 <script>
-	// global boolean to remember if mobile view is active
+	// global boolean to remember if mobile view is active, if project infoview is open
 	var mobile = false;
+	var infoOpen = false;
 
 	// embed resume pdf
 	PDFObject.embed("/resume.pdf", "#pdf-view");
 </script>
 
-<script src='js/main-dist.js'></script>
-<script src='js/projects-dist.js'></script>
+<script src='js/all-concat-dist.js'></script>
 
 </html>

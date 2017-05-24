@@ -2,7 +2,7 @@
 
 $(document).ready(function () {
 
-	var infoOpen = false;
+	var scrollPosition = void 0;
 
 	var projData = void 0;
 	getProjects();
@@ -115,12 +115,12 @@ $(document).ready(function () {
 			}
 			content += "</strong>" + projObj.subtitle + "</h1>\n";
 			content += "<div class='stats'>\n";
-			content += "<div class='timescale'><div class= 'mini-head'><h2>Timescale</h2></div></div>";
-			content += "<div class='team'><div class= 'mini-head'><h2>Team</h2></div></div>";
-			content += "<div class='tags'><div class= 'mini-head'><h2>Tags</h2></div></div>";
+			content += "<div class='timescale title'><div class= 'mini-head'><h2>Timescale</h2></div></div>";
+			content += "<div class='team title'><div class= 'mini-head'><h2>Team</h2></div></div>";
+			content += "<div class='tags title'><div class= 'mini-head'><h2>Tags</h2></div></div>";
 			content += "<div class='timescale'><span>";
 			var tsFormatted = projObj.timescale.split(" - ");
-			content += tsFormatted[0] + " -<br>";
+			content += tsFormatted[0] + " - ";
 			content += tsFormatted[1] + "</span></div>\n";
 			content += "<div class='team'><span>";
 			content += projObj.team + "</span></div>\n";
@@ -167,10 +167,10 @@ $(document).ready(function () {
 
 			// Remember that infoview is open
 			infoOpen = true;
-			// Temporarily disable scroll
-			$('body').bind('touchmove', function (e) {
-				e.preventDefault();
-			});
+			// Temporarily disable scroll on mobile
+			if (mobile) {
+				disableScroll();
+			}
 		} else {
 			// Fade out infoview content
 			$('.extra-info *, .exit').animate({
@@ -196,8 +196,10 @@ $(document).ready(function () {
 
 			// Remember that infoview is no longer open
 			infoOpen = false;
-			// Re-enable scroll
-			$('body').unbind('touchmove');
+			// Re-enable scroll on mobile
+			if (mobile) {
+				enableScroll();
+			}
 		}
 	}
 
@@ -293,3 +295,21 @@ $(document).ready(function () {
 		}
 	});
 });
+
+// Lock scroll position for outer window, but retain current scroll position (for mobile)
+function disableScroll() {
+	// Remember current scroll position
+	var scrollPosition = [self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft, self.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop];
+	// Make outer window (html) unscrollable
+	$('html').css('overflow', 'hidden');
+	// Jump back to last scroll position
+	window.scrollTo(scrollPosition[0], scrollPosition[1]);
+}
+
+// Unlock scroll position
+function enableScroll() {
+	// Make outer window (html) scrollable again
+	$('html').css('overflow', 'initial');
+	// Jump back to last scroll position
+	window.scrollTo(scrollPosition[0], scrollPosition[1]);
+}

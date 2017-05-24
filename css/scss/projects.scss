@@ -27,6 +27,9 @@
 		display: none;        
 	}
 	.exit {
+		@include respond-to('tiny') {
+			top: 5%;
+		}
 		font-size: 1.8em;
 		position: absolute;
 		display: block;
@@ -86,29 +89,53 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
+		padding-bottom: 10px;
 		& > div {
+			@include respond-to('tiny') {
+				padding-bottom: 0;
+			}
 			padding-bottom: 10px;
 		}
 		.timescale, {
+			@include respond-to('tiny') {
+				flex-basis: 49.5%;
+			}
 			flex-basis: 25%;
 			span {
+				@include respond-to('tiny') {
+					padding-right: 0;
+				}
 				color: rgba(121, 119, 132, 0.7);
 				font-family: $main-stack;
 				font-size: 0.7em;
 				font-weight: 400;
 				letter-spacing: 0.05em;
+				padding-right: 20%;
 				text-transform: uppercase;
 			}
 		}
 		.team {
+			@include respond-to('tiny') {
+				flex-basis: 49.5%;
+			}
 			flex-basis: 25%;
 			span {
+				@include respond-to('tiny') {
+					font-size: 1.4em;
+				}
 				color: $dark-gray;
 				font-size: 2em;
 				font-weight: 800;
 			}
 		}
 		.tags {
+			@include respond-to('tiny') {
+				flex-basis: 99%;
+				order: 100;
+				&.title {
+					order: 99;
+				}
+			}
 			flex-basis: 40%;
 			span {
 				color: rgba(121, 119, 132, 0.7);

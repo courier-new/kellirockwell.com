@@ -41,7 +41,7 @@ body {
 		width: 51%;
 		height: 100%;
 		background: $darkest-gray;
-		transition: all 0.6s ease-out;
+		transition: all 1s ease-out;
 		z-index: 49;
 		&.left {
 			left: 0;
@@ -51,7 +51,7 @@ body {
 		}
 	}
 	&.loaded {
-		transition: all 0.3s 0.6s ease-out;
+		transition: all 0.6s 0.8s ease-out;
 		visibility: hidden;
 		.loader-section.left {
 	    	transform: translateX(-100%);
@@ -61,7 +61,7 @@ body {
 		}
 		#spinner-container {
 			opacity: 0;
-			transition: all 0.3s ease-out;
+			transition: all 0.3s linear;
 		}
 	}
 }

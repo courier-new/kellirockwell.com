@@ -419,7 +419,8 @@
 			content += "<div class='tags'><span>";
 			content += projObj.tags + "</span></div>\n";
 			content += "</div>\n</div>";
-			content += "<div class='desc'>";
+			content += "<div class='desc'>\n";
+			content += "<img src='" + projObj.screen + "' style='display: none' >\n";
 			content += "<p>" + projObj.short + "</p>\n";
 			var descArr = projObj.desc.split("\n");
 			for (var j = 0; j < descArr.length; j++) {

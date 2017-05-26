@@ -207,13 +207,17 @@ hr {
 	#pdf-view,
 	.pdfobject {
 		@include respond-to('medium') {
-			height: 80vh;
+			height: 75vh;
+		}
+		@include respond-to('small') {
+			height: 70vh;
 		}
 		@include respond-to('tiny') {
 			display: none;
 		}
 
-		width: 100%;
+		height: 80vh;
+		width:  100%;
 	}
 	#pdf-link {
 		@include respond-to('tiny') {

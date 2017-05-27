@@ -684,12 +684,14 @@ hr {
       .resume #pdf-view,
       .resume .pdfobject {
         display: none; } }
-  .resume #pdf-link {
+  .resume #thanks {
     display: none;
-    margin-bottom: 50px;
-    text-align: center; }
+    font-size: 0.8em;
+    margin-bottom: 30px;
+    text-align: center;
+    text-transform: uppercase; }
     @media (max-width: 800px) {
-      .resume #pdf-link {
+      .resume #thanks {
         display: block; } }
 
 .nav {

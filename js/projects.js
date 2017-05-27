@@ -1,13 +1,14 @@
+// For remembering scroll position when locking scroll
 let scrollPosition = [0, 0];
-
+// Variable for storing all of the projects retrieved from json
 let projData;
-let projScreensArr = [];
 $.when(getProjects()).then(function() {
    setTimeout(function() {
 		addProjects();
 	}, 400);
 });
 
+// Filler text for incomplete project descriptions
 let lorem = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio voluptatibus enim esse quis quaerat quam suscipit necessitatibus provident, nostrum perspiciatis voluptatem perferendis dolor, hic officia ipsam laboriosam possimus doloremque tenetur atque aspernatur.";
 let lorem2 = " Nesciunt ad ratione quis consequuntur doloribus animi in architecto itaque delectus esse consectetur iste nobis voluptatum, quibusdam alias eveniet enim rerum eos debitis odit. Saepe quisquam nobis, magni voluptate asperiores molestiae recusandae excepturi officia porro, nam maxime architecto corporis id nulla.";
 
@@ -32,7 +33,6 @@ function addProjects() {
    let oldProjList = "";
    $(projData.projects).each(function() {
       let curr = $(this)[0];
-      projScreensArr.push(curr.screen);
 		// add overlay screenshots to overlays-container
 		screenOverlays += "<div class='screen-overlay " + curr.sname + "' style='background-image:url(\"";
 		screenOverlays += curr.screen;

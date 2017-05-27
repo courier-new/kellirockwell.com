@@ -20,23 +20,16 @@
 // Outer wrapper
 (function () {
    $(window).on("load", function () {
-      $.when(preload(projScreensArr)).then(function () {
-         var everythingLoaded = setInterval(function () {
-            if (/loaded|complete/.test(document.readyState)) {
-               clearInterval(everythingLoaded);
-               setTimeout(function () {
-                  $('body').addClass('loaded');
-               }, 500);
-            }
-         }, 10);
-      });
+      var everythingLoaded = setInterval(function () {
+         if (/loaded|complete/.test(document.readyState)) {
+            clearInterval(everythingLoaded);
+            setTimeout(function () {
+               $('body').addClass('loaded');
+            }, 500);
+         }
+      }, 10);
    });
 
-   function preload(arrayOfImages) {
-      $(arrayOfImages).each(function () {
-         $('<img />').attr('src', this).appendTo('body').css('display', 'none');
-      });
-   }
    // size of window corresponding to minimum size considered "desktop"
    var MOBILE_SIZE = 800;
 

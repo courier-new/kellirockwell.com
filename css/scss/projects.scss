@@ -2,281 +2,278 @@
 @charset 'UTF-8';
 
 .inner-col.projects {
-	position:relative;
+	position: relative;
 }
 
 .extra-info {
 	@include respond-to('tiny') {
-		height:96vh;
-		max-height:96vh;
+		height:     96vh;
+		max-height: 96vh;
 	}
 
-	background-color:#ffffff;
-	box-shadow:4px 6px 14px 0 rgba(0, 0, 0, 0.3);
-	box-sizing:border-box;
-	height:90vh;
-	left:0;
-	margin:0 5%;
-	max-height:90vh; // 96 - footer height (6)
-	padding:0;
-	position:absolute;
-	text-align:left;
-	top:0;
-	width:90%;
-	z-index:3;
+	background-color: #ffffff;
+	box-shadow:       4px 6px 14px 0 rgba(0, 0, 0, 0.3);
+	box-sizing:       border-box;
+	height:           90vh;
+	left:             0;
+	margin:           0 5%;
+	max-height:       90vh; // 96 - footer height (6)
+	padding:          0;
+	position:         absolute;
+	text-align:       left;
+	top:              0;
+	width:            90%;
+	z-index:          3;
 	&.hidden {
-		display:none;
+		display: none;
 	}
 	.exit {
 		@include respond-to('tiny') {
-			top:5%;
+			top: 5%;
 		}
 
-		color:rgba(121, 119, 132, 0.25);
-		display:block;
-		font-size:1.8em;
-		position:absolute;
-		right:8%;
-		top:7.5%;
-		transition:color 200ms linear;
+		color:      rgba(121, 119, 132, 0.25);
+		display:    block;
+		font-size:  1.8em;
+		position:   absolute;
+		right:      8%;
+		top:        7.5%;
+		transition: color 200ms linear;
 	}
 	.exit:hover {
-		color:rgba(121, 119, 132, 0.5);
-
-		cursor:pointer;
+		color:  rgba(121, 119, 132, 0.5);
+		cursor: pointer;
 	}
 	* {
-		opacity:0;
-		text-align:left;
+		opacity:    0;
+		text-align: left;
 	}
 	& > div {
-		border:1px solid rgba(121, 119, 132, 0.6);
-		box-sizing:border-box;
-		display:flex;
-		flex-direction:column;
-		height:100%;
-		max-height:100%;
-		padding:4%;
+		border:         1px solid rgba(121, 119, 132, 0.6);
+		box-sizing:     border-box;
+		display:        flex;
+		flex-direction: column;
+		height:         100%;
+		max-height:     100%;
+		padding:        4%;
 	}
 	p {
-		font-size:0.8em;
-		line-height:1.6em;
-		margin:14px 0;
+		font-size:   0.8em;
+		line-height: 1.6em;
+		margin:      14px 0;
 	}
 	h1 {
-		font-family:$headers-stack;
-		font-size:1em;
-		font-weight:200;
-		letter-spacing:0;
-		text-transform:uppercase;
+		font-family:    $headers-stack;
+		font-size:      1em;
+		font-weight:    200;
+		letter-spacing: 0;
+		text-transform: uppercase;
 		strong {
-			color:$dark-gray;
-			display:block;
-			font-family:$headers-stack;
-			font-size:1.7em;
-			font-weight:800;
-			letter-spacing:0.05em;
+			color:          $dark-gray;
+			display:        block;
+			font-family:    $headers-stack;
+			font-size:      1.7em;
+			font-weight:    800;
+			letter-spacing: 0.05em;
 		}
 		i {
-			color:rgba(121, 119, 132, 0.25);
-			margin-top:-0.4em;
-
-			padding-left:10px;
-			transition:color 200ms linear;
+			color:        rgba(121, 119, 132, 0.25);
+			margin-top:   -0.4em;
+			padding-left: 10px;
+			transition:   color 200ms linear;
 		}
 		i:hover {
-			color:rgba(121, 119, 132, 0.5);
+			color: rgba(121, 119, 132, 0.5);
 		}
 	}
 	.stats {
-		align-items:center;
-		display:flex;
-		flex-wrap:wrap;
-		justify-content:space-between;
-		padding-bottom:10px;
+		align-items:     center;
+		display:         flex;
+		flex-wrap:       wrap;
+		justify-content: space-between;
+		padding-bottom:  10px;
 		& > div {
 			@include respond-to('tiny') {
-				padding-bottom:0;
+				padding-bottom: 0;
 			}
 
-			padding-bottom:10px;
+			padding-bottom: 10px;
 		}
-		.timescale, {
+		.timescale {
 			@include respond-to('tiny') {
-				flex-basis:49.5%;
+				flex-basis: 49.5%;
 			}
 
-			flex-basis:25%;
+			flex-basis: 25%;
 			span {
 				@include respond-to('tiny') {
-					padding-right:0;
+					padding-right: 0;
 				}
 
-				color:rgba(121, 119, 132, 0.7);
-				font-family:$main-stack;
-				font-size:0.7em;
-				font-weight:400;
-				letter-spacing:0.05em;
-				padding-right:20%;
-				text-transform:uppercase;
+				color:          rgba(121, 119, 132, 0.7);
+				font-family:    $main-stack;
+				font-size:      0.7em;
+				font-weight:    400;
+				letter-spacing: 0.05em;
+				padding-right:  20%;
+				text-transform: uppercase;
 			}
 		}
 		.team {
 			@include respond-to('tiny') {
-				flex-basis:49.5%;
+				flex-basis: 49.5%;
 			}
 
-			flex-basis:25%;
+			flex-basis: 25%;
 			span {
 				@include respond-to('tiny') {
-					font-size:1.4em;
+					font-size: 1.4em;
 				}
 
-				color:$dark-gray;
-				font-size:2em;
-				font-weight:800;
+				color:       $dark-gray;
+				font-size:   2em;
+				font-weight: 800;
 			}
 		}
 		.tags {
 			@include respond-to('tiny') {
-				flex-basis:99%;
-				order:100;
+				flex-basis: 99%;
+				order:      100;
 				&.title {
-					order:99;
+					order: 99;
 				}
 			}
 
-			flex-basis:40%;
+			flex-basis: 40%;
 			span {
-				color:rgba(121, 119, 132, 0.7);
-				font-family:$main-stack;
-				font-size:0.7em;
-				font-weight:400;
-				letter-spacing:0.05em;
-				text-transform:uppercase;
+				color:          rgba(121, 119, 132, 0.7);
+				font-family:    $main-stack;
+				font-size:      0.7em;
+				font-weight:    400;
+				letter-spacing: 0.05em;
+				text-transform: uppercase;
 			}
 		}
 	}
 	.desc {
-		overflow-x:hidden;
-		overflow-y:auto;
+		overflow-x: hidden;
+		overflow-y: auto;
 	}
 }
 
 .projects-list {
-	align-items:stretch;
-	display:flex;
-	flex-wrap:wrap;
-	justify-content:space-between;
-	list-style:none;
-	margin:20px 0;
-	padding:0;
+	align-items:     stretch;
+	display:         flex;
+	flex-wrap:       wrap;
+	justify-content: space-between;
+	list-style:      none;
+	margin:          20px 0;
+	padding:         0;
 	.project-card {
 		@include respond-to('medium') {
-			flex-basis:99%;
-			margin-bottom:10px;
-			padding:0;
+			flex-basis:    99%;
+			margin-bottom: 10px;
+			padding:       0;
 		}
 
-		box-sizing:border-box;
-		flex-basis:31%;
-		hyphens:manual;
-		margin:0 auto 15px auto;
-		transition:all 200ms linear;
+		box-sizing: border-box;
+		flex-basis: 31%;
+		hyphens:    manual;
+		margin:     0 auto 15px auto;
+		transition: all 200ms linear;
 		&:hover {
 			@include respond-to('tiny') {
-				transform:none;
+				transform: none;
 			}
 
-			cursor:pointer;
-			transform:translate(2px, 2px);
+			cursor:    pointer;
+			transform: translate(2px, 2px);
 		}
 		& > div {
 			@include respond-to('medium') {
-				align-items:stretch;
-				display:flex;
-				justify-content:space-between;
-				padding:5% 0;
+				align-items:     stretch;
+				display:         flex;
+				justify-content: space-between;
+				padding:         5% 0;
 			}
 
-			border:1px solid $lightest-gray;
-			box-sizing:border-box;
-			display:block;
-			height:100%;
-			padding:8%;
-			transition:all 180ms linear;
+			border:     1px solid $lightest-gray;
+			box-sizing: border-box;
+			display:    block;
+			height:     100%;
+			padding:    8%;
+			transition: all 180ms linear;
 			&:hover {
-				border:1px solid $lightest-gray;
-
-				box-shadow:0 0 10px rgba($medium-gray, 0.6);
+				border:     1px solid $lightest-gray;
+				box-shadow: 0 0 10px rgba($medium-gray, 0.6);
 			}
 			// info text area for project
 			.project-info {
 				@include respond-to('medium') {
-					flex-basis:66%;
-					margin-right:4%;
+					flex-basis:   66%;
+					margin-right: 4%;
 				}
 			}
 			// image logo for project
 			.project-img {
 				@include respond-to('medium') {
-					display:inline-block;
-					flex-basis:22%;
-					margin-bottom:0;
-					margin-top:0;
-					max-width:22%;
+					display:       inline-block;
+					flex-basis:    22%;
+					margin-bottom: 0;
+					margin-top:    0;
+					max-width:     22%;
 				}
 				@include respond-to('tiny') {
-					min-height:initial;
+					min-height: initial;
 				}
 
-				background-position:center center;
-				background-repeat:no-repeat;
-				background-size:contain;
-				display:block;
-				margin:5% auto 12% auto;
-				max-width:80%;
-				min-height:70px;
-				width:80%;
+				background-position: center center;
+				background-repeat:   no-repeat;
+				background-size:     contain;
+				display:             block;
+				margin:              5% auto 12% auto;
+				max-width:           80%;
+				min-height:          70px;
+				width:               80%;
 			}
 		}
 		h1 {
 			@include respond-to('tiny') {
-				font-size:0.9em;
+				font-size: 0.9em;
 			}
 
-			font-family:$main-stack;
-			font-size:0.8em;
-			font-weight:600;
-			margin:4px 0 8px 0;
-			text-transform:none;
+			font-family:    $main-stack;
+			font-size:      0.8em;
+			font-weight:    600;
+			margin:         4px 0 8px 0;
+			text-transform: none;
 		}
 		.desc {
 			@include respond-to('tiny') {
-				font-size:0.8em;
+				font-size: 0.8em;
 			}
 
-			box-sizing:border-box;
-			display:inline-block;
-			font-family:$main-stack;
-			font-size:0.7em;
-			line-height:1.3em;
+			box-sizing:  border-box;
+			display:     inline-block;
+			font-family: $main-stack;
+			font-size:   0.7em;
+			line-height: 1.3em;
 		}
 		.cats {
 			@include respond-to('tiny') {
-				font-size:0.7em;
+				font-size: 0.7em;
 			}
 
-			display:flex;
-			font-family:$main-stack;
-			font-size:0.6em;
-			line-height:1.3em;
-			margin-bottom:4px; // same as top margin on h1
-			margin-top:15px;
+			display:       flex;
+			font-family:   $main-stack;
+			font-size:     0.6em;
+			line-height:   1.3em;
+			margin-bottom: 4px; // same as top margin on h1
+			margin-top:    15px;
 			& > * {
-				flex-basis:74%;
+				flex-basis: 74%;
 				&:first-child {
-					flex-basis:25%;
+					flex-basis: 25%;
 				}
 			}
 		}

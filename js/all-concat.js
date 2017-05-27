@@ -6,6 +6,7 @@
  * jQuery 3.2.0+
  *
  * @author    Kelli Rockwell <kellirockwell@mail.com>
+ * @since     May 2017
  */
 
 // @prepros-append begin.js

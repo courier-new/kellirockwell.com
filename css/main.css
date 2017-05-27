@@ -562,7 +562,7 @@ body {
     .loaded #loading-overlay #spinner-container .spinner.sphere .disc {
       border: 0.3em dotted white; }
 
-.overlay-container {
+.overlays-container .screen-overlay {
   background-position: center center;
   background-size: cover;
   border-right: 20px solid #e0e0e0;
@@ -573,7 +573,7 @@ body {
   top: 0;
   transition: background 300ms linear;
   width: 100%; }
-  .overlay-container .overlay-caption {
+  .overlays-container .screen-overlay .overlay-caption {
     background-color: #e0e0e0;
     border-bottom: 10px solid #9dad60;
     bottom: 30px;

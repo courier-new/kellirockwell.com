@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta
+      id="meta"
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>KELLI ROCKWELL | Home</title>
+  </head>
+  <body>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+      type="text/css"
+    />
+
+    <!-- FONTS -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700|Raleway:300,300i,400,400i,500,500i,700,700i,800"
+      rel="stylesheet"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/pdfobject.min.js"></script>
+
+    <div id="loading-overlay">
+      <div id="spinner-container">
+        <div class="spinner sphere" id="sphere">
+          <div class="inner">
+            <div class="disc"></div>
+            <div class="disc"></div>
+            <div class="disc"></div>
+          </div>
+        </div>
+      </div>
+      <div class="loader-section left"></div>
+      <div class="loader-section right"></div>
+    </div>
+
+    <div id="container">
+      <div id="main-block">
+        <div class="left-side">
+          <div class="overlays-container">
+            <!--to be filled-->
+          </div>
+        </div>
+
+        <div class="right-side">
+          <div class="inner-col home">
+            <div id="intro">
+              <div id="logo-holder">
+                <img src="./img/kr-logo.png" alt="My personal logo" />
+              </div>
+              <div id="title-outer-holder">
+                <div id="title-middle-holder">
+                  <div id="title-inner-holder">
+                    <h1>Kelli Rockwell</h1>
+                    <h2>
+                      Engineer | Scientist | Artist | Typography Enthusiast |
+                      Boba Nut
+                    </h2>
+                    <h3>
+                      <i class="fa fa-arrow-right" aria-hidden="true"></i> More
+                      about me
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="links">
+              <div id="dummy"></div>
+              <div id="inner-cell">
+                <div id="inner-table">
+                  <a target="_blank" href="https://github.com/courier-new/"
+                    ><div class="github">
+                      <i class="fa fa-github" aria-hidden="true"></i
+                      ><span class="hidden">GitHub</span>
+                    </div></a
+                  >
+                  <a
+                    target="_blank"
+                    href="mailto:click-to-send-me-email!"
+                    onclick="this.href=this.href
+						   			.replace(/click-to-send-me/,&#39;kelli&#39;).replace(/-/,&#39;@&#39;).replace(/email!/,&#39;thiinkposters.com&#39;)"
+                    ><div class="email">
+                      <i class="fa fa-envelope-o" aria-hidden="true"></i
+                      ><span class="hidden">Email</span>
+                    </div></a
+                  >
+                  <a
+                    target="_blank"
+                    href="https://www.linkedin.com/in/kellirockwell/"
+                    ><div class="linkedin">
+                      <i class="fa fa-linkedin" aria-hidden="true"></i
+                      ><span class="hidden">LinkedIn</span>
+                    </div></a
+                  >
+                  <a
+                    target="_blank"
+                    href="https://www.facebook.com/kellirockwell/"
+                    ><div class="facebook">
+                      <i class="fa fa-facebook-official" aria-hidden="true"></i
+                      ><span class="hidden">Facebook</span>
+                    </div></a
+                  >
+                  <a target="_blank" href="http://codepen.io/courier-new/"
+                    ><div class="codepen">
+                      <i class="fa fa-codepen" aria-hidden="true"></i
+                      ><span class="hidden">Codepen</span>
+                    </div></a
+                  >
+                  <a
+                    target="_blank"
+                    href="https://courier-new.github.io/resume.pdf"
+                    ><div class="resume">
+                      <i class="fa fa-file-text-o" aria-hidden="true"></i
+                      ><span class="hidden">Resume</span>
+                    </div></a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="inner-col about hidden" style="display: none;">
+            <div class="nav"></div>
+            <hr />
+            <div class="blurb about">
+              <div class="mini-head"><h2>About Me</h2></div>
+              <h1>
+                <strong>Kelli Rockwell</strong>Web Developer / Project Manager
+              </h1>
+              <p>
+                <strong>Who am I?</strong> I am a recent graduate of Pomona
+                College, where I studied physics and computer science. I am an
+                ambitious thinker, a versatile learner, an enthusiastic doer,
+                and a confident teacher. I want to empower women and other
+                marginalized communities in STEM.
+              </p>
+
+              <p>
+                <strong>What am I up to?</strong> Currently I am producing a web
+                app for visualizing electric fields as my senior thesis in
+                physics education research; devising a schedule manager to
+                successfully bridge the gap between calendar, to-do list, and
+                notepad; and forging a team of students and faculty to program a
+                women in physics conference next January.
+              </p>
+              <div class="steps">
+                <div>
+                  <div class="mini-head"><h2>Work</h2></div>
+                  <p>Seeking Bay Area Opportunities</p>
+                </div>
+                <div>
+                  <div class="mini-head"><h2>Education</h2></div>
+                  <p>Pomona College, California</p>
+                </div>
+              </div>
+              <div class="mini-head" id="meters">
+                <h2>
+                  <span class="skills active">Skills</span> /
+                  <span class="qualities inactive">Qualities</span> /
+                  <span class="interests inactive">Interests</span>
+                </h2>
+              </div>
+
+              <div class="instructions">
+                <span class="click">Click</span><span class="tap">Tap</span
+                ><span>
+                  to change view to skills, qualities, or interests.</span
+                >
+              </div>
+
+              <div class="skills box">
+                <ul class="meters">
+                  <li class="meter g" aria-label="lv5">HTML/CSS</li>
+                  <li class="meter g" aria-label="lv5">Photoshop</li>
+                  <li class="meter g" aria-label="lv4">JS/Jquery</li>
+                  <li class="meter g" aria-label="lv3">Illustrator</li>
+                  <li class="meter g" aria-label="lv3">PHP/MySQL</li>
+                  <li class="meter g" aria-label="lv2">Agile</li>
+                  <li class="meter g" aria-label="lv2">Python</li>
+                  <li class="meter g" aria-label="lv2">Java</li>
+                </ul>
+              </div>
+
+              <div class="qualities box hidden" style="display: none;">
+                <ul class="meters">
+                  <li class="meter b" aria-label="lv5">Organized</li>
+                  <li class="meter b" aria-label="lv5">Thorough</li>
+                  <li class="meter b" aria-label="lv4">Versatile</li>
+                  <li class="meter b" aria-label="lv4">Creative</li>
+                  <li class="meter b" aria-label="lv3">Communicative</li>
+                  <li class="meter b" aria-label="lv3">Positive</li>
+                  <li class="meter b" aria-label="lv2">Collaborative</li>
+                  <li class="meter b" aria-label="lv2">Ambitious</li>
+                </ul>
+              </div>
+
+              <div class="interests box hidden" style="display: none;">
+                <ul class="meters">
+                  <li class="meter l" aria-label="lvmax">Boba</li>
+                  <li class="meter l" aria-label="lv5">MarioKart</li>
+                  <li class="meter l" aria-label="lv5">Cats</li>
+                  <li class="meter l" aria-label="lv4">Typography</li>
+                  <li class="meter l" aria-label="lv3">Astrophysics</li>
+                  <li class="meter l" aria-label="lv3">Tennis</li>
+                  <li class="meter l" aria-label="lv2">
+                    Intersectional Feminism
+                  </li>
+                  <li class="meter l" aria-label="lv2">Colored Pencils</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="inner-col projects hidden" style="display: none;">
+            <div class="nav"></div>
+            <hr />
+            <div class="extra-info hidden">
+              <!-- to be filled -->
+            </div>
+            <div class="blurb projects">
+              <div class="mini-head"><h2>Current Projects</h2></div>
+              <div class="instructions">
+                <span class="tap">Tap to view project details.</span>
+              </div>
+
+              <ul class="projects-list current">
+                <!-- to be filled -->
+              </ul>
+              <div class="mini-head"><h2>Past Projects</h2></div>
+              <div class="instructions">
+                <span class="tap">Tap to view project details.</span>
+              </div>
+              <ul class="projects-list old">
+                <!-- to be filled -->
+              </ul>
+            </div>
+          </div>
+          <div class="inner-col resume hidden" style="display: none;">
+            <div class="nav"></div>
+            <hr />
+            <div class="blurb resume">
+              <div id="thanks">Thanks for visiting!</div>
+              <div id="pdf-view"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer">
+      <span
+        >Designed and developed with
+        <i class="fa fa-heart" aria-hidden="true"></i> by Kelli Rockwell (</span
+      ><a target="_blank" href="https://github.com/courier-new/">@courier-new</a
+      ><span>).</span>
+    </div>
+  </body>
+
+  <script>
+    // global boolean to remember if mobile view is active, if project infoview is open
+    var mobile = false;
+    var infoOpen = false;
+
+    // embed resume pdf
+    PDFObject.embed("./resume.pdf", "#pdf-view");
+  </script>
+
+  <script src="js/all-concat-dist.js"></script>
+</html>

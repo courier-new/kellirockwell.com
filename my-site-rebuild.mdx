@@ -1,0 +1,22 @@
+# Hello, v2 World!
+
+## Steps of the Process
+
+- Update packages with asdf
+  - `brew upgrade asdf`
+  - `asdf plugin update --all`
+  - pick packages to install
+  - `asdf install nodejs latest`
+  - `asdf install yarn latest`
+  - `asdf local nodejs ${version}`
+  - `asdf local yarn ${version}`
+- Initialize new next project: `npx create-next-app my-site`
+- Add markdown lint support with remark
+- Move v1 site to `public/v1`, run `yarn dev`, and access `localhost:3000/v1/index.html` -- it works!
+
+Below is an example of JSX embedded in Markdown. <br /> **Try and change
+the background color!**
+
+<div style={{ padding: "20px", backgroundColor: "tomato" }}>
+  <h3>This is JSX</h3>
+</div>

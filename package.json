@@ -1,0 +1,25 @@
+{
+  "name": "kellirockwell.com",
+  "version": "2.0.0",
+  "author": "Kelli Rockwell",
+  "description": "A site about me, my work, and some of the things I love!",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint:md": "remark ."
+  },
+  "dependencies": {
+    "next": "9.3.5",
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
+  },
+  "devDependencies": {
+    "remark-cli": "^8.0.0",
+    "remark-lint": "^7.0.0",
+    "remark-mdx": "^1.5.8",
+    "remark-preset-lint-recommended": "^4.0.0"
+  }
+}

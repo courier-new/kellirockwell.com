@@ -1,0 +1,71 @@
+// ROOT
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body,
+#__next {
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* Makes the body non-scrollable (we will add scrolling to the sidebar and main content containers) */
+  margin: 0px; /* Removes default style */
+  box-sizing: border-box;
+}
+
+// LAYOUT
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-align-center {
+  align-items: center;
+}
+
+.flex-justify-center {
+  justify-content: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.grid {
+  display: grid;
+}
+
+.non-scrollable {
+  overflow: hidden;
+}
+
+.scrollable-y {
+  overflow-y: auto;
+}
+
+// FONT
+
+.font-bold {
+  font-weight: bold;
+}
+
+// LIST
+
+.no-default-bullets {
+  list-style: none;
+}

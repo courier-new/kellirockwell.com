@@ -64,8 +64,38 @@ body,
   font-weight: bold;
 }
 
+.font-normal {
+  font-weight: normal;
+}
+
 // LIST
 
 .no-default-bullets {
-  list-style: none;
+  // list-style: none;
+  padding-left: 10px;
+}
+
+// SIZE
+
+.sidebar-width {
+  box-sizing: border-box;
+  min-width: 240px;
+  max-width: 240px;
+}
+
+// PADDING
+
+.padding-med-h {
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.padding-med-v {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.padding-med {
+  @extend .padding-med-h;
+  @extend .padding-med-v;
 }

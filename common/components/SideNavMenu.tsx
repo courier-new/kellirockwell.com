@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import map from 'lodash/map';
+import flatMap from 'lodash/flatMap';
 import Link from 'next/link';
 
 /** Represents a distinct section of a screen */
@@ -19,10 +20,9 @@ export type ScreenSection = {
 type SideNavMenuProps = {
   /** The sections of the screen to represent in the nav menu */
   screenSections: ScreenSection[];
-  /** The anchor corresponding to section of the screen containing the current
+  /** The index corresponding to section of the screen containing the current
    * scroll position */
-  // TODO: make anchors a literal string union type
-  activeSection: string;
+  activeSectionIndex: number;
 };
 
 /**
@@ -40,7 +40,7 @@ const renderLink = (
   index: number,
   activeSection: string,
 ): JSX.Element => {
-  const linkClass = anchor === activeSection ? 'font-bold' : '';
+  const linkClass = anchor === activeSection ? 'font-bold' : 'font-normal';
   const subsectionNavigation = subsections
     ? renderNavigation(subsections, activeSection)
     : null;
@@ -70,13 +70,33 @@ const renderNavigation = (
 );
 
 /**
+ * Traverses a list of potentially deeply nested section trees and returns a
+ * flattened array of every section's anchor, using preorder traversal
+ * (root, then left-to-right children), which should correspond to the order
+ * that the sections appear in the DOM
+ *
+ * @param sections the list of sections to get the anchors for
+ */
+const flattenAllAnchors = (sections: ScreenSection[]): string[] =>
+  flatMap(sections, (section) => {
+    if (!section.subsections) {
+      return [section.anchor];
+    }
+    return [section.anchor, ...flattenAllAnchors(section.subsections)];
+  });
+
+/**
  * Component for secondary (same-page) navigation bar with nav links on right
  * side of screen.
  */
-const SideNavMenu: FC<SideNavMenuProps> = ({ activeSection, screenSections }) => (
-  <nav className="flex-align-center flex-justify-center background-light">
-    {renderNavigation(screenSections, activeSection)}
-  </nav>
-);
+const SideNavMenu: FC<SideNavMenuProps> = ({ activeSectionIndex, screenSections }) => {
+  const flattenedSectionAnchors = flattenAllAnchors(screenSections);
+  const activeSectionAnchor = flattenedSectionAnchors[activeSectionIndex];
+  return (
+    <nav className="flex-align-center flex-justify-center background-light sidebar-width padding-med">
+      {renderNavigation(screenSections, activeSectionAnchor)}
+    </nav>
+  );
+};
 
 export default SideNavMenu;

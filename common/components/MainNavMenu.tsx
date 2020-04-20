@@ -56,7 +56,7 @@ const renderLinks = (slugs: readonly Slug[], activePage: Slug): JSX.Element => (
  */
 const MainNavMenu: FC<MainNavMenuProps> = ({ activePage }) => {
   return (
-    <nav className="flex-align-center flex-justify-center">
+    <nav className="flex-align-center flex-justify-center sidebar-width padding-med">
       [IMAGE]
       <h6>Kelli Rockwell</h6>
       {renderLinks(SLUGS, activePage)}

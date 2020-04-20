@@ -98,227 +98,212 @@ const AboutMeScreen: FC<AboutMeScreenProps> = () => {
           vel deserunt porro necessitatibus optio.
         </p>
       </section>
-      <section>
-        <section ref={s3Ref}>
-          <h1>The roles I serve</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-            assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-            quos ut! Architecto vel deserunt porro necessitatibus optio.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-            assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-            quos ut! Architecto vel deserunt porro necessitatibus optio. Lorem ipsum dolor
-            sit amet consectetur adipisicing elit. At a animi repellat, assumenda possimus
-            illum voluptates? Neque perferendis, aliquid cum ullam hic quos ut! Architecto
-            vel deserunt porro necessitatibus optio.
-          </p>
-        </section>
-        <section ref={s4Ref}>
-          <h3>As an asynchronous communicator</h3>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam
-            asperiores odio suscipit quam aspernatur illum, quis quidem sapiente quisquam.
-            Obcaecati, blanditiis similique optio accusantium ut quia quaerat officia
-            voluptas.
-          </p>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, veniam
-            inventore rerum laboriosam dolorem impedit minima maxime debitis iusto fuga
-            quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus
-            repudiandae placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Officia tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam
-            possimus amet placeat repellendus molestias laudantium, provident dolores ex
-            inventore, vitae repellat? Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. At a animi repellat, assumenda possimus illum voluptates? Neque
-            perferendis, aliquid cum ullam hic quos ut! Architecto vel deserunt porro
-            necessitatibus optio.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-            assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-            quos ut! Architecto vel deserunt porro necessitatibus optio. Lorem ipsum dolor
-            sit amet consectetur adipisicing elit. At a animi repellat, assumenda possimus
-            illum voluptates? Neque perferendis, aliquid cum ullam hic quos ut! Architecto
-            vel deserunt porro necessitatibus optio.
-          </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam
-            asperiores odio suscipit quam aspernatur illum, quis quidem sapiente quisquam.
-            Obcaecati, blanditiis similique optio accusantium ut quia quaerat officia
-            voluptas. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam,
-            veniam inventore rerum laboriosam dolorem impedit minima maxime debitis iusto
-            fuga quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus
-            repudiandae placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Officia tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam
-            possimus amet placeat repellendus molestias laudantium, provident dolores ex
-            inventore, vitae repellat? Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. At a animi repellat, assumenda possimus illum voluptates? Neque
-            perferendis, aliquid cum ullam hic quos ut! Architecto vel deserunt porro
-            necessitatibus optio.
-          </p>
-        </section>
-        <section ref={s5Ref}>
-          <h3>As a developer experience hero</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-            assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-            quos ut! Architecto vel deserunt porro necessitatibus optio.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-            assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-            quos ut! Architecto vel deserunt porro necessitatibus optio. Lorem, ipsum
-            dolor sit amet consectetur adipisicing elit. Repellendus magnam asperiores
-            odio suscipit quam aspernatur illum, quis quidem sapiente quisquam. Obcaecati,
-            blanditiis similique optio accusantium ut quia quaerat officia voluptas.
-          </p>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, veniam
-            inventore rerum laboriosam dolorem impedit minima maxime debitis iusto fuga
-            quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus
-            repudiandae placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Officia tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam
-            possimus amet placeat repellendus molestias laudantium, provident dolores ex
-            inventore, vitae repellat? At a animi repellat, assumenda possimus illum
-            voluptates? Neque perferendis, aliquid cum ullam hic quos ut! Architecto vel
-            deserunt porro necessitatibus optio. Lorem, ipsum dolor sit amet consectetur
-            adipisicing elit. Repellendus magnam asperiores odio suscipit quam aspernatur
-            illum, quis quidem sapiente quisquam. Obcaecati, blanditiis similique optio
-            accusantium ut quia quaerat officia voluptas.
-          </p>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, veniam
-            inventore rerum laboriosam dolorem impedit minima maxime debitis iusto fuga
-            quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus
-            repudiandae placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Officia tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam
-            possimus amet placeat repellendus molestias laudantium, provident dolores ex
-            inventore, vitae repellat? Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. At a animi repellat, assumenda possimus illum voluptates? Neque
-            perferendis, aliquid cum ullam hic quos ut! Architecto vel deserunt porro
-            necessitatibus optio. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            At a animi repellat, assumenda possimus illum voluptates? Neque perferendis,
-            aliquid cum ullam hic quos ut! Architecto vel deserunt porro necessitatibus
-            optio.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-            assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-            quos ut! Architecto vel deserunt porro necessitatibus optio.
-          </p>
-        </section>
-        <section ref={s6Ref}>
-          <h3>As a state management manager</h3>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam
-            asperiores odio suscipit quam aspernatur illum, quis quidem sapiente quisquam.
-            Obcaecati, blanditiis similique optio accusantium ut quia quaerat officia
-            voluptas.
-          </p>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, veniam
-            inventore rerum laboriosam dolorem impedit minima maxime debitis iusto fuga
-            quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus
-            repudiandae placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Officia tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam
-            possimus amet placeat repellendus molestias laudantium, provident dolores ex
-            inventore, vitae repellat?
-          </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam
-            asperiores odio suscipit quam aspernatur illum, quis quidem sapiente quisquam.
-            Obcaecati, blanditiis similique optio accusantium ut quia quaerat officia
-            voluptas.
-          </p>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, veniam
-            inventore rerum laboriosam dolorem impedit minima maxime debitis iusto fuga
-            quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus
-            repudiandae placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Officia tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam
-            possimus amet placeat repellendus molestias laudantium, provident dolores ex
-            inventore, vitae repellat? Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. At a animi repellat, assumenda possimus illum voluptates? Neque
-            perferendis, aliquid cum ullam hic quos ut! Architecto vel deserunt porro
-            necessitatibus optio. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            At a animi repellat, assumenda possimus illum voluptates? Neque perferendis,
-            aliquid cum ullam hic quos ut! Architecto vel deserunt porro necessitatibus
-            optio.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-            assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-            quos ut! Architecto vel deserunt porro necessitatibus optio.
-          </p>
-        </section>
-        <section ref={s7Ref}>
-          <h3>As an equity and inclusion advocate</h3>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam
-            asperiores odio suscipit quam aspernatur illum, quis quidem sapiente quisquam.
-            Obcaecati, blanditiis similique optio accusantium ut quia quaerat officia
-            voluptas.
-          </p>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, veniam
-            inventore rerum laboriosam dolorem impedit minima maxime debitis iusto fuga
-            quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus
-            repudiandae placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Officia tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam
-            possimus amet placeat repellendus molestias laudantium, provident dolores ex
-            inventore, vitae repellat? Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. At a animi repellat, assumenda possimus illum voluptates? Neque
-            perferendis, aliquid cum ullam hic quos ut! Architecto vel deserunt porro
-            necessitatibus optio. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            At a animi repellat, assumenda possimus illum voluptates? Neque perferendis,
-            aliquid cum ullam hic quos ut! Architecto vel deserunt porro necessitatibus
-            optio.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-            assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-            quos ut! Architecto vel deserunt porro necessitatibus optio. Lorem, ipsum
-            dolor sit amet consectetur adipisicing elit. Repellendus magnam asperiores
-            odio suscipit quam aspernatur illum, quis quidem sapiente quisquam. Obcaecati,
-            blanditiis similique optio accusantium ut quia quaerat officia voluptas.
-          </p>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, veniam
-            inventore rerum laboriosam dolorem impedit minima maxime debitis iusto fuga
-            quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus
-            repudiandae placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Officia tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam
-            possimus amet placeat repellendus molestias laudantium, provident dolores ex
-            inventore, vitae repellat? Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. At a animi repellat, assumenda possimus illum voluptates? Neque
-            perferendis, aliquid cum ullam hic quos ut! Architecto vel deserunt porro
-            necessitatibus optio.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-            assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-            quos ut! Architecto vel deserunt porro necessitatibus optio.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-            assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-            quos ut! Architecto vel deserunt porro necessitatibus optio.
-          </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam
-            asperiores odio suscipit quam aspernatur illum, quis quidem sapiente quisquam.
-            Obcaecati, blanditiis similique optio accusantium ut quia quaerat officia
-            voluptas. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam,
-            veniam inventore rerum laboriosam dolorem impedit minima maxime debitis iusto
-            fuga quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus
-            repudiandae placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Officia tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam
-            possimus amet placeat repellendus molestias laudantium, provident dolores ex
-            inventore, vitae repellat?
-          </p>
-        </section>
+      <section ref={s3Ref}>
+        <h1>The roles I serve</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
+          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
+          quos ut! Architecto vel deserunt porro necessitatibus optio.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
+          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
+          quos ut! Architecto vel deserunt porro necessitatibus optio. Lorem ipsum dolor
+          sit amet consectetur adipisicing elit. At a animi repellat, assumenda possimus
+          illum voluptates? Neque perferendis, aliquid cum ullam hic quos ut! Architecto
+          vel deserunt porro necessitatibus optio.
+        </p>
+        <h3 ref={s4Ref}>As an asynchronous communicator</h3>
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam
+          asperiores odio suscipit quam aspernatur illum, quis quidem sapiente quisquam.
+          Obcaecati, blanditiis similique optio accusantium ut quia quaerat officia
+          voluptas.
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, veniam
+          inventore rerum laboriosam dolorem impedit minima maxime debitis iusto fuga
+          quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus repudiandae
+          placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia
+          tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam possimus amet
+          placeat repellendus molestias laudantium, provident dolores ex inventore, vitae
+          repellat? Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi
+          repellat, assumenda possimus illum voluptates? Neque perferendis, aliquid cum
+          ullam hic quos ut! Architecto vel deserunt porro necessitatibus optio.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
+          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
+          quos ut! Architecto vel deserunt porro necessitatibus optio. Lorem ipsum dolor
+          sit amet consectetur adipisicing elit. At a animi repellat, assumenda possimus
+          illum voluptates? Neque perferendis, aliquid cum ullam hic quos ut! Architecto
+          vel deserunt porro necessitatibus optio.
+        </p>
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam
+          asperiores odio suscipit quam aspernatur illum, quis quidem sapiente quisquam.
+          Obcaecati, blanditiis similique optio accusantium ut quia quaerat officia
+          voluptas. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam,
+          veniam inventore rerum laboriosam dolorem impedit minima maxime debitis iusto
+          fuga quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus
+          repudiandae placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Officia tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam
+          possimus amet placeat repellendus molestias laudantium, provident dolores ex
+          inventore, vitae repellat? Lorem ipsum dolor sit amet consectetur adipisicing
+          elit. At a animi repellat, assumenda possimus illum voluptates? Neque
+          perferendis, aliquid cum ullam hic quos ut! Architecto vel deserunt porro
+          necessitatibus optio.
+        </p>
+        <h3 ref={s5Ref}>As a developer experience hero</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
+          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
+          quos ut! Architecto vel deserunt porro necessitatibus optio.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
+          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
+          quos ut! Architecto vel deserunt porro necessitatibus optio. Lorem, ipsum dolor
+          sit amet consectetur adipisicing elit. Repellendus magnam asperiores odio
+          suscipit quam aspernatur illum, quis quidem sapiente quisquam. Obcaecati,
+          blanditiis similique optio accusantium ut quia quaerat officia voluptas.
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, veniam
+          inventore rerum laboriosam dolorem impedit minima maxime debitis iusto fuga
+          quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus repudiandae
+          placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia
+          tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam possimus amet
+          placeat repellendus molestias laudantium, provident dolores ex inventore, vitae
+          repellat? At a animi repellat, assumenda possimus illum voluptates? Neque
+          perferendis, aliquid cum ullam hic quos ut! Architecto vel deserunt porro
+          necessitatibus optio. Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+          Repellendus magnam asperiores odio suscipit quam aspernatur illum, quis quidem
+          sapiente quisquam. Obcaecati, blanditiis similique optio accusantium ut quia
+          quaerat officia voluptas.
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, veniam
+          inventore rerum laboriosam dolorem impedit minima maxime debitis iusto fuga
+          quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus repudiandae
+          placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia
+          tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam possimus amet
+          placeat repellendus molestias laudantium, provident dolores ex inventore, vitae
+          repellat? Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi
+          repellat, assumenda possimus illum voluptates? Neque perferendis, aliquid cum
+          ullam hic quos ut! Architecto vel deserunt porro necessitatibus optio. Lorem
+          ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
+          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
+          quos ut! Architecto vel deserunt porro necessitatibus optio.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
+          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
+          quos ut! Architecto vel deserunt porro necessitatibus optio.
+        </p>
+        <h3 ref={s6Ref}>As a state management manager</h3>
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam
+          asperiores odio suscipit quam aspernatur illum, quis quidem sapiente quisquam.
+          Obcaecati, blanditiis similique optio accusantium ut quia quaerat officia
+          voluptas.
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, veniam
+          inventore rerum laboriosam dolorem impedit minima maxime debitis iusto fuga
+          quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus repudiandae
+          placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia
+          tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam possimus amet
+          placeat repellendus molestias laudantium, provident dolores ex inventore, vitae
+          repellat?
+        </p>
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam
+          asperiores odio suscipit quam aspernatur illum, quis quidem sapiente quisquam.
+          Obcaecati, blanditiis similique optio accusantium ut quia quaerat officia
+          voluptas.
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, veniam
+          inventore rerum laboriosam dolorem impedit minima maxime debitis iusto fuga
+          quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus repudiandae
+          placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia
+          tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam possimus amet
+          placeat repellendus molestias laudantium, provident dolores ex inventore, vitae
+          repellat? Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi
+          repellat, assumenda possimus illum voluptates? Neque perferendis, aliquid cum
+          ullam hic quos ut! Architecto vel deserunt porro necessitatibus optio. Lorem
+          ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
+          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
+          quos ut! Architecto vel deserunt porro necessitatibus optio.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
+          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
+          quos ut! Architecto vel deserunt porro necessitatibus optio.
+        </p>
+        <h3 ref={s7Ref}>As an equity and inclusion advocate</h3>
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam
+          asperiores odio suscipit quam aspernatur illum, quis quidem sapiente quisquam.
+          Obcaecati, blanditiis similique optio accusantium ut quia quaerat officia
+          voluptas.
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, veniam
+          inventore rerum laboriosam dolorem impedit minima maxime debitis iusto fuga
+          quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus repudiandae
+          placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia
+          tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam possimus amet
+          placeat repellendus molestias laudantium, provident dolores ex inventore, vitae
+          repellat? Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi
+          repellat, assumenda possimus illum voluptates? Neque perferendis, aliquid cum
+          ullam hic quos ut! Architecto vel deserunt porro necessitatibus optio. Lorem
+          ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
+          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
+          quos ut! Architecto vel deserunt porro necessitatibus optio.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
+          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
+          quos ut! Architecto vel deserunt porro necessitatibus optio. Lorem, ipsum dolor
+          sit amet consectetur adipisicing elit. Repellendus magnam asperiores odio
+          suscipit quam aspernatur illum, quis quidem sapiente quisquam. Obcaecati,
+          blanditiis similique optio accusantium ut quia quaerat officia voluptas.
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, veniam
+          inventore rerum laboriosam dolorem impedit minima maxime debitis iusto fuga
+          quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus repudiandae
+          placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia
+          tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam possimus amet
+          placeat repellendus molestias laudantium, provident dolores ex inventore, vitae
+          repellat? Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi
+          repellat, assumenda possimus illum voluptates? Neque perferendis, aliquid cum
+          ullam hic quos ut! Architecto vel deserunt porro necessitatibus optio.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
+          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
+          quos ut! Architecto vel deserunt porro necessitatibus optio.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
+          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
+          quos ut! Architecto vel deserunt porro necessitatibus optio.
+        </p>
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam
+          asperiores odio suscipit quam aspernatur illum, quis quidem sapiente quisquam.
+          Obcaecati, blanditiis similique optio accusantium ut quia quaerat officia
+          voluptas. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam,
+          veniam inventore rerum laboriosam dolorem impedit minima maxime debitis iusto
+          fuga quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus
+          repudiandae placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Officia tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam
+          possimus amet placeat repellendus molestias laudantium, provident dolores ex
+          inventore, vitae repellat?
+        </p>
       </section>
       <footer>
         <button type="button">Read about my projects!</button>

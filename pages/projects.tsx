@@ -37,8 +37,8 @@ const ProjectsScreen: FC<ProjectsScreenProps> = () => {
       screenSections={{ currentSectionIndex: sectionIndex, sections: PROJECTS_SECTIONS }}
       ref={outerRef}
     >
-      <h1>Projects</h1>
       <section ref={s1Ref}>
+        <h1>Projects</h1>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam molestiae
         quas quisquam nisi sunt similique obcaecati quia quidem iusto deserunt, recusandae
         dolor molestias, culpa neque in, laudantium assumenda temporibus sequi! Lorem

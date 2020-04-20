@@ -26,6 +26,9 @@ const getElementScrollPosition = (el: Element | null): ScrollPosition => {
  * and scroll position falls within the bounds of "More Info", hook returns the
  * index 1
  *
+ * Note: Scroll position is compared to the start of a section, and start is
+ * based on the top of the bounding box relative to the parent element
+ *
  * @param sectionRefs list of refs for all of the different sections on the page
  * @param parentRef ref for the parent element containing all of the sections,
  * for tracking the appropriate relative scroll position
@@ -40,7 +43,7 @@ const useCurrentSectionIndex = (
     // Get current values for all section refs
     const sectionRefCurrentValues = map(sectionRefs, 'current');
 
-    // If any of the refs is null, break
+    // If any of the refs is null, break and print warning
     const parentRefNull = !parentRef.current;
     if (parentRefNull) {
       console.warn(
@@ -59,10 +62,12 @@ const useCurrentSectionIndex = (
       );
       return undefined;
     }
+
     // Throttle request to not overload with repaints
     let requestRunning: number | null = null;
-    /** Handler to calculate the section sizes and find the current section */
-    const handleScroll = (): void => {
+    /** Handler to calculate the section starting positions and find the current
+     * section to attach to parent element scroll and resize listeners */
+    const calculateSectionIndex = (): void => {
       if (requestRunning === null) {
         requestRunning = 100;
         requestRunning = window.requestAnimationFrame(() => {
@@ -70,35 +75,42 @@ const useCurrentSectionIndex = (
           const { y: yScrollPos } = getElementScrollPosition(parentRef.current);
           // Reduce over section refs to determine the y-position that each
           // section starts at
-          const sectionHeights = reduce(
+          const sectionStartingPositions = reduce(
             sectionRefCurrentValues,
-            (heightsSoFar, current, index) => {
+            (positionsSoFar, current, index) => {
+              // The y positional height of the current section is equal to the
+              // top of the curernt section's bounding box plus an offset of the
+              // current y scroll position
+              const currentSectionStartingPos =
+                (current?.getBoundingClientRect().top || 0) + yScrollPos;
               if (index === 0) {
-                // TODO: consider using relative y pos of item instead of
-                // scrollHeight for greater flexibility over which elements we
-                // apply the refs to
-                return [current?.scrollHeight || 0];
+                return [currentSectionStartingPos];
               }
-              const prevHeight = heightsSoFar[index - 1];
-              return [...heightsSoFar, prevHeight + (current?.scrollHeight || 0)];
+              return [...positionsSoFar, currentSectionStartingPos];
             },
             [] as number[],
           );
 
-          // Check section heights against current scroll position to
-          // determine the current section
+          // Check section starting positions against current scroll position to
+          // determine the current section; the current section is the last
+          // section whose y position our scroll position is greater than
           let i = 0;
-          while (sectionHeights.length > i) {
-            const currentSectionHeight = sectionHeights[i];
-            if (yScrollPos > currentSectionHeight) {
-              if (i === sectionHeights.length - 1) {
+          while (sectionStartingPositions.length > i) {
+            const currentSectionStartingPos = sectionStartingPositions[i];
+            // If the current y scroll position is still equal to or greater
+            // than the current section's starting position
+            if (yScrollPos >= currentSectionStartingPos) {
+              // If it's the last section, set that section as the index
+              if (i === sectionStartingPositions.length - 1) {
                 setSectionIndex(i);
                 break;
               } else {
+                // Otherwise, check the next section
                 i += 1;
               }
             } else {
-              setSectionIndex(i);
+              // Otherwise, we've gone too far; set the section as the previous index
+              setSectionIndex(i - 1);
               break;
             }
           }
@@ -110,19 +122,26 @@ const useCurrentSectionIndex = (
       }
     };
 
-    handleScroll();
+    calculateSectionIndex();
 
+    // Attach event listener to parent element scroll and window resize
     const { current: parentRefCurrentValue } = parentRef;
-
     if (parentRefCurrentValue) {
-      parentRefCurrentValue.addEventListener('scroll', handleScroll);
-      return (): void => {
-        if (parentRefCurrentValue) {
-          parentRefCurrentValue.removeEventListener('scroll', handleScroll);
-        }
-      };
+      parentRefCurrentValue.addEventListener('scroll', calculateSectionIndex);
     }
-    return undefined;
+    if (window) {
+      window.addEventListener('resize', calculateSectionIndex);
+    }
+
+    // Detach event listeners to clean up
+    return (): void => {
+      if (parentRefCurrentValue) {
+        parentRefCurrentValue.removeEventListener('scroll', calculateSectionIndex);
+      }
+      if (window) {
+        window.removeEventListener('resize', calculateSectionIndex);
+      }
+    };
   }, [sectionRefs, parentRef]);
 
   return sectionIndex;

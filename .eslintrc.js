@@ -74,7 +74,8 @@ module.exports = {
           // https://astexplorer.net/ with @typescript-eslint/parser selected
           'ExportNamedDeclaration TSInterfaceDeclaration',
           'ExportNamedDeclaration TSTypeAliasDeclaration',
-          'ExportNamedDeclaration TSTypeAliasDeclaration TSPropertySignature',
+          // Exclude brand property on branded types from types needing JSDoc
+          'ExportNamedDeclaration TSTypeAliasDeclaration TSPropertySignature:not([key.name="__brand"])',
           'ExportNamedDeclaration TSEnumDeclaration',
           'TSTypeAliasDeclaration[id.name=/.*Props$/] TSPropertySignature',
         ],

@@ -1,36 +1,12 @@
 import React, { FC, useRef } from 'react';
 import Screen from '../common/components/Screen';
-import { ScreenSection } from '../common/components/SideNavMenu';
 
 import '../common/scss/main.scss';
 import '../common/scss/theme.scss';
 import useCurrentSectionIndex from '../common/hooks/useCurrentSection';
+import ABOUT_ME_SECTIONS from '../content/about-me';
 
 type AboutMeScreenProps = {};
-
-const ABOUT_ME_SECTIONS: ScreenSection[] = [
-  { anchor: 'by-the-numbers', title: 'By the numbers' },
-  { anchor: 'inside-my-toolbox', title: 'Inside my toolbox' },
-  {
-    anchor: 'the-roles-i-serve',
-    subsections: [
-      {
-        anchor: 'as-an-asynchronous-communicator',
-        title: 'As an asynchronous communicator',
-      },
-      {
-        anchor: 'as-a-developer-experience-hero',
-        title: 'As a developer experience hero',
-      },
-      { anchor: 'as-a-state-management-manager', title: 'As a state management manager' },
-      {
-        anchor: 'as-an-equity-and-inclusion-advocate',
-        title: 'As an equity and inclusion advocate',
-      },
-    ],
-    title: 'The roles I serve',
-  },
-];
 
 /**
  * Screen component for primary screen "About Me"
@@ -55,10 +31,10 @@ const AboutMeScreen: FC<AboutMeScreenProps> = () => {
   return (
     <Screen
       activePage="about-me"
-      screenSections={{ currentSectionIndex: sectionIndex, sections: ABOUT_ME_SECTIONS }}
+      contentSections={{ currentSectionIndex: sectionIndex, sections: ABOUT_ME_SECTIONS }}
       ref={outerRef}
     >
-      <section ref={s1Ref}>
+      <section ref={s1Ref} id={ABOUT_ME_SECTIONS[0].anchor}>
         <h1>By the numbers</h1>
         <h4>Background</h4>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam unde minima
@@ -82,7 +58,7 @@ const AboutMeScreen: FC<AboutMeScreenProps> = () => {
         reprehenderit dolorum quibusdam dolor numquam soluta natus iste asperiores? Totam
         necessitatibus, animi non nulla tenetur modi consequuntur rerum iusto?
       </section>
-      <section ref={s2Ref}>
+      <section ref={s2Ref} id={ABOUT_ME_SECTIONS[1].anchor}>
         <h1>Inside my toolbox</h1>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
@@ -98,7 +74,7 @@ const AboutMeScreen: FC<AboutMeScreenProps> = () => {
           vel deserunt porro necessitatibus optio.
         </p>
       </section>
-      <section ref={s3Ref}>
+      <section ref={s3Ref} id={ABOUT_ME_SECTIONS[2].anchor}>
         <h1>The roles I serve</h1>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
@@ -113,7 +89,9 @@ const AboutMeScreen: FC<AboutMeScreenProps> = () => {
           illum voluptates? Neque perferendis, aliquid cum ullam hic quos ut! Architecto
           vel deserunt porro necessitatibus optio.
         </p>
-        <h3 ref={s4Ref}>As an asynchronous communicator</h3>
+        <h3 ref={s4Ref} id={ABOUT_ME_SECTIONS[2].subsections?.[0].anchor}>
+          As an asynchronous communicator
+        </h3>
         <p>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam
           asperiores odio suscipit quam aspernatur illum, quis quidem sapiente quisquam.
@@ -154,7 +132,9 @@ const AboutMeScreen: FC<AboutMeScreenProps> = () => {
           perferendis, aliquid cum ullam hic quos ut! Architecto vel deserunt porro
           necessitatibus optio.
         </p>
-        <h3 ref={s5Ref}>As a developer experience hero</h3>
+        <h3 ref={s5Ref} id={ABOUT_ME_SECTIONS[2].subsections?.[1].anchor}>
+          As a developer experience hero
+        </h3>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
           assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
@@ -201,7 +181,9 @@ const AboutMeScreen: FC<AboutMeScreenProps> = () => {
           assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
           quos ut! Architecto vel deserunt porro necessitatibus optio.
         </p>
-        <h3 ref={s6Ref}>As a state management manager</h3>
+        <h3 ref={s6Ref} id={ABOUT_ME_SECTIONS[2].subsections?.[2].anchor}>
+          As a state management manager
+        </h3>
         <p>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam
           asperiores odio suscipit quam aspernatur illum, quis quidem sapiente quisquam.
@@ -242,7 +224,9 @@ const AboutMeScreen: FC<AboutMeScreenProps> = () => {
           assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
           quos ut! Architecto vel deserunt porro necessitatibus optio.
         </p>
-        <h3 ref={s7Ref}>As an equity and inclusion advocate</h3>
+        <h3 ref={s7Ref} id={ABOUT_ME_SECTIONS[2].subsections?.[3].anchor}>
+          As an equity and inclusion advocate
+        </h3>
         <p>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam
           asperiores odio suscipit quam aspernatur illum, quis quidem sapiente quisquam.

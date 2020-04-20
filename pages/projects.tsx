@@ -1,23 +1,12 @@
 import React, { FC, useRef } from 'react';
 import Screen from '../common/components/Screen';
-import { ScreenSection } from '../common/components/SideNavMenu';
 
 import '../common/scss/main.scss';
 import '../common/scss/theme.scss';
 import useCurrentSectionIndex from '../common/hooks/useCurrentSection';
+import PROJECTS_SECTIONS from '../content/projects';
 
 type ProjectsScreenProps = {};
-
-const PROJECTS_SECTIONS: ScreenSection[] = [
-  {
-    anchor: 'by-the-numbers',
-    subsections: [
-      { anchor: 'inside-my-toolbox', title: 'Inside my toolbox' },
-      { anchor: 'the-roles-i-serve', title: 'The roles I serve' },
-    ],
-    title: 'By the numbers',
-  },
-];
 
 /**
  * Screen component for primary screen "Projects"
@@ -34,7 +23,7 @@ const ProjectsScreen: FC<ProjectsScreenProps> = () => {
   return (
     <Screen
       activePage="projects"
-      screenSections={{ currentSectionIndex: sectionIndex, sections: PROJECTS_SECTIONS }}
+      contentSections={{ currentSectionIndex: sectionIndex, sections: PROJECTS_SECTIONS }}
       ref={outerRef}
     >
       <section ref={s1Ref}>

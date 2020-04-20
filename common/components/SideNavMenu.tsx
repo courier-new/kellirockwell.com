@@ -2,27 +2,14 @@ import React, { FC } from 'react';
 import map from 'lodash/map';
 import flatMap from 'lodash/flatMap';
 import Link from 'next/link';
-
-/** Represents a distinct section of a screen */
-// TODO: make anchors a literal string union type
-export type ScreenSection = {
-  /** The url anchor without "#" for the section; should use
-   * kebab-case */
-  // TODO: enforce kebab case with branded type
-  anchor: string;
-  /** Any nested sections within this section */
-  subsections?: ScreenSection[];
-  /** The title for the section; should use Sentence case */
-  // TODO: enforce sentence case with branded type
-  title: string;
-};
+import { ContentSection } from '../../content';
 
 type SideNavMenuProps = {
-  /** The sections of the screen to represent in the nav menu */
-  screenSections: ScreenSection[];
   /** The index corresponding to section of the screen containing the current
    * scroll position */
   activeSectionIndex: number;
+  /** The sections of content on the screen to represent in the nav menu */
+  contentSections: ContentSection<string>[];
 };
 
 /**
@@ -36,7 +23,7 @@ type SideNavMenuProps = {
  * @param activeSection the section corresponding to the current scroll position
  */
 const renderLink = (
-  { anchor, subsections, title }: ScreenSection,
+  { anchor, subsections, title }: ContentSection<string>,
   index: number,
   activeSection: string,
 ): JSX.Element => {
@@ -61,7 +48,7 @@ const renderLink = (
  * @param activeSection the section corresponding to the current scroll position
  */
 const renderNavigation = (
-  sections: ScreenSection[],
+  sections: ContentSection<string>[],
   activeSection: string,
 ): JSX.Element => (
   <ul className="no-default-bullets">
@@ -77,7 +64,7 @@ const renderNavigation = (
  *
  * @param sections the list of sections to get the anchors for
  */
-const flattenAllAnchors = (sections: ScreenSection[]): string[] =>
+const flattenAllAnchors = (sections: ContentSection<string>[]): string[] =>
   flatMap(sections, (section) => {
     if (!section.subsections) {
       return [section.anchor];
@@ -89,12 +76,12 @@ const flattenAllAnchors = (sections: ScreenSection[]): string[] =>
  * Component for secondary (same-page) navigation bar with nav links on right
  * side of screen.
  */
-const SideNavMenu: FC<SideNavMenuProps> = ({ activeSectionIndex, screenSections }) => {
-  const flattenedSectionAnchors = flattenAllAnchors(screenSections);
+const SideNavMenu: FC<SideNavMenuProps> = ({ activeSectionIndex, contentSections }) => {
+  const flattenedSectionAnchors = flattenAllAnchors(contentSections);
   const activeSectionAnchor = flattenedSectionAnchors[activeSectionIndex];
   return (
     <nav className="flex-align-center flex-justify-center background-light sidebar-width padding-med">
-      {renderNavigation(screenSections, activeSectionAnchor)}
+      {renderNavigation(contentSections, activeSectionAnchor)}
     </nav>
   );
 };

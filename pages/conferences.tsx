@@ -1,34 +1,21 @@
 import React, { FC } from 'react';
 import Screen from '../common/components/Screen';
-import { ScreenSection } from '../common/components/SideNavMenu';
 
 import '../common/scss/main.scss';
 import '../common/scss/theme.scss';
+import CONFERENCES_SECTIONS from '../content/conferences';
 
 type ConferencesScreenProps = {};
-
-const CONFERENCES_SECTIONS: ScreenSection[] = [
-  {
-    anchor: 'journey-to-the-center-of-the-community',
-    title: 'Journey to the center of the community',
-  },
-  { anchor: 'resources', title: 'Resources' },
-  {
-    anchor: 'roadmap',
-    subsections: [
-      { anchor: 'current-(2020)', title: 'Current (2020)' },
-      { anchor: '2019', title: '2019' },
-    ],
-    title: 'Roadmap',
-  },
-];
 
 /**
  * Screen component for primary screen "Conferences"
  */
 const ConferencesScreen: FC<ConferencesScreenProps> = () => {
   return (
-    <Screen activePage="conferences" screenSections={CONFERENCES_SECTIONS}>
+    <Screen
+      activePage="conferences"
+      contentSections={{ currentSectionIndex: 0, sections: CONFERENCES_SECTIONS }}
+    >
       <h1>Conferences</h1>
       <section>Stuff 1</section>
       <section>Stuff 2</section>

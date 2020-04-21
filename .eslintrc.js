@@ -51,11 +51,11 @@ module.exports = {
     'jsdoc/check-access': 1, // Recommended
     'jsdoc/check-alignment': 1, // Recommended
     'jsdoc/check-examples': 1,
-    'jsdoc/check-indentation': 1,
+    'jsdoc/check-indentation': [1, { excludeTags: ['notes'] }],
     'jsdoc/check-param-names': 1, // Recommended
     'jsdoc/check-property-names': 0,
     'jsdoc/check-syntax': 0,
-    'jsdoc/check-tag-names': 1, // Recommended
+    'jsdoc/check-tag-names': [1, { definedTags: ['notes'] }], // Recommended
     'jsdoc/check-types': 0, // Turned off b/c using TS
     'jsdoc/check-values': 0,
     'jsdoc/empty-tags': 1, // Recommended

@@ -20,14 +20,20 @@ const getElementScrollPosition = (el: Element | null): ScrollPosition => {
 /**
  * Calculates which section within an element corresponds to the current scroll
  * position, given a ref to a parent element as well as refs to all of the
- * sections within it, and returns its index within the section refs
+ * sections within it. Returns a tuple of the index relative to the section refs
+ * and a function to manually recalculate the index.
  *
  * Ex: if sectionRefs contains refs to sections "About", "More Info", "Contact",
  * and scroll position falls within the bounds of "More Info", hook returns the
  * index 1
  *
- * Note: Scroll position is compared to the start of a section, and start is
- * based on the top of the bounding box relative to the parent element
+ * @notes
+ * - Scroll position is compared to the start of a section, and start is based
+ *   on the top of the bounding box relative to the parent element
+ * - "onScroll" event does not consistently fire when following a hash link to a
+ *   same-page anchor, so using the function returned as the second element of
+ *   the tuple, we can hook into the Next router's event instead to manually
+ *   recalculate the section index
  *
  * @param sectionRefs list of refs for all of the different sections on the page
  * @param parentRef ref for the parent element containing all of the sections,
@@ -36,8 +42,12 @@ const getElementScrollPosition = (el: Element | null): ScrollPosition => {
 const useCurrentSectionIndex = (
   sectionRefs: React.RefObject<Element>[],
   parentRef: React.RefObject<Element>,
-): number => {
+): [number, (() => void) | undefined] => {
   const [sectionIndex, setSectionIndex] = useState<number>(0);
+  // State to hold main calculating function, second item returned in tuple
+  const [calculateSectionIndexFn, setCalculateSectionIndexFn] = useState<
+    () => void | undefined
+  >();
 
   useEffect(() => {
     // Get current values for all section refs
@@ -69,7 +79,7 @@ const useCurrentSectionIndex = (
      * section to attach to parent element scroll and resize listeners */
     const calculateSectionIndex = (): void => {
       if (requestRunning === null) {
-        requestRunning = 100;
+        requestRunning = 1;
         requestRunning = window.requestAnimationFrame(() => {
           // Set the current scroll position of the outer container
           const { y: yScrollPos } = getElementScrollPosition(parentRef.current);
@@ -80,9 +90,10 @@ const useCurrentSectionIndex = (
             (positionsSoFar, current, index) => {
               // The y positional height of the current section is equal to the
               // top of the curernt section's bounding box plus an offset of the
-              // current y scroll position
+              // current y scroll position; Offset by an additional 2px for
+              // better UX
               const currentSectionStartingPos =
-                (current?.getBoundingClientRect().top || 0) + yScrollPos;
+                (current?.getBoundingClientRect().top || 0) + yScrollPos - 2;
               if (index === 0) {
                 return [currentSectionStartingPos];
               }
@@ -122,6 +133,8 @@ const useCurrentSectionIndex = (
       }
     };
 
+    setCalculateSectionIndexFn(calculateSectionIndex);
+
     calculateSectionIndex();
 
     // Attach event listener to parent element scroll and window resize
@@ -144,7 +157,7 @@ const useCurrentSectionIndex = (
     };
   }, [sectionRefs, parentRef]);
 
-  return sectionIndex;
+  return [sectionIndex, calculateSectionIndexFn];
 };
 
 export default useCurrentSectionIndex;

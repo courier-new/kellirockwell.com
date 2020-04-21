@@ -14,6 +14,11 @@ type ScreenProps = {
     currentSectionIndex: number;
     /** The sections of the screen */
     sections: ContentSection<string>[];
+    /** Handler to fire on route hash change to recalculate the section index.
+     * "onScroll" event does not consistently fire when following a hash link to
+     * a same-page anchor, so we hook into the Next router's event instead to
+     * manually recalculate the section index */
+    recalculateSectionIndex?: () => void;
   };
 };
 
@@ -32,6 +37,7 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
         <SideNavMenu
           activeSectionIndex={contentSections.currentSectionIndex}
           contentSections={contentSections.sections}
+          recalculateSectionIndex={contentSections.recalculateSectionIndex}
         />
       ) : null}
     </div>

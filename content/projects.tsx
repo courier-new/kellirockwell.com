@@ -21,6 +21,10 @@ const PROJECTS_SECTIONS: ProjectsContentSection[] = [
     anchor: 'rivals',
     title: 'Rivals',
   },
+  {
+    anchor: 'pilon',
+    title: 'Pilon',
+  },
 ];
 
 export default PROJECTS_SECTIONS;

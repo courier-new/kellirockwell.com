@@ -3,7 +3,7 @@ import Screen from '../common/components/Screen';
 
 import '../common/scss/main.scss';
 import '../common/scss/theme.scss';
-import useCurrentSectionIndex from '../common/hooks/useCurrentSection';
+import useCurrentSectionIndex from '../common/hooks/useCurrentSectionIndex';
 import PROJECTS_SECTIONS from '../content/projects';
 
 type ProjectsScreenProps = {};
@@ -18,15 +18,22 @@ const ProjectsScreen: FC<ProjectsScreenProps> = () => {
 
   const outerRef = useRef<HTMLDivElement>(null);
 
-  const sectionIndex = useCurrentSectionIndex([s1Ref, s2Ref, s3Ref], outerRef);
+  const [sectionIndex, recalculateSectionIndex] = useCurrentSectionIndex(
+    [s1Ref, s2Ref, s3Ref],
+    outerRef,
+  );
 
   return (
     <Screen
       activePage="projects"
-      contentSections={{ currentSectionIndex: sectionIndex, sections: PROJECTS_SECTIONS }}
+      contentSections={{
+        currentSectionIndex: sectionIndex,
+        recalculateSectionIndex,
+        sections: PROJECTS_SECTIONS,
+      }}
       ref={outerRef}
     >
-      <section ref={s1Ref}>
+      <section ref={s1Ref} id={PROJECTS_SECTIONS[0].anchor}>
         <h1>Projects</h1>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam molestiae
         quas quisquam nisi sunt similique obcaecati quia quidem iusto deserunt, recusandae
@@ -59,7 +66,7 @@ const ProjectsScreen: FC<ProjectsScreenProps> = () => {
         velit. Eius ipsam, quod asperiores perspiciatis, nihil omnis tenetur saepe
         deserunt sed, cumque magnam?
       </section>
-      <section ref={s2Ref}>
+      <section ref={s2Ref} id={PROJECTS_SECTIONS[1].anchor}>
         <h3>Section 2</h3>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam molestiae
         quas quisquam nisi sunt similique obcaecati quia quidem iusto deserunt, recusandae
@@ -75,7 +82,7 @@ const ProjectsScreen: FC<ProjectsScreenProps> = () => {
         maiores amet voluptatibus magni error ratione officiis? Lorem ipsum dolor sit amet
         consectetur adipisicing elit. 2
       </section>
-      <section ref={s3Ref}>
+      <section ref={s3Ref} id={PROJECTS_SECTIONS[2].anchor}>
         <h1>More stuff</h1>
         <h3>Wow</h3>
         <p>

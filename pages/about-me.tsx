@@ -1,9 +1,8 @@
 import React, { FC, useRef } from 'react';
 import Screen from '../common/components/Screen';
-
 import '../common/scss/main.scss';
 import '../common/scss/theme.scss';
-import useCurrentSectionIndex from '../common/hooks/useCurrentSection';
+import useCurrentSectionIndex from '../common/hooks/useCurrentSectionIndex';
 import ABOUT_ME_SECTIONS from '../content/about-me';
 
 type AboutMeScreenProps = {};
@@ -23,7 +22,7 @@ const AboutMeScreen: FC<AboutMeScreenProps> = () => {
 
   const outerRef = useRef<HTMLDivElement>(null);
 
-  const sectionIndex = useCurrentSectionIndex(
+  const [sectionIndex, recalculateSectionIndex] = useCurrentSectionIndex(
     [s1Ref, s2Ref, s3Ref, s4Ref, s5Ref, s6Ref, s7Ref],
     outerRef,
   );
@@ -31,7 +30,11 @@ const AboutMeScreen: FC<AboutMeScreenProps> = () => {
   return (
     <Screen
       activePage="about-me"
-      contentSections={{ currentSectionIndex: sectionIndex, sections: ABOUT_ME_SECTIONS }}
+      contentSections={{
+        currentSectionIndex: sectionIndex,
+        recalculateSectionIndex,
+        sections: ABOUT_ME_SECTIONS,
+      }}
       ref={outerRef}
     >
       <section ref={s1Ref} id={ABOUT_ME_SECTIONS[0].anchor}>

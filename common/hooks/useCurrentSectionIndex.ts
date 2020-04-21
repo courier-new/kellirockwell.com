@@ -78,11 +78,23 @@ const useCurrentSectionIndex = (
     /** Handler to calculate the section starting positions and find the current
      * section to attach to parent element scroll and resize listeners */
     const calculateSectionIndex = (): void => {
+      // Set the current scroll position of the outer container
+      const { y: yScrollPos } = getElementScrollPosition(parentRef.current);
+
+      // Check if the current scroll position + the height of the outer
+      // container is equal to the total scrollable height of the outer
+      // container. If it is, we've hit the bottom of the page and can just
+      // return the last section index
+      const scrollHeight = parentRef.current?.scrollHeight || 0;
+      const height = parentRef.current?.getBoundingClientRect()?.height || 0;
+      if (scrollHeight === yScrollPos + height) {
+        setSectionIndex(sectionRefCurrentValues.length - 1);
+      }
+
+      // Lock more computation-heavy calculations in throttled block
       if (requestRunning === null) {
         requestRunning = 1;
         requestRunning = window.requestAnimationFrame(() => {
-          // Set the current scroll position of the outer container
-          const { y: yScrollPos } = getElementScrollPosition(parentRef.current);
           // Reduce over section refs to determine the y-position that each
           // section starts at
           const sectionStartingPositions = reduce(

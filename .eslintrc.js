@@ -31,11 +31,22 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: ['react', 'react-hooks', '@typescript-eslint', 'jsdoc', 'lodash', 'prettier'],
+  plugins: [
+    'react',
+    'babel',
+    'react-hooks',
+    '@typescript-eslint',
+    'jsdoc',
+    'lodash',
+    'prettier',
+  ],
   rules: {
     // @typescript-eslint-plugin
+    '@typescript-eslint/no-unused-expressions': 0, // Misfires with optional chaining, prefer babel plugin rule
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     '@typescript-eslint/no-use-before-define': 0,
+    // eslint-plugin-babel
+    'babel/no-unused-expressions': 1,
     // eslint-plugin-jsdoc
     'jsdoc/check-access': 1, // Recommended
     'jsdoc/check-alignment': 1, // Recommended
@@ -115,6 +126,7 @@ module.exports = {
         ignoreStrings: true,
       },
     ],
+    'no-unused-expressions': 0, // Misfires with optional chaining, prefer babel plugin rule
     'sort-keys': 'error',
   },
 };

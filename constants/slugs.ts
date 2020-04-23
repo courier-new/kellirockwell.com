@@ -7,4 +7,4 @@ export const SLUGS = [
 ] as const;
 
 /** Literal string union type of primary static page slugs */
-export type Slug = typeof SLUGS[number] | 'default';
+export type Slug = UnionLiteralFromArray<typeof SLUGS> | 'default';

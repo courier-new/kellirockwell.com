@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import includes from 'lodash/includes';
 
 /**
@@ -38,7 +38,15 @@ const isOperaMini = (): boolean => includes(navigator.userAgent, 'Opera Mini');
  * current browser and suggest that they switch
  */
 const UnsupportedBrowserBanner: FC<{}> = () => {
-  const isUnsupportedBrowser = isIE10OrLower() || isIE11() || isOperaMini();
+  const [isUnsupportedBrowser, setIsUnsupportedBrowser] = useState(false);
+
+  // We check using useEffect hook because window isn't available until after
+  // first paint
+  useEffect(() => {
+    const isUnsupported = isIE10OrLower() || isIE11() || isOperaMini();
+    setIsUnsupportedBrowser(isUnsupported);
+  }, []);
+
   return isUnsupportedBrowser ? (
     <div className="flex-1 background-light padding-med text-align-center">
       <h4 className="margin-0">

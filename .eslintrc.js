@@ -130,6 +130,7 @@ module.exports = {
         code: 90,
         ignoreComments: false,
         ignoreStrings: true,
+        ignoreUrls: true,
       },
     ],
     'no-unused-expressions': 0, // Misfires with optional chaining, prefer babel plugin rule

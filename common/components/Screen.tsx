@@ -7,6 +7,7 @@ import { ContentSection } from '../../content';
 import useDisplaySize from '../hooks/useDisplaySize';
 import { DisplaySize } from '../../constants/breakpoint-sizes';
 import DrawerMainNavMenu from './DrawerMainNavMenu';
+import UnsupportedBrowserBanner from './UnsupportedBrowserBanner';
 
 type ScreenProps = {
   /** The url slug corresponding to the screen that is currently open */
@@ -66,22 +67,25 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
     ]);
 
     return (
-      <div className="full-width full-height flex-row non-scrollable">
-        {shouldShowMainNav ? (
-          <MainNavMenu activePage={activePage} />
-        ) : (
-          <DrawerMainNavMenu activePage={activePage} />
-        )}
-        <main className="flex-1 flex-column scrollable-y" ref={ref}>
-          {children}
-        </main>
-        {contentSections && shouldShowSideNav ? (
-          <SideNavMenu
-            activeSectionIndex={contentSections.currentSectionIndex}
-            contentSections={contentSections.sections}
-            recalculateSectionIndex={contentSections.recalculateSectionIndex}
-          />
-        ) : null}
+      <div className="full-width full-height flex-column non-scrollable">
+        <UnsupportedBrowserBanner />
+        <div className="full-width full-height flex-row non-scrollable">
+          {shouldShowMainNav ? (
+            <MainNavMenu activePage={activePage} />
+          ) : (
+            <DrawerMainNavMenu activePage={activePage} />
+          )}
+          <main className="flex-1 flex-column scrollable-y" ref={ref}>
+            {children}
+          </main>
+          {contentSections && shouldShowSideNav ? (
+            <SideNavMenu
+              activeSectionIndex={contentSections.currentSectionIndex}
+              contentSections={contentSections.sections}
+              recalculateSectionIndex={contentSections.recalculateSectionIndex}
+            />
+          ) : null}
+        </div>
       </div>
     );
   },

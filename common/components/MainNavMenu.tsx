@@ -24,9 +24,9 @@ type MainNavMenuProps = {
 const renderLink = (slug: Slug, index: number, active?: 'active'): JSX.Element => {
   const linkClass = active ? 'font-bold' : '';
   const linkText = flow([
-    (s): string[] => split(s, '-'), // Split into words along dashes
-    (w): string[] => map(w, capitalize), // Capitalize each word
-    (w): string => join(w, ' '), // Rejoin words
+    (s: Slug): string[] => split(s, '-'), // Split into words along dashes
+    (w: string[]): string[] => map(w, capitalize), // Capitalize each word
+    (w: string[]): string => join(w, ' '), // Rejoin words
   ])(slug);
   return (
     <li key={index} className={linkClass}>

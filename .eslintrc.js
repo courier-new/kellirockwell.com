@@ -83,12 +83,18 @@ module.exports = {
         contexts: [
           // https://eslint.org/docs/developer-guide/selectors
           // https://astexplorer.net/ with @typescript-eslint/parser selected
+          // Require JSDoc on any exported type
           'ExportNamedDeclaration TSInterfaceDeclaration',
           'ExportNamedDeclaration TSTypeAliasDeclaration',
-          // Exclude brand property on branded types from types needing JSDoc
-          'ExportNamedDeclaration TSTypeAliasDeclaration TSPropertySignature:not([key.name="__brand"])',
           'ExportNamedDeclaration TSEnumDeclaration',
+          // Require JSDoc on exported type literal object properties, but
+          // exclude brand property on branded types
+          'ExportNamedDeclaration TSTypeAliasDeclaration TSPropertySignature:not([key.name="__brand"])',
+          // Require JSDoc on component props
           'TSTypeAliasDeclaration[id.name=/.*Props$/] TSPropertySignature',
+          // Require JSDoc on exported literal objects and their properties
+          'ExportNamedDeclaration ObjectExpression',
+          'ExportNamedDeclaration ObjectExpression Property',
         ],
       },
     ], // Recommended

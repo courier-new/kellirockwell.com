@@ -48,7 +48,7 @@ const UnsupportedBrowserBanner: FC<{}> = () => {
   }, []);
 
   return isUnsupportedBrowser ? (
-    <div className="flex-1 background-light padding-med text-align-center">
+    <div className="flex-1 background-magnolia padding-med text-align-center">
       <h4 className="margin-0">
         <strong>Uh oh! </strong>
         It looks like you&lsquo;re using an unsupported browser!

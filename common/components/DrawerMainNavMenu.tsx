@@ -18,7 +18,11 @@ const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
   ]);
 
   return (
-    <div className={`absolute ${drawerIsOpen ? 'background-light full-height' : ''}`}>
+    <div
+      className={`absolute ${
+        drawerIsOpen ? 'background-maastricht text-magnolia full-height' : ''
+      }`}
+    >
       <button type="button" onClick={toggleDrawerIsOpen}>
         Toggle
       </button>

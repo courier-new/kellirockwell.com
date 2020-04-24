@@ -102,7 +102,7 @@ const SideNavMenu: FC<SideNavMenuProps> = ({
   });
 
   return (
-    <nav className="flex-align-center flex-justify-center background-light sidebar-width padding-med">
+    <nav className="flex-align-center flex-justify-center background-magnolia sidebar-width padding-med">
       {renderNavigation(contentSections, activeSectionAnchor)}
     </nav>
   );

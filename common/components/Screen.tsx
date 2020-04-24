@@ -8,6 +8,7 @@ import useDisplaySize from '../hooks/useDisplaySize';
 import { DisplaySize } from '../../constants/breakpoint-sizes';
 import DrawerMainNavMenu from './DrawerMainNavMenu';
 import UnsupportedBrowserBanner from './UnsupportedBrowserBanner';
+import useMediaQuery from '../hooks/useMediaQuery';
 
 type ScreenProps = {
   /** The url slug corresponding to the screen that is currently open */
@@ -66,8 +67,14 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
       displaySize,
     ]);
 
+    /** True if the user system preference is for a dark color scheme */
+    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+
     return (
-      <div className="full-width full-height flex-column non-scrollable">
+      <div
+        className="full-width full-height flex-column non-scrollable"
+        data-theme={prefersDarkMode ? 'dark' : 'light'}
+      >
         <UnsupportedBrowserBanner />
         <div className="full-width full-height flex-row non-scrollable">
           {shouldShowMainNav ? (

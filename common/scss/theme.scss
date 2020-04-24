@@ -1,5 +1,100 @@
-// BACKGROUND
+$maastricht: #061826;
+$space: #4c6172;
+$sapphire: #17179f;
+$turquoise: #4cdbc8;
+$magnolia: #fdf4fc;
+$cheddar: #fecb49;
+$raspberry: #ef2860;
+$white: #fff;
+$black: #000;
 
-.background-light {
-  background-color: #fafafa;
+$medium-magnolia: desaturate(darken(#fdf4fc, 20%), 60%);
+$medium-turquoise: saturate(darken(#4cdbc8, 30%), 100%);
+$darker-maastricht: darken(#061826, 3%);
+
+$light-colors: (
+  'maastricht': $maastricht,
+  'space': $space,
+  'sapphire': $sapphire,
+  'turquoise': $turquoise,
+  'magnolia': $magnolia,
+  'cheddar': $cheddar,
+  'raspberry': $raspberry,
+  'white': $white,
+  'black': $darker-maastricht,
+);
+
+$dark-colors: (
+  'maastricht': $medium-magnolia,
+  'space': $space,
+  'sapphire': $sapphire,
+  'turquoise': $medium-turquoise,
+  'magnolia': $maastricht,
+  'cheddar': $cheddar,
+  'raspberry': $raspberry,
+  'white': $darker-maastricht,
+  'black': $white,
+);
+
+/* Mixin to generate styles based on the theme colors for a given attribute, one
+per color, based on here:
+https://frontstuff.io/generate-all-your-utility-classes-with-sass-maps */
+@mixin color-modifiers(
+  $attribute: 'color',
+  $color-set: $light-colors,
+  $and-children: false
+) {
+  @each $name, $hex in $color-set {
+    &#{'-'}#{$name} {
+      #{$attribute}: $hex;
+    }
+
+    @if $and-children {
+      &#{'-'}#{$name} * {
+        #{$attribute}: $hex;
+      }
+    }
+  }
+}
+
+/* LIGHT THEME */
+#__next [data-theme='light'] {
+  /* Default text and background color */
+  background-color: $white;
+  color: $darker-maastricht;
+
+  * {
+    color: $darker-maastricht;
+  }
+
+  /* Text color styles */
+  .text {
+    @include color-modifiers('color', $light-colors, true);
+  }
+
+  /* Background color styles */
+  .background {
+    @include color-modifiers('background-color', $light-colors, false);
+  }
+}
+
+/* DARK THEME */
+#__next [data-theme='dark'] {
+  /* Default text and background color */
+  background-color: $darker-maastricht;
+  color: $magnolia;
+
+  * {
+    color: $magnolia;
+  }
+
+  /* Text color styles */
+  .text {
+    @include color-modifiers('color', $dark-colors, true);
+  }
+
+  /* Background color styles */
+  .background {
+    @include color-modifiers('background-color', $dark-colors, false);
+  }
 }

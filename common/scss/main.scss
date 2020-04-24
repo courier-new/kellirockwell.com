@@ -7,11 +7,11 @@ html {
 
 body,
 #__next {
-  height: 100%;
-  width: 100%;
-  overflow: hidden; /* Makes the body non-scrollable (we will add scrolling to the sidebar and main content containers) */
-  margin: 0px; /* Removes default style */
   box-sizing: border-box;
+  height: 100%;
+  margin: 0; /* Removes default style */
+  overflow: hidden; /* Makes the body non-scrollable (we will add scrolling to the sidebar and main content containers) */
+  width: 100%;
 }
 
 // LAYOUT
@@ -87,25 +87,27 @@ body,
 
 .sidebar-width {
   box-sizing: border-box;
-  min-width: 240px;
   max-width: 240px;
+  min-width: 240px;
 }
 
 // PADDING/MARGIN
 
-.padding-med-h {
+.padding-med-h,
+%padding-med-h {
   padding-left: 18px;
   padding-right: 18px;
 }
 
-.padding-med-v {
-  padding-top: 18px;
+.padding-med-v,
+%padding-med-v {
   padding-bottom: 18px;
+  padding-top: 18px;
 }
 
 .padding-med {
-  @extend .padding-med-h;
-  @extend .padding-med-v;
+  @extend %padding-med-h;
+  @extend %padding-med-v;
 }
 
 .margin-0 {

@@ -1,5 +1,6 @@
 import React, { PropsWithChildren, useMemo } from 'react';
 import includes from 'lodash/includes';
+import isUndefined from 'lodash/isUndefined';
 import MainNavMenu from './MainNavMenu';
 import { Slug } from '../../constants/slugs';
 import SideNavMenu from './SideNavMenu';
@@ -9,6 +10,8 @@ import { DisplaySize } from '../../constants/breakpoint-sizes';
 import DrawerMainNavMenu from './DrawerMainNavMenu';
 import UnsupportedBrowserBanner from './UnsupportedBrowserBanner';
 import useMediaQuery from '../hooks/useMediaQuery';
+import { Percent } from '../../utilities/percent-helpers';
+import ProgressBar from './ProgressBar';
 
 type ScreenProps = {
   /** The url slug corresponding to the screen that is currently open */
@@ -26,6 +29,9 @@ type ScreenProps = {
      * manually recalculate the section index */
     recalculateSectionIndex?: () => void;
   };
+  /** The current scroll position of the Screen ref, used to render the
+   * ProgressBar component */
+  scrollPercent?: Percent;
 };
 
 const MAIN_NAV_MENU_DISPLAY_SIZES: DisplaySize[] = ['LARGE', 'MEDIUM', 'SMALL'];
@@ -54,7 +60,7 @@ const shouldShowSideNavMenu = (displaySize: DisplaySize): boolean =>
  * navigation and adjusts layout to display size.
  */
 const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
-  ({ activePage, children, contentSections }, ref) => {
+  ({ activePage, children, contentSections, scrollPercent }, ref) => {
     const [displaySize] = useDisplaySize();
 
     /** If true, will always show the main left-hand navigation menu; otherwise,
@@ -76,7 +82,10 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
         data-theme={prefersDarkMode ? 'dark' : 'light'}
       >
         <UnsupportedBrowserBanner />
-        <div className="full-width full-height flex-row non-scrollable">
+        {isUndefined(scrollPercent) ? null : (
+          <ProgressBar scrollPercent={scrollPercent} />
+        )}
+        <div className="full-width flex-1 flex-row non-scrollable">
           {shouldShowMainNav ? (
             <MainNavMenu activePage={activePage} />
           ) : (

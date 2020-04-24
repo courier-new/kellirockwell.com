@@ -76,6 +76,17 @@ https://frontstuff.io/generate-all-your-utility-classes-with-sass-maps */
   .background {
     @include color-modifiers('background-color', $light-colors, false);
   }
+
+  .gradient-background {
+    background: $maastricht;
+    background:
+      linear-gradient(108deg,
+      $sapphire 6vw,
+      $turquoise 28vw,
+      $magnolia 50vw,
+      $cheddar 72vw,
+      $raspberry 94vw);
+  }
 }
 
 /* DARK THEME */

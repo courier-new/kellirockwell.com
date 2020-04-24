@@ -3,6 +3,7 @@ import Screen from '../common/components/Screen';
 import '../common/scss/main.scss';
 import useCurrentSectionIndex from '../common/hooks/useCurrentSectionIndex';
 import ABOUT_ME_SECTIONS from '../content/about-me';
+import useScrollInfo from '../common/hooks/useScrollInfo';
 
 type AboutMeScreenProps = {};
 
@@ -26,6 +27,8 @@ const AboutMeScreen: FC<AboutMeScreenProps> = () => {
     outerRef,
   );
 
+  const scrollPercent = useScrollInfo(outerRef)[1];
+
   return (
     <Screen
       activePage="about-me"
@@ -35,6 +38,7 @@ const AboutMeScreen: FC<AboutMeScreenProps> = () => {
         sections: ABOUT_ME_SECTIONS,
       }}
       ref={outerRef}
+      scrollPercent={scrollPercent}
     >
       <section ref={s1Ref} id={ABOUT_ME_SECTIONS[0].anchor}>
         <h1>By the numbers</h1>

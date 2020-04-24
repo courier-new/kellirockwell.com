@@ -4,6 +4,7 @@ import Screen from '../common/components/Screen';
 import '../common/scss/main.scss';
 import useCurrentSectionIndex from '../common/hooks/useCurrentSectionIndex';
 import PROJECTS_SECTIONS from '../content/projects';
+import useScrollInfo from '../common/hooks/useScrollInfo';
 
 type ProjectsScreenProps = {};
 
@@ -22,6 +23,8 @@ const ProjectsScreen: FC<ProjectsScreenProps> = () => {
     outerRef,
   );
 
+  const scrollPercent = useScrollInfo(outerRef)[1];
+
   return (
     <Screen
       activePage="projects"
@@ -31,6 +34,7 @@ const ProjectsScreen: FC<ProjectsScreenProps> = () => {
         sections: PROJECTS_SECTIONS,
       }}
       ref={outerRef}
+      scrollPercent={scrollPercent}
     >
       <section ref={s1Ref} id={PROJECTS_SECTIONS[0].anchor}>
         <h1>Projects</h1>

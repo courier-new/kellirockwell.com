@@ -4,7 +4,6 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 import '../common/scss/main.scss';
-import '../common/scss/theme.scss';
 
 /** Root of Index page */
 const Root: FC = () => {

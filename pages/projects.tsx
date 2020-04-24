@@ -2,7 +2,6 @@ import React, { FC, useRef } from 'react';
 import Screen from '../common/components/Screen';
 
 import '../common/scss/main.scss';
-import '../common/scss/theme.scss';
 import useCurrentSectionIndex from '../common/hooks/useCurrentSectionIndex';
 import PROJECTS_SECTIONS from '../content/projects';
 

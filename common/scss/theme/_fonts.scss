@@ -1,0 +1,57 @@
+@import 'fonts/karla';
+@import 'fonts/titillium';
+@import 'fonts/yeseva-one';
+
+$headers: (
+  h1: (
+    'size': 40px,
+    'family': $yeseva-one,
+    'weight': normal,
+  ),
+  h3: (
+    'size': 25px,
+    'family': $karla,
+    'weight': bold,
+  ),
+  h4: (
+    'size': 20px,
+    'family': $yeseva-one,
+    'weight': normal,
+  ),
+);
+
+@mixin header-modifiers($scale: $headers, $and-children: false) {
+  @each $name, $attributes in $scale {
+    @each $attribute, $value in $attributes {
+      #{$name} {
+        #{'font-'}#{$attribute}: $value;
+      }
+
+      @if $and-children {
+        #{$name} * {
+          #{'font-'}#{$attribute}: $value;
+        }
+      }
+    }
+  }
+}
+
+@include header-modifiers($headers, true);
+
+/* Default font */
+* {
+  font-family: $titillium;
+  font-weight: lighter;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.font-normal {
+  font-weight: normal;
+}
+
+.font-italic {
+  font-style: italic;
+}

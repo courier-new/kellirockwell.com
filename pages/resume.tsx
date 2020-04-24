@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import Screen from '../common/components/Screen';
 
 import '../common/scss/main.scss';
-import '../common/scss/theme.scss';
 
 type ResumeScreenProps = {};
 

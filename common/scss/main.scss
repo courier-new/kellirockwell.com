@@ -1,4 +1,4 @@
-// ROOT
+/* ROOT */
 
 html {
   height: 100%;
@@ -14,7 +14,7 @@ body,
   width: 100%;
 }
 
-// LAYOUT
+/* LAYOUT */
 
 .flex-row {
   display: flex;
@@ -66,7 +66,125 @@ body,
   text-align: center;
 }
 
-// FONT
+/* FONT */
+
+$karla: 'Karla';
+
+@font-face {
+  font-family: $karla;
+  font-weight: normal;
+  src: url('/fonts/Karla/Karla-Regular.ttf');
+}
+
+@font-face {
+  font-family: $karla;
+  font-style: italic;
+  font-weight: normal;
+  src: url('/fonts/Karla/Karla-Italic.ttf');
+}
+
+@font-face {
+  font-family: $karla;
+  font-style: italic;
+  font-weight: bold;
+  src: url('/fonts/Karla/Karla-BoldItalic.ttf');
+}
+
+@font-face {
+  font-family: $karla;
+  font-weight: bold;
+  src: url('/fonts/Karla/Karla-Bold.ttf');
+}
+
+$titillium: 'TitilliumWeb';
+
+@font-face {
+  font-family: $titillium;
+  font-weight: normal;
+  src: url('/fonts/TitilliumWeb/TitilliumWeb-Regular.ttf');
+}
+
+@font-face {
+  font-family: $titillium;
+  font-style: italic;
+  font-weight: normal;
+  src: url('/fonts/TitilliumWeb/TitilliumWeb-Italic.ttf');
+}
+
+@font-face {
+  font-family: $titillium;
+  font-style: italic;
+  font-weight: bold;
+  src: url('/fonts/TitilliumWeb/TitilliumWeb-BoldItalic.ttf');
+}
+
+@font-face {
+  font-family: $titillium;
+  font-weight: bold;
+  src: url('/fonts/TitilliumWeb/TitilliumWeb-Bold.ttf');
+}
+
+@font-face {
+  font-family: $titillium;
+  font-style: italic;
+  font-weight: lighter;
+  src: url('/fonts/TitilliumWeb/TitilliumWeb-LightItalic.ttf');
+}
+
+@font-face {
+  font-family: $titillium;
+  font-weight: lighter;
+  src: url('/fonts/TitilliumWeb/TitilliumWeb-Light.ttf');
+}
+
+$yeseva-one: 'YesevaOne';
+
+@font-face {
+  font-family: $yeseva-one;
+  src: url('/fonts/YesevaOne/YesevaOne-Regular.ttf');
+}
+
+$headers: (
+  h1: (
+    'size': 40px,
+    'family': $yeseva-one,
+    'weight': normal,
+  ),
+  h3: (
+    'size': 25px,
+    'family': $karla,
+    'weight': bold,
+  ),
+  h4: (
+    'size': 20px,
+    'family': $yeseva-one,
+    'weight': normal,
+  ),
+);
+
+@mixin header-modifiers($scale: $headers, $and-children: false) {
+  @each $name, $attributes in $scale {
+    @each $attribute, $value in $attributes {
+      #{$name} {
+        #{'font-'}#{$attribute}: $value;
+      }
+
+      @if $and-children {
+        #{$name} * {
+          #{'font-'}#{$attribute}: $value;
+        }
+      }
+    }
+  }
+}
+
+@include header-modifiers($headers, true);
+
+/* Default font */
+* {
+  font-family: $titillium;
+  font-weight: lighter;
+}
 
 .font-bold {
   font-weight: bold;
@@ -76,14 +194,18 @@ body,
   font-weight: normal;
 }
 
-// LIST
+.font-italic {
+  font-style: italic;
+}
+
+/* LIST */
 
 .no-default-bullets {
   // list-style: none;
   padding-left: 10px;
 }
 
-// SIZE
+/* SIZE */
 
 .sidebar-width {
   box-sizing: border-box;
@@ -91,7 +213,7 @@ body,
   min-width: 240px;
 }
 
-// PADDING/MARGIN
+/* PADDING/MARGIN */
 
 .padding-med-h,
 %padding-med-h {

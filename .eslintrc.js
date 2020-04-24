@@ -9,7 +9,7 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     // Configuration provided by typescript-eslint which disables a few of the
     // recommended rules from the previous set that we know are already covered
-    // by TypeScript's typechecker
+    // by TypeScript's type checker
     'plugin:@typescript-eslint/recommended',
     // typescript-eslint's "recommended" config -- just like eslint/recommended
     // or react-recommended except it only turns on rules from our TypeScript-

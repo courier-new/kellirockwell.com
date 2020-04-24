@@ -38,9 +38,11 @@ const renderLink = (
     ? renderNavigation(subsections, activeSection)
     : null;
   return (
-    <li key={index} className={linkClass}>
+    <li key={index}>
       <Link href={`#${anchor}`}>
-        <a title={title}>{title}</a>
+        <a title={title} className={linkClass}>
+          {title}
+        </a>
       </Link>
       {subsectionNavigation}
     </li>

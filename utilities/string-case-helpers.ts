@@ -24,7 +24,7 @@ export const isKebabCase = (s: string): s is KebabCaseString => {
 
 /**
  * Type guard for SentenceCaseStrings; returns true if the provided string is
- * capitalized in Stence case style
+ * capitalized in Sentence case style
  *
  * @param s the string to check
  * @example isSentenceCase('Sentence'); // true

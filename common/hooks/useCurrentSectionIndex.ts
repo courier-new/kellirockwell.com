@@ -13,9 +13,10 @@ type ScrollPosition = {
  *
  * @param el the element to get the scroll position for
  */
-const getElementScrollPosition = (el: Element | null): ScrollPosition => {
-  return { x: el?.scrollLeft || 0, y: el?.scrollTop || 0 };
-};
+const getElementScrollPosition = (el: Element | null): ScrollPosition => ({
+  x: el?.scrollLeft || 0,
+  y: el?.scrollTop || 0,
+});
 
 /**
  * Returns true if any of the refs are null, as we cannot calculate the current
@@ -141,8 +142,6 @@ const useCurrentSectionIndex = (
       // Bounding height of the outer container
       const height = parentRefCurrentValue.getBoundingClientRect()?.height || 0;
 
-      // console.log(yScrollPos);
-
       // Before we go into checking the y-positions of all the individual
       // sections, we can first check for some easy wins if the current scroll
       // position is all the way at the top or all the way at the bottom
@@ -151,7 +150,7 @@ const useCurrentSectionIndex = (
       // container is equal to the total scrollable height of the outer
       // container. If it is, we've hit the bottom of the page and can just
       // return the last section index
-      if (scrollHeight === yScrollPos + height) {
+      if (yScrollPos + height === scrollHeight) {
         setSectionIndex(sectionRefCurrentValues.length - 1);
       }
 
@@ -165,8 +164,6 @@ const useCurrentSectionIndex = (
       if (requestRunning === null) {
         requestRunning = 1;
         requestRunning = window.requestAnimationFrame(() => {
-          console.log('running request');
-
           // Get the starting positions for each section
           const sectionStartingPositions = getSectionStartingPositions(
             sectionRefCurrentValues,
@@ -219,7 +216,10 @@ const useCurrentSectionIndex = (
 
     // Attach event listener to parent element scroll and window resize event
     if (parentRefCurrentValue) {
-      parentRefCurrentValue.addEventListener('scroll', calculateSectionIndex);
+      parentRefCurrentValue.addEventListener('scroll', calculateSectionIndex, {
+        // See https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Improving_scrolling_performance_with_passive_listeners
+        passive: true,
+      });
     }
     if (window) {
       window.addEventListener('resize', calculateSectionIndex);

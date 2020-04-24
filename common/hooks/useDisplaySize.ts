@@ -55,6 +55,7 @@ const useDisplaySize = (): [DisplaySize, number] => {
     // re-run. That way, only the last timer (when the user actually stops
     // resizing) will fire
     let lastResizeTimeout: NodeJS.Timeout | undefined;
+
     /** Remeasures and sets the window width */
     const handleResize = (): void => {
       if (requestRunning === null) {

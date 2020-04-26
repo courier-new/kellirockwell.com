@@ -12,9 +12,13 @@ export const CANCELLED = 'Cancelled';
  * Builds a <ul> of ConferenceCards for a list of conferences
  *
  * @param conferences the list of conferences to render to JSX
+ * @param key a unique key for the <ul> item
  */
-export const renderConferences = (conferences: Conference[]): JSX.Element => (
-  <ul>
+export const renderConferences = (
+  conferences: Conference[],
+  key: string,
+): JSX.Element => (
+  <ul key={key}>
     {map(conferences, (conference, index) => (
       <ConferenceCard key={`conference-${index}`} {...conference} />
     ))}
@@ -152,11 +156,11 @@ export default {
   subsections: [
     {
       ...generateTitleProps('Current (2020)'),
-      content: renderConferences(CONFERENCES_2020),
+      content: renderConferences(CONFERENCES_2020, 'conferences-2020'),
     },
     {
       ...generateTitleProps('2019'),
-      content: renderConferences(CONFERENCES_2019),
+      content: renderConferences(CONFERENCES_2019, 'conferences-2019'),
     },
   ],
 };

@@ -16,7 +16,7 @@ const CONFERENCES_SECTIONS: ConferencesContentSection[] = [
   JOURNEY_TO_THE_CENTER,
   {
     ...generateTitleProps('Resources'),
-    content: <p>Coming soon!</p>,
+    content: <p key="resources">Coming soon!</p>,
   },
   ROADMAP,
 ];

@@ -35,10 +35,10 @@ const renderSections = (
     headingTag = 'h3';
   }
 
-  return flatMap(sections, (section) => {
+  return flatMap(sections, (section, index) => {
     // Section heading
     let sectionElements: JSX.Element[] = [
-      React.createElement(headingTag, { key: 'heading' }, section.name),
+      React.createElement(headingTag, { key: `heading-${index}` }, section.name),
     ];
     // Section content
     if (section.content) {

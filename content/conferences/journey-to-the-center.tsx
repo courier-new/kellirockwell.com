@@ -26,7 +26,7 @@ const countConferencesAttended = (conferences: Conference[] | Conference[][]): n
 export default {
   ...generateTitleProps('Journey to the center of the community'),
   content: (
-    <>
+    <React.Fragment key="journey">
       <h3>My personal roadmap</h3>
       <p>
         I attended my first tech conference in August of 2019. Since then, I’ve been
@@ -82,6 +82,6 @@ export default {
         for remote attendees. I hope that conferences will continue to prioritize ways to
         make their events more equitable and accessible for everyone.
       </p>
-    </>
+    </React.Fragment>
   ),
 };

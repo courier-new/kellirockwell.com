@@ -17,6 +17,7 @@
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
     "lodash": "^4.17.15",
+    "luxon": "^1.23.0",
     "next": "9.3.5",
     "next-fonts": "^1.1.0",
     "node-sass": "^4.13.1",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.150",
+    "@types/luxon": "^1.22.0",
     "@types/node": "^13.13.0",
     "@types/react": "^16.9.34",
     "@typescript-eslint/eslint-plugin": "^2.28.0",

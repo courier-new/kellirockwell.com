@@ -51,7 +51,7 @@ module.exports = {
     'jsdoc/check-access': 1, // Recommended
     'jsdoc/check-alignment': 1, // Recommended
     'jsdoc/check-examples': 1,
-    'jsdoc/check-indentation': [1, { excludeTags: ['notes'] }],
+    'jsdoc/check-indentation': 0,
     'jsdoc/check-param-names': 1, // Recommended
     'jsdoc/check-property-names': 0,
     'jsdoc/check-syntax': 0,
@@ -113,6 +113,8 @@ module.exports = {
     'jsdoc/valid-types': 0, // Turned off b/c using TS
     // eslint-plugin-react
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    'react/jsx-one-expression-per-line': 0, // Conflicts with prettier formatting
+    'react/jsx-props-no-spreading': 0,
     'react/prop-types': 0,
     // eslint-plugin-react-hooks
     'react-hooks/rules-of-hooks': 'error',

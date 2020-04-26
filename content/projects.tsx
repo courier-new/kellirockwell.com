@@ -1,30 +1,26 @@
-import { ContentSection } from '.';
+import { generateTitleProps, ContentSection } from '../utilities/content-helpers';
 
-type ProjectsAnchor =
-  | 'sutro'
-  | 'rivals'
-  | 'pilon'
-  | 'moment'
-  | 'kleiner-perkins'
-  | 'cuwip-2018'
-  | 'ebay'
-  | 'duit';
+type ProjectSectionName =
+  | 'Sutro'
+  | 'Rivals'
+  | 'Pilon'
+  | 'Moment'
+  | 'Kleiner-Perkins'
+  | 'Cuwip 2018'
+  | 'Ebay'
+  | 'Duit';
 
-type ProjectsContentSection = ContentSection<ProjectsAnchor>;
+type ProjectsContentSection = ContentSection<ProjectSectionName>;
 
 const PROJECTS_SECTIONS: ProjectsContentSection[] = [
-  {
-    anchor: 'sutro',
-    title: 'Sutro',
-  },
-  {
-    anchor: 'rivals',
-    title: 'Rivals',
-  },
-  {
-    anchor: 'pilon',
-    title: 'Pilon',
-  },
+  { ...generateTitleProps('Sutro') },
+  { ...generateTitleProps('Rivals') },
+  { ...generateTitleProps('Pilon') },
+  { ...generateTitleProps('Moment') },
+  { ...generateTitleProps('Kleiner-Perkins') },
+  { ...generateTitleProps('Cuwip 2018') },
+  { ...generateTitleProps('Ebay') },
+  { ...generateTitleProps('Duit') },
 ];
 
 export default PROJECTS_SECTIONS;

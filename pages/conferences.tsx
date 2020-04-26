@@ -1,41 +1,107 @@
-import React, { FC } from 'react';
+import React, { FC, useRef, useEffect, useState, useMemo } from 'react';
+import find from 'lodash/find';
+import flatMap from 'lodash/flatMap';
+import map from 'lodash/map';
 import Screen from '../common/components/Screen';
-
 import '../common/scss/main.scss';
 import CONFERENCES_SECTIONS from '../content/conferences';
+import useCurrentSectionIndex from '../common/hooks/useCurrentSectionIndex';
+import useScrollInfo from '../common/hooks/useScrollInfo';
+import { flattenAllAnchors } from '../utilities/content-helpers';
+import { KebabCaseString } from '../utilities/string-case-helpers';
 
-type ConferencesScreenProps = {};
+/** List of refs for sections in order, as objects distinguishable by their
+ * anchor */
+type SectionRefsMap = { anchor: KebabCaseString; ref: React.RefObject<HTMLElement> }[];
+
+/**
+ * Maps each section to a <section> of JSX to render, providing the section with
+ * the appropriate ref and page anchor
+ *
+ * @param sections the sections of the Conferences screen
+ * @param sectionRefs the list of refs for each of these sections, in order
+ * @param headingLevel the level of heading to render for this section (e.g. for
+ * h1, h2, h3, etc.)
+ */
+const renderSections = (
+  sections: typeof CONFERENCES_SECTIONS,
+  sectionRefs: SectionRefsMap,
+  headingLevel = 1,
+): JSX.Element[] => {
+  let headingTag = `h${headingLevel}`;
+  if (headingLevel < 1 || headingLevel > 6) {
+    /* eslint-disable-next-line no-console */
+    console.warn('Invalid heading level provided to section renderer. Defaulting to h3.');
+    headingTag = 'h3';
+  }
+
+  return flatMap(sections, (section) => {
+    // Section heading
+    let sectionElements: JSX.Element[] = [
+      React.createElement(headingTag, { key: 'heading' }, section.name),
+    ];
+    // Section content
+    if (section.content) {
+      sectionElements = [...sectionElements, section.content];
+    }
+    // Subsections
+    if (section.subsections) {
+      sectionElements = [
+        ...sectionElements,
+        ...renderSections(section.subsections, sectionRefs, 3),
+      ];
+    }
+    // Wrap section elements in <Section>
+    const sectionRef = find(sectionRefs, ['anchor', section.anchor])?.ref;
+    return (
+      <section key={section.anchor} ref={sectionRef} id={section.anchor}>
+        {sectionElements}
+      </section>
+    );
+  });
+};
 
 /**
  * Screen component for primary screen "Conferences"
  */
-const ConferencesScreen: FC<ConferencesScreenProps> = () => {
+const ConferencesScreen: FC<{}> = () => {
+  const [sectionRefs, setSectionRefs] = useState<SectionRefsMap>([]);
+  const outerRef = useRef<HTMLDivElement>(null);
+
+  const flattenedSectionAnchors = useMemo(
+    () => flattenAllAnchors(CONFERENCES_SECTIONS),
+    [],
+  );
+
+  useEffect(() => {
+    // We must keep these as an array to preserve section order when referencing
+    setSectionRefs(
+      map(flattenedSectionAnchors, (anchor) => ({
+        anchor,
+        ref: React.createRef<HTMLElement>(),
+      })),
+    );
+  }, [flattenedSectionAnchors]);
+
+  const [sectionIndex, recalculateSectionIndex] = useCurrentSectionIndex(
+    map(sectionRefs, 'ref') || [],
+    outerRef,
+  );
+
+  const scrollPercent = useScrollInfo(outerRef)[1];
+
   return (
     <Screen
       activePage="conferences"
-      contentSections={{ currentSectionIndex: 0, sections: CONFERENCES_SECTIONS }}
+      contentSections={{
+        currentSectionIndex: sectionIndex,
+        recalculateSectionIndex,
+        sections: CONFERENCES_SECTIONS,
+      }}
+      ref={outerRef}
+      scrollPercent={scrollPercent}
     >
-      <h1>Conferences</h1>
-      <section>Stuff 1</section>
-      <section>Stuff 2</section>
-      <section>Stuff 3</section>
-      <section>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam molestiae
-        quas quisquam nisi sunt similique obcaecati quia quidem iusto deserunt, recusandae
-        dolor molestias, culpa neque in, laudantium assumenda temporibus sequi! Lorem
-        ipsum dolor sit amet consectetur adipisicing elit. Veniam tempore minus provident
-        repellendus accusamus itaque quam doloribus facere, accusantium, quas praesentium
-        omnis veritatis. Voluptatum quo ducimus commodi, incidunt quasi quae! Lorem ipsum,
-        dolor sit amet consectetur adipisicing elit. Cupiditate eum cumque necessitatibus
-        nobis veniam reprehenderit, sequi facilis, dolorem iste expedita, voluptate
-        tenetur unde tempore numquam dicta perspiciatis id recusandae quisquam! Lorem
-        ipsum dolor sit amet consectetur adipisicing elit. Rerum iusto eius sint.
-        Accusamus vel assumenda, corporis maxime molestias atque animi quas cum quis
-        maiores amet voluptatibus magni error ratione officiis? Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Laboriosam qui reprehenderit illum quaerat
-        architecto commodi exercitationem velit. Eius ipsam, quod asperiores perspiciatis,
-        nihil omnis tenetur saepe deserunt sed, cumque magnam?
-      </section>
+      {renderSections(CONFERENCES_SECTIONS, sectionRefs)}
     </Screen>
   );
 };

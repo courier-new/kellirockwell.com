@@ -4,7 +4,7 @@ import isUndefined from 'lodash/isUndefined';
 import MainNavMenu from './MainNavMenu';
 import { Slug } from '../../constants/slugs';
 import SideNavMenu from './SideNavMenu';
-import { ContentSection } from '../../content';
+import { ContentSection } from '../../utilities/content-helpers';
 import useDisplaySize from '../hooks/useDisplaySize';
 import { DisplaySize } from '../../constants/breakpoint-sizes';
 import DrawerMainNavMenu from './DrawerMainNavMenu';

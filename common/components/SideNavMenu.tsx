@@ -1,9 +1,8 @@
 import React, { FC, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import map from 'lodash/map';
-import flatMap from 'lodash/flatMap';
 import Link from 'next/link';
-import { ContentSection } from '../../content';
+import { ContentSection, flattenAllAnchors } from '../../utilities/content-helpers';
 
 type SideNavMenuProps = {
   /** The index corresponding to section of the screen containing the current
@@ -32,7 +31,7 @@ const renderLink = (
   { anchor, subsections, title }: ContentSection<string>,
   index: number,
   activeSection: string,
-): JSX.Element => {
+): JSX.Element | null => {
   const linkClass = anchor === activeSection ? 'font-bold' : 'font-normal';
   const subsectionNavigation = subsections
     ? renderNavigation(subsections, activeSection)
@@ -63,22 +62,6 @@ const renderNavigation = (
     {map(sections, (section, index) => renderLink(section, index, activeSection))}
   </ul>
 );
-
-/**
- * Traverses a list of potentially deeply nested section trees and returns a
- * flattened array of every section's anchor, using preorder traversal
- * (root, then left-to-right children), which should correspond to the order
- * that the sections appear in the DOM
- *
- * @param sections the list of sections to get the anchors for
- */
-const flattenAllAnchors = (sections: ContentSection<string>[]): string[] =>
-  flatMap(sections, (section) => {
-    if (!section.subsections) {
-      return [section.anchor];
-    }
-    return [section.anchor, ...flattenAllAnchors(section.subsections)];
-  });
 
 /**
  * Component for secondary (same-page) navigation bar with nav links on right

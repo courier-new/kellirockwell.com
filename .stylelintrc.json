@@ -1,0 +1,37 @@
+{
+  "extends": ["stylelint-config-standard", "stylelint-config-sass-guidelines"],
+  "ignoreFiles": [
+    "public/v1/**/*",
+    ".vscode/**/*",
+    "**/*.tsx",
+    "**/*.jsx",
+    "**/*.ts",
+    "**/*.js"
+  ],
+  "plugins": [
+    "stylelint-declaration-strict-value",
+    "stylelint-order",
+    "stylelint-prettier",
+    "stylelint-suitcss",
+    "stylelint-value-no-unknown-custom-properties"
+  ],
+  "rules": {
+    "order/order": [
+      "custom-properties",
+      "dollar-variables",
+      "declarations",
+      "at-rules",
+      "rules"
+    ],
+    "csstools/value-no-unknown-custom-properties": true,
+    "custom-property-pattern": "^[a-z][a-z0-9-]+$",
+    "function-parentheses-newline-inside": null,
+    "order/properties-alphabetical-order": true,
+    "scale-unlimited/declaration-strict-value": ["/color/", "font-size", "font-family"],
+    "selector-class-pattern": "^[a-z][a-z0-9-]+$",
+    "selector-max-id": 2,
+    "suitcss/custom-property-no-outside-root": true,
+    "suitcss/root-no-standard-properties": true,
+    "suitcss/selector-root-no-composition": true
+  }
+}

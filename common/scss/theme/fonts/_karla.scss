@@ -1,0 +1,27 @@
+$karla: 'Karla';
+
+@font-face {
+  font-family: $karla;
+  font-weight: normal;
+  src: url('/fonts/Karla/Karla-Regular.ttf');
+}
+
+@font-face {
+  font-family: $karla;
+  font-style: italic;
+  font-weight: normal;
+  src: url('/fonts/Karla/Karla-Italic.ttf');
+}
+
+@font-face {
+  font-family: $karla;
+  font-style: italic;
+  font-weight: bold;
+  src: url('/fonts/Karla/Karla-BoldItalic.ttf');
+}
+
+@font-face {
+  font-family: $karla;
+  font-weight: bold;
+  src: url('/fonts/Karla/Karla-Bold.ttf');
+}

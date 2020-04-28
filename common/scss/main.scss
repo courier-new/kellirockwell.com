@@ -1,0 +1,156 @@
+@import 'theme/fonts';
+@import 'theme/colors';
+
+/* ROOT */
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body,
+#__next {
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0; /* Removes default style */
+  overflow: hidden; /* Makes the body non-scrollable (we will add scrolling to the sidebar and main content containers) */
+  width: 100%;
+}
+
+/* LAYOUT */
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-align-center {
+  align-items: center;
+}
+
+.flex-justify-center {
+  justify-content: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.grid {
+  display: grid;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.non-scrollable {
+  overflow: hidden;
+}
+
+.scrollable-y {
+  overflow-y: auto;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+/* LIST */
+
+.no-default-bullets {
+  list-style: none;
+}
+
+/* SIZE */
+
+.sidebar-width {
+  box-sizing: border-box;
+  max-width: 240px;
+  min-width: 240px;
+}
+
+.border-box {
+  box-sizing: border-box;
+}
+
+/* PADDING/MARGIN */
+
+.padding-sm-top,
+%padding-sm-top {
+  padding-top: 9px;
+}
+
+.padding-sm-bottom,
+%padding-sm-bottom {
+  padding-bottom: 9px;
+}
+
+.padding-sm-h,
+%padding-sm-h {
+  padding-left: 9px;
+  padding-right: 9px;
+}
+
+.padding-sm-v,
+%padding-sm-v {
+  @extend %padding-sm-top;
+  @extend %padding-sm-bottom;
+}
+
+.padding-sm {
+  @extend %padding-sm-h;
+  @extend %padding-sm-v;
+}
+
+.padding-med-h,
+%padding-med-h {
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.padding-med-v,
+%padding-med-v {
+  padding-bottom: 18px;
+  padding-top: 18px;
+}
+
+.padding-med {
+  @extend %padding-med-h;
+  @extend %padding-med-v;
+}
+
+.margin-0 {
+  margin: 0;
+}
+
+.padding-0 {
+  padding: 0;
+}
+
+/* Z-INDEX */
+
+.z-index-top {
+  z-index: 100;
+}
+
+.z-index-middle {
+  z-index: 50;
+}
+
+.z-index-bottom {
+  z-index: 0;
+}

@@ -1,0 +1,110 @@
+$maastricht: #061826;
+$space: #4c6172;
+$sapphire: #17179f;
+$turquoise: #4cdbc8;
+$magnolia: #fdf4fc;
+$cheddar: #fecb49;
+$raspberry: #ef2860;
+$white: #fff;
+$black: #000;
+
+$light-sapphire: lighten(#17179f, 20%);
+$medium-magnolia: desaturate(darken(#fdf4fc, 20%), 60%);
+$medium-turquoise: saturate(darken(#4cdbc8, 30%), 100%);
+$darker-maastricht: darken(#061826, 3%);
+
+$light-colors: (
+  'maastricht': $maastricht,
+  'space': $space,
+  'sapphire': $sapphire,
+  'turquoise': $turquoise,
+  'magnolia': $magnolia,
+  'cheddar': $cheddar,
+  'raspberry': $raspberry,
+  'white': $white,
+  'black': $darker-maastricht,
+);
+
+$dark-colors: (
+  'maastricht': $medium-magnolia,
+  'space': $space,
+  'sapphire': $medium-turquoise,
+  'turquoise': $light-sapphire,
+  'magnolia': $maastricht,
+  'cheddar': $cheddar,
+  'raspberry': $raspberry,
+  'white': $darker-maastricht,
+  'black': $white,
+);
+
+/* Mixin to generate styles based on the theme colors for a given attribute, one
+per color, based on here:
+https://frontstuff.io/generate-all-your-utility-classes-with-sass-maps */
+@mixin color-modifiers($attribute: 'color', $color-set: $light-colors) {
+  @each $name, $hex in $color-set {
+    &#{'-'}#{$name} {
+      #{$attribute}: $hex;
+    }
+  }
+}
+
+@mixin use-theme-colors($color-set: $light-colors) {
+  /* Default text and background color */
+  background-color: map-get($color-set, 'white');
+  color: map-get($color-set, 'black');
+
+  body,
+  span,
+  p,
+  ul,
+  li {
+    color: map-get($color-set, 'black');
+  }
+
+  a {
+    color: map-get($color-set, 'space');
+  }
+
+  /* Text color styles */
+  .text {
+    @include color-modifiers('color', $color-set);
+  }
+
+  h1 {
+    color: map-get($color-set, 'space');
+  }
+
+  h2 {
+    color: map-get($color-set, 'maastricht');
+  }
+
+  h3 {
+    color: map-get($color-set, 'sapphire');
+  }
+
+  /* Background color styles */
+  .background {
+    @include color-modifiers('background-color', $color-set);
+  }
+
+  .gradient-background {
+    background: map-get($color-set, 'maastricht');
+    background:
+      linear-gradient(108deg,
+      map-get($color-set, 'sapphire') 6vw,
+      map-get($color-set, 'turquoise') 28vw,
+      map-get($color-set, 'magnolia') 50vw,
+      map-get($color-set, 'cheddar') 72vw,
+      map-get($color-set, 'raspberry') 94vw);
+  }
+}
+
+/* LIGHT THEME */
+#__next [data-theme='light'] {
+  @include use-theme-colors($light-colors);
+}
+
+/* DARK THEME */
+#__next [data-theme='dark'] {
+  @include use-theme-colors($dark-colors);
+}

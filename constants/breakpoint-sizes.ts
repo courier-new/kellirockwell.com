@@ -9,8 +9,11 @@ export const BREAKPOINT_SIZES = {
   SMALL: 768,
   /** Medium display size minimum width captures the narrowest laptop/desktop devices */
   MEDIUM: 1024,
-  /** Large display size minimum width captures all larger laptop/desktop devices */
+  /** Large display size minimum width captures most laptop/desktop devices */
   LARGE: 1200,
+  /** X-Large display size minimum width captures extra-wide laptop/desktop
+   * devices */
+  XLARGE: 1600,
 } as const;
 /* eslint-enable sort-keys */
 

@@ -69,7 +69,7 @@ const useDisplaySize = (): [DisplaySize, number] => {
 
         setTimeout(() => {
           requestRunning = null;
-        }, 200);
+        }, 400);
 
         // Set a timer to check the size again later
         lastResizeTimeout = setTimeout(() => setWindowWidth(window.innerWidth), 500);

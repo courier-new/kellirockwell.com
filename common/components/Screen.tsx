@@ -34,8 +34,8 @@ type ScreenProps = {
   scrollPercent?: Percent;
 };
 
-const MAIN_NAV_MENU_DISPLAY_SIZES: DisplaySize[] = ['LARGE', 'MEDIUM', 'SMALL'];
-const SIDE_NAV_MENU_DISPLAY_SIZES: DisplaySize[] = ['LARGE', 'MEDIUM'];
+const MAIN_NAV_MENU_DISPLAY_SIZES: DisplaySize[] = ['XLARGE', 'LARGE', 'MEDIUM', 'SMALL'];
+const SIDE_NAV_MENU_DISPLAY_SIZES: DisplaySize[] = ['XLARGE', 'LARGE', 'MEDIUM'];
 
 /**
  * Returns true if the current display size is included in the list of allowed

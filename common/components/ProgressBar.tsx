@@ -19,7 +19,10 @@ const ProgressBar: FC<ProgressBarProps> = ({ scrollPercent }) => {
   };
 
   return (
-    <div className="gradient-background full-width absolute" style={barCoverStyle} />
+    <div
+      className="gradient-background full-width absolute z-index-top"
+      style={barCoverStyle}
+    />
   );
 };
 

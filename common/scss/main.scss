@@ -140,3 +140,17 @@ body,
 .padding-0 {
   padding: 0;
 }
+
+/* Z-INDEX */
+
+.z-index-top {
+  z-index: 100;
+}
+
+.z-index-middle {
+  z-index: 50;
+}
+
+.z-index-bottom {
+  z-index: 0;
+}

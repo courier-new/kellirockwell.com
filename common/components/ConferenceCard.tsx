@@ -1,7 +1,16 @@
 import React, { FC } from 'react';
 import { DateTime, Interval } from 'luxon';
 import replace from 'lodash/replace';
-import { Conference } from '../../content/conferences/Conference';
+import { AiFillCalendar } from 'react-icons/ai';
+import { IoIosPin } from 'react-icons/io';
+import { FiLink } from 'react-icons/fi';
+import {
+  Conference,
+  CANCELLED,
+  hasPassed,
+  NOW,
+  NEXT,
+} from '../../content/conferences/Conference';
 
 /**
  * Formats the conference date for display using the following rules:
@@ -38,22 +47,96 @@ const formatURL = (url: string): string => replace(url, /https?:\/\//i, '');
 
 /**
  * A component card block detailing info about a Conference
+ *
+ * @param conference the Conference to render
  */
-const ConferenceCard: FC<Conference> = ({ date, name, location, website }) => {
+const ConferenceCard: FC<Conference> = (conference) => {
+  const { date, dateLabel, name, label, location, website } = conference;
+
   const formattedURL = formatURL(website);
+  const linkAnchor = (
+    <a
+      href={website}
+      title={formattedURL}
+      style={{ fontSize: '13px', wordWrap: 'break-word' }}
+    >
+      {formattedURL}
+    </a>
+  );
+
+  const opacity = hasPassed(conference) ? 0.4 : 1;
+
+  // Regular label takes precedence over dateLabel in the UI
+  const labelText = label || dateLabel;
+
+  // Set the label style based on what sort of label text it is
+  let labelClass = '';
+  switch (labelText) {
+    case CANCELLED:
+      labelClass = 'text-raspberry';
+      break;
+    case NOW:
+    case NEXT:
+      labelClass = 'text-turquoise';
+      break;
+    default:
+      break;
+  }
+
   return (
-    <>
-      <li>{name}</li>
-      <ul>
-        <li>{formatDate(date)}</li>
-        <li>{location}</li>
-        <li>
-          <a href={website} title={formattedURL}>
-            {formattedURL}
-          </a>
-        </li>
-      </ul>
-    </>
+    <div className="background-magnolia border-box" style={{ opacity }}>
+      <div className="padding-med">
+        {labelText ? (
+          <h6 className={`margin-0 padding-sm-bottom uppercase ${labelClass}`}>
+            {labelText}
+          </h6>
+        ) : null}
+        <h3
+          className="margin-0 padding-sm-bottom flex-row flex-align-center"
+          style={{ height: 50 }}
+        >
+          {name}
+        </h3>
+        <ul className="no-default-bullets padding-0">
+          <ConferenceCardDate label={formatDate(date)} />
+          <ConferenceCardLocation label={location} />
+          <ConferenceCardWebsite label={linkAnchor} />
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+const iconProps = {
+  className: 'text-black',
+};
+
+const ConferenceCardDate: FC<{ label: string }> = ({ label }) => (
+  <ConferenceCardLine icon={<AiFillCalendar {...iconProps} />} label={label} />
+);
+
+const ConferenceCardLocation: FC<{ label: string }> = ({ label }) => (
+  <ConferenceCardLine icon={<IoIosPin {...iconProps} size="1.2em" />} label={label} />
+);
+
+const ConferenceCardWebsite: FC<{ label: JSX.Element }> = ({ label }) => (
+  <ConferenceCardLine icon={<FiLink {...iconProps} size="1.2em" />} label={label} />
+);
+
+const ConferenceCardLine: FC<{ icon: JSX.Element; label: string | JSX.Element }> = ({
+  icon,
+  label,
+}) => {
+  return (
+    <li className="flex-row padding-0 flex-align-center">
+      <span
+        className="flex-row flex-align-center flex-justify-center"
+        style={{ marginRight: '5px', width: '1.4em' }}
+      >
+        {icon}
+      </span>
+      {label}
+    </li>
   );
 };
 

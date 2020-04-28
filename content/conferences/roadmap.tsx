@@ -2,11 +2,8 @@ import React from 'react';
 import { DateTime, Interval } from 'luxon';
 import map from 'lodash/map';
 import ConferenceCard from '../../common/components/ConferenceCard';
-import { Conference } from './Conference';
+import { Conference, CANCELLED, VIRTUAL, addDateLabels } from './Conference';
 import { generateTitleProps } from '../../utilities/content-helpers';
-
-const VIRTUAL = 'Virtual';
-export const CANCELLED = 'Cancelled';
 
 /**
  * Builds a <ul> of ConferenceCards for a list of conferences
@@ -17,16 +14,23 @@ export const CANCELLED = 'Cancelled';
 export const renderConferences = (
   conferences: Conference[],
   key: string,
-): JSX.Element => (
-  <ul key={key}>
-    {map(conferences, (conference, index) => (
-      <ConferenceCard key={`conference-${index}`} {...conference} />
-    ))}
-  </ul>
-);
+): JSX.Element => {
+  const conferenceListStyle = {
+    gridGap: '20px',
+    gridTemplateColumns:
+      'calc(33% - 10px) minmax(30%, calc(33% - 10px)) calc(33% - 10px)',
+  };
+  return (
+    <ul key={key} className="grid border-box padding-0" style={conferenceListStyle}>
+      {map(conferences, (conference, index) => (
+        <ConferenceCard key={`conference-${index}`} {...conference} />
+      ))}
+    </ul>
+  );
+};
 
 /* eslint-disable jsdoc/require-jsdoc */
-export const CONFERENCES_2020: Conference[] = [
+export const CONFERENCES_2020: Conference[] = addDateLabels([
   {
     date: DateTime.fromObject({ day: 22, month: 2, year: 2020 }),
     label: CANCELLED,
@@ -50,7 +54,7 @@ export const CONFERENCES_2020: Conference[] = [
     ),
     location: VIRTUAL,
     name: 'MagnoliaJS 2020',
-    website: 'https://theremoteworksummit.com',
+    website: 'https://magnoliajs.com',
   },
   {
     date: DateTime.fromObject({ day: 25, month: 4, year: 2020 }),
@@ -121,9 +125,9 @@ export const CONFERENCES_2020: Conference[] = [
     name: 'CascadiaJS 2020',
     website: 'https://2020.cascadiajs.com',
   },
-];
+]);
 
-export const CONFERENCES_2019: Conference[] = [
+export const CONFERENCES_2019: Conference[] = addDateLabels([
   {
     date: Interval.fromDateTimes(
       DateTime.fromObject({ day: 27, month: 8, year: 2019 }),
@@ -148,7 +152,7 @@ export const CONFERENCES_2019: Conference[] = [
     name: 'CascadiaJS 2019',
     website: 'https://2019.cascadiajs.com',
   },
-];
+]);
 /* eslint-enable jsdoc/require-jsdoc */
 
 export default {

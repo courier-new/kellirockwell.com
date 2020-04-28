@@ -1,9 +1,8 @@
 import React from 'react';
-import { DateTime, Interval } from 'luxon';
 import flatten from 'lodash/flatten';
-import reject from 'lodash/reject';
-import { CANCELLED, CONFERENCES_2019, CONFERENCES_2020 } from './roadmap';
-import { Conference } from './Conference';
+import filter from 'lodash/filter';
+import { CONFERENCES_2019, CONFERENCES_2020 } from './roadmap';
+import { CANCELLED, Conference, hasPassed } from './Conference';
 import { generateTitleProps } from '../../utilities/content-helpers';
 
 /**
@@ -15,12 +14,9 @@ import { generateTitleProps } from '../../utilities/content-helpers';
  * @param conferences the list or list of lists of Conferences to count
  */
 const countConferencesAttended = (conferences: Conference[] | Conference[][]): number =>
-  reject(flatten(conferences), (conference) => {
-    if (conference.label === CANCELLED) return true;
-    if (Interval.isInterval(conference.date)) {
-      return conference.date.end > DateTime.local();
-    }
-    return conference.date > DateTime.local();
+  filter(flatten(conferences), (conference) => {
+    if (conference.label === CANCELLED) return false;
+    return hasPassed(conference);
   }).length + 4; // Add 4 for CUWiPs
 
 export default {

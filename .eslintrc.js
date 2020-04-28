@@ -92,9 +92,10 @@ module.exports = {
           'ExportNamedDeclaration TSTypeAliasDeclaration TSPropertySignature:not([key.name="__brand"])',
           // Require JSDoc on component props
           'TSTypeAliasDeclaration[id.name=/.*Props$/] TSPropertySignature',
-          // Require JSDoc on exported literal objects and their properties
-          'ExportNamedDeclaration ObjectExpression',
-          'ExportNamedDeclaration ObjectExpression Property',
+          // Require JSDoc on exported literal objects and their properties,
+          // except style objects
+          'ExportNamedDeclaration Identifier:not([key.name=/.*style.*/i]) ObjectExpression',
+          'ExportNamedDeclaration Identifier:not([key.name=/.*style.*/i]) ObjectExpression Property',
         ],
       },
     ], // Recommended

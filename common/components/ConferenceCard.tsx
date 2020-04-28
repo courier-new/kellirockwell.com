@@ -111,18 +111,22 @@ const iconProps = {
   className: 'text-black',
 };
 
+/** Line of a ConferenceCard for the date */
 const ConferenceCardDate: FC<{ label: string }> = ({ label }) => (
   <ConferenceCardLine icon={<AiFillCalendar {...iconProps} />} label={label} />
 );
 
+/** Line of a ConferenceCard for the location */
 const ConferenceCardLocation: FC<{ label: string }> = ({ label }) => (
   <ConferenceCardLine icon={<IoIosPin {...iconProps} size="1.2em" />} label={label} />
 );
 
+/** Line of a ConferenceCard for the website */
 const ConferenceCardWebsite: FC<{ label: JSX.Element }> = ({ label }) => (
   <ConferenceCardLine icon={<FiLink {...iconProps} size="1.2em" />} label={label} />
 );
 
+/** Line of a ConferenceCard, as an <li>, composed of an icon and label */
 const ConferenceCardLine: FC<{ icon: JSX.Element; label: string | JSX.Element }> = ({
   icon,
   label,

@@ -9,6 +9,7 @@ import useCurrentSectionIndex from '../common/hooks/useCurrentSectionIndex';
 import useScrollInfo from '../common/hooks/useScrollInfo';
 import { flattenAllAnchors } from '../utilities/content-helpers';
 import { KebabCaseString } from '../utilities/string-case-helpers';
+import ConferenceCardGrid from '../common/components/ConferenceCardGrid';
 
 /** List of refs for sections in order, as objects distinguishable by their
  * anchor */
@@ -42,7 +43,17 @@ const renderSections = (
     ];
     // Section content
     if (section.content) {
-      sectionElements = [...sectionElements, section.content];
+      if ('conferences' in section.content) {
+        const conferencesBlock = (
+          <ConferenceCardGrid
+            key={`conferences-${index}`}
+            conferences={section.content.conferences}
+          />
+        );
+        sectionElements = [...sectionElements, conferencesBlock];
+      } else {
+        sectionElements = [...sectionElements, section.content];
+      }
     }
     // Subsections
     if (section.subsections) {
@@ -90,6 +101,11 @@ const ConferencesScreen: FC<{}> = () => {
 
   const scrollPercent = useScrollInfo(outerRef)[1];
 
+  // Memoize the rendered sections of content
+  const sections = useMemo(() => renderSections(CONFERENCES_SECTIONS, sectionRefs), [
+    sectionRefs,
+  ]);
+
   return (
     <Screen
       activePage="conferences"
@@ -101,7 +117,7 @@ const ConferencesScreen: FC<{}> = () => {
       ref={outerRef}
       scrollPercent={scrollPercent}
     >
-      {renderSections(CONFERENCES_SECTIONS, sectionRefs)}
+      {sections}
     </Screen>
   );
 };

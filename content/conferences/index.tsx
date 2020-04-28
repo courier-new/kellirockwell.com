@@ -2,6 +2,7 @@ import React from 'react';
 import ROADMAP from './roadmap';
 import JOURNEY_TO_THE_CENTER from './journey-to-the-center';
 import { ContentSection, generateTitleProps } from '../../utilities/content-helpers';
+import { Conference } from './Conference';
 
 type ConferencesSectionName =
   | 'Journey to the center of the community'
@@ -10,7 +11,10 @@ type ConferencesSectionName =
   | 'Current (2020)'
   | '2019';
 
-type ConferencesContentSection = ContentSection<ConferencesSectionName, JSX.Element>;
+type ConferencesContentSection = ContentSection<
+  ConferencesSectionName,
+  JSX.Element | { conferences: Conference[] }
+>;
 
 const CONFERENCES_SECTIONS: ConferencesContentSection[] = [
   JOURNEY_TO_THE_CENTER,

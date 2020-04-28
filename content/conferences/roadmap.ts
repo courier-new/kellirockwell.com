@@ -1,33 +1,6 @@
-import React from 'react';
 import { DateTime, Interval } from 'luxon';
-import map from 'lodash/map';
-import ConferenceCard from '../../common/components/ConferenceCard';
 import { Conference, CANCELLED, VIRTUAL, addDateLabels } from './Conference';
 import { generateTitleProps } from '../../utilities/content-helpers';
-
-/**
- * Builds a <ul> of ConferenceCards for a list of conferences
- *
- * @param conferences the list of conferences to render to JSX
- * @param key a unique key for the <ul> item
- */
-export const renderConferences = (
-  conferences: Conference[],
-  key: string,
-): JSX.Element => {
-  const conferenceListStyle = {
-    gridGap: '20px',
-    gridTemplateColumns:
-      'calc(33% - 10px) minmax(30%, calc(33% - 10px)) calc(33% - 10px)',
-  };
-  return (
-    <ul key={key} className="grid border-box padding-0" style={conferenceListStyle}>
-      {map(conferences, (conference, index) => (
-        <ConferenceCard key={`conference-${index}`} {...conference} />
-      ))}
-    </ul>
-  );
-};
 
 /* eslint-disable jsdoc/require-jsdoc */
 export const CONFERENCES_2020: Conference[] = addDateLabels([
@@ -160,11 +133,11 @@ export default {
   subsections: [
     {
       ...generateTitleProps('Current (2020)'),
-      content: renderConferences(CONFERENCES_2020, 'conferences-2020'),
+      content: { conferences: CONFERENCES_2020 },
     },
     {
       ...generateTitleProps('2019'),
-      content: renderConferences(CONFERENCES_2019, 'conferences-2019'),
+      content: { conferences: CONFERENCES_2019 },
     },
   ],
 };

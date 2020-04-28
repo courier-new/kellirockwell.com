@@ -93,20 +93,12 @@ const useDimensions = <Element extends HTMLElement = HTMLElement>(
 
       measure();
 
-      if ('ResizeObserver' in window) {
-        const resizeObserver = new ResizeObserver(measure);
-        resizeObserver.observe(current);
-
-        return resizeObserver.disconnect;
-      }
-
       window.addEventListener('resize', measure);
       window.addEventListener('scroll', measure);
 
       return (): void => {
         window.removeEventListener('resize', measure);
         window.removeEventListener('scroll', measure);
-        current.removeEventListener('scroll', measure);
       };
     }
     return undefined;

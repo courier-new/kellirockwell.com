@@ -218,8 +218,10 @@ const useCurrentSectionIndex = (
                   i += 1;
                 }
               } else {
-                // Otherwise, we've gone too far; set the section as the previous index
-                newSectionIndex = i - 1;
+                // Otherwise, we've gone too far; set the section to the
+                // previous index (or else the current section, if it's the
+                // first one)
+                newSectionIndex = i > 0 ? i - 1 : 0;
                 break;
               }
             }

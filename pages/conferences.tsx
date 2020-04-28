@@ -48,7 +48,7 @@ const renderSections = (
     if (section.subsections) {
       sectionElements = [
         ...sectionElements,
-        ...renderSections(section.subsections, sectionRefs, 3),
+        ...renderSections(section.subsections, sectionRefs, 2),
       ];
     }
     // Wrap section elements in <Section>

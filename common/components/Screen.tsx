@@ -74,7 +74,8 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
     ]);
 
     /** True if the user system preference is for a dark color scheme */
-    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+    // TODO: Re-enable after tweaking dark mode color scheme
+    const prefersDarkMode = false; // useMediaQuery('(prefers-color-scheme: dark)');
 
     return (
       <div
@@ -91,7 +92,7 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
           ) : (
             <DrawerMainNavMenu activePage={activePage} />
           )}
-          <main className="flex-1 flex-column scrollable-y" ref={ref}>
+          <main className="flex-1 flex-column scrollable-y padding-med" ref={ref}>
             {children}
           </main>
           {contentSections && shouldShowSideNav ? (

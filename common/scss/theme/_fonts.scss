@@ -1,42 +1,40 @@
+@import 'colors';
 @import 'fonts/karla';
 @import 'fonts/titillium';
 @import 'fonts/yeseva-one';
 
 $headers: (
   h1: (
-    'size': 40px,
-    'family': $yeseva-one,
-    'weight': normal,
+    'font-size': 40px,
+    'font-family': $yeseva-one,
+    'font-weight': normal,
+  ),
+  h2: (
+    'font-size': 25px,
+    'font-family': $karla,
+    'font-weight': bold,
   ),
   h3: (
-    'size': 25px,
-    'family': $karla,
-    'weight': bold,
+    'font-size': 20px,
+    'font-family': $yeseva-one,
+    'font-weight': normal,
   ),
-  h4: (
-    'size': 20px,
-    'family': $yeseva-one,
-    'weight': normal,
+  h6: (
+    'letter-spacing': 1.2px,
   ),
 );
 
-@mixin header-modifiers($scale: $headers, $and-children: false) {
+@mixin header-modifiers($scale: $headers) {
   @each $name, $attributes in $scale {
     @each $attribute, $value in $attributes {
       #{$name} {
-        #{'font-'}#{$attribute}: $value;
-      }
-
-      @if $and-children {
-        #{$name} * {
-          #{'font-'}#{$attribute}: $value;
-        }
+        #{$attribute}: $value;
       }
     }
   }
 }
 
-@include header-modifiers($headers, true);
+@include header-modifiers($headers);
 
 /* Default font */
 * {
@@ -54,4 +52,8 @@ $headers: (
 
 .font-italic {
   font-style: italic;
+}
+
+.uppercase {
+  text-transform: uppercase;
 }

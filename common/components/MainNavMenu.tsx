@@ -29,9 +29,9 @@ const renderLink = (slug: Slug, index: number, active?: 'active'): JSX.Element =
     (w: string[]): string => join(w, ' '), // Rejoin words
   ])(slug);
   return (
-    <li key={index}>
+    <li className="text-magnolia" key={index}>
       <Link href={`/${slug}`}>
-        <a title={linkText} className={linkClass}>
+        <a title={linkText} className={`${linkClass} text-magnolia`}>
           {linkText}
         </a>
       </Link>

@@ -58,9 +58,7 @@ const renderNavigation = (
   sections: ContentSection<string>[],
   activeSection: string,
 ): JSX.Element => (
-  <ul className="no-default-bullets">
-    {map(sections, (section, index) => renderLink(section, index, activeSection))}
-  </ul>
+  <ul>{map(sections, (section, index) => renderLink(section, index, activeSection))}</ul>
 );
 
 /**

@@ -1,6 +1,13 @@
 {
   "extends": ["stylelint-config-standard", "stylelint-config-sass-guidelines"],
-  "ignoreFiles": ["public/v1/**/*", ".vscode/**/*"],
+  "ignoreFiles": [
+    "public/v1/**/*",
+    ".vscode/**/*",
+    "**/*.tsx",
+    "**/*.jsx",
+    "**/*.ts",
+    "**/*.js"
+  ],
   "plugins": [
     "stylelint-declaration-strict-value",
     "stylelint-order",

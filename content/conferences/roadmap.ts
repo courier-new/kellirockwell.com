@@ -45,6 +45,12 @@ export const CONFERENCES_2020: Conference[] = addDateLabels([
     website: 'https://bytesized.xyz/react-2020',
   },
   {
+    date: DateTime.fromObject({ day: 6, month: 5, year: 2020 }),
+    location: VIRTUAL,
+    name: 'Github Satellite',
+    website: 'https://githubsatellite.com',
+  },
+  {
     date: Interval.fromDateTimes(
       DateTime.fromObject({ day: 18, month: 5, year: 2020 }),
       DateTime.fromObject({ day: 22, month: 5, year: 2020 }),
@@ -70,6 +76,15 @@ export const CONFERENCES_2020: Conference[] = addDateLabels([
     location: VIRTUAL,
     name: 'ForwardJS Ottawa',
     website: 'https://forwardjs.com',
+  },
+  {
+    date: Interval.fromDateTimes(
+      DateTime.fromObject({ day: 15, month: 7, year: 2020 }),
+      DateTime.fromObject({ day: 17, month: 7, year: 2020 }),
+    ),
+    location: VIRTUAL,
+    name: 'elm-conf',
+    website: 'https://2020.elm-conf.com',
   },
   {
     date: Interval.fromDateTimes(

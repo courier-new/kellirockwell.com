@@ -6,11 +6,12 @@ import PROJECTS_SECTIONS from './projects';
 import { ContentSection } from '../utilities/content-helpers';
 
 /**
- * Returns the appropriate array of `ContentSection`s for the given page slug
+ * Returns the appropriate array of `ContentSection`s for the given page slug,
+ * or else an empty array
  *
  * @param slug the `Slug` to get the page content for
  */
-const getSectionsForPage = (slug: Slug): ContentSection<string, ReactNode>[] => {
+const getSectionsForPage = (slug?: Slug): ContentSection<string, ReactNode>[] => {
   switch (slug) {
     case 'about-me':
       return ABOUT_ME_SECTIONS;

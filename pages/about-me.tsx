@@ -1,286 +1,116 @@
-import React, { FC, useRef } from 'react';
+import React, { FC, ReactNode } from 'react';
+import flatMap from 'lodash/flatMap';
+import find from 'lodash/find';
+import ScreenContent from '../common/components/ScreenContent';
 import ABOUT_ME_SECTIONS from '../content/about-me';
-import useMeasureSectionHeights from '../common/hooks/useMeasureSectionHeights';
+import { ContentRenderer, ContentSection } from '../utilities/content-helpers';
 
-type AboutMeScreenProps = {};
+/* eslint-disable-next-line jsdoc/require-jsdoc */
+const FAKE_CONTENT = (key: string): JSX.Element => (
+  <React.Fragment key={key}>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, veniam inventore
+      rerum laboriosam dolorem impedit minima maxime debitis iusto fuga quae! Veritatis id
+      nobis laboriosam consequuntur quaerat temporibus repudiandae placeat? Lorem ipsum
+      dolor sit amet, consectetur adipisicing elit. Officia tempore sed eveniet reiciendis
+      corporis similique ipsa ea. Aperiam possimus amet placeat repellendus molestias
+      laudantium, provident dolores ex inventore, vitae repellat? Lorem ipsum dolor sit
+      amet consectetur adipisicing elit. At a animi repellat, assumenda possimus illum
+      voluptates? Neque perferendis, aliquid cum ullam hic quos ut! Architecto vel
+      deserunt porro necessitatibus optio.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
+      assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic quos
+      ut! Architecto vel deserunt porro necessitatibus optio. Lorem ipsum dolor sit amet
+      consectetur adipisicing elit. At a animi repellat, assumenda possimus illum
+      voluptates? Neque perferendis, aliquid cum ullam hic quos ut! Architecto vel
+      deserunt porro necessitatibus optio.
+    </p>
+    <p>
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam
+      asperiores odio suscipit quam aspernatur illum, quis quidem sapiente quisquam.
+      Obcaecati, blanditiis similique optio accusantium ut quia quaerat officia voluptas.
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, veniam inventore
+      rerum laboriosam dolorem impedit minima maxime debitis iusto fuga quae! Veritatis id
+      nobis laboriosam consequuntur quaerat temporibus repudiandae placeat? Lorem ipsum
+      dolor sit amet, consectetur adipisicing elit. Officia tempore sed eveniet reiciendis
+      corporis similique ipsa ea. Aperiam possimus amet placeat repellendus molestias
+      laudantium, provident dolores ex inventore, vitae repellat? Lorem ipsum dolor sit
+      amet consectetur adipisicing elit. At a animi repellat, assumenda possimus illum
+      voluptates? Neque perferendis, aliquid cum ullam hic quos ut! Architecto vel
+      deserunt porro necessitatibus optio.
+    </p>
+  </React.Fragment>
+);
+
+/**
+ * Maps each section to a `<section>` of JSX to render, providing the section
+ * with the appropriate `ref` prop and page anchor id
+ *
+ * @param sections the `ContentSection`s of the About Me screen
+ * @param sectionRefs the list of React `RefObject`s for each of these sections
+ * and their subsections, in order and flattened
+ * @param headingLevel the level of heading to render for this section (e.g.
+ * `headingLevel: 1` => `h1`, `headingLevel: 2` => `h2`)
+ */
+export const renderAboutMeSections: ContentRenderer<typeof ABOUT_ME_SECTIONS> = (
+  sections,
+  sectionRefs,
+  headingLevel = 1,
+): JSX.Element[] => {
+  let headingTag = `h${headingLevel}`;
+  if (headingLevel < 1 || headingLevel > 6) {
+    /* eslint-disable-next-line no-console */
+    console.warn('Invalid heading level provided to section renderer. Defaulting to h3.');
+    headingTag = 'h3';
+  }
+
+  return flatMap(sections, (section, index) => {
+    // Array with which to build up section children elements
+    let sectionElements: JSX.Element[] = [];
+
+    sectionElements = [
+      ...sectionElements,
+      // Section heading
+      React.createElement(headingTag, { key: `heading-${index}` }, section.name),
+    ];
+
+    // Section content
+    // if (section.content) {
+    //     sectionElements = [...sectionElements, section.content];
+    // }
+    sectionElements = [...sectionElements, FAKE_CONTENT(`fake-${index}`)];
+
+    // Subsections
+    if (section.subsections) {
+      sectionElements = [
+        ...sectionElements,
+        ...renderAboutMeSections(section.subsections, sectionRefs, headingLevel + 1),
+      ];
+    }
+
+    // Wrap section elements in `<section>`
+    const sectionRef = find(sectionRefs, ['anchor', section.anchor])?.ref;
+    return (
+      <section key={section.anchor} ref={sectionRef} id={section.anchor}>
+        {sectionElements}
+      </section>
+    );
+  });
+};
 
 /**
  * Screen component for primary screen "About Me"
  */
-const AboutMeScreen: FC<AboutMeScreenProps> = () => {
-  // TODO: make dynamic: https://stackoverflow.com/questions/55995760/how-to-add-refs-dynamically-with-react-hooks
-  const s1Ref = useRef<HTMLHeadingElement>(null);
-  const s2Ref = useRef<HTMLHeadingElement>(null);
-  const s3Ref = useRef<HTMLHeadingElement>(null);
-  const s4Ref = useRef<HTMLHeadingElement>(null);
-  const s5Ref = useRef<HTMLHeadingElement>(null);
-  const s6Ref = useRef<HTMLHeadingElement>(null);
-  const s7Ref = useRef<HTMLHeadingElement>(null);
-
-  useMeasureSectionHeights([s1Ref, s2Ref, s3Ref, s4Ref, s5Ref, s6Ref, s7Ref], 'about-me');
-
-  return (
-    <>
-      <section ref={s1Ref} id={ABOUT_ME_SECTIONS[0].anchor}>
-        <h1>By the numbers</h1>
-        <h4>Background</h4>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam unde minima
-        distinctio, consequuntur vitae temporibus libero amet. Minima delectus, adipisci
-        repudiandae ipsum facere sequi nobis fuga. Rerum magni repudiandae perferendis.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-        assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic quos
-        ut! Architecto vel deserunt porro necessitatibus optio. Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. At a animi repellat, assumenda possimus illum
-        voluptates? Neque perferendis, aliquid cum ullam hic quos ut! Architecto vel
-        deserunt porro necessitatibus optio.
-        <h4>Likes</h4>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam qui ipsum
-        molestiae adipisci animi quisquam minima eos, beatae, natus ut aut consectetur sit
-        placeat. Iusto obcaecati voluptate quo nesciunt cupiditate.
-        <h4>Dislikes</h4>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum totam aperiam
-        facere reiciendis quasi sint temporibus eos, veritatis voluptate magnam repellat
-        doloribus nesciunt numquam ducimus voluptatibus soluta accusantium iste omnis?
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident mollitia rem
-        reprehenderit dolorum quibusdam dolor numquam soluta natus iste asperiores? Totam
-        necessitatibus, animi non nulla tenetur modi consequuntur rerum iusto?
-      </section>
-      <section ref={s2Ref} id={ABOUT_ME_SECTIONS[1].anchor}>
-        <h1>Inside my toolbox</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-          quos ut! Architecto vel deserunt porro necessitatibus optio.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-          quos ut! Architecto vel deserunt porro necessitatibus optio. Lorem ipsum dolor
-          sit amet consectetur adipisicing elit. At a animi repellat, assumenda possimus
-          illum voluptates? Neque perferendis, aliquid cum ullam hic quos ut! Architecto
-          vel deserunt porro necessitatibus optio.
-        </p>
-      </section>
-      <section ref={s3Ref} id={ABOUT_ME_SECTIONS[2].anchor}>
-        <h1>The roles I serve</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-          quos ut! Architecto vel deserunt porro necessitatibus optio.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-          quos ut! Architecto vel deserunt porro necessitatibus optio. Lorem ipsum dolor
-          sit amet consectetur adipisicing elit. At a animi repellat, assumenda possimus
-          illum voluptates? Neque perferendis, aliquid cum ullam hic quos ut! Architecto
-          vel deserunt porro necessitatibus optio.
-        </p>
-        <h3 ref={s4Ref} id={ABOUT_ME_SECTIONS[2].subsections?.[0].anchor}>
-          As an asynchronous communicator
-        </h3>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam
-          asperiores odio suscipit quam aspernatur illum, quis quidem sapiente quisquam.
-          Obcaecati, blanditiis similique optio accusantium ut quia quaerat officia
-          voluptas.
-        </p>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, veniam
-          inventore rerum laboriosam dolorem impedit minima maxime debitis iusto fuga
-          quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus repudiandae
-          placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia
-          tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam possimus amet
-          placeat repellendus molestias laudantium, provident dolores ex inventore, vitae
-          repellat? Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi
-          repellat, assumenda possimus illum voluptates? Neque perferendis, aliquid cum
-          ullam hic quos ut! Architecto vel deserunt porro necessitatibus optio.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-          quos ut! Architecto vel deserunt porro necessitatibus optio. Lorem ipsum dolor
-          sit amet consectetur adipisicing elit. At a animi repellat, assumenda possimus
-          illum voluptates? Neque perferendis, aliquid cum ullam hic quos ut! Architecto
-          vel deserunt porro necessitatibus optio.
-        </p>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam
-          asperiores odio suscipit quam aspernatur illum, quis quidem sapiente quisquam.
-          Obcaecati, blanditiis similique optio accusantium ut quia quaerat officia
-          voluptas. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam,
-          veniam inventore rerum laboriosam dolorem impedit minima maxime debitis iusto
-          fuga quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus
-          repudiandae placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          Officia tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam
-          possimus amet placeat repellendus molestias laudantium, provident dolores ex
-          inventore, vitae repellat? Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. At a animi repellat, assumenda possimus illum voluptates? Neque
-          perferendis, aliquid cum ullam hic quos ut! Architecto vel deserunt porro
-          necessitatibus optio.
-        </p>
-        <h3 ref={s5Ref} id={ABOUT_ME_SECTIONS[2].subsections?.[1].anchor}>
-          As a developer experience hero
-        </h3>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-          quos ut! Architecto vel deserunt porro necessitatibus optio.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-          quos ut! Architecto vel deserunt porro necessitatibus optio. Lorem, ipsum dolor
-          sit amet consectetur adipisicing elit. Repellendus magnam asperiores odio
-          suscipit quam aspernatur illum, quis quidem sapiente quisquam. Obcaecati,
-          blanditiis similique optio accusantium ut quia quaerat officia voluptas.
-        </p>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, veniam
-          inventore rerum laboriosam dolorem impedit minima maxime debitis iusto fuga
-          quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus repudiandae
-          placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia
-          tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam possimus amet
-          placeat repellendus molestias laudantium, provident dolores ex inventore, vitae
-          repellat? At a animi repellat, assumenda possimus illum voluptates? Neque
-          perferendis, aliquid cum ullam hic quos ut! Architecto vel deserunt porro
-          necessitatibus optio. Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-          Repellendus magnam asperiores odio suscipit quam aspernatur illum, quis quidem
-          sapiente quisquam. Obcaecati, blanditiis similique optio accusantium ut quia
-          quaerat officia voluptas.
-        </p>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, veniam
-          inventore rerum laboriosam dolorem impedit minima maxime debitis iusto fuga
-          quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus repudiandae
-          placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia
-          tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam possimus amet
-          placeat repellendus molestias laudantium, provident dolores ex inventore, vitae
-          repellat? Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi
-          repellat, assumenda possimus illum voluptates? Neque perferendis, aliquid cum
-          ullam hic quos ut! Architecto vel deserunt porro necessitatibus optio. Lorem
-          ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-          quos ut! Architecto vel deserunt porro necessitatibus optio.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-          quos ut! Architecto vel deserunt porro necessitatibus optio.
-        </p>
-        <h3 ref={s6Ref} id={ABOUT_ME_SECTIONS[2].subsections?.[2].anchor}>
-          As a state management manager
-        </h3>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam
-          asperiores odio suscipit quam aspernatur illum, quis quidem sapiente quisquam.
-          Obcaecati, blanditiis similique optio accusantium ut quia quaerat officia
-          voluptas.
-        </p>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, veniam
-          inventore rerum laboriosam dolorem impedit minima maxime debitis iusto fuga
-          quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus repudiandae
-          placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia
-          tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam possimus amet
-          placeat repellendus molestias laudantium, provident dolores ex inventore, vitae
-          repellat?
-        </p>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam
-          asperiores odio suscipit quam aspernatur illum, quis quidem sapiente quisquam.
-          Obcaecati, blanditiis similique optio accusantium ut quia quaerat officia
-          voluptas.
-        </p>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, veniam
-          inventore rerum laboriosam dolorem impedit minima maxime debitis iusto fuga
-          quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus repudiandae
-          placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia
-          tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam possimus amet
-          placeat repellendus molestias laudantium, provident dolores ex inventore, vitae
-          repellat? Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi
-          repellat, assumenda possimus illum voluptates? Neque perferendis, aliquid cum
-          ullam hic quos ut! Architecto vel deserunt porro necessitatibus optio. Lorem
-          ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-          quos ut! Architecto vel deserunt porro necessitatibus optio.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-          quos ut! Architecto vel deserunt porro necessitatibus optio.
-        </p>
-        <h3 ref={s7Ref} id={ABOUT_ME_SECTIONS[2].subsections?.[3].anchor}>
-          As an equity and inclusion advocate
-        </h3>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam
-          asperiores odio suscipit quam aspernatur illum, quis quidem sapiente quisquam.
-          Obcaecati, blanditiis similique optio accusantium ut quia quaerat officia
-          voluptas.
-        </p>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, veniam
-          inventore rerum laboriosam dolorem impedit minima maxime debitis iusto fuga
-          quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus repudiandae
-          placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia
-          tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam possimus amet
-          placeat repellendus molestias laudantium, provident dolores ex inventore, vitae
-          repellat? Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi
-          repellat, assumenda possimus illum voluptates? Neque perferendis, aliquid cum
-          ullam hic quos ut! Architecto vel deserunt porro necessitatibus optio. Lorem
-          ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-          quos ut! Architecto vel deserunt porro necessitatibus optio.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-          quos ut! Architecto vel deserunt porro necessitatibus optio. Lorem, ipsum dolor
-          sit amet consectetur adipisicing elit. Repellendus magnam asperiores odio
-          suscipit quam aspernatur illum, quis quidem sapiente quisquam. Obcaecati,
-          blanditiis similique optio accusantium ut quia quaerat officia voluptas.
-        </p>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam, veniam
-          inventore rerum laboriosam dolorem impedit minima maxime debitis iusto fuga
-          quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus repudiandae
-          placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia
-          tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam possimus amet
-          placeat repellendus molestias laudantium, provident dolores ex inventore, vitae
-          repellat? Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi
-          repellat, assumenda possimus illum voluptates? Neque perferendis, aliquid cum
-          ullam hic quos ut! Architecto vel deserunt porro necessitatibus optio.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-          quos ut! Architecto vel deserunt porro necessitatibus optio.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. At a animi repellat,
-          assumenda possimus illum voluptates? Neque perferendis, aliquid cum ullam hic
-          quos ut! Architecto vel deserunt porro necessitatibus optio.
-        </p>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam
-          asperiores odio suscipit quam aspernatur illum, quis quidem sapiente quisquam.
-          Obcaecati, blanditiis similique optio accusantium ut quia quaerat officia
-          voluptas. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quisquam,
-          veniam inventore rerum laboriosam dolorem impedit minima maxime debitis iusto
-          fuga quae! Veritatis id nobis laboriosam consequuntur quaerat temporibus
-          repudiandae placeat? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          Officia tempore sed eveniet reiciendis corporis similique ipsa ea. Aperiam
-          possimus amet placeat repellendus molestias laudantium, provident dolores ex
-          inventore, vitae repellat?
-        </p>
-      </section>
-      <footer>
-        <button type="button">Read about my projects!</button>
-      </footer>
-    </>
-  );
-};
+const AboutMeScreen: FC<{}> = () => (
+  <ScreenContent
+    activePage="about-me"
+    sections={ABOUT_ME_SECTIONS}
+    renderSections={
+      renderAboutMeSections as ContentRenderer<ContentSection<string, ReactNode>[]>
+    }
+  />
+);
 
 export default AboutMeScreen;

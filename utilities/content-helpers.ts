@@ -7,6 +7,32 @@ import {
   toSentenceCase,
 } from './string-case-helpers';
 
+/**
+ * List of React `RefObject`s for flattened sections and subsections in the
+ * order that appear on the screen, as objects distinguishable by anchors
+ *
+ * We must keep these as an array to preserve section order when referencing
+ *
+ */
+export type SectionRefsMap = {
+  /** kebab-case anchor for the section */
+  anchor: KebabCaseString;
+  /** React `RefObject` for the section */
+  ref: React.RefObject<HTMLElement>;
+}[];
+
+/**
+ * Type for function that maps each section to a `<section>` of JSX to render,
+ * providing the section with the appropriate `ref` prop and page anchor id
+ */
+export type ContentRenderer<
+  SectionsType extends ContentSection<string>[] = ContentSection<string>[]
+> = (
+  sections: SectionsType,
+  sectionRefs: SectionRefsMap,
+  headingLevel?: number,
+) => JSX.Element[];
+
 /** Represents a distinct section of screen content */
 export type ContentSection<
   Name extends string,

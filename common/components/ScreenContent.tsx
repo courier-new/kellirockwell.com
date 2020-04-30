@@ -1,0 +1,61 @@
+import React, { FC, useMemo, useEffect, useState } from 'react';
+import map from 'lodash/map';
+import { Slug } from '../../constants/slugs';
+import {
+  flattenAllAnchors,
+  SectionRefsMap,
+  ContentRenderer,
+  ContentSection,
+} from '../../utilities/content-helpers';
+import useMeasureSectionHeights from '../hooks/useMeasureSectionHeights';
+
+type ScreenContentProps = {
+  /** The url slug corresponding to the screen that is currently open */
+  activePage: Slug;
+  /** The method to use to render the sections content for the current screen */
+  renderSections: ContentRenderer;
+  /** The sections of the current screen */
+  sections: ContentSection<string, React.ReactNode>[];
+};
+
+/**
+ * A component encapsulating logic related to building, rendering, and measuring
+ * the sections of content within a `Screen`
+ */
+const ScreenContent: FC<ScreenContentProps> = ({
+  activePage,
+  sections,
+  renderSections,
+}) => {
+  const [sectionRefs, setSectionRefs] = useState<SectionRefsMap>([]);
+
+  // Map each section and nested subsection's anchor to a single flattened list
+  // of anchors, then memoize it because the content is static
+  const flattenedSectionAnchors = useMemo(() => flattenAllAnchors(sections), [sections]);
+
+  useEffect(() => {
+    // Create a React `RefObject` for each section anchor to assign when
+    // rendering the sections and store it in local state
+    setSectionRefs(
+      map(flattenedSectionAnchors, (anchor) => ({
+        anchor,
+        ref: React.createRef<HTMLElement>(),
+      })),
+    );
+    // We should only need to recreate the `ref`s if the sections change
+  }, [flattenedSectionAnchors]);
+
+  // Measure the section starting positions for each section on this screen
+  useMeasureSectionHeights(map(sectionRefs, 'ref') || [], activePage);
+
+  // Memoize the rendered sections of content
+  const renderedSections = useMemo(() => renderSections(sections, sectionRefs), [
+    sectionRefs,
+    sections,
+    renderSections,
+  ]);
+
+  return <>{renderedSections}</>;
+};
+
+export default ScreenContent;

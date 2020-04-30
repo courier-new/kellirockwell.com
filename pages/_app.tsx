@@ -1,8 +1,9 @@
 import React, { FC, useRef, useEffect } from 'react';
-import { AppProps } from 'next/app';
+import { AppProps, AppContext } from 'next/app';
 import { useRouter } from 'next/router';
 import replace from 'lodash/replace';
 import forEach from 'lodash/forEach';
+import { NextComponentType } from 'next';
 import Screen from '../common/components/Screen';
 import CombinedProvider from '../common/context';
 import useCurrentSectionIndex from '../common/hooks/useCurrentSectionIndex';
@@ -19,15 +20,13 @@ import '../common/scss/main.scss';
  * Used to persist layout and context between pages as well as apply css
  * globally
  */
-const App: FC<AppProps> = ({ Component }) => {
-  return (
-    <CombinedProvider>
-      <InContext>
-        <Component />
-      </InContext>
-    </CombinedProvider>
-  );
-};
+const App: NextComponentType<AppContext, {}, AppProps> = ({ Component, pageProps }) => (
+  <CombinedProvider>
+    <InContext>
+      <Component {...pageProps} />
+    </InContext>
+  </CombinedProvider>
+);
 
 /**
  * Parent container component one level deeper in order to access context
@@ -37,8 +36,9 @@ const InContext: FC<{}> = ({ children }) => {
   const outerRef = useRef<HTMLDivElement>(null);
 
   const router = useRouter();
+  const isIndex = router.route === '/';
   // Strip starting "/" in path to get the `Slug`
-  const slug = replace(router.route, /^\//, '') as Slug;
+  const slug = replace(router.asPath, /^\//, '') as Slug;
   // Dictionary of section starting heights for each page in the app,
   // retrievable by the page's slug
   const state = useSectionHeightsState();
@@ -52,7 +52,7 @@ const InContext: FC<{}> = ({ children }) => {
     sectionHeights,
   );
 
-  // The `ContentSection`s for this page
+  // The `ContentSection`s for this page, if it has any
   const sections = getSectionsForPage(slug);
 
   // The percent of the page the user has scrolled
@@ -96,13 +96,19 @@ const InContext: FC<{}> = ({ children }) => {
     /* eslint-disable-next-line react-hooks/exhaustive-deps */
   }, []);
 
-  return (
+  return isIndex ? (
+    <>{children}</>
+  ) : (
     <Screen
       activePage={slug}
-      contentSections={{
-        currentSectionIndex: sectionIndex,
-        sections,
-      }}
+      contentSections={
+        sections.length
+          ? {
+              currentSectionIndex: sectionIndex,
+              sections,
+            }
+          : undefined
+      }
       ref={outerRef}
       scrollPercent={scrollPercent}
     >

@@ -12,7 +12,10 @@
     "export": "next build && next export",
     "lint:css": "npx stylelint '**/*.(scss|css)'",
     "lint:md": "remark .",
-    "lint:ts": "yarn eslint . --ext .ts,.tsx"
+    "lint:ts": "yarn eslint . --ext .ts,.tsx",
+    "lint": "yarn lint:css && yarn lint:md && yarn lint:ts",
+    "test:ts": "yarn tsc --noEmit",
+    "test": "yarn test:ts && yarn lint"
   },
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",

@@ -1,7 +1,5 @@
 /* eslint-disable no-console */
 import { useState } from 'react';
-import map from 'lodash/map';
-import reduce from 'lodash/reduce';
 import useDeepCompareEffect from './useDeepCompareEffect';
 
 type ScrollPosition = {
@@ -20,18 +18,12 @@ const getElementScrollPosition = (el: Element | null): ScrollPosition => ({
 });
 
 /**
- * Returns true if any of the refs are null, as we cannot calculate the current
- * section index without the refs. Logs a message to the console in case of
- * finding at least one non-null ref.
+ * Returns `true` if the `ref` is null and logs a message to the console if so.
  *
- * @param sectionRefs list of refs for all of the different sections on the page
- * @param parentRef ref for the parent element containing all of the sections,
- * for tracking the appropriate relative scroll position
+ * @param parentRef React `RefObject` for the parent element containing all of
+ * the sections
  */
-const hasNullRefs = (
-  sectionRefs: React.RefObject<Element>[],
-  parentRef: React.RefObject<Element>,
-): boolean => {
+const hasNullRef = (parentRef: React.RefObject<Element>): boolean => {
   const parentRefNull = !parentRef.current;
   if (parentRefNull) {
     console.warn(
@@ -39,83 +31,35 @@ const hasNullRefs = (
     );
     return true;
   }
-
-  // Get current values for all section refs
-  const sectionRefCurrentValues = map(sectionRefs, 'current');
-  const sectionRefIsNull = reduce(
-    sectionRefCurrentValues,
-    (oneOfRestIsNull, current) => oneOfRestIsNull || !current,
-    false,
-  );
-  if (sectionRefIsNull) {
-    console.warn(
-      'Could not get current section index: one or more of section refs is null.',
-    );
-    return true;
-  }
   return false;
 };
 
 /**
- * Reduces over section refs to determine the y-position that each section
- * starts at and returns the resultant array of starting positions where each
- * item's index in the array corresponds to the section's index in the section
- * refs array
+ * Calculates the index of the section the user has scrolled to based on the
+ * known starting positions of each section and the current y scroll position
+ * within the parent element, given a React `RefObject` to a parent element.
+ * Used to mark the current section in the `SideNavMenu` table of contents
  *
- * @param sectionRefCurrentValues the current values for a list of non-null
- * section refs
- * @param yScrollPos the current scroll y-position, used to calculate the
- * section starting positions based on the offset
- */
-const getSectionStartingPositions = (
-  sectionRefCurrentValues: Element[],
-  yScrollPos: number,
-): number[] =>
-  reduce(
-    sectionRefCurrentValues,
-    (positionsSoFar, current, index) => {
-      // The y positional height of the current section is equal to the
-      // top of the current section's bounding box plus an offset of the
-      // current y scroll position; Offset by an additional 2px for
-      // better UX
-      const currentSectionStartingPos =
-        (current?.getBoundingClientRect().top || 0) + yScrollPos - 2;
-      if (index === 0) {
-        return [currentSectionStartingPos];
-      }
-      return [...positionsSoFar, currentSectionStartingPos];
-    },
-    [] as number[],
-  );
-
-/**
- * Calculates which section within an element corresponds to the current scroll
- * position, given a ref to a parent element as well as refs to all of the
- * sections within it. Returns a tuple of the index relative to the section refs
- * and a function to manually recalculate the index.
+ * Returns a tuple of the index of the current section (based on the ordering of
+ * the section starting positions) and a function to manually recalculate it
  *
- * Ex: if sectionRefs contains refs to sections "About", "More Info", "Contact",
- * and scroll position falls within the bounds of "More Info", hook returns the
- * index 1
+ * @notes "onScroll" event does not consistently fire when following a hash link
+ *   to a same-page anchor (e.g. "#section2"), so we hook into the Next router's
+ *   even to manually recalculate the section index when we follow one of these
+ *   links using the function returned as the second element of the tuple
  *
- * @notes
- * - Scroll position is compared to the start of a section, and start is based
- *   on the top of the bounding box relative to the parent element
- * - "onScroll" event does not consistently fire when following a hash link to a
- *   same-page anchor, so using the function returned as the second element of
- *   the tuple, we can hook into the Next router's event instead to manually
- *   recalculate the section index
- *
- * @param sectionRefs list of refs for all of the different sections on the page
- * @param parentRef ref for the parent element containing all of the sections,
- * for tracking the appropriate relative scroll position
+ * @param parentRef React `RefObject` for the parent element containing all of
+ * the sections, for tracking the appropriate relative scroll position
+ * @param sectionStartingPositions flattened list of starting positions, as
+ * y-coordinate numbers, for all sections and subsections within the parent
+ * element, in the same order as the sections appear on the page
  */
 const useCurrentSectionIndex = (
-  sectionRefs: React.RefObject<Element>[],
   parentRef: React.RefObject<Element>,
+  sectionStartingPositions: number[],
 ): [number, (() => void) | undefined] => {
   const [sectionIndex, setSectionIndex] = useState<number>(0);
-  // State to hold main calculating function, second item returned in tuple
+  // State to hold main calculating function (second item returned in tuple)
   const [calculateSectionIndexFn, setCalculateSectionIndexFn] = useState<
     () => void | undefined
   >();
@@ -127,17 +71,16 @@ const useCurrentSectionIndex = (
   // the two hooks are often used from the same component), this was causing
   // massive amounts of re-running
   useDeepCompareEffect(() => {
-    // If any of the refs is null, break
-    if (hasNullRefs(sectionRefs, parentRef)) return undefined;
+    // If any of the refs is null or the section heights are unavailable, break
+    if (hasNullRef(parentRef) || sectionStartingPositions.length === 0) return undefined;
 
-    // Get current values for all section refs and parent ref
-    // We know these are not null due to the previous check
-    const sectionRefCurrentValues = map(sectionRefs, 'current') as Element[];
+    // Get current values for the parent ref
+    // We know this is not null due to the previous check
     const parentRefCurrentValue = parentRef.current as Element;
 
     // Throttle request to not overload with repaints
     let requestRunning: number | null = null;
-    // We start a timer when handling a scroll to check the scroll position
+    // We start a timer when handling a scroll to recheck the section index
     // again once the user finishes scrolling. This way, even with the
     // throttling, we can be sure our section index is accurate at the end of
     // the scroll. We assign the timer to a variable so that we can clear it
@@ -160,19 +103,20 @@ const useCurrentSectionIndex = (
          * actual logic for calculating the section index */
         const requestAnimationFrameCallback = (): void => {
           // Get the current scroll position of the outer container
-          const { y: yScrollPos } = getElementScrollPosition(parentRef.current);
+          const { y: yScrollPos } = getElementScrollPosition(parentRefCurrentValue);
 
-          // Total scrollable height of the outer container
+          // Remember the total scrollable height of the outer container
           const scrollHeight = parentRefCurrentValue.scrollHeight || 0;
-          // Bounding height of the outer container
+          // Remember the bounding (visible) height of the outer container
           const height = parentRefCurrentValue.getBoundingClientRect()?.height || 0;
 
           // For tracking the section index to set at the end
           let newSectionIndex = -1;
 
-          // Before we go into checking the y-positions of all the individual
-          // sections, we can first check for some easy wins if the current scroll
-          // position is all the way at the top or all the way at the bottom
+          // Before we go into checking the starting positions of all the
+          // individual sections, we can first check for some easy wins if the
+          // current scroll position is all the way at the top or all the way at
+          // the bottom
 
           // Check if the current scroll position + the bounded height of the
           // outer container is greater than or equal to the total scrollable
@@ -180,7 +124,7 @@ const useCurrentSectionIndex = (
           // we've hit the bottom of the page and can just return the last
           // section index
           if (yScrollPos + height >= scrollHeight - 2) {
-            newSectionIndex = sectionRefCurrentValues.length - 1;
+            newSectionIndex = sectionStartingPositions.length - 1;
           }
 
           // Check if the current scroll position is 0 or negative. If it is, we're
@@ -193,12 +137,6 @@ const useCurrentSectionIndex = (
           // with one of these ways
           if (newSectionIndex === -1) {
             newSectionIndex = 0; // Default
-
-            // Get the starting positions for each section
-            const sectionStartingPositions = getSectionStartingPositions(
-              sectionRefCurrentValues,
-              yScrollPos,
-            );
 
             let i = 0;
             // Check section starting positions against current scroll position to
@@ -249,7 +187,7 @@ const useCurrentSectionIndex = (
 
     calculateSectionIndex();
 
-    // Attach event listener to parent element scroll and window resize event
+    // Attach event listener to parent element scroll and window resize events
     if (parentRefCurrentValue) {
       parentRefCurrentValue.addEventListener('scroll', calculateSectionIndex, {
         // See https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Improving_scrolling_performance_with_passive_listeners
@@ -269,7 +207,7 @@ const useCurrentSectionIndex = (
         window.removeEventListener('resize', calculateSectionIndex);
       }
     };
-  }, [sectionRefs, parentRef]);
+  }, [parentRef, sectionStartingPositions]);
 
   return [sectionIndex, calculateSectionIndexFn];
 };

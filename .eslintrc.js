@@ -50,7 +50,7 @@ module.exports = {
     // eslint-plugin-jsdoc
     'jsdoc/check-access': 1, // Recommended
     'jsdoc/check-alignment': 1, // Recommended
-    'jsdoc/check-examples': 1,
+    'jsdoc/check-examples': 0, // Does not work very well -- requires JSDoc within examples
     'jsdoc/check-indentation': 0,
     'jsdoc/check-param-names': 1, // Recommended
     'jsdoc/check-property-names': 0,

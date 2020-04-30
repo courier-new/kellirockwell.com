@@ -1,32 +1,24 @@
-import React, { FC, useRef, useEffect, useState, useMemo } from 'react';
+import React, { FC, ReactNode } from 'react';
 import find from 'lodash/find';
 import flatMap from 'lodash/flatMap';
-import map from 'lodash/map';
-import Screen from '../common/components/Screen';
-import '../common/scss/main.scss';
 import CONFERENCES_SECTIONS from '../content/conferences';
-import useCurrentSectionIndex from '../common/hooks/useCurrentSectionIndex';
-import useScrollInfo from '../common/hooks/useScrollInfo';
-import { flattenAllAnchors } from '../utilities/content-helpers';
-import { KebabCaseString } from '../utilities/string-case-helpers';
+import { ContentRenderer, ContentSection } from '../utilities/content-helpers';
 import ConferenceCardGrid from '../common/components/ConferenceCardGrid';
-
-/** List of refs for sections in order, as objects distinguishable by their
- * anchor */
-type SectionRefsMap = { anchor: KebabCaseString; ref: React.RefObject<HTMLElement> }[];
+import ScreenContent from '../common/components/ScreenContent';
 
 /**
- * Maps each section to a <section> of JSX to render, providing the section with
- * the appropriate ref and page anchor
+ * Maps each section to a `<section>` of JSX to render, providing the section
+ * with the appropriate `ref` prop and page anchor id
  *
- * @param sections the sections of the Conferences screen
- * @param sectionRefs the list of refs for each of these sections, in order
- * @param headingLevel the level of heading to render for this section (e.g. for
- * h1, h2, h3, etc.)
+ * @param sections the `ContentSection`s of the Conferences screen
+ * @param sectionRefs the list of React `RefObject`s for each of these sections
+ * and their subsections, in order and flattened
+ * @param headingLevel the level of heading to render for this section (e.g.
+ * `headingLevel: 1` => `h1`, `headingLevel: 2` => `h2`)
  */
-const renderSections = (
-  sections: typeof CONFERENCES_SECTIONS,
-  sectionRefs: SectionRefsMap,
+export const renderConferencesSections: ContentRenderer<typeof CONFERENCES_SECTIONS> = (
+  sections,
+  sectionRefs,
   headingLevel = 1,
 ): JSX.Element[] => {
   let headingTag = `h${headingLevel}`;
@@ -37,10 +29,15 @@ const renderSections = (
   }
 
   return flatMap(sections, (section, index) => {
-    // Section heading
-    let sectionElements: JSX.Element[] = [
+    // Array with which to build up section children elements
+    let sectionElements: JSX.Element[] = [];
+
+    sectionElements = [
+      ...sectionElements,
+      // Section heading
       React.createElement(headingTag, { key: `heading-${index}` }, section.name),
     ];
+
     // Section content
     if (section.content) {
       if ('conferences' in section.content) {
@@ -55,14 +52,16 @@ const renderSections = (
         sectionElements = [...sectionElements, section.content];
       }
     }
+
     // Subsections
     if (section.subsections) {
       sectionElements = [
         ...sectionElements,
-        ...renderSections(section.subsections, sectionRefs, 2),
+        ...renderConferencesSections(section.subsections, sectionRefs, headingLevel + 1),
       ];
     }
-    // Wrap section elements in <Section>
+
+    // Wrap section elements in `<section>`
     const sectionRef = find(sectionRefs, ['anchor', section.anchor])?.ref;
     return (
       <section key={section.anchor} ref={sectionRef} id={section.anchor}>
@@ -75,51 +74,14 @@ const renderSections = (
 /**
  * Screen component for primary screen "Conferences"
  */
-const ConferencesScreen: FC<{}> = () => {
-  const [sectionRefs, setSectionRefs] = useState<SectionRefsMap>([]);
-  const outerRef = useRef<HTMLDivElement>(null);
-
-  const flattenedSectionAnchors = useMemo(
-    () => flattenAllAnchors(CONFERENCES_SECTIONS),
-    [],
-  );
-
-  useEffect(() => {
-    // We must keep these as an array to preserve section order when referencing
-    setSectionRefs(
-      map(flattenedSectionAnchors, (anchor) => ({
-        anchor,
-        ref: React.createRef<HTMLElement>(),
-      })),
-    );
-  }, [flattenedSectionAnchors]);
-
-  const [sectionIndex, recalculateSectionIndex] = useCurrentSectionIndex(
-    map(sectionRefs, 'ref') || [],
-    outerRef,
-  );
-
-  const scrollPercent = useScrollInfo(outerRef)[1];
-
-  // Memoize the rendered sections of content
-  const sections = useMemo(() => renderSections(CONFERENCES_SECTIONS, sectionRefs), [
-    sectionRefs,
-  ]);
-
-  return (
-    <Screen
-      activePage="conferences"
-      contentSections={{
-        currentSectionIndex: sectionIndex,
-        recalculateSectionIndex,
-        sections: CONFERENCES_SECTIONS,
-      }}
-      ref={outerRef}
-      scrollPercent={scrollPercent}
-    >
-      {sections}
-    </Screen>
-  );
-};
+const ConferencesScreen: FC<{}> = () => (
+  <ScreenContent
+    activePage="conferences"
+    sections={CONFERENCES_SECTIONS}
+    renderSections={
+      renderConferencesSections as ContentRenderer<ContentSection<string, ReactNode>[]>
+    }
+  />
+);
 
 export default ConferencesScreen;

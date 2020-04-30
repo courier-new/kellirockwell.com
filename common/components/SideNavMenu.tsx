@@ -1,5 +1,4 @@
-import React, { FC, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import React, { FC } from 'react';
 import map from 'lodash/map';
 import Link from 'next/link';
 import { ContentSection, flattenAllAnchors } from '../../utilities/content-helpers';
@@ -10,11 +9,6 @@ type SideNavMenuProps = {
   activeSectionIndex: number;
   /** The sections of content on the screen to represent in the nav menu */
   contentSections: ContentSection<string>[];
-  /** Handler to fire on route hash change to recalculate the section index.
-   * "onScroll" event does not consistently fire when following a hash link to
-   * a same-page anchor, so we hook into the Next router's event instead to
-   * manually recalculate the section index */
-  recalculateSectionIndex?: () => void;
 };
 
 /**
@@ -65,24 +59,9 @@ const renderNavigation = (
  * Component for secondary (same-page) navigation bar with nav links on right
  * side of screen.
  */
-const SideNavMenu: FC<SideNavMenuProps> = ({
-  activeSectionIndex,
-  contentSections,
-  recalculateSectionIndex,
-}) => {
+const SideNavMenu: FC<SideNavMenuProps> = ({ activeSectionIndex, contentSections }) => {
   const flattenedSectionAnchors = flattenAllAnchors(contentSections);
   const activeSectionAnchor = flattenedSectionAnchors[activeSectionIndex];
-
-  const router = useRouter();
-
-  useEffect(() => {
-    if (recalculateSectionIndex) {
-      router.events.on('hashChangeStart', recalculateSectionIndex);
-
-      return (): void => router.events.off('hashChangeStart', recalculateSectionIndex);
-    }
-    return undefined;
-  });
 
   return (
     <nav className="flex-align-center flex-justify-center background-magnolia sidebar-width padding-med">

@@ -9,7 +9,6 @@ import useDisplaySize from '../hooks/useDisplaySize';
 import { DisplaySize } from '../../constants/breakpoint-sizes';
 import DrawerMainNavMenu from './DrawerMainNavMenu';
 import UnsupportedBrowserBanner from './UnsupportedBrowserBanner';
-import useMediaQuery from '../hooks/useMediaQuery';
 import { Percent } from '../../utilities/percent-helpers';
 import ProgressBar from './ProgressBar';
 
@@ -99,7 +98,6 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
             <SideNavMenu
               activeSectionIndex={contentSections.currentSectionIndex}
               contentSections={contentSections.sections}
-              recalculateSectionIndex={contentSections.recalculateSectionIndex}
             />
           ) : null}
         </div>

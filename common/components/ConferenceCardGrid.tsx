@@ -53,7 +53,7 @@ const ConferenceCardGrid: FC<ConferenceCardGridProps> = ({ conferences }) => {
   };
 
   return (
-    <ul className="grid border-box padding-0" style={conferenceListStyle} ref={gridRef}>
+    <ul className="grid border-box padding-0" ref={gridRef} style={conferenceListStyle}>
       {map(conferences, (conference, index) => (
         <ConferenceCard key={`conference-${index}`} {...conference} />
       ))}

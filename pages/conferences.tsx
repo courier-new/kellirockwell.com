@@ -44,8 +44,8 @@ export const renderConferencesSections: ContentRenderer<typeof CONFERENCES_SECTI
       if ('conferences' in section.content) {
         const conferencesBlock = (
           <ConferenceCardGrid
-            key={`conferences-${index}`}
             conferences={section.content.conferences}
+            key={`conferences-${index}`}
           />
         );
         sectionElements = [...sectionElements, conferencesBlock];
@@ -65,7 +65,7 @@ export const renderConferencesSections: ContentRenderer<typeof CONFERENCES_SECTI
     // Wrap section elements in `<section>`
     const sectionRef = find(sectionRefs, ['anchor', section.anchor])?.ref;
     return (
-      <section key={section.anchor} ref={sectionRef} id={section.anchor}>
+      <section id={section.anchor} key={section.anchor} ref={sectionRef}>
         {sectionElements}
       </section>
     );
@@ -78,10 +78,10 @@ export const renderConferencesSections: ContentRenderer<typeof CONFERENCES_SECTI
 const ConferencesScreen: FC<{}> = () => (
   <ScreenContent
     activePage="conferences"
-    sections={CONFERENCES_SECTIONS}
     renderSections={
       renderConferencesSections as ContentRenderer<ContentSection<string, ReactNode>[]>
     }
+    sections={CONFERENCES_SECTIONS}
   />
 );
 

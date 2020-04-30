@@ -10,7 +10,7 @@ const Root: FC = () => {
     <div className="container">
       <Head>
         <title>KELLI ROCKWELL | Home</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link href="/favicon.ico" rel="icon" />
       </Head>
 
       <main>
@@ -48,7 +48,7 @@ const Root: FC = () => {
         `}
       </style>
 
-      <style jsx global>
+      <style global jsx>
         {`
           html,
           body {

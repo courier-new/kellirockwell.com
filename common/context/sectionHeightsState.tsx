@@ -10,7 +10,7 @@ import { Slug } from '../../constants/slugs';
 
 type SectionHeightsAction =
   /** Set the section heights for a page by its slug */
-  Action<'@section-heights-state/set-heights', { slug: Slug; heights: number[] }>;
+  Action<'@section-heights-state/set-heights', { heights: number[]; slug: Slug }>;
 
 type SectionHeightsDispatch = Dispatch<SectionHeightsAction>;
 

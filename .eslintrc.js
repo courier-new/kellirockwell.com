@@ -47,6 +47,7 @@ module.exports = {
     '@typescript-eslint/no-unused-expressions': 0, // Misfires with optional chaining, prefer babel plugin rule
     '@typescript-eslint/no-unused-vars': [2, { argsIgnorePattern: '^_' }],
     '@typescript-eslint/no-use-before-define': 0,
+    '@typescript-eslint/member-ordering': [2, { default: { order: 'alphabetically' } }],
     // eslint-plugin-babel
     'babel/no-unused-expressions': 1,
     // eslint-plugin-jsdoc
@@ -118,6 +119,12 @@ module.exports = {
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'react/jsx-one-expression-per-line': 0, // Conflicts with prettier formatting
     'react/jsx-props-no-spreading': 0,
+    'react/jsx-sort-props': [
+      2,
+      {
+        ignoreCase: true,
+      },
+    ],
     'react/prop-types': 0,
     // eslint-plugin-react-hooks
     'react-hooks/rules-of-hooks': 2,

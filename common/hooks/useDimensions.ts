@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+/* eslint-disable @typescript-eslint/member-ordering */
 type DimensionObject = {
   width: number;
   height: number;
@@ -10,15 +11,16 @@ type DimensionObject = {
   right: number;
   bottom: number;
 };
+/* eslint-enable @typescript-eslint/member-ordering */
 
 interface ResizeObserver {
+  /** Clears both the observationTargets and activeTargets lists. */
+  disconnect: () => void;
+  new (callback: ResizeObserverCallback): this;
   /** Adds target to the list of observed elements. */
   observe: (target: Element) => void;
   /** Removes target from the list of observed elements. */
   unobserve: (target: Element) => void;
-  /** Clears both the observationTargets and activeTargets lists. */
-  disconnect: () => void;
-  new (callback: ResizeObserverCallback): this;
 }
 
 /** This callback delivers ResizeObserver's notifications. It is invoked by a
@@ -29,12 +31,12 @@ type ResizeObserverCallback = (
 ) => void;
 
 interface ResizeObserverEntry {
-  /** The Element whose size has changed. */
-  readonly target: Element;
   /** Element's content rect when ResizeObserverCallback is invoked. */
   readonly contentRect: DOMRectReadOnly;
   /** @param target The Element whose size has changed. */
   new (target: Element): this;
+  /** The Element whose size has changed. */
+  readonly target: Element;
 }
 
 // See https://github.com/Microsoft/TypeScript/issues/28502

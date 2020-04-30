@@ -41,6 +41,12 @@ export type ContentSection<
 > = {
   /** The url anchor without "#" for the section; should use kebab-case */
   readonly anchor: KebabCaseString;
+  /**
+   * The actual content of the section constructed into a form of ReactNode;
+   * generated from a raw content JS object with a content builder
+   */
+  // TODO: Make this required when all the pages have a builder
+  readonly content?: ContentType;
   /** The name for the section, just used to identify it and not for display */
   readonly name: Name;
   /**
@@ -51,12 +57,6 @@ export type ContentSection<
   readonly subsections?: ContentSection<Name, ContentType>[];
   /** The title for the section; should use Sentence case */
   readonly title: SentenceCaseString;
-  /**
-   * The actual content of the section constructed into a form of ReactNode;
-   * generated from a raw content JS object with a content builder
-   */
-  // TODO: Make this required when all the pages have a builder
-  readonly content?: ContentType;
 };
 
 /**

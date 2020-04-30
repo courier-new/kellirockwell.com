@@ -94,7 +94,7 @@ export const renderAboutMeSections: ContentRenderer<typeof ABOUT_ME_SECTIONS> = 
     // Wrap section elements in `<section>`
     const sectionRef = find(sectionRefs, ['anchor', section.anchor])?.ref;
     return (
-      <section key={section.anchor} ref={sectionRef} id={section.anchor}>
+      <section id={section.anchor} key={section.anchor} ref={sectionRef}>
         {sectionElements}
       </section>
     );
@@ -107,10 +107,10 @@ export const renderAboutMeSections: ContentRenderer<typeof ABOUT_ME_SECTIONS> = 
 const AboutMeScreen: FC<{}> = () => (
   <ScreenContent
     activePage="about-me"
-    sections={ABOUT_ME_SECTIONS}
     renderSections={
       renderAboutMeSections as ContentRenderer<ContentSection<string, ReactNode>[]>
     }
+    sections={ABOUT_ME_SECTIONS}
   />
 );
 

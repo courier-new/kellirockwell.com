@@ -34,7 +34,7 @@ const renderLink = (
   return (
     <li key={index}>
       <Link href={`#${anchor}`}>
-        <a title={title} className={linkClass}>
+        <a className={linkClass} title={title}>
           {title}
         </a>
       </Link>

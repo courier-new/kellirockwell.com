@@ -24,7 +24,7 @@ const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
         drawerIsOpen ? 'background-maastricht text-magnolia full-height' : ''
       }`}
     >
-      <button type="button" onClick={toggleDrawerIsOpen}>
+      <button onClick={toggleDrawerIsOpen} type="button">
         Toggle
       </button>
       {drawerIsOpen ? <MainNavMenu activePage={activePage} /> : null}

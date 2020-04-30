@@ -32,7 +32,7 @@ const renderLink = (slug: Slug, index: number, active?: 'active'): JSX.Element =
   return (
     <li className="text-magnolia" key={index}>
       <Link href={`/${slug}`}>
-        <a title={linkText} className={`${linkClass} text-magnolia`}>
+        <a className={`${linkClass} text-magnolia`} title={linkText}>
           {linkText}
         </a>
       </Link>

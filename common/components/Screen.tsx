@@ -21,13 +21,13 @@ type ScreenProps = {
   contentSections?: {
     /** The index of the section corresponding to the current scroll position */
     currentSectionIndex: number;
-    /** The sections of the screen */
-    sections: ContentSection<string>[];
     /** Handler to fire on route hash change to recalculate the section index.
      * "onScroll" event does not consistently fire when following a hash link to
      * a same-page anchor, so we hook into the Next router's event instead to
      * manually recalculate the section index */
     recalculateSectionIndex?: () => void;
+    /** The sections of the screen */
+    sections: ContentSection<string>[];
   };
   /** The current scroll position of the Screen ref, used to render the
    * ProgressBar component */

@@ -39,7 +39,7 @@ const getElementScrollPercent = (
  * Provides the current scroll position in an element as well as the percentage
  * amount of the scroll position down the element
  *
- * @param ref ref for the element to get the scroll info for
+ * @param ref React `RefObject` for the element to get the scroll info for
  */
 const useScrollInfo = (ref: React.RefObject<HTMLElement>): [ScrollPosition, Percent] => {
   const [position, setScrollPosition] = useState<ScrollPosition>({ x: 0, y: 0 });
@@ -98,6 +98,7 @@ const useScrollInfo = (ref: React.RefObject<HTMLElement>): [ScrollPosition, Perc
       // See https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Improving_scrolling_performance_with_passive_listeners
       currentEl.addEventListener('scroll', handleScroll, { passive: true });
 
+      // Clean up by removing the scroll listener
       return (): void => {
         currentEl.removeEventListener('scroll', handleScroll);
       };

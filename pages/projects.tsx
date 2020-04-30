@@ -1,10 +1,6 @@
 import React, { FC, useRef } from 'react';
-import Screen from '../common/components/Screen';
-
-import '../common/scss/main.scss';
-import useCurrentSectionIndex from '../common/hooks/useCurrentSectionIndex';
 import PROJECTS_SECTIONS from '../content/projects';
-import useScrollInfo from '../common/hooks/useScrollInfo';
+import useMeasureSectionHeights from '../common/hooks/useMeasureSectionHeights';
 
 type ProjectsScreenProps = {};
 
@@ -16,26 +12,10 @@ const ProjectsScreen: FC<ProjectsScreenProps> = () => {
   const s2Ref = useRef<HTMLElement>(null);
   const s3Ref = useRef<HTMLElement>(null);
 
-  const outerRef = useRef<HTMLDivElement>(null);
-
-  const [sectionIndex, recalculateSectionIndex] = useCurrentSectionIndex(
-    [s1Ref, s2Ref, s3Ref],
-    outerRef,
-  );
-
-  const scrollPercent = useScrollInfo(outerRef)[1];
+  useMeasureSectionHeights([s1Ref, s2Ref, s3Ref], 'projects');
 
   return (
-    <Screen
-      activePage="projects"
-      contentSections={{
-        currentSectionIndex: sectionIndex,
-        recalculateSectionIndex,
-        sections: PROJECTS_SECTIONS,
-      }}
-      ref={outerRef}
-      scrollPercent={scrollPercent}
-    >
+    <>
       <section ref={s1Ref} id={PROJECTS_SECTIONS[0].anchor}>
         <h1>Projects</h1>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam molestiae
@@ -181,7 +161,7 @@ const ProjectsScreen: FC<ProjectsScreenProps> = () => {
           consectetur adipisicing elit.
         </p>
       </section>
-    </Screen>
+    </>
   );
 };
 

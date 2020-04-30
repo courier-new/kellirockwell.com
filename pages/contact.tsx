@@ -1,7 +1,4 @@
 import React, { FC } from 'react';
-import Screen from '../common/components/Screen';
-
-import '../common/scss/main.scss';
 
 type ContactScreenProps = {};
 
@@ -10,7 +7,7 @@ type ContactScreenProps = {};
  */
 const ContactScreen: FC<ContactScreenProps> = () => {
   return (
-    <Screen activePage="contact">
+    <>
       <h1>Contact</h1>
       <section>Stuff 1</section>
       <section>Stuff 2</section>
@@ -32,7 +29,7 @@ const ContactScreen: FC<ContactScreenProps> = () => {
         architecto commodi exercitationem velit. Eius ipsam, quod asperiores perspiciatis,
         nihil omnis tenetur saepe deserunt sed, cumque magnam?
       </section>
-    </Screen>
+    </>
   );
 };
 

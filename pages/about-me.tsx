@@ -1,9 +1,6 @@
 import React, { FC, useRef } from 'react';
-import Screen from '../common/components/Screen';
-import '../common/scss/main.scss';
-import useCurrentSectionIndex from '../common/hooks/useCurrentSectionIndex';
 import ABOUT_ME_SECTIONS from '../content/about-me';
-import useScrollInfo from '../common/hooks/useScrollInfo';
+import useMeasureSectionHeights from '../common/hooks/useMeasureSectionHeights';
 
 type AboutMeScreenProps = {};
 
@@ -20,26 +17,10 @@ const AboutMeScreen: FC<AboutMeScreenProps> = () => {
   const s6Ref = useRef<HTMLHeadingElement>(null);
   const s7Ref = useRef<HTMLHeadingElement>(null);
 
-  const outerRef = useRef<HTMLDivElement>(null);
-
-  const [sectionIndex, recalculateSectionIndex] = useCurrentSectionIndex(
-    [s1Ref, s2Ref, s3Ref, s4Ref, s5Ref, s6Ref, s7Ref],
-    outerRef,
-  );
-
-  const scrollPercent = useScrollInfo(outerRef)[1];
+  useMeasureSectionHeights([s1Ref, s2Ref, s3Ref, s4Ref, s5Ref, s6Ref, s7Ref], 'about-me');
 
   return (
-    <Screen
-      activePage="about-me"
-      contentSections={{
-        currentSectionIndex: sectionIndex,
-        recalculateSectionIndex,
-        sections: ABOUT_ME_SECTIONS,
-      }}
-      ref={outerRef}
-      scrollPercent={scrollPercent}
-    >
+    <>
       <section ref={s1Ref} id={ABOUT_ME_SECTIONS[0].anchor}>
         <h1>By the numbers</h1>
         <h4>Background</h4>
@@ -298,7 +279,7 @@ const AboutMeScreen: FC<AboutMeScreenProps> = () => {
       <footer>
         <button type="button">Read about my projects!</button>
       </footer>
-    </Screen>
+    </>
   );
 };
 

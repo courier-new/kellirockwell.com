@@ -1,9 +1,10 @@
-import React, { FC, useRef } from 'react';
 import map from 'lodash/map';
-import ConferenceCard from './ConferenceCard';
+import React, { FC, useRef } from 'react';
+
 import { Conference } from '../../content/conferences/Conference';
-import useDisplaySize from '../hooks/useDisplaySize';
 import useDimensions from '../hooks/useDimensions';
+import useDisplaySize from '../hooks/useDisplaySize';
+import ConferenceCard from './ConferenceCard';
 
 type ConferenceCardGridProps = {
   /** The list of conferences to render in this grid */

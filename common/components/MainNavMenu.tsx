@@ -1,10 +1,11 @@
-import React, { FC } from 'react';
-import map from 'lodash/map';
 import capitalize from 'lodash/capitalize';
-import join from 'lodash/join';
-import split from 'lodash/split';
 import flow from 'lodash/flow';
+import join from 'lodash/join';
+import map from 'lodash/map';
+import split from 'lodash/split';
 import Link from 'next/link';
+import React, { FC } from 'react';
+
 import { Slug, SLUGS } from '../../constants/slugs';
 
 type MainNavMenuProps = {

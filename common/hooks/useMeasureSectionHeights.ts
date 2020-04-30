@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
-import { useState } from 'react';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
-import useDeepCompareEffect from './useDeepCompareEffect';
-import { useSectionHeightsDispatch } from '../context/sectionHeightsState';
+import { useState } from 'react';
+
 import { Slug } from '../../constants/slugs';
+import { useSectionHeightsDispatch } from '../context/sectionHeightsState';
+import useDeepCompareEffect from './useDeepCompareEffect';
 
 /**
  * Returns `true` if any of the `ref`s are null. Logs a message to the console

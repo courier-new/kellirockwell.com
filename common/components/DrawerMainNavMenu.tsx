@@ -1,4 +1,5 @@
-import React, { FC, useState, useCallback } from 'react';
+import React, { FC, useCallback, useState } from 'react';
+
 import { Slug } from '../../constants/slugs';
 import MainNavMenu from './MainNavMenu';
 

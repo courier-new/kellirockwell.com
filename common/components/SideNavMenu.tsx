@@ -1,6 +1,7 @@
-import React, { FC } from 'react';
 import map from 'lodash/map';
 import Link from 'next/link';
+import React, { FC } from 'react';
+
 import { ContentSection, flattenAllAnchors } from '../../utilities/content-helpers';
 
 type SideNavMenuProps = {

@@ -5,7 +5,7 @@
  * See also: https://github.com/kentcdodds/use-deep-compare-effect
  */
 import isEqual from 'lodash/isEqual';
-import { useRef, useEffect, EffectCallback, DependencyList } from 'react';
+import { DependencyList, EffectCallback, useEffect, useRef } from 'react';
 
 /**
  * Sets up a reference for a given value and performs a deep comparison (using

@@ -1,8 +1,9 @@
 import React from 'react';
-import ROADMAP from './roadmap';
-import JOURNEY_TO_THE_CENTER from './journey-to-the-center';
+
 import { ContentSection, generateTitleProps } from '../../utilities/content-helpers';
 import { Conference } from './Conference';
+import JOURNEY_TO_THE_CENTER from './journey-to-the-center';
+import ROADMAP from './roadmap';
 
 type ConferencesSectionName =
   | 'Journey to the center of the community'

@@ -38,12 +38,14 @@ module.exports = {
     '@typescript-eslint',
     'jsdoc',
     'lodash',
+    'sort-destructure-keys',
+    'simple-import-sort',
     'prettier',
   ],
   rules: {
     // @typescript-eslint-plugin
     '@typescript-eslint/no-unused-expressions': 0, // Misfires with optional chaining, prefer babel plugin rule
-    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-unused-vars': [2, { argsIgnorePattern: '^_' }],
     '@typescript-eslint/no-use-before-define': 0,
     // eslint-plugin-babel
     'babel/no-unused-expressions': 1,
@@ -118,17 +120,25 @@ module.exports = {
     'react/jsx-props-no-spreading': 0,
     'react/prop-types': 0,
     // eslint-plugin-react-hooks
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
+    'react-hooks/rules-of-hooks': 2,
+    'react-hooks/exhaustive-deps': 1,
     // eslint-plugin-imports
     'import/extensions': [1, 'never'],
+    'import/first': 2,
+    'import/newline-after-import': 2,
+    'import/no-duplicates': 2,
+    'import/order': 0, // Prefer eslint-plugin-simple-import-sort
+    // eslint-plugin-simple-import-sort
+    'simple-import-sort/sort': 2,
     // prettier plugin
-    'prettier/prettier': 'warn',
+    'prettier/prettier': 1,
     // jsx-ally
     'jsx-a11y/anchor-is-valid': 0, // Prefer Next Link accessibility
+    // sort-destructure-keys plugin
+    'sort-destructure-keys/sort-destructure-keys': 1,
     // Base ESLint rules
     'max-len': [
-      'warn',
+      1,
       {
         code: 90,
         ignoreComments: false,
@@ -137,6 +147,7 @@ module.exports = {
       },
     ],
     'no-unused-expressions': 0, // Misfires with optional chaining, prefer babel plugin rule
-    'sort-keys': 'error',
+    'sort-keys': 2,
+    'sort-imports': 0, // Prefer eslint-plugin-simple-import-sort
   },
 };

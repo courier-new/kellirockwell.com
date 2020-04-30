@@ -1,6 +1,7 @@
-import React, { FC, ReactNode } from 'react';
-import flatMap from 'lodash/flatMap';
 import find from 'lodash/find';
+import flatMap from 'lodash/flatMap';
+import React, { FC, ReactNode } from 'react';
+
 import ScreenContent from '../common/components/ScreenContent';
 import ABOUT_ME_SECTIONS from '../content/about-me';
 import { ContentRenderer, ContentSection } from '../utilities/content-helpers';

@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+
 import { Percent } from '../../utilities/percent-helpers';
 
 type ProgressBarProps = {

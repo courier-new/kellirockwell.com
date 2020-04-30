@@ -1,5 +1,5 @@
-import { DateTime, Interval } from 'luxon';
 import map from 'lodash/map';
+import { DateTime, Interval } from 'luxon';
 
 export const VIRTUAL = 'Virtual';
 export const CANCELLED = 'Cancelled';

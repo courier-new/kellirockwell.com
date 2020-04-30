@@ -1,15 +1,16 @@
-import React, { FC } from 'react';
-import { DateTime, Interval } from 'luxon';
 import replace from 'lodash/replace';
+import { DateTime, Interval } from 'luxon';
+import React, { FC } from 'react';
 import { AiFillCalendar } from 'react-icons/ai';
-import { IoIosPin } from 'react-icons/io';
 import { FiLink } from 'react-icons/fi';
+import { IoIosPin } from 'react-icons/io';
+
 import {
-  Conference,
   CANCELLED,
+  Conference,
   hasPassed,
-  NOW,
   NEXT,
+  NOW,
 } from '../../content/conferences/Conference';
 
 /**
@@ -51,7 +52,7 @@ const formatURL = (url: string): string => replace(url, /https?:\/\//i, '');
  * @param conference the Conference to render
  */
 const ConferenceCard: FC<Conference> = (conference) => {
-  const { date, dateLabel, name, label, location, website } = conference;
+  const { date, dateLabel, label, location, name, website } = conference;
 
   const formattedURL = formatURL(website);
   const linkAnchor = (

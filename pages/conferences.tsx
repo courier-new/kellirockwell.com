@@ -1,10 +1,11 @@
-import React, { FC, ReactNode } from 'react';
 import find from 'lodash/find';
 import flatMap from 'lodash/flatMap';
-import CONFERENCES_SECTIONS from '../content/conferences';
-import { ContentRenderer, ContentSection } from '../utilities/content-helpers';
+import React, { FC, ReactNode } from 'react';
+
 import ConferenceCardGrid from '../common/components/ConferenceCardGrid';
 import ScreenContent from '../common/components/ScreenContent';
+import CONFERENCES_SECTIONS from '../content/conferences';
+import { ContentRenderer, ContentSection } from '../utilities/content-helpers';
 
 /**
  * Maps each section to a `<section>` of JSX to render, providing the section

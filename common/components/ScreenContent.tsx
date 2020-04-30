@@ -1,11 +1,12 @@
-import React, { FC, useMemo, useEffect, useState } from 'react';
 import map from 'lodash/map';
+import React, { FC, useEffect, useMemo, useState } from 'react';
+
 import { Slug } from '../../constants/slugs';
 import {
-  flattenAllAnchors,
-  SectionRefsMap,
   ContentRenderer,
   ContentSection,
+  flattenAllAnchors,
+  SectionRefsMap,
 } from '../../utilities/content-helpers';
 import useMeasureSectionHeights from '../hooks/useMeasureSectionHeights';
 
@@ -24,8 +25,8 @@ type ScreenContentProps = {
  */
 const ScreenContent: FC<ScreenContentProps> = ({
   activePage,
-  sections,
   renderSections,
+  sections,
 }) => {
   const [sectionRefs, setSectionRefs] = useState<SectionRefsMap>([]);
 

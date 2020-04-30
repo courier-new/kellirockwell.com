@@ -1,10 +1,11 @@
-import flow from 'lodash/flow';
-import map from 'lodash/map';
-import sortBy from 'lodash/sortBy';
-import reverse from 'lodash/reverse';
 import filter from 'lodash/filter';
+import flow from 'lodash/flow';
 import head from 'lodash/head';
-import { useState, useMemo, useEffect } from 'react';
+import map from 'lodash/map';
+import reverse from 'lodash/reverse';
+import sortBy from 'lodash/sortBy';
+import { useEffect, useMemo, useState } from 'react';
+
 import {
   BREAKPOINT_SIZES,
   DisplaySize,

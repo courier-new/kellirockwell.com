@@ -1,10 +1,11 @@
 import React, {
   createContext,
-  useReducer,
-  useContext,
-  PropsWithChildren,
   FC,
+  PropsWithChildren,
+  useContext,
+  useReducer,
 } from 'react';
+
 import { Slug } from '../../constants/slugs';
 
 type SectionHeightsAction =

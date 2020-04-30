@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import '../common/scss/main.scss';
+
 import Head from 'next/head';
 import Link from 'next/link';
-
-import '../common/scss/main.scss';
+import React, { FC } from 'react';
 
 /** Root of Index page */
 const Root: FC = () => {

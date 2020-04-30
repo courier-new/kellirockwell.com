@@ -1,16 +1,17 @@
-import React, { PropsWithChildren, useMemo } from 'react';
 import includes from 'lodash/includes';
 import isUndefined from 'lodash/isUndefined';
-import MainNavMenu from './MainNavMenu';
-import { Slug } from '../../constants/slugs';
-import SideNavMenu from './SideNavMenu';
-import { ContentSection } from '../../utilities/content-helpers';
-import useDisplaySize from '../hooks/useDisplaySize';
+import React, { PropsWithChildren, useMemo } from 'react';
+
 import { DisplaySize } from '../../constants/breakpoint-sizes';
-import DrawerMainNavMenu from './DrawerMainNavMenu';
-import UnsupportedBrowserBanner from './UnsupportedBrowserBanner';
+import { Slug } from '../../constants/slugs';
+import { ContentSection } from '../../utilities/content-helpers';
 import { Percent } from '../../utilities/percent-helpers';
+import useDisplaySize from '../hooks/useDisplaySize';
+import DrawerMainNavMenu from './DrawerMainNavMenu';
+import MainNavMenu from './MainNavMenu';
 import ProgressBar from './ProgressBar';
+import SideNavMenu from './SideNavMenu';
+import UnsupportedBrowserBanner from './UnsupportedBrowserBanner';
 
 type ScreenProps = {
   /** The url slug corresponding to the screen that is currently open */

@@ -1,6 +1,7 @@
 import { DateTime, Interval } from 'luxon';
-import { Conference, CANCELLED, VIRTUAL, addDateLabels } from './Conference';
+
 import { generateTitleProps } from '../../utilities/content-helpers';
+import { addDateLabels, CANCELLED, Conference, VIRTUAL } from './Conference';
 
 /* eslint-disable jsdoc/require-jsdoc */
 export const CONFERENCES_2020: Conference[] = addDateLabels([

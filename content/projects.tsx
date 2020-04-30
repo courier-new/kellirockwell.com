@@ -1,4 +1,4 @@
-import { generateTitleProps, ContentSection } from '../utilities/content-helpers';
+import { ContentSection, generateTitleProps } from '../utilities/content-helpers';
 
 type ProjectSectionName =
   | 'Sutro'

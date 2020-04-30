@@ -1,9 +1,10 @@
 import { ReactNode } from 'react';
+
 import { Slug } from '../constants/slugs';
+import { ContentSection } from '../utilities/content-helpers';
 import ABOUT_ME_SECTIONS from './about-me';
 import CONFERENCES_SECTIONS from './conferences/index';
 import PROJECTS_SECTIONS from './projects';
-import { ContentSection } from '../utilities/content-helpers';
 
 /**
  * Returns the appropriate array of `ContentSection`s for the given page slug,

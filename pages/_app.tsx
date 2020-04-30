@@ -1,17 +1,19 @@
-import React, { FC, useRef, useEffect } from 'react';
-import { AppProps, AppContext } from 'next/app';
-import { useRouter } from 'next/router';
-import replace from 'lodash/replace';
+import '../common/scss/main.scss';
+
 import forEach from 'lodash/forEach';
+import replace from 'lodash/replace';
 import { NextComponentType } from 'next';
+import { AppContext, AppProps } from 'next/app';
+import { useRouter } from 'next/router';
+import React, { FC, useEffect, useRef } from 'react';
+
 import Screen from '../common/components/Screen';
 import CombinedProvider from '../common/context';
-import useCurrentSectionIndex from '../common/hooks/useCurrentSectionIndex';
 import { useSectionHeightsState } from '../common/context/sectionHeightsState';
+import useCurrentSectionIndex from '../common/hooks/useCurrentSectionIndex';
 import useScrollInfo from '../common/hooks/useScrollInfo';
 import { Slug } from '../constants/slugs';
 import getSectionsForPage from '../content/index';
-import '../common/scss/main.scss';
 
 /**
  * Custom `App` container for all pages:

@@ -1,9 +1,10 @@
-import React from 'react';
-import flatten from 'lodash/flatten';
 import filter from 'lodash/filter';
-import { CONFERENCES_2019, CONFERENCES_2020 } from './roadmap';
-import { CANCELLED, Conference, hasPassed } from './Conference';
+import flatten from 'lodash/flatten';
+import React from 'react';
+
 import { generateTitleProps } from '../../utilities/content-helpers';
+import { CANCELLED, Conference, hasPassed } from './Conference';
+import { CONFERENCES_2019, CONFERENCES_2020 } from './roadmap';
 
 /**
  * Tallies how many conferences I have attended based on the following criteria:

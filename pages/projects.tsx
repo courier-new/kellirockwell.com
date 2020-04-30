@@ -1,6 +1,7 @@
 import React, { FC, useRef } from 'react';
-import PROJECTS_SECTIONS from '../content/projects';
+
 import useMeasureSectionHeights from '../common/hooks/useMeasureSectionHeights';
+import PROJECTS_SECTIONS from '../content/projects';
 
 type ProjectsScreenProps = {};
 

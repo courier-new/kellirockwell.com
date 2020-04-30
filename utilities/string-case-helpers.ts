@@ -1,8 +1,8 @@
+import flow from 'lodash/flow';
 import kebabCase from 'lodash/kebabCase';
+import replace from 'lodash/replace';
 import toLower from 'lodash/toLower';
 import upperFirst from 'lodash/upperFirst';
-import replace from 'lodash/replace';
-import flow from 'lodash/flow';
 
 /** Branded type to distinguish a string in kamel-case capitalization */
 export type KebabCaseString = string & { __brand: '@brand/kebab-case-string' };

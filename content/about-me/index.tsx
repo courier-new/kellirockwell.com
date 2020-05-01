@@ -1,4 +1,5 @@
-import { ContentSection, generateTitleProps } from '../utilities/content-helpers';
+import generateTitleProps from '../utilities/for-content';
+import { ContentSection } from '../utilities/types';
 
 type AboutMeSectionName =
   | 'By the numbers'

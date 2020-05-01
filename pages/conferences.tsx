@@ -5,7 +5,7 @@ import React, { FC, ReactNode } from 'react';
 import ConferenceCardGrid from '../common/components/ConferenceCardGrid';
 import ScreenContent from '../common/components/ScreenContent';
 import CONFERENCES_SECTIONS from '../content/conferences';
-import { ContentRenderer, ContentSection } from '../utilities/content-helpers';
+import { ContentRenderer, ContentSection } from '../content/utilities/types';
 
 /**
  * Maps each section to a `<section>` of JSX to render, providing the section

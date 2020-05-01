@@ -4,7 +4,7 @@ import React, { FC, ReactNode } from 'react';
 
 import ScreenContent from '../common/components/ScreenContent';
 import ABOUT_ME_SECTIONS from '../content/about-me';
-import { ContentRenderer, ContentSection } from '../utilities/content-helpers';
+import { ContentRenderer, ContentSection } from '../content/utilities/types';
 
 /* eslint-disable-next-line jsdoc/require-jsdoc */
 const FAKE_CONTENT = (key: string): JSX.Element => (

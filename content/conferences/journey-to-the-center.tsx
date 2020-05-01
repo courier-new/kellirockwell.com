@@ -2,7 +2,7 @@ import filter from 'lodash/filter';
 import flatten from 'lodash/flatten';
 import React from 'react';
 
-import { generateTitleProps } from '../../utilities/content-helpers';
+import generateTitleProps from '../utilities/for-content';
 import { CANCELLED, Conference, hasPassed } from './Conference';
 import { CONFERENCES_2019, CONFERENCES_2020 } from './roadmap';
 

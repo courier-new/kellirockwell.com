@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useState } from 'react';
 
-import { Slug } from '../../constants/slugs';
+import { Slug } from '../constants/slugs';
 import MainNavMenu from './MainNavMenu';
 
 type DrawerMainNavMenuProps = {

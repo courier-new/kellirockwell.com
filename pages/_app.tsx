@@ -8,12 +8,12 @@ import { useRouter } from 'next/router';
 import React, { FC, useEffect, useRef } from 'react';
 
 import Screen from '../common/components/Screen';
+import { Slug } from '../common/constants/slugs';
 import CombinedProvider from '../common/context';
 import { useSectionHeightsState } from '../common/context/sectionHeightsState';
 import useCurrentSectionIndex from '../common/hooks/useCurrentSectionIndex';
 import useScrollInfo from '../common/hooks/useScrollInfo';
-import { Slug } from '../constants/slugs';
-import getSectionsForPage from '../content/index';
+import { getSectionsForPage } from '../content/utilities/for-pages';
 
 /**
  * Custom `App` container for all pages:

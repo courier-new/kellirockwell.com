@@ -10,7 +10,7 @@ import {
   BREAKPOINT_SIZES,
   DisplaySize,
   DisplaySizeWidth,
-} from '../../constants/breakpoint-sizes';
+} from '../constants/breakpoint-sizes';
 
 type BreakpointObj = { name: DisplaySize; size: DisplaySizeWidth };
 

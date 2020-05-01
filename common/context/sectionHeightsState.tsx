@@ -6,7 +6,7 @@ import React, {
   useReducer,
 } from 'react';
 
-import { Slug } from '../../constants/slugs';
+import { Slug } from '../constants/slugs';
 
 type SectionHeightsAction =
   /** Set the section heights for a page by its slug */

@@ -2,11 +2,11 @@ import includes from 'lodash/includes';
 import isUndefined from 'lodash/isUndefined';
 import React, { PropsWithChildren, useMemo } from 'react';
 
-import { DisplaySize } from '../../constants/breakpoint-sizes';
-import { Slug } from '../../constants/slugs';
-import { ContentSection } from '../../utilities/content-helpers';
-import { Percent } from '../../utilities/percent-helpers';
+import { ContentSection } from '../../content/utilities/types';
+import { DisplaySize } from '../constants/breakpoint-sizes';
+import { Slug } from '../constants/slugs';
 import useDisplaySize from '../hooks/useDisplaySize';
+import { Percent } from '../utilities/percent';
 import DrawerMainNavMenu from './DrawerMainNavMenu';
 import MainNavMenu from './MainNavMenu';
 import ProgressBar from './ProgressBar';

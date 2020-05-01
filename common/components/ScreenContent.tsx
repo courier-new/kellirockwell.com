@@ -1,13 +1,13 @@
 import map from 'lodash/map';
 import React, { FC, useEffect, useMemo, useState } from 'react';
 
-import { Slug } from '../../constants/slugs';
+import { flattenAllAnchors } from '../../content/utilities/for-pages';
 import {
   ContentRenderer,
   ContentSection,
-  flattenAllAnchors,
   SectionRefsMap,
-} from '../../utilities/content-helpers';
+} from '../../content/utilities/types';
+import { Slug } from '../constants/slugs';
 import useMeasureSectionHeights from '../hooks/useMeasureSectionHeights';
 
 type ScreenContentProps = {

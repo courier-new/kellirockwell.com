@@ -2,7 +2,8 @@ import map from 'lodash/map';
 import Link from 'next/link';
 import React, { FC } from 'react';
 
-import { ContentSection, flattenAllAnchors } from '../../utilities/content-helpers';
+import { flattenAllAnchors } from '../../content/utilities/for-pages';
+import { ContentSection } from '../../content/utilities/types';
 
 type SideNavMenuProps = {
   /** The index corresponding to section of the screen containing the current

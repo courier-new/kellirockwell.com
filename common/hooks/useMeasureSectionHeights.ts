@@ -3,7 +3,7 @@ import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import { useState } from 'react';
 
-import { Slug } from '../../constants/slugs';
+import { Slug } from '../constants/slugs';
 import { useSectionHeightsDispatch } from '../context/sectionHeightsState';
 import useDeepCompareEffect from './useDeepCompareEffect';
 

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { Percent } from '../../utilities/percent-helpers';
+import { Percent } from '../utilities/percent';
 
 type ProgressBarProps = {
   /** The current scroll position down the Screen */

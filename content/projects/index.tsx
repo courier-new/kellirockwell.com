@@ -1,4 +1,5 @@
-import { ContentSection, generateTitleProps } from '../utilities/content-helpers';
+import generateTitleProps from '../utilities/for-content';
+import { ContentSection } from '../utilities/types';
 
 type ProjectSectionName =
   | 'Sutro'
@@ -6,8 +7,8 @@ type ProjectSectionName =
   | 'Pilon'
   | 'Moment'
   | 'Kleiner-Perkins'
-  | 'Cuwip 2018'
-  | 'Ebay'
+  | 'CUWiP 2018'
+  | 'eBay'
   | 'Duit';
 
 type ProjectsContentSection = ContentSection<ProjectSectionName>;
@@ -18,8 +19,8 @@ const PROJECTS_SECTIONS: ProjectsContentSection[] = [
   { ...generateTitleProps('Pilon') },
   { ...generateTitleProps('Moment') },
   { ...generateTitleProps('Kleiner-Perkins') },
-  { ...generateTitleProps('Cuwip 2018') },
-  { ...generateTitleProps('Ebay') },
+  { ...generateTitleProps('CUWiP 2018') },
+  { ...generateTitleProps('eBay') },
   { ...generateTitleProps('Duit') },
 ];
 

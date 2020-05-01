@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { asPercent, Percent } from '../../utilities/percent-helpers';
+import { asPercent, Percent } from '../utilities/percent';
 
 type ScrollPosition = {
   x: number;

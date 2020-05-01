@@ -6,7 +6,7 @@ import split from 'lodash/split';
 import Link from 'next/link';
 import React, { FC } from 'react';
 
-import { Slug, SLUGS } from '../../constants/slugs';
+import { Slug, SLUGS } from '../constants/slugs';
 
 type MainNavMenuProps = {
   /** The url slug corresponding to the screen that is currently open */

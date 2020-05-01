@@ -1,6 +1,6 @@
 import { DateTime, Interval } from 'luxon';
 
-import { generateTitleProps } from '../../utilities/content-helpers';
+import generateTitleProps from '../utilities/for-content';
 import { addDateLabels, CANCELLED, Conference, VIRTUAL } from './Conference';
 
 /* eslint-disable jsdoc/require-jsdoc */

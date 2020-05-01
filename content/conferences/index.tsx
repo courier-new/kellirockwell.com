@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { ContentSection, generateTitleProps } from '../../utilities/content-helpers';
+import generateTitleProps from '../utilities/for-content';
+import { ContentSection } from '../utilities/types';
 import { Conference } from './Conference';
 import JOURNEY_TO_THE_CENTER from './journey-to-the-center';
 import ROADMAP from './roadmap';

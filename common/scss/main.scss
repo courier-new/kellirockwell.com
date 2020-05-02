@@ -93,6 +93,15 @@ body,
   height: 0;
 }
 
+.circular {
+  border-radius: 50%;
+}
+
+.main-column-size {
+  max-width: 180px;
+  min-width: 180px;
+}
+
 /* PADDING/MARGIN */
 
 .padding-sm-top,
@@ -137,6 +146,23 @@ body,
 .padding-med {
   @extend %padding-med-h;
   @extend %padding-med-v;
+}
+
+.padding-lg-h,
+%padding-lg-h {
+  padding-left: 2.5em;
+  padding-right: 2.5em;
+}
+
+.padding-lg-v,
+%padding-lg-v {
+  padding-bottom: 2.5em;
+  padding-top: 2.5em;
+}
+
+.padding-lg {
+  @extend %padding-lg-h;
+  @extend %padding-lg-v;
 }
 
 .margin-0 {

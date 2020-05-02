@@ -1,10 +1,11 @@
 import { useRouter } from 'next/router';
-import React, { FC, useCallback, useRef, useState } from 'react';
+import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 
 import { Slug } from '../constants/slugs';
 import useOnClickOutside from '../hooks/useOnClickOutside';
-import MainNavMenu from './MainNavMenu';
+import MainNavigation from './MainNavigation';
 import MenuIcon from './MenuIcon';
+import ProfileImage from './ProfileImage';
 
 type DrawerMainNavMenuProps = {
   /** The url slug corresponding to the screen that is currently open */
@@ -31,33 +32,70 @@ const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
 
   // Toggle drawer closed on route change
   const router = useRouter();
-  router.events?.on('routeChangeStart', toggleDrawerIsOpen);
+  useEffect(() => {
+    /** Event handler to close the drawer */
+    const closeDrawer = (): void => setDrawerIsOpen(false);
+    router.events.on('routeChangeStart', closeDrawer);
+
+    return (): void => router.events.off('routeChangeStart', closeDrawer);
+  }, [router.events]);
 
   return (
     <>
       <style jsx>
         {`
           .outer-container {
+            left: -80%;
             transition: all 0.3s ease-out;
+            width: 80%;
           }
 
           .outer-container.open {
-            width: 80%;
+            animation: slide-in-nav 0.3s;
+            left: 0;
+          }
+
+          @keyframes slide-in-nav {
+            from {
+              left: -80%;
+            }
+            to {
+              left: 0;
+            }
           }
 
           button:focus {
             outline: none;
           }
+
+          h3 {
+            font-size: 6vw;
+            margin-left: 1em;
+          }
         `}
       </style>
       <div
-        className={`outer-container absolute flex-row flex-align-start full-height z-index-top ${
+        className={`
+        outer-container absolute flex-row flex-align-start full-height z-index-top ${
           drawerIsOpen ? 'open' : 'width-0'
-        }`}
+        }
+      `}
         ref={drawerRef}
       >
-        <div className="background-maastricht full-height full-width text-magnolia non-scrollable">
-          <MainNavMenu activePage={activePage} />
+        <div className="background-maastricht full-height full-width flex-1 flex-column text-magnolia non-scrollable padding-med">
+          <div className="flex-row flex-align-center" style={{ marginBottom: '1em' }}>
+            {/* Restrain min/max width of ProfileImage while preserving aspect ratio */}
+            <div
+              style={{
+                maxWidth: 'max(50px, min(40%, 100px))',
+                minWidth: 'max(50px, min(40%, 100px))',
+              }}
+            >
+              <ProfileImage shape="round" size="100%" />
+            </div>
+            <h3 className="text-turquoise">Kelli Rockwell</h3>
+          </div>
+          <MainNavigation activePage={activePage} />
         </div>
         <button
           className="z-index-top margin-0 padding-med-v padding-0-h border-0 background-none width-0"

@@ -19,6 +19,16 @@ $headers: (
     'font-family': $yeseva-one,
     'font-weight': normal,
   ),
+  h4: (
+    'font-size': 20px,
+    'font-family': $karla,
+    'font-weight': normal,
+  ),
+  h5: (
+    'font-size': 16px,
+    'font-family': $yeseva-one,
+    'font-weight': normal,
+  ),
   h6: (
     'letter-spacing': 1.2px,
   ),
@@ -56,4 +66,8 @@ $headers: (
 
 .uppercase {
   text-transform: uppercase;
+}
+
+.no-decoration {
+  text-decoration: none;
 }

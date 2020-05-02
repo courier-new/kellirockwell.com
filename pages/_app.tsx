@@ -94,9 +94,7 @@ const InContext: FC<{}> = ({ children }) => {
     return (): void => {
       forEach(removeEventListenerFns, (fn) => fn());
     };
-    // Router is not expected to change over app lifetime
-    /* eslint-disable-next-line react-hooks/exhaustive-deps */
-  }, []);
+  }, [recalculateSectionIndex, router.events]);
 
   return isIndex ? (
     <>{children}</>

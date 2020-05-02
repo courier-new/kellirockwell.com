@@ -59,7 +59,10 @@ const renderLinks = (slugs: readonly Slug[], activePage: Slug): JSX.Element => (
  */
 const MainNavMenu: FC<MainNavMenuProps> = ({ activePage }) => {
   return (
-    <nav className="flex-align-center flex-justify-center sidebar-width padding-med background-maastricht text-magnolia">
+    <nav
+      className="flex-align-center flex-justify-center padding-med background-maastricht text-magnolia"
+      style={{ minWidth: 220 }}
+    >
       [IMAGE]
       <h6 className="text-turquoise">Kelli Rockwell</h6>
       {renderLinks(SLUGS, activePage)}

@@ -66,7 +66,10 @@ const SideNavMenu: FC<SideNavMenuProps> = ({ activeSectionIndex, contentSections
   const activeSectionAnchor = flattenedSectionAnchors[activeSectionIndex];
 
   return (
-    <nav className="flex-align-center flex-justify-center background-magnolia sidebar-width padding-med">
+    <nav
+      className="flex-align-center flex-justify-center full-width background-magnolia padding-med"
+      style={{ width: 220 }}
+    >
       {renderNavigation(contentSections, activeSectionAnchor)}
     </nav>
   );

@@ -86,7 +86,7 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
         {isUndefined(scrollPercent) ? null : (
           <ProgressBar scrollPercent={scrollPercent} />
         )}
-        <div className="full-width flex-1 flex-row non-scrollable">
+        <div className="full-width flex-1 flex-row non-scrollable border-box">
           {shouldShowMainNav ? (
             <MainNavMenu activePage={activePage} />
           ) : (

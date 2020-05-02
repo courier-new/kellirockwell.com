@@ -48,8 +48,8 @@ export const hasPassed = (conference: Conference): boolean => {
 export const isCurrentlyHappening = (conference: Conference): boolean => {
   if (Interval.isInterval(conference.date)) {
     return (
-      conference.date.start.startOf('day') > DateTime.local().startOf('day') &&
-      conference.date.end.startOf('day') < DateTime.local().startOf('day')
+      conference.date.start.startOf('day') < DateTime.local() &&
+      conference.date.end.endOf('day') > DateTime.local()
     );
   }
   return (

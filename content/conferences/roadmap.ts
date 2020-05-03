@@ -1,10 +1,23 @@
+import flow from 'lodash/flow';
 import { DateTime, Interval } from 'luxon';
 
 import generateTitleProps from '../utilities/for-content';
-import { addDateLabels, CANCELLED, Conference, VIRTUAL } from './Conference';
+import { addDateLabels, CANCELLED, Conference, sortByDate, VIRTUAL } from './Conference';
 
 /* eslint-disable jsdoc/require-jsdoc */
-export const CONFERENCES_2020: Conference[] = addDateLabels([
+export const CONFERENCES_2020: Conference[] = flow(
+  addDateLabels,
+  sortByDate,
+)([
+  {
+    date: Interval.fromDateTimes(
+      DateTime.fromObject({ day: 1, month: 9, year: 2020 }),
+      DateTime.fromObject({ day: 2, month: 9, year: 2020 }),
+    ),
+    location: VIRTUAL,
+    name: 'CascadiaJS 2020',
+    website: 'https://2020.cascadiajs.com',
+  },
   {
     date: DateTime.fromObject({ day: 22, month: 2, year: 2020 }),
     label: CANCELLED,
@@ -111,18 +124,12 @@ export const CONFERENCES_2020: Conference[] = addDateLabels([
     name: 'React Rally 2020',
     website: 'https://reactrally.com',
   },
-  {
-    date: Interval.fromDateTimes(
-      DateTime.fromObject({ day: 1, month: 9, year: 2020 }),
-      DateTime.fromObject({ day: 2, month: 9, year: 2020 }),
-    ),
-    location: VIRTUAL,
-    name: 'CascadiaJS 2020',
-    website: 'https://2020.cascadiajs.com',
-  },
 ]);
 
-export const CONFERENCES_2019: Conference[] = addDateLabels([
+export const CONFERENCES_2019: Conference[] = flow(
+  addDateLabels,
+  sortByDate,
+)([
   {
     date: Interval.fromDateTimes(
       DateTime.fromObject({ day: 27, month: 8, year: 2019 }),

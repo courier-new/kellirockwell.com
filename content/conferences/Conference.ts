@@ -1,4 +1,5 @@
 import map from 'lodash/map';
+import sortBy from 'lodash/sortBy';
 import { DateTime, Interval } from 'luxon';
 
 export const VIRTUAL = 'Virtual';
@@ -41,7 +42,8 @@ export const hasPassed = (conference: Conference): boolean => {
 
 /**
  * Returns whether or not the provided conference is currently happening based
- * on the date or start and end date, in the case of an Interval date
+ * on the date, or based on the start and end date, in the case of a multi-day
+ * conference date Interval
  *
  * @param conference the conference to check
  */
@@ -57,6 +59,21 @@ export const isCurrentlyHappening = (conference: Conference): boolean => {
     conference.date.hasSame(DateTime.local(), 'month') &&
     conference.date.hasSame(DateTime.local(), 'year')
   );
+};
+
+/**
+ * Orders a list of conferences by their dates from earliest to latest,
+ * taking a conference start date in the case of multi-day conference Intervals
+ *
+ * @param conferences the list of conferences to sort
+ */
+export const sortByDate = (conferences: Conference[]): Conference[] => {
+  return sortBy(conferences, (conference) => {
+    if (Interval.isInterval(conference.date)) {
+      return conference.date.start;
+    }
+    return conference.date;
+  });
 };
 
 /**

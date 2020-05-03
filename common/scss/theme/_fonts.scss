@@ -71,3 +71,20 @@ $headers: (
 .no-decoration {
   text-decoration: none;
 }
+
+/** Main text font sizs */
+
+$font-sizes: (
+  xsmall: 11px,
+  small: 13px,
+);
+
+@mixin font-size-classes($scale: $font-sizes) {
+  @each $name, $size in $scale {
+    &#{'.'}#{$name} {
+      font-size: $size;
+    }
+  }
+}
+
+@include font-size-classes($font-sizes);

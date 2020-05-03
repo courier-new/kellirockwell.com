@@ -57,8 +57,9 @@ const ConferenceCard: FC<Conference> = (conference) => {
   const formattedURL = formatURL(website);
   const linkAnchor = (
     <a
+      className="small"
       href={website}
-      style={{ fontSize: '13px', wordWrap: 'break-word' }}
+      style={{ wordWrap: 'break-word' }}
       title={formattedURL}
     >
       {formattedURL}

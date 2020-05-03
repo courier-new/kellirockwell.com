@@ -3,9 +3,11 @@ import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 
 import { Slug } from '../constants/slugs';
 import useOnClickOutside from '../hooks/useOnClickOutside';
+import MadeByMe from './MadeByMe';
 import MainNavigation from './MainNavigation';
 import MenuIcon from './MenuIcon';
 import ProfileImage from './ProfileImage';
+import SocialLinks from './SocialLinks';
 
 type DrawerMainNavMenuProps = {
   /** The url slug corresponding to the screen that is currently open */
@@ -18,7 +20,7 @@ type DrawerMainNavMenuProps = {
  */
 const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
   const drawerRef = useRef<HTMLDivElement | null>(null);
-  const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+  const [drawerIsOpen, setDrawerIsOpen] = useState(true);
 
   const toggleDrawerIsOpen = useCallback(() => setDrawerIsOpen(!drawerIsOpen), [
     drawerIsOpen,
@@ -82,20 +84,29 @@ const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
       `}
         ref={drawerRef}
       >
-        <div className="background-maastricht full-height full-width flex-1 flex-column text-magnolia non-scrollable padding-med">
-          <div className="flex-row flex-align-center" style={{ marginBottom: '1em' }}>
-            {/* Restrain min/max width of ProfileImage while preserving aspect ratio */}
-            <div
-              style={{
-                maxWidth: 'max(50px, min(40%, 100px))',
-                minWidth: 'max(50px, min(40%, 100px))',
-              }}
-            >
-              <ProfileImage shape="round" size="100%" />
+        {/* Use space-between to split flex column to top and bottom part */}
+        <div className="background-maastricht full-height full-width flex-1 flex-column flex-space-between text-magnolia non-scrollable padding-med border-box">
+          {/* The top-aligned part */}
+          <div>
+            <div className="flex-row flex-align-center" style={{ marginBottom: '1em' }}>
+              {/* Restrain min/max width of ProfileImage while preserving aspect ratio */}
+              <div
+                style={{
+                  maxWidth: 'max(50px, min(40%, 100px))',
+                  minWidth: 'max(50px, min(40%, 100px))',
+                }}
+              >
+                <ProfileImage shape="round" size="100%" />
+              </div>
+              <h3 className="text-turquoise">Kelli Rockwell</h3>
             </div>
-            <h3 className="text-turquoise">Kelli Rockwell</h3>
+            <MainNavigation activePage={activePage} />
           </div>
-          <MainNavigation activePage={activePage} />
+          {/* The bottom-aligned part */}
+          <div>
+            <SocialLinks className="text-magnolia" size="8vw" />
+            <MadeByMe className="text-magnolia xsmall" />
+          </div>
         </div>
         <button
           className="z-index-top margin-0 padding-med-v padding-0-h border-0 background-none width-0"

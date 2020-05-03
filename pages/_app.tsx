@@ -40,7 +40,8 @@ const InContext: FC<{}> = ({ children }) => {
   const router = useRouter();
   const isIndex = router.route === '/';
   // Strip starting "/" in path to get the `Slug`
-  const slug = replace(router.asPath, /^\//, '') as Slug;
+  // router.asPath contains any hash in link, too
+  const slug = replace(router.pathname, /^\//, '') as Slug;
   // Dictionary of section starting heights for each page in the app,
   // retrievable by the page's slug
   const state = useSectionHeightsState();

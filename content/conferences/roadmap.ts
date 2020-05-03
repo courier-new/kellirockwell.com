@@ -37,6 +37,12 @@ export const CONFERENCES_2020: Conference[] = addDateLabels([
     website: 'https://womenofreact.com',
   },
   {
+    date: DateTime.fromObject({ day: 26, month: 4, year: 2020 }),
+    location: VIRTUAL,
+    name: 'Svelte Society Day',
+    website: 'https://sveltesociety.dev/',
+  },
+  {
     date: Interval.fromDateTimes(
       DateTime.fromObject({ day: 1, month: 5, year: 2020 }),
       DateTime.fromObject({ day: 2, month: 5, year: 2020 }),

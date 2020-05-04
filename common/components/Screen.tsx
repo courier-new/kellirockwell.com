@@ -10,6 +10,7 @@ import { Slug } from '../constants/slugs';
 import useDisplaySize from '../hooks/useDisplaySize';
 import { Percent } from '../utilities/percent';
 import DrawerMainNavMenu from './DrawerMainNavMenu';
+import LoadingOverlay from './LoadingOverlay';
 import MainNavMenu from './MainNavMenu';
 import ProgressBar from './ProgressBar';
 import SideNavMenu from './SideNavMenu';
@@ -31,6 +32,8 @@ type ScreenProps = {
     /** The sections of the screen */
     sections: ContentSection<string>[];
   };
+  /** Whether or not the current screen is undergoing a server render */
+  rendering: boolean;
   /** The current scroll position of the Screen ref, used to render the
    * ProgressBar component */
   scrollPercent?: Percent;
@@ -41,7 +44,7 @@ type ScreenProps = {
  * navigation and adjusts layout to display size.
  */
 const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
-  ({ activePage, children, contentSections, scrollPercent }, ref) => {
+  ({ activePage, children, contentSections, rendering, scrollPercent }, ref) => {
     const [displaySize] = useDisplaySize();
 
     /** If true, will always show the main left-hand navigation menu; otherwise,
@@ -73,7 +76,14 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
           ) : (
             <DrawerMainNavMenu activePage={activePage} />
           )}
-          <main className="flex-1 flex-column scrollable-y padding-med" ref={ref}>
+          {/* Lock scroll when screen is rendering */}
+          <main
+            className={`relative flex-1 flex-column margin-med ${
+              rendering ? 'non-scrollable' : 'scrollable-y'
+            }`}
+            ref={ref}
+          >
+            {rendering ? <LoadingOverlay /> : null}
             {children}
           </main>
           {contentSections && shouldShowSideNav ? (

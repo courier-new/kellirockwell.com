@@ -5,7 +5,7 @@ import replace from 'lodash/replace';
 import { NextComponentType } from 'next';
 import { AppContext, AppProps } from 'next/app';
 import { useRouter } from 'next/router';
-import React, { FC, useEffect, useRef } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 
 import Screen from '../common/components/Screen';
 import { Slug } from '../common/constants/slugs';
@@ -36,6 +36,7 @@ const App: NextComponentType<AppContext, {}, AppProps> = ({ Component, pageProps
 const InContext: FC<{}> = ({ children }) => {
   // React `RefObject` to attach to the outermost `Screen` component
   const outerRef = useRef<HTMLDivElement>(null);
+  const [rendering, setRendering] = useState(false);
 
   const router = useRouter();
   const isIndex = router.route === '/';
@@ -65,12 +66,19 @@ const InContext: FC<{}> = ({ children }) => {
     /** Array to hold event listener clean up functions */
     let removeEventListenerFns: (() => void)[] = [];
 
-    /** Scroll handler to scroll to top of outer `Screen` component */
-    const onRouteChangeScroll = (): void => outerRef.current?.scrollTo({ top: 0 });
+    /** Handler to set rendering state */
+    const onRouteStart = (): void => setRendering(true);
 
-    // Attach handler to router route change event (does not fire on hash link
+    /** Scroll handler to scroll to top of outer `Screen` component */
+    const onRouteCompleteScroll = (): void => {
+      outerRef.current?.scrollTo({ top: 0 });
+      setRendering(false);
+    };
+
+    // Attach handler to router route change events (does not fire on hash link
     // changes like "#section2")
-    router.events.on('routeChangeComplete', onRouteChangeScroll);
+    router.events.on('routeChangeStart', onRouteStart);
+    router.events.on('routeChangeComplete', onRouteCompleteScroll);
 
     if (recalculateSectionIndex) {
       // Attach handler to recalculate the section index on following a hash
@@ -88,7 +96,8 @@ const InContext: FC<{}> = ({ children }) => {
     // Remove handler to clean up
     removeEventListenerFns = [
       ...removeEventListenerFns,
-      (): void => router.events.off('routeChangeComplete', onRouteChangeScroll),
+      (): void => router.events.off('routeChangeStart', onRouteStart),
+      (): void => router.events.off('routeChangeComplete', onRouteCompleteScroll),
     ];
 
     // Call methods to remove all handlers
@@ -111,6 +120,7 @@ const InContext: FC<{}> = ({ children }) => {
           : undefined
       }
       ref={outerRef}
+      rendering={rendering}
       scrollPercent={scrollPercent}
     >
       {children}

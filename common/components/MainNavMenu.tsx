@@ -16,7 +16,7 @@ type MainNavMenuProps = {
  */
 const MainNavMenu: FC<MainNavMenuProps> = ({ activePage }) => {
   return (
-    <nav className="flex-column flex-space-between padding-lg background-maastricht text-magnolia main-column-size">
+    <nav className="flex-column flex-space-between padding-lg background-maastricht text-magnolia main-column-size border-box">
       {/* Use space-between to split flex column to top and bottom part */}
       {/* The top-aligned part */}
       <div>

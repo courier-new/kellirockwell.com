@@ -20,13 +20,11 @@ type SideNavMenuProps = {
  * sections nested within it
  *
  * @param contentSection the screen section to render a link for
- * @param index the index of the current section
  * @param activeSection the section corresponding to the current scroll position
  * @param level the level that this link is nested at, used to compute padding
  */
 const renderLink = (
   { anchor, subsections, title }: ContentSection<string>,
-  index: number,
   activeSection: string,
   level = 1,
 ): JSX.Element | null => {
@@ -44,7 +42,7 @@ const renderLink = (
     : null;
 
   return (
-    <li key={index}>
+    <li key={anchor}>
       <Link href={`#${anchor}`}>
         <a
           className="no-decoration flex-row padding-xs-v"
@@ -73,7 +71,7 @@ const renderNavigation = (
   level = 1,
 ): JSX.Element => (
   <ul className="no-default-bullets padding-0 margin-0">
-    {map(sections, (section, index) => renderLink(section, index, activeSection, level))}
+    {map(sections, (section) => renderLink(section, activeSection, level))}
   </ul>
 );
 

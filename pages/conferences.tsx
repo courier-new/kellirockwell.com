@@ -29,14 +29,14 @@ export const renderConferencesSections: ContentRenderer<typeof CONFERENCES_SECTI
     headingTag = 'h3';
   }
 
-  return flatMap(sections, (section, index) => {
+  return flatMap(sections, (section) => {
     // Array with which to build up section children elements
     let sectionElements: JSX.Element[] = [];
 
     sectionElements = [
       ...sectionElements,
       // Section heading
-      React.createElement(headingTag, { key: `heading-${index}` }, section.name),
+      React.createElement(headingTag, { key: `heading-${section.name}` }, section.name),
     ];
 
     // Section content
@@ -45,7 +45,7 @@ export const renderConferencesSections: ContentRenderer<typeof CONFERENCES_SECTI
         const conferencesBlock = (
           <ConferenceCardGrid
             conferences={section.content.conferences}
-            key={`conferences-${index}`}
+            key="conferences"
           />
         );
         sectionElements = [...sectionElements, conferencesBlock];

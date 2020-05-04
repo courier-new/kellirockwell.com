@@ -19,23 +19,38 @@ type SideNavMenuProps = {
  * screen containing the current scroll position, and nested navigation for any
  * sections nested within it
  *
- * @param param0 the screen section to render a link for
+ * @param contentSection the screen section to render a link for
  * @param index the index of the current section
  * @param activeSection the section corresponding to the current scroll position
+ * @param level the level that this link is nested at, used to compute padding
  */
 const renderLink = (
   { anchor, subsections, title }: ContentSection<string>,
   index: number,
   activeSection: string,
+  level = 1,
 ): JSX.Element | null => {
-  const linkClass = anchor === activeSection ? 'font-bold' : 'font-normal';
+  const isActiveSection = anchor === activeSection;
+  const paddingAmount = 1.5 * level;
+  const linkStyle: React.CSSProperties = {
+    // TODO: replace hardcoded color
+    borderLeft: `2px solid ${isActiveSection ? '#17179f' : 'transparent'}`,
+    paddingLeft: `${paddingAmount}em`,
+    transition: 'all 0.2s',
+  };
+
   const subsectionNavigation = subsections
-    ? renderNavigation(subsections, activeSection)
+    ? renderNavigation(subsections, activeSection, level + 1)
     : null;
+
   return (
     <li key={index}>
       <Link href={`#${anchor}`}>
-        <a className={linkClass} title={title}>
+        <a
+          className="no-decoration flex-row padding-xs-v"
+          style={linkStyle}
+          title={title}
+        >
           {title}
         </a>
       </Link>
@@ -49,12 +64,17 @@ const renderLink = (
  *
  * @param sections the list of sections to render navigation for
  * @param activeSection the section corresponding to the current scroll position
+ * @param level the level that this link is nested at, used to compute padding
+ * at the individual link level
  */
 const renderNavigation = (
   sections: ContentSection<string>[],
   activeSection: string,
+  level = 1,
 ): JSX.Element => (
-  <ul>{map(sections, (section, index) => renderLink(section, index, activeSection))}</ul>
+  <ul className="no-default-bullets padding-0 margin-0">
+    {map(sections, (section, index) => renderLink(section, index, activeSection, level))}
+  </ul>
 );
 
 /**

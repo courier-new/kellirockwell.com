@@ -20,7 +20,7 @@ type DrawerMainNavMenuProps = {
  */
 const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
   const drawerRef = useRef<HTMLDivElement | null>(null);
-  const [drawerIsOpen, setDrawerIsOpen] = useState(true);
+  const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
   const toggleDrawerIsOpen = useCallback(() => setDrawerIsOpen(!drawerIsOpen), [
     drawerIsOpen,

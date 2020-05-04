@@ -108,86 +108,71 @@ body,
 
 /* PADDING/MARGIN */
 
-.padding-sm-top,
-%padding-sm-top {
-  padding-top: 0.75em;
+$space-sizes: (
+  '0': 0,
+  xs: 0.4em,
+  sm: 0.75em,
+  med: 1.5em,
+  lg: 2.5em,
+);
+
+@mixin padding-margin-classes($scale: $space-sizes) {
+  @each $space-type in 'padding', 'margin' {
+    @each $name, $size in $scale {
+      @each $direction in 'top', 'bottom', 'left', 'right' {
+        /*
+         * Produces styles like:
+         * .padding-med-top, %padding-med-top {
+         *   padding-top: 1.5em
+         * }
+         */
+        &#{'.'}#{$space-type}#{'-'}#{$name}#{'-'}#{$direction},
+        %#{$space-type}#{'-'}#{$name}#{'-'}#{$direction} {
+          #{$space-type}#{'-'}#{$direction}: $size;
+        }
+      }
+
+      /*
+       * Produces styles like:
+       * .padding-med-v, %padding-med-v {
+       *   @extend %padding-med-top;
+       *   @extend %padding-med-bottom;
+       * }
+       */
+      &#{'.'}#{$space-type}#{'-'}#{$name}#{'-v'},
+      %#{$space-type}#{'-'}#{$name}#{'-v'} {
+        @extend #{'%'}#{$space-type}#{'-'}#{$name}#{'-top'};
+        @extend #{'%'}#{$space-type}#{'-'}#{$name}#{'-bottom'};
+      }
+
+      /*
+       * Horizontal equivalent of the previous mapping
+       */
+      &#{'.'}#{$space-type}#{'-'}#{$name}#{'-h'},
+      %#{$space-type}#{'-'}#{$name}#{'-h'} {
+        @extend #{'%'}#{$space-type}#{'-'}#{$name}#{'-left'};
+        @extend #{'%'}#{$space-type}#{'-'}#{$name}#{'-right'};
+      }
+
+      /*
+       * Produces styles like:
+       * .padding-med {
+       *   @extend %padding-med-v;
+       *   @extend %padding-med-h;
+       * }
+       */
+      &#{'.'}#{$space-type}#{'-'}#{$name} {
+        @extend #{'%'}#{$space-type}#{'-'}#{$name}#{'-h'};
+        @extend #{'%'}#{$space-type}#{'-'}#{$name}#{'-v'};
+      }
+    }
+  }
 }
 
-.padding-sm-bottom,
-%padding-sm-bottom {
-  padding-bottom: 0.75em;
-}
-
-.padding-sm-h,
-%padding-sm-h {
-  padding-left: 0.75em;
-  padding-right: 0.75em;
-}
-
-.padding-sm-v,
-%padding-sm-v {
-  @extend %padding-sm-top;
-  @extend %padding-sm-bottom;
-}
-
-.padding-sm {
-  @extend %padding-sm-h;
-  @extend %padding-sm-v;
-}
-
-.padding-med-h,
-%padding-med-h {
-  padding-left: 1.5em;
-  padding-right: 1.5em;
-}
-
-.padding-med-v,
-%padding-med-v {
-  padding-bottom: 1.5em;
-  padding-top: 1.5em;
-}
-
-.padding-med {
-  @extend %padding-med-h;
-  @extend %padding-med-v;
-}
-
-.padding-lg-h,
-%padding-lg-h {
-  padding-left: 2.5em;
-  padding-right: 2.5em;
-}
-
-.padding-lg-v,
-%padding-lg-v {
-  padding-bottom: 2.5em;
-  padding-top: 2.5em;
-}
-
-.padding-lg {
-  @extend %padding-lg-h;
-  @extend %padding-lg-v;
-}
+@include padding-margin-classes($space-sizes);
 
 .margin-0 {
   margin: 0;
-}
-
-.padding-0-h,
-%padding-0-h {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.padding-0-v,
-%padding-0-v {
-  padding-bottom: 0;
-  padding-top: 0;
-}
-
-.padding-0 {
-  @extend %padding-0-h;
-  @extend %padding-0-v;
 }
 
 /* Z-INDEX */

@@ -1,3 +1,4 @@
+import includes from 'lodash/includes';
 import values from 'lodash/values';
 
 /* eslint-disable sort-keys */
@@ -23,3 +24,24 @@ export type DisplaySize = keyof typeof BREAKPOINT_SIZES;
 const displaySizeWidths = values(BREAKPOINT_SIZES);
 /** Literal union type of defined display size widths (numbers) */
 export type DisplaySizeWidth = UnionLiteralFromArray<typeof displaySizeWidths>;
+
+const MAIN_NAV_MENU_DISPLAY_SIZES: DisplaySize[] = ['XLARGE', 'LARGE', 'MEDIUM', 'SMALL'];
+const SIDE_NAV_MENU_DISPLAY_SIZES: DisplaySize[] = ['XLARGE', 'LARGE', 'MEDIUM'];
+
+/**
+ * Returns true if the current display size is included in the list of allowed
+ * display sizes for the main nav menu
+ *
+ * @param displaySize the current display size to check
+ */
+export const shouldShowMainNavMenu = (displaySize: DisplaySize): boolean =>
+  includes(MAIN_NAV_MENU_DISPLAY_SIZES, displaySize);
+
+/**
+ * Returns true if the current display size is included in the list of allowed
+ * display sizes for the main nav menu
+ *
+ * @param displaySize the current display size to check
+ */
+export const shouldShowSideNavMenu = (displaySize: DisplaySize): boolean =>
+  includes(SIDE_NAV_MENU_DISPLAY_SIZES, displaySize);

@@ -1,9 +1,11 @@
-import includes from 'lodash/includes';
 import isUndefined from 'lodash/isUndefined';
 import React, { PropsWithChildren, useMemo } from 'react';
 
 import { ContentSection } from '../../content/utilities/types';
-import { DisplaySize } from '../constants/breakpoint-sizes';
+import {
+  shouldShowMainNavMenu,
+  shouldShowSideNavMenu,
+} from '../constants/breakpoint-sizes';
 import { Slug } from '../constants/slugs';
 import useDisplaySize from '../hooks/useDisplaySize';
 import { Percent } from '../utilities/percent';
@@ -33,27 +35,6 @@ type ScreenProps = {
    * ProgressBar component */
   scrollPercent?: Percent;
 };
-
-const MAIN_NAV_MENU_DISPLAY_SIZES: DisplaySize[] = ['XLARGE', 'LARGE', 'MEDIUM', 'SMALL'];
-const SIDE_NAV_MENU_DISPLAY_SIZES: DisplaySize[] = ['XLARGE', 'LARGE', 'MEDIUM'];
-
-/**
- * Returns true if the current display size is included in the list of allowed
- * display sizes for the main nav menu
- *
- * @param displaySize the current display size to check
- */
-const shouldShowMainNavMenu = (displaySize: DisplaySize): boolean =>
-  includes(MAIN_NAV_MENU_DISPLAY_SIZES, displaySize);
-
-/**
- * Returns true if the current display size is included in the list of allowed
- * display sizes for the main nav menu
- *
- * @param displaySize the current display size to check
- */
-const shouldShowSideNavMenu = (displaySize: DisplaySize): boolean =>
-  includes(SIDE_NAV_MENU_DISPLAY_SIZES, displaySize);
 
 /**
  * Outermost wrapper component for screens. Presents main and side menu

@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
 import { useState } from 'react';
 
+import { shouldShowSideNavMenu } from '../constants/breakpoint-sizes';
 import useDeepCompareEffect from './useDeepCompareEffect';
+import useDisplaySize from './useDisplaySize';
 
 type ScrollPosition = {
   x: number;
@@ -64,6 +66,7 @@ const useCurrentSectionIndex = (
   const [calculateSectionIndexFn, setCalculateSectionIndexFn] = useState<
     () => void | undefined
   >();
+  const [displaySize] = useDisplaySize();
 
   // We use a deep compare effect here because otherwise, the effect will run
   // any time any of the refs re-renders, even though the refs are not changing
@@ -72,6 +75,10 @@ const useCurrentSectionIndex = (
   // the two hooks are often used from the same component), this was causing
   // massive amounts of re-running
   useDeepCompareEffect(() => {
+    // If we aren't at a display size that even uses the current section index,
+    // break
+    if (!shouldShowSideNavMenu(displaySize)) return undefined;
+
     // If any of the refs is null or the section heights are unavailable, break
     if (hasNullRef(parentRef) || sectionStartingPositions.length === 0) return undefined;
 

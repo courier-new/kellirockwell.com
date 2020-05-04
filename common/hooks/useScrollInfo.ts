@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { asPercent, Percent } from '../utilities/percent';
+import useDeepCompareEffect from './useDeepCompareEffect';
 
 type ScrollPosition = {
   x: number;
@@ -46,7 +47,7 @@ const useScrollInfo = (ref: React.RefObject<HTMLElement>): [ScrollPosition, Perc
   const [position, setScrollPosition] = useState<ScrollPosition>({ x: 0, y: 0 });
   const [percent, setScrollPercent] = useState<Percent>(asPercent(0));
 
-  useEffect(() => {
+  useDeepCompareEffect(() => {
     const { current: currentEl } = ref;
     if (currentEl) {
       // Throttle request to not overload with repaints
@@ -105,7 +106,7 @@ const useScrollInfo = (ref: React.RefObject<HTMLElement>): [ScrollPosition, Perc
       };
     }
     return undefined;
-  }, [ref]);
+  }, [ref.current]);
 
   return [position, percent];
 };

@@ -65,6 +65,10 @@ body,
   position: absolute;
 }
 
+.fixed {
+  position: fixed;
+}
+
 .non-scrollable {
   overflow: hidden;
 }

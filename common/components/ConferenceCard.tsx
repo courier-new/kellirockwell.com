@@ -54,18 +54,6 @@ const formatURL = (url: string): string => replace(url, /https?:\/\//i, '');
 const ConferenceCard: FC<Conference> = (conference) => {
   const { date, dateLabel, label, location, name, website } = conference;
 
-  const formattedURL = formatURL(website);
-  const linkAnchor = (
-    <a
-      className="small"
-      href={website}
-      style={{ wordWrap: 'break-word' }}
-      title={formattedURL}
-    >
-      {formattedURL}
-    </a>
-  );
-
   const opacity = hasPassed(conference) ? 0.4 : 1;
 
   // Regular label takes precedence over dateLabel in the UI
@@ -100,9 +88,9 @@ const ConferenceCard: FC<Conference> = (conference) => {
           {name}
         </h3>
         <ul className="no-default-bullets padding-0">
-          <ConferenceCardDate label={formatDate(date)} />
-          <ConferenceCardLocation label={location} />
-          <ConferenceCardWebsite label={linkAnchor} />
+          <ConferenceCardDate formattedDate={formatDate(date)} />
+          <ConferenceCardLocation location={location} />
+          <ConferenceCardWebsite website={website} />
         </ul>
       </div>
     </div>
@@ -113,23 +101,51 @@ const iconProps = {
   className: 'text-black',
 };
 
+const TEXT_BREAK_LENGTH = 22;
+
 /** Line of a ConferenceCard for the date */
-const ConferenceCardDate: FC<{ label: string }> = ({ label }) => (
-  <ConferenceCardLine icon={<AiFillCalendar {...iconProps} />} label={label} />
-);
+const ConferenceCardDate: FC<{ formattedDate: string }> = ({ formattedDate }) => {
+  const label = (
+    <span className={formattedDate.length > TEXT_BREAK_LENGTH ? 'small' : ''}>
+      {formattedDate}
+    </span>
+  );
+  return <ConferenceCardLine icon={<AiFillCalendar {...iconProps} />} label={label} />;
+};
 
 /** Line of a ConferenceCard for the location */
-const ConferenceCardLocation: FC<{ label: string }> = ({ label }) => (
-  <ConferenceCardLine icon={<IoIosPin {...iconProps} size="1.2em" />} label={label} />
-);
+const ConferenceCardLocation: FC<{ location: string }> = ({ location }) => {
+  const label = (
+    <span className={location.length > TEXT_BREAK_LENGTH ? 'small' : ''}>{location}</span>
+  );
+  return (
+    <ConferenceCardLine icon={<IoIosPin {...iconProps} size="1.2em" />} label={label} />
+  );
+};
 
 /** Line of a ConferenceCard for the website */
-const ConferenceCardWebsite: FC<{ label: JSX.Element }> = ({ label }) => (
-  <ConferenceCardLine icon={<FiLink {...iconProps} size="1.2em" />} label={label} />
-);
+const ConferenceCardWebsite: FC<{ website: string }> = ({ website }) => {
+  const formattedURL = formatURL(website);
+  const linkAnchor = (
+    <a
+      className={formattedURL.length > TEXT_BREAK_LENGTH ? 'small' : ''}
+      href={website}
+      style={{ wordWrap: 'break-word' }}
+      title={formattedURL}
+    >
+      {formattedURL}
+    </a>
+  );
+  return (
+    <ConferenceCardLine
+      icon={<FiLink {...iconProps} size="1.2em" />}
+      label={linkAnchor}
+    />
+  );
+};
 
 /** Line of a ConferenceCard, as an <li>, composed of an icon and label */
-const ConferenceCardLine: FC<{ icon: JSX.Element; label: string | JSX.Element }> = ({
+const ConferenceCardLine: FC<{ icon: JSX.Element; label: JSX.Element }> = ({
   icon,
   label,
 }) => {

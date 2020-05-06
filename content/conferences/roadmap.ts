@@ -10,6 +10,12 @@ export const CONFERENCES_2020: Conference[] = flow(
   sortByDate,
 )([
   {
+    date: DateTime.fromObject({ day: 26, month: 6, year: 2020 }),
+    location: VIRTUAL,
+    name: 'Prisma Day 2020',
+    website: 'https://www.prisma.io/day/',
+  },
+  {
     date: Interval.fromDateTimes(
       DateTime.fromObject({ day: 1, month: 9, year: 2020 }),
       DateTime.fromObject({ day: 2, month: 9, year: 2020 }),

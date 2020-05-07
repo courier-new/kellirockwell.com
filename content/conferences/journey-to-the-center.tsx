@@ -71,7 +71,7 @@ const JourneyContent: FC<{}> = () => {
           {/* Margin behaves differently in flex-box and margins below h3 and above
           paragraphs are not merged */}
           <h3 className="margin-0-bottom">Conference stats</h3>
-          <ul className="padding-0-h">
+          <ul className="padding-0-h no-default-bullets">
             <ConferenceStat
               stat={countConferencesAttended([CONFERENCES_2020, CONFERENCES_2019])}
               statClass="text-raspberry"
@@ -172,7 +172,7 @@ const ConferenceStat: FC<ConferenceStatProps> = ({
     >
       {stat}
     </h2>
-    <span className="medium">{statLabel}</span>
+    <span className="large">{statLabel}</span>
   </li>
 );
 

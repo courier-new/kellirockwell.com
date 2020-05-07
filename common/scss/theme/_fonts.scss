@@ -78,6 +78,7 @@ $font-sizes: (
   xsmall: 11px,
   small: 13px,
   medium: 16px,
+  large: 18px,
 );
 
 @mixin font-size-classes($scale: $font-sizes) {

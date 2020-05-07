@@ -78,10 +78,11 @@ export const renderAboutMeSections: ContentRenderer<typeof ABOUT_ME_SECTIONS> = 
     ];
 
     // Section content
-    // if (section.content) {
-    //     sectionElements = [...sectionElements, section.content];
-    // }
-    sectionElements = [...sectionElements, FAKE_CONTENT(`fake-${index}`)];
+    if (section.content) {
+      sectionElements = [...sectionElements, section.content];
+    } else {
+      sectionElements = [...sectionElements, FAKE_CONTENT(`fake-${index}`)];
+    }
 
     // Subsections
     if (section.subsections) {

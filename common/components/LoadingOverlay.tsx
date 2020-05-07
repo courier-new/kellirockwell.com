@@ -6,7 +6,7 @@ import LoadingSpinner from './LoadingSpinner';
 const LoadingOverlay: FC<{}> = () => {
   return (
     <div
-      className="absolute flex-column flex-justify-center flex-align-center z-index-middle"
+      className="absolute flex-column flex-justify-center flex-align-center z-index-middle margin-neg-med"
       style={{
         backgroundColor: 'rgba(255, 255, 255, 0.4)',
         height: '100%',

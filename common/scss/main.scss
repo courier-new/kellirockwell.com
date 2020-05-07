@@ -139,6 +139,17 @@ $space-sizes: (
         %#{$space-type}#{'-'}#{$name}#{'-'}#{$direction} {
           #{$space-type}#{'-'}#{$direction}: $size;
         }
+
+        /*
+        * Produces styles like:
+        * .margin-neg-med-top, %margin-neg-med-top {
+        *   margin-top: -1.5em
+        * }
+        */
+        &#{'.'}#{'margin-neg-'}#{$name}#{'-'}#{$direction},
+        %#{'margin-neg-'}#{$name}#{'-'}#{$direction} {
+          #{'margin-'}#{$direction}: -$size;
+        }
       }
 
       /*
@@ -164,6 +175,28 @@ $space-sizes: (
       }
 
       /*
+      * Produces styles like:
+      * .margin-neg-med-v, %margin-neg-med-v {
+      *   @extend %margin-neg-med-top;
+      *   @extend %margin-neg-med-bottom;
+      * }
+      */
+      &#{'.'}#{'margin-neg-'}#{$name}#{'-v'},
+      %#{'margin-neg-'}#{$name}#{'-v'} {
+        @extend #{'%'}#{'margin-neg-'}#{$name}#{'-top'};
+        @extend #{'%'}#{'margin-neg-'}#{$name}#{'-bottom'};
+      }
+
+      /*
+      * Horizontal equivalent of the previous mapping
+      */
+      &#{'.'}#{'margin-neg-'}#{$name}#{'-h'},
+      %#{'margin-neg-'}#{$name}#{'-h'} {
+        @extend #{'%'}#{'margin-neg-'}#{$name}#{'-left'};
+        @extend #{'%'}#{'margin-neg-'}#{$name}#{'-right'};
+      }
+
+      /*
        * Produces styles like:
        * .padding-med {
        *   @extend %padding-med-v;
@@ -173,6 +206,18 @@ $space-sizes: (
       &#{'.'}#{$space-type}#{'-'}#{$name} {
         @extend #{'%'}#{$space-type}#{'-'}#{$name}#{'-h'};
         @extend #{'%'}#{$space-type}#{'-'}#{$name}#{'-v'};
+      }
+
+      /*
+      * Produces styles like:
+      * .margin-neg-med {
+      *   @extend %margin-neg-med-v;
+      *   @extend %margin-neg-med-h;
+      * }
+      */
+      &#{'.'}#{'margin-neg-'}#{$name} {
+        @extend #{'%'}#{'margin-neg-'}#{$name}#{'-h'};
+        @extend #{'%'}#{'margin-neg-'}#{$name}#{'-v'};
       }
     }
   }

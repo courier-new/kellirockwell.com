@@ -122,6 +122,7 @@ $space-sizes: (
   sm: 0.75em,
   med: 1.5em,
   lg: 2.5em,
+  xl: 5em,
 );
 
 @mixin padding-margin-classes($scale: $space-sizes) {

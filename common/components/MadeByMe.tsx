@@ -10,7 +10,8 @@ type MadeByMeProps = {
 const MadeByMe: FC<MadeByMeProps> = ({ className }) => {
   return (
     <span className={className}>
-      Made with <FaHeart color="#9F799B" /> by Kelli.
+      Made with <FaHeart className="relative text-mauve" style={{ top: '.2em' }} /> by
+      Kelli.
     </span>
   );
 };

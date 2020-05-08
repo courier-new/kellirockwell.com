@@ -6,7 +6,7 @@ import useDimensions from '../../common/hooks/useDimensions';
 import useDisplaySize from '../../common/hooks/useDisplaySize';
 import generateTitleProps from '../utilities/for-content';
 
-/** The content for the Journey-to-the-center section of the Conferences page */
+/** The content for the By-the-numbers section of the About Me page */
 const ByTheNumbersContent: FC<{}> = () => {
   const [displaySize] = useDisplaySize();
   const containerRef = useRef<HTMLDivElement | null>(null);

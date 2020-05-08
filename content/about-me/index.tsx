@@ -1,6 +1,7 @@
 import generateTitleProps from '../utilities/for-content';
 import { ContentSection } from '../utilities/types';
 import BY_THE_NUMBERS from './by-the-numbers';
+import INSIDE_MY_TOOLBOX from './inside-my-toolbox';
 
 type AboutMeSectionName =
   | 'By the numbers'
@@ -15,7 +16,7 @@ type AboutMeContentSection = ContentSection<AboutMeSectionName, JSX.Element>;
 
 const ABOUT_ME_SECTIONS: AboutMeContentSection[] = [
   BY_THE_NUMBERS,
-  { ...generateTitleProps('Inside my toolbox') },
+  INSIDE_MY_TOOLBOX,
   {
     ...generateTitleProps('The roles I serve'),
     subsections: [

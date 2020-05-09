@@ -16,8 +16,8 @@ const Root: FC = () => {
       <main>
         <h1>Hey there!</h1>
         <p>
-          I&lsquo;m currently working on completely rebuilding my site! It&lsquo;s not
-          ready yet, but you can still check out my old site in the meantime.
+          I&apos;m currently working on completely rebuilding my site! It&apos;s not ready
+          yet, but you can still check out my old site in the meantime.
         </p>
         <Link href="/v1/index.html">
           <a>View old site</a>

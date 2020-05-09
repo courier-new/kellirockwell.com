@@ -51,7 +51,7 @@ const UnsupportedBrowserBanner: FC<{}> = () => {
     <div className="background-magnolia padding-med text-align-center">
       <h4 className="margin-0">
         <strong>Uh oh! </strong>
-        It looks like you&lsquo;re using an unsupported browser!
+        It looks like you&apos;re using an unsupported browser!
       </h4>
       Please consider switching to a different supported browser such as Chrome, Firefox,
       Safari, or Edge to view this site!

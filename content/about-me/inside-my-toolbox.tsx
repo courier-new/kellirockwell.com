@@ -31,7 +31,7 @@ const InsideMyToolboxContent: FC<{}> = () => {
     <>
       <p>
         <Heart /> = Love it!
-        <Star /> = Good at it!
+        <Star /> = Great at it!
       </p>
       <div className="flex-row" style={{ flexWrap: 'wrap' }}>
         {flow(

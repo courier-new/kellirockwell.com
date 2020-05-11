@@ -85,6 +85,10 @@ https://frontstuff.io/generate-all-your-utility-classes-with-sass-maps */
     color: map-get($color-set, 'sapphire');
   }
 
+  h4 {
+    color: map-get($color-set, 'raspberry');
+  }
+
   /* Background color styles */
   .background {
     @include color-modifiers('background-color', $color-set);

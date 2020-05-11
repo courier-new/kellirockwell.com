@@ -28,7 +28,7 @@ const renderLink = (slug: Slug, active?: 'active'): JSX.Element => {
     (w: string[]): string => join(w, ' '), // Rejoin words
   ])(slug);
   return (
-    <li className="text-magnolia" key={slug}>
+    <li key={slug}>
       <style jsx>
         {`
           h4 {
@@ -45,8 +45,8 @@ const renderLink = (slug: Slug, active?: 'active'): JSX.Element => {
         `}
       </style>
       <Link href={`/${slug}`}>
-        <a className="text-magnolia no-decoration" title={linkText}>
-          <h4 className={active}>{linkText}</h4>
+        <a className="no-decoration" title={linkText}>
+          <h4 className={`${active} text-magnolia`}>{linkText}</h4>
         </a>
       </Link>
     </li>

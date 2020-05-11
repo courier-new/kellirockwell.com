@@ -15,7 +15,7 @@ type ScreenContentProps = {
   activePage: Slug;
   /** The method to use to render the sections content for the current screen */
   renderSections: ContentRenderer;
-  /** The sections of the current screen */
+  /** The sections of the current screen, used to determine the section anchors */
   sections: ContentSection<string, React.ReactNode>[];
 };
 

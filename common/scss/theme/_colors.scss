@@ -66,6 +66,7 @@ https://frontstuff.io/generate-all-your-utility-classes-with-sass-maps */
 
   a {
     color: map-get($color-set, 'space');
+    text-decoration-color: map-get($color-set, 'turquoise');
   }
 
   /* Text color styles */

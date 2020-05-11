@@ -45,6 +45,10 @@ body,
   justify-content: space-between;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .full-width {
   width: 100%;
 }
@@ -257,4 +261,10 @@ $space-sizes: (
 
 .background-none {
   background: none;
+}
+
+/* OPACITY */
+
+.minimum-opacity {
+  opacity: 0.4;
 }

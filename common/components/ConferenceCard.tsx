@@ -54,7 +54,7 @@ const formatURL = (url: string): string => replace(url, /https?:\/\//i, '');
 const ConferenceCard: FC<Conference> = (conference) => {
   const { date, dateLabel, label, location, name, website } = conference;
 
-  const opacity = hasPassed(conference) ? 0.4 : 1;
+  const opacityClass = hasPassed(conference) ? 'minimum-opacity' : '';
 
   // Regular label takes precedence over dateLabel in the UI
   const labelText = label || dateLabel;
@@ -74,7 +74,7 @@ const ConferenceCard: FC<Conference> = (conference) => {
   }
 
   return (
-    <div className="background-magnolia border-box" style={{ opacity }}>
+    <div className={`background-magnolia border-box ${opacityClass}`}>
       <div className="padding-med">
         {labelText ? (
           <h6 className={`margin-0 padding-sm-bottom uppercase ${labelClass}`}>

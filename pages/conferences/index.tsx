@@ -2,10 +2,10 @@ import find from 'lodash/find';
 import flatMap from 'lodash/flatMap';
 import React, { FC, ReactNode } from 'react';
 
-import ConferenceCardGrid from '../common/components/ConferenceCardGrid';
-import ScreenContent from '../common/components/ScreenContent';
-import CONFERENCES_SECTIONS from '../content/conferences';
-import { ContentRenderer, ContentSection } from '../content/utilities/types';
+import ConferenceCardGrid from '../../common/components/ConferenceCardGrid';
+import ScreenContent from '../../common/components/ScreenContent';
+import CONFERENCES_SECTIONS from '../../content/conferences';
+import { ContentRenderer, ContentSection } from '../../content/utilities/types';
 
 /**
  * Maps each section to a `<section>` of JSX to render, providing the section
@@ -75,14 +75,32 @@ export const renderConferencesSections: ContentRenderer<typeof CONFERENCES_SECTI
 /**
  * Screen component for primary screen "Conferences"
  */
-const ConferencesScreen: FC<{}> = () => (
-  <ScreenContent
-    activePage="conferences"
-    renderSections={
-      renderConferencesSections as ContentRenderer<ContentSection<string, ReactNode>[]>
-    }
-    sections={CONFERENCES_SECTIONS}
-  />
-);
+const ConferencesScreen: FC<{}> = () => {
+  return (
+    <ScreenContent
+      activePage="conferences"
+      renderSections={
+        renderConferencesSections as ContentRenderer<ContentSection<string, ReactNode>[]>
+      }
+      sections={CONFERENCES_SECTIONS}
+    />
+  );
+};
+
+/** Get conferences for static screen props */
+// export const getStaticProps: GetStaticProps<ConferencesScreenProps> = async () => {
+//   const conferences: any[] = await new Promise(() => {
+//     setTimeout(() => {
+//       return map(CONFERENCES_2020, (conference) => ({
+//         ...conference,
+//         date: conference.date.toString(),
+//       }));
+//     }, 100);
+//   });
+
+//   return {
+//     props: { conferences },
+//   };
+// };
 
 export default ConferencesScreen;

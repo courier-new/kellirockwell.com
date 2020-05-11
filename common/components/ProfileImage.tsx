@@ -6,7 +6,7 @@ const ProfileImage: FC<{ shape: 'round' | 'square'; size?: number | string }> = 
   size,
 }) => (
   <img
-    alt="Hey, my name is Kelli! Welcome to my site!"
+    alt="Closeup of the site author, smiling. Welcome to my site!"
     className={shape === 'round' ? 'circular' : ''}
     src="/images/me.jpg"
     width={size}

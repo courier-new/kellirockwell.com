@@ -86,7 +86,7 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
             {rendering ? <LoadingOverlay /> : null}
             {/* Cap width of content and center within <main> but keep content's
             internal alignment */}
-            <div style={{ maxWidth: 900 }}>{children}</div>
+            <div style={{ maxWidth: 900, width: '100%' }}>{children}</div>
           </main>
           {contentSections && shouldShowSideNav ? (
             <SideNavMenu

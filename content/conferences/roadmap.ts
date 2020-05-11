@@ -176,7 +176,7 @@ export default {
   ...generateTitleProps('Roadmap'),
   subsections: [
     {
-      ...generateTitleProps('Current (2020)'),
+      ...generateTitleProps('2020'),
       content: { conferences: CONFERENCES_2020 },
     },
     {

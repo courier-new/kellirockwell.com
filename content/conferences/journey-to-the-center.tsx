@@ -1,6 +1,8 @@
 import filter from 'lodash/filter';
 import flatten from 'lodash/flatten';
+import Link from 'next/link';
 import React, { FC } from 'react';
+import { MdNavigateNext } from 'react-icons/md';
 
 import useDisplaySize from '../../common/hooks/useDisplaySize';
 import generateTitleProps from '../utilities/for-content';
@@ -100,49 +102,29 @@ const JourneyContent: FC<{}> = () => {
         </div>
       </div>
       {/* Raise up this section in two column orientation to cut down on whitespace */}
-      <h3 style={{ marginTop: twoColumns ? '-1em' : undefined }}>
-        Why do I love conferences?
-      </h3>
-      <p>
-        My freshman year of college, our physics department sent out an email announcing
-        an upcoming conference targeting underrepresented undergraduate students in
-        physics and astronomy. Entirely clueless as to what such a conference would entail
-        but intrigued at the opportunity to spend a whole weekend with like-minded
-        students similar to myself, I applied to attend.
-      </p>
-      <p>
-        Come January, I found myself astounded by the passion and intelligence of my
-        peers, inspired by the stories and experiences of experts in our field, and
-        entranced by the sights and sounds of downtown Berkeley, California.
-      </p>
-      <p>
-        I would go on to attend this conference, called CUWiP, again during both my
-        sophomore and senior years. During my senior year and after I graduated, I helped
-        lead the organizational effort alongside a faculty committee to host the 2018
-        conference at my home institution. Among other responsibilities, I built and
-        maintained the website for the event!
-      </p>
-      <p>---</p>
-      <p>
-        We are more likely to believe something is possible and worth pursuing for
-        ourselves when we see someone like us succeeding at doing it. This is the science
-        behind confidence and one of many reasons why representation matters. Conferences
-        are where I explore future possibilities for myself.
-      </p>
-      <p>
-        I love how conferences can make a full auditorium of people buzz with anticipation
-        and excitement for the first keynote speaker of the day. I love how conferences
-        bolster a community by highlighting just how incredible the members of that
-        community are. I love how conference speakers challenge what industry experts are
-        expected to look and act like.
-      </p>
-      <p>
-        Historically, financial and geographical barriers have prevented many members of
-        the community (myself included) from attending conferences. These days, I am
-        encouraged by the number of conferences that offer scholarships or opportunities
-        for remote attendees. I hope that conferences will continue to prioritize ways to
-        make their events more equitable and accessible for everyone.
-      </p>
+      <div style={{ marginTop: twoColumns ? '-2em' : undefined }}>
+        <Link href="/conferences/why-I-love-conferences">
+          <a
+            className="large flex-row flex-align-center"
+            title="Why do I love conferences?"
+          >
+            Why do I love conferences?
+            <MdNavigateNext className="text-space" />
+          </a>
+        </Link>
+        <style jsx>
+          {`
+            .unavailable {
+              cursor: not-allowed;
+            }
+          `}
+        </style>
+        <span className="unavailable minimum-opacity flex-wrap flex-row flex-align-center">
+          <a className="large">Resources for conference-goers</a>
+          <MdNavigateNext className="large text-space" />
+          <span className="xsmall text-space">(Coming soon!)</span>
+        </span>
+      </div>
     </React.Fragment>
   );
 };

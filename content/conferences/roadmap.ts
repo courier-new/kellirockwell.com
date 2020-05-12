@@ -185,7 +185,7 @@ export default {
     {
       ...generateTitleProps('Past'),
       content: {
-        conferencesByYear: flow(
+        pastConferences: flow(
           (c: Conference[]): Conference[] => filter(c, hasPassed),
           (c: Conference[]): Conference[] => sortByDate(c, true),
           groupByYears,

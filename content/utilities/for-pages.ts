@@ -28,11 +28,13 @@ export const flattenAllAnchors = (
 
 /**
  * Returns the appropriate array of `ContentSection`s for the given page slug,
- * or else an empty array
+ * or else an empty array if it's not for a known slug
  *
  * @param slug the `Slug` to get the page content for
  */
-export const getSectionsForPage = (slug?: Slug): ContentSection<string, ReactNode>[] => {
+export const getSectionsForPage = (
+  slug?: Slug | string,
+): ContentSection<string, ReactNode>[] => {
   switch (slug) {
     case 'about-me':
       return ABOUT_ME_SECTIONS;

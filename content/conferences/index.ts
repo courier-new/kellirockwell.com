@@ -13,7 +13,7 @@ type ConferencesContentSection = ContentSection<
   ConferencesSectionName,
   | JSX.Element
   | { conferences: Conference[] }
-  | { conferencesByYear: { conferences: Conference[]; year: string }[] }
+  | { pastConferences: { conferences: Conference[]; year: string }[] }
 >;
 
 const CONFERENCES_SECTIONS: ConferencesContentSection[] = [

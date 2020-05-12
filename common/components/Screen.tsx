@@ -1,5 +1,6 @@
 import includes from 'lodash/includes';
 import isUndefined from 'lodash/isUndefined';
+import replace from 'lodash/replace';
 import React, { PropsWithChildren, useMemo } from 'react';
 
 import { ContentSection } from '../../content/utilities/types';
@@ -10,17 +11,17 @@ import {
 import { Slug } from '../constants/slugs';
 import useDisplaySize from '../hooks/useDisplaySize';
 import { Percent } from '../utilities/percent';
+import Breadcrumbs from './Breadcrumbs';
 import DrawerMainNavMenu from './DrawerMainNavMenu';
 import LoadingOverlay from './LoadingOverlay';
 import MainNavMenu from './MainNavMenu';
 import ProgressBar from './ProgressBar';
 import SideNavMenu from './SideNavMenu';
 import UnsupportedBrowserBanner from './UnsupportedBrowserBanner';
-import Breadcrumbs from './Breadcrumbs';
 
 type ScreenProps = {
   /** The url slug corresponding to the screen that is currently open */
-  activePage: Slug;
+  activePageSlug: string;
   /** Represents the sections of content on the screen and the index of the
    * current section */
   contentSections?: {
@@ -46,7 +47,7 @@ type ScreenProps = {
  * navigation and adjusts layout to display size.
  */
 const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
-  ({ activePage, children, contentSections, rendering, scrollPercent }, ref) => {
+  ({ activePageSlug, children, contentSections, rendering, scrollPercent }, ref) => {
     const [displaySize] = useDisplaySize();
 
     /** If true, will always show the main left-hand navigation menu; otherwise,
@@ -64,7 +65,8 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
     const prefersDarkMode = false; // useMediaQuery('(prefers-color-scheme: dark)');
 
     /** If true, will show a breadcrumbs-like indicator of where the user is */
-    const shouldShowBreadcrumbs = includes(activePage, '/');
+    const shouldShowBreadcrumbs = includes(activePageSlug, '/');
+    const activeParentPage = replace(activePageSlug, /\/.*/, '') as Slug;
 
     return (
       <div
@@ -77,9 +79,9 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
         )}
         <div className="full-width flex-1 flex-row non-scrollable border-box">
           {shouldShowMainNav ? (
-            <MainNavMenu activePage={activePage} />
+            <MainNavMenu activePage={activeParentPage} />
           ) : (
-            <DrawerMainNavMenu activePage={activePage} />
+            <DrawerMainNavMenu activePage={activeParentPage} />
           )}
           {/* Lock scroll when screen is rendering */}
           <main
@@ -92,7 +94,9 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
             {/* Cap width of content and center within <main> but keep content's
             internal alignment */}
             <div style={{ maxWidth: 900, width: '100%' }}>
-              {shouldShowBreadcrumbs ? <Breadcrumbs activePage={activePage} /> : null}
+              {shouldShowBreadcrumbs ? (
+                <Breadcrumbs activePage={activeParentPage} />
+              ) : null}
               {children}
             </div>
           </main>

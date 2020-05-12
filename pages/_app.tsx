@@ -1,6 +1,7 @@
 import '../common/scss/main.scss';
 
 import forEach from 'lodash/forEach';
+import get from 'lodash/get';
 import replace from 'lodash/replace';
 import { NextComponentType } from 'next';
 import { AppContext, AppProps } from 'next/app';
@@ -8,7 +9,6 @@ import { useRouter } from 'next/router';
 import React, { FC, useEffect, useRef, useState } from 'react';
 
 import Screen from '../common/components/Screen';
-import { Slug } from '../common/constants/slugs';
 import CombinedProvider from '../common/context';
 import { useSectionHeightsState } from '../common/context/sectionHeightsState';
 import useCurrentSectionIndex from '../common/hooks/useCurrentSectionIndex';
@@ -40,14 +40,14 @@ const InContext: FC<{}> = ({ children }) => {
 
   const router = useRouter();
   const isIndex = router.route === '/';
-  // Strip starting "/" in path to get the `Slug`
+  // Strip starting "/" in path to get the slug
   // router.asPath contains any hash in link, too
-  const slug = replace(router.pathname, /^\//, '') as Slug;
+  const slug = replace(router.pathname, /^\//, '');
   // Dictionary of section starting heights for each page in the app,
   // retrievable by the page's slug
   const state = useSectionHeightsState();
   // Get the section starting heights for this page
-  const sectionHeights = state?.[slug] || [];
+  const sectionHeights: number[] = get(state, slug, []);
 
   // The index of the current section the user has scrolled to on the page, and
   // a method to manually recalculate that index
@@ -110,7 +110,7 @@ const InContext: FC<{}> = ({ children }) => {
     <>{children}</>
   ) : (
     <Screen
-      activePage={slug}
+      activePageSlug={slug}
       contentSections={
         sections.length
           ? {

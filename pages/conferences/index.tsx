@@ -4,6 +4,7 @@ import map from 'lodash/map';
 import React, { FC, ReactNode } from 'react';
 
 import ConferenceCardGrid from '../../common/components/ConferenceCardGrid';
+// import QuickNav from '../../common/components/QuickNav';
 import ScreenContent from '../../common/components/ScreenContent';
 import CONFERENCES_SECTIONS from '../../content/conferences';
 import { ContentRenderer, ContentSection } from '../../content/utilities/types';
@@ -44,18 +45,19 @@ export const renderConferencesSections: ContentRenderer<typeof CONFERENCES_SECTI
     if (section.content) {
       if ('conferences' in section.content) {
         const conferencesBlock = (
-          <ConferenceCardGrid
-            conferences={section.content.conferences}
-            key="conferences"
-          />
+          <React.Fragment key="conferences-current">
+            {/* <QuickNav sections={['current', 'past-2020', 'past-2019']} /> */}
+            <span id="current" />
+            <ConferenceCardGrid conferences={section.content.conferences} />
+          </React.Fragment>
         );
         sectionElements = [...sectionElements, conferencesBlock];
-      } else if ('conferencesByYear' in section.content) {
+      } else if ('pastConferences' in section.content) {
         const conferencesBlocks = map(
-          section.content.conferencesByYear,
+          section.content.pastConferences,
           ({ conferences, year }) => (
             <React.Fragment key={`conferences-${year}`}>
-              <span id={year} />
+              <span id={`past-${year}`} />
               <h4 className="text-mauve">{year}</h4>
               <ConferenceCardGrid conferences={conferences} />
             </React.Fragment>

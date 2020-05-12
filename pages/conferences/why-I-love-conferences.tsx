@@ -1,12 +1,11 @@
 import find from 'lodash/find';
 import flatMap from 'lodash/flatMap';
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
 
 import ConferenceCardGrid from '../../common/components/ConferenceCardGrid';
-import ScreenContent from '../../common/components/ScreenContent';
-import CONFERENCES_SECTIONS from '../../content/conferences';
-import { ContentRenderer, ContentSection } from '../../content/utilities/types';
 import useDisplaySize from '../../common/hooks/useDisplaySize';
+import CONFERENCES_SECTIONS from '../../content/conferences';
+import { ContentRenderer } from '../../content/utilities/types';
 
 /**
  * Maps each section to a `<section>` of JSX to render, providing the section
@@ -107,8 +106,8 @@ const ConferencesScreen: FC<{}> = () => {
           width="100%"
         />
         <p className="xsmall">
-          Most of the attendees of CUWiP '14 @ UC Berkeley gathered for the final session
-          of the conference, including me!
+          Most of the attendees of CUWiP &apos;14 @ UC Berkeley gathered for the final
+          session of the conference, including me!
         </p>
       </aside>
       <p>
@@ -134,11 +133,11 @@ const ConferencesScreen: FC<{}> = () => {
         and excitement for the first keynote speaker of the day. I love how conferences
         bolster a community by highlighting just how incredible the members of that
         community are.
-        <h4>
-          I love when conference speakers challenge what industry experts are expected to
-          look and act like.
-        </h4>
       </p>
+      <h4>
+        I love when conference speakers challenge what industry experts are expected to
+        look and act like.
+      </h4>
       <p>
         We are more likely to believe something is possible and worth pursuing for
         ourselves when we see someone like us succeeding at doing it. This is a key to

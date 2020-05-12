@@ -1,3 +1,4 @@
+import includes from 'lodash/includes';
 import isUndefined from 'lodash/isUndefined';
 import React, { PropsWithChildren, useMemo } from 'react';
 
@@ -15,6 +16,7 @@ import MainNavMenu from './MainNavMenu';
 import ProgressBar from './ProgressBar';
 import SideNavMenu from './SideNavMenu';
 import UnsupportedBrowserBanner from './UnsupportedBrowserBanner';
+import Breadcrumbs from './Breadcrumbs';
 
 type ScreenProps = {
   /** The url slug corresponding to the screen that is currently open */
@@ -61,6 +63,9 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
     // TODO: Re-enable after tweaking dark mode color scheme
     const prefersDarkMode = false; // useMediaQuery('(prefers-color-scheme: dark)');
 
+    /** If true, will show a breadcrumbs-like indicator of where the user is */
+    const shouldShowBreadcrumbs = includes(activePage, '/');
+
     return (
       <div
         className="full-width full-height flex-column non-scrollable"
@@ -86,7 +91,10 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
             {rendering ? <LoadingOverlay /> : null}
             {/* Cap width of content and center within <main> but keep content's
             internal alignment */}
-            <div style={{ maxWidth: 900, width: '100%' }}>{children}</div>
+            <div style={{ maxWidth: 900, width: '100%' }}>
+              {shouldShowBreadcrumbs ? <Breadcrumbs activePage={activePage} /> : null}
+              {children}
+            </div>
           </main>
           {contentSections && shouldShowSideNav ? (
             <SideNavMenu

@@ -2,7 +2,7 @@ import filter from 'lodash/filter';
 import flatten from 'lodash/flatten';
 import Link from 'next/link';
 import React, { FC } from 'react';
-import { MdNavigateNext } from 'react-icons/md';
+import { BsArrowRight } from 'react-icons/bs';
 
 import useDisplaySize from '../../common/hooks/useDisplaySize';
 import generateTitleProps from '../utilities/for-content';
@@ -66,7 +66,7 @@ const JourneyContent: FC<{}> = () => {
           </p>
         </div>
         <div
-          className={`flex-column ${paddingClass}`}
+          className={`flex-column ${paddingClass} padding-med-bottom`}
           // Enforce minimum width but allow expansion on larger screens
           style={{ flexBasis: '50%', minWidth: 220 }}
         >
@@ -105,11 +105,11 @@ const JourneyContent: FC<{}> = () => {
       <div style={{ marginTop: twoColumns ? '-2em' : undefined }}>
         <Link href="/conferences/why-I-love-conferences">
           <a
-            className="large flex-row flex-align-center"
+            className="karla flex-row flex-align-center"
             title="Why do I love conferences?"
           >
+            <BsArrowRight className="text-space padding-sm-right" />
             Why do I love conferences?
-            <MdNavigateNext className="text-space" />
           </a>
         </Link>
         <style jsx>
@@ -119,10 +119,14 @@ const JourneyContent: FC<{}> = () => {
             }
           `}
         </style>
-        <span className="unavailable minimum-opacity flex-wrap flex-row flex-align-center">
-          <a className="large">Resources for conference-goers</a>
-          <MdNavigateNext className="large text-space" />
-          <span className="xsmall text-space">(Coming soon!)</span>
+        <span className="unavailable margin-sm-top minimum-opacity flex-wrap flex-row flex-align-center">
+          <BsArrowRight className="text-space padding-sm-right" />
+          <a className="karla flex-row flex-1 flex-align-center flex-wrap">
+            <span className="karla text-space padding-sm-right">
+              Resources for conference-goers{' '}
+            </span>
+            <span className="karla xsmall text-space">(Coming soon!)</span>
+          </a>
         </span>
       </div>
     </React.Fragment>

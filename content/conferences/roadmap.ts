@@ -1,14 +1,21 @@
+import filter from 'lodash/filter';
 import flow from 'lodash/flow';
+import reject from 'lodash/reject';
 import { DateTime, Interval } from 'luxon';
 
 import generateTitleProps from '../utilities/for-content';
-import { addDateLabels, CANCELLED, Conference, sortByDate, VIRTUAL } from './Conference';
+import {
+  addDateLabels,
+  CANCELLED,
+  Conference,
+  groupByYears,
+  hasPassed,
+  sortByDate,
+  VIRTUAL,
+} from './Conference';
 
 /* eslint-disable jsdoc/require-jsdoc */
-export const CONFERENCES_2020: Conference[] = flow(
-  addDateLabels,
-  sortByDate,
-)([
+export const CONFERENCES: Conference[] = addDateLabels([
   {
     date: Interval.fromDateTimes(
       DateTime.fromObject({ day: 18, month: 6, year: 2020 }),
@@ -139,12 +146,6 @@ export const CONFERENCES_2020: Conference[] = flow(
     name: 'React Rally 2020',
     website: 'https://reactrally.com',
   },
-]);
-
-export const CONFERENCES_2019: Conference[] = flow(
-  addDateLabels,
-  sortByDate,
-)([
   {
     date: Interval.fromDateTimes(
       DateTime.fromObject({ day: 27, month: 8, year: 2019 }),
@@ -162,8 +163,8 @@ export const CONFERENCES_2019: Conference[] = flow(
   },
   {
     date: Interval.fromDateTimes(
-      DateTime.fromObject({ day: 16, month: 4, year: 2019 }),
-      DateTime.fromObject({ day: 17, month: 4, year: 2019 }),
+      DateTime.fromObject({ day: 7, month: 9, year: 2019 }),
+      DateTime.fromObject({ day: 8, month: 9, year: 2019 }),
     ),
     location: 'Seattle, Washington, US',
     name: 'CascadiaJS 2019',
@@ -174,14 +175,22 @@ export const CONFERENCES_2019: Conference[] = flow(
 
 export default {
   ...generateTitleProps('Roadmap'),
+  content: {
+    conferences: flow(
+      (c: Conference[]): Conference[] => reject(c, hasPassed),
+      (c: Conference[]): Conference[] => sortByDate(c),
+    )(CONFERENCES),
+  },
   subsections: [
     {
-      ...generateTitleProps('2020'),
-      content: { conferences: CONFERENCES_2020 },
-    },
-    {
-      ...generateTitleProps('2019'),
-      content: { conferences: CONFERENCES_2019 },
+      ...generateTitleProps('Past'),
+      content: {
+        conferencesByYear: flow(
+          (c: Conference[]): Conference[] => filter(c, hasPassed),
+          (c: Conference[]): Conference[] => sortByDate(c, true),
+          groupByYears,
+        )(CONFERENCES),
+      },
     },
   ],
 };

@@ -1,4 +1,7 @@
+import flow from 'lodash/flow';
+import groupBy from 'lodash/groupBy';
 import map from 'lodash/map';
+import reverse from 'lodash/reverse';
 import sortBy from 'lodash/sortBy';
 import { DateTime, Interval } from 'luxon';
 
@@ -62,18 +65,25 @@ export const isCurrentlyHappening = (conference: Conference): boolean => {
 };
 
 /**
- * Orders a list of conferences by their dates from earliest to latest,
- * taking a conference start date in the case of multi-day conference Intervals
+ * Orders a list of conferences by their dates from earliest to latest, taking a
+ * conference start date in the case of multi-day conference Intervals
  *
  * @param conferences the list of conferences to sort
+ * @param reverseDate whether to reverse sort conferences from latest to
+ * earliest instead
  */
-export const sortByDate = (conferences: Conference[]): Conference[] => {
-  return sortBy(conferences, (conference) => {
+export const sortByDate = (
+  conferences: Conference[],
+  reverseDate = false,
+): Conference[] => {
+  const sorted = sortBy(conferences, (conference) => {
     if (Interval.isInterval(conference.date)) {
       return conference.date.start;
     }
     return conference.date;
   });
+  if (reverseDate) return reverse(sorted);
+  return sorted;
 };
 
 /**
@@ -104,4 +114,39 @@ export const addDateLabels = (conferences: Conference[]): Conference[] => {
       ...conference,
     };
   });
+};
+
+type ConferencesKeyedByYear = { [year: string]: Conference[] };
+type ConferencesDiscriminatedArray = { conferences: Conference[]; year: string }[];
+
+/**
+ * Groups conferences by year and returns them in an array of objects
+ * distinguishable by their `year` property sorted from latest year to earliest
+ * year, e.g. [{ year: 2020, conferences: [] }, { year: 2019, conferences: [] },
+ * ...]
+ *
+ * @param conferences the list of conferences to restructure and group
+ */
+export const groupByYears = (
+  conferences: Conference[],
+): ConferencesDiscriminatedArray => {
+  return flow(
+    // Group conferences by date as a key
+    (c: Conference[]): ConferencesKeyedByYear =>
+      groupBy(c, (conference) => {
+        if (Interval.isInterval(conference.date)) {
+          return conference.date.start.year;
+        }
+        return conference.date.year;
+      }),
+    // Restructure to array of objects with year key as an object property
+    (c: ConferencesKeyedByYear): ConferencesDiscriminatedArray =>
+      map(c, (conferencesForYear, year) => ({
+        conferences: conferencesForYear,
+        year,
+      })),
+    // Sort array by year from latest -> earliest
+    (c: ConferencesDiscriminatedArray): ConferencesDiscriminatedArray =>
+      sortBy(c, ({ year }) => -parseInt(year, 10)),
+  )(conferences);
 };

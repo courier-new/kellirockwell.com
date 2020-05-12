@@ -7,7 +7,7 @@ import { BsArrowRight } from 'react-icons/bs';
 import useDisplaySize from '../../common/hooks/useDisplaySize';
 import generateTitleProps from '../utilities/for-content';
 import { CANCELLED, Conference, hasPassed } from './Conference';
-import { CONFERENCES_2019, CONFERENCES_2020 } from './roadmap';
+import { CONFERENCES } from './roadmap';
 
 /**
  * Tallies how many conferences I have attended based on the following criteria:
@@ -75,7 +75,7 @@ const JourneyContent: FC<{}> = () => {
           <h3 className="margin-0-bottom">Conference stats</h3>
           <ul className="padding-0-h no-default-bullets">
             <ConferenceStat
-              stat={countConferencesAttended([CONFERENCES_2020, CONFERENCES_2019])}
+              stat={countConferencesAttended(CONFERENCES)}
               statClass="text-raspberry"
               statLabel="attended"
               statWidth={statWidth}

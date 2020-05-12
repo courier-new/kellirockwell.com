@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { ContentSection } from '../utilities/types';
 import { Conference } from './Conference';
 import JOURNEY_TO_THE_CENTER from './journey-to-the-center';
@@ -9,12 +7,13 @@ type ConferencesSectionName =
   | 'Journey to the center of the community'
   | 'Resources'
   | 'Roadmap'
-  | '2020'
-  | '2019';
+  | 'Past';
 
 type ConferencesContentSection = ContentSection<
   ConferencesSectionName,
-  JSX.Element | { conferences: Conference[] }
+  | JSX.Element
+  | { conferences: Conference[] }
+  | { conferencesByYear: { conferences: Conference[]; year: string }[] }
 >;
 
 const CONFERENCES_SECTIONS: ConferencesContentSection[] = [

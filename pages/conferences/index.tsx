@@ -1,5 +1,6 @@
 import find from 'lodash/find';
 import flatMap from 'lodash/flatMap';
+import map from 'lodash/map';
 import React, { FC, ReactNode } from 'react';
 
 import ConferenceCardGrid from '../../common/components/ConferenceCardGrid';
@@ -49,6 +50,18 @@ export const renderConferencesSections: ContentRenderer<typeof CONFERENCES_SECTI
           />
         );
         sectionElements = [...sectionElements, conferencesBlock];
+      } else if ('conferencesByYear' in section.content) {
+        const conferencesBlocks = map(
+          section.content.conferencesByYear,
+          ({ conferences, year }) => (
+            <React.Fragment key={`conferences-${year}`}>
+              <span id={year} />
+              <h4 className="text-mauve">{year}</h4>
+              <ConferenceCardGrid conferences={conferences} />
+            </React.Fragment>
+          ),
+        );
+        sectionElements = [...sectionElements, ...conferencesBlocks];
       } else {
         sectionElements = [...sectionElements, section.content];
       }

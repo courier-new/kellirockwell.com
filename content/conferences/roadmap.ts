@@ -5,7 +5,7 @@ import { DateTime, Interval } from 'luxon';
 
 import generateTitleProps from '../utilities/for-content';
 import {
-  addDateLabels,
+  addNextUpLabel,
   CANCELLED,
   Conference,
   groupByYears,
@@ -15,7 +15,7 @@ import {
 } from './Conference';
 
 /* eslint-disable jsdoc/require-jsdoc */
-export const CONFERENCES: Conference[] = addDateLabels([
+export const CONFERENCES: Conference[] = [
   {
     date: Interval.fromDateTimes(
       DateTime.fromObject({ day: 14, month: 5, year: 2020 }),
@@ -179,7 +179,7 @@ export const CONFERENCES: Conference[] = addDateLabels([
     name: 'CascadiaJS 2019',
     website: 'https://2019.cascadiajs.com',
   },
-]);
+];
 /* eslint-enable jsdoc/require-jsdoc */
 
 export default {
@@ -188,6 +188,7 @@ export default {
     conferences: flow(
       (c: Conference[]): Conference[] => reject(c, hasPassed),
       (c: Conference[]): Conference[] => sortByDate(c),
+      (c: Conference[]): Conference[] => addNextUpLabel(c),
     )(CONFERENCES),
   },
   subsections: [

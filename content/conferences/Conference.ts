@@ -87,33 +87,20 @@ export const sortByDate = (
 };
 
 /**
- * Checks the date status of each Conference (passed, is happening now, is
- * happening next) and applies an appropriate dateLabel to it, giving priority
- * to any dateLabel already applied to the Conference
+ * Applies a label of "next up" to the first conference of the list
  *
- * @param conferences the list of conferences to apply labels to
+ * @param conferences the list of conferences, sorted from earliest to latest
  */
-export const addDateLabels = (conferences: Conference[]): Conference[] => {
-  return map(conferences, (conference, index) => {
-    let dateLabel = '';
-    const conferenceHasPassed = hasPassed(conference);
-    if (conferenceHasPassed) {
-      dateLabel = PASSED;
-    } else if (isCurrentlyHappening(conference)) {
-      dateLabel = NOW;
-    } else if (
-      !conferenceHasPassed &&
-      index - 1 >= 0 &&
-      hasPassed(conferences[index - 1])
-    ) {
-      dateLabel = NEXT;
-    }
-    return {
+export const addNextUpLabel = (conferences: Conference[]): Conference[] => {
+  const [firstConference, ...rest] = conferences;
+  return [
+    {
       // Allow the current Conference dateLabel property to overwrite this
-      dateLabel,
-      ...conference,
-    };
-  });
+      dateLabel: NEXT,
+      ...firstConference,
+    },
+    ...rest,
+  ];
 };
 
 type ConferencesKeyedByYear = { [year: string]: Conference[] };

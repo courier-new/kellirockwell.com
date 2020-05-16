@@ -18,6 +18,15 @@ import {
 export const CONFERENCES: Conference[] = addDateLabels([
   {
     date: Interval.fromDateTimes(
+      DateTime.fromObject({ day: 14, month: 5, year: 2020 }),
+      DateTime.fromObject({ day: 15, month: 5, year: 2020 }),
+    ),
+    location: VIRTUAL,
+    name: 'ReactEurope',
+    website: 'https://www.react-europe.org/',
+  },
+  {
+    date: Interval.fromDateTimes(
       DateTime.fromObject({ day: 18, month: 6, year: 2020 }),
       DateTime.fromObject({ day: 19, month: 6, year: 2020 }),
     ),
@@ -94,8 +103,8 @@ export const CONFERENCES: Conference[] = addDateLabels([
   },
   {
     date: Interval.fromDateTimes(
-      DateTime.fromObject({ day: 18, month: 5, year: 2020 }),
-      DateTime.fromObject({ day: 22, month: 5, year: 2020 }),
+      DateTime.fromObject({ day: 13, month: 7, year: 2020 }),
+      DateTime.fromObject({ day: 17, month: 7, year: 2020 }),
     ),
     location: VIRTUAL,
     name: 'ESNext Conf 2020',

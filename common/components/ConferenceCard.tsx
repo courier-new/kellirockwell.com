@@ -12,6 +12,7 @@ import {
   NEXT,
   NOW,
 } from '../../content/conferences/Conference';
+import Tag from './Tag';
 
 /**
  * Formats the conference date for display using the following rules:
@@ -63,24 +64,26 @@ const ConferenceCard: FC<Conference> = (conference) => {
   let labelClass = '';
   switch (labelText) {
     case CANCELLED:
-      labelClass = 'text-raspberry';
+      labelClass = 'background-raspberry';
       break;
     case NOW:
     case NEXT:
-      labelClass = 'text-turquoise';
+      labelClass = 'background-turquoise';
       break;
     default:
       break;
   }
 
   return (
-    <div className={`background-magnolia border-box ${opacityClass}`}>
-      <div className="padding-med">
-        {labelText ? (
-          <h6 className={`margin-0 padding-sm-bottom uppercase ${labelClass}`}>
-            {labelText}
-          </h6>
-        ) : null}
+    <div className={`background-magnolia border-box flex-column ${opacityClass}`}>
+      {labelText ? (
+        <ConferenceCardLabel backgroundColorClass={labelClass} labelText={labelText} />
+      ) : null}
+      <div
+        className={`${
+          labelText ? 'padding-sm-top' : 'padding-med-top'
+        } padding-med-h padding-med-bottom`}
+      >
         <h3
           className="margin-0 padding-sm-bottom flex-row flex-align-center"
           style={{ height: 50 }}
@@ -99,6 +102,19 @@ const ConferenceCard: FC<Conference> = (conference) => {
 
 const iconProps = {
   className: 'text-black',
+};
+
+const ConferenceCardLabel: FC<{ backgroundColorClass: string; labelText: string }> = ({
+  backgroundColorClass,
+  labelText,
+}) => {
+  return (
+    <div style={{ alignSelf: 'center', marginTop: '-0.8em' }}>
+      <Tag backgroundColorClass={backgroundColorClass} size="medium">
+        {labelText}
+      </Tag>
+    </div>
+  );
 };
 
 const TEXT_BREAK_LENGTH = 22;

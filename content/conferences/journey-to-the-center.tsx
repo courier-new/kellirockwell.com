@@ -103,6 +103,7 @@ const JourneyContent: FC<{}> = () => {
       </div>
       {/* Raise up this section in two column orientation to cut down on whitespace */}
       <div style={{ marginTop: twoColumns ? '-2em' : undefined }}>
+        <h3 className="margin-0-top">Resources and info</h3>
         <Link href="/conferences/why-I-love-conferences">
           <a
             className="karla flex-row flex-align-center"

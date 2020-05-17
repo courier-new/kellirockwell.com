@@ -1,10 +1,10 @@
 import { ContentSection } from '../utilities/types';
-import BY_THE_NUMBERS from './by-the-numbers';
+import GET_TO_KNOW_ME from './get-to-know-me';
 import INSIDE_MY_TOOLBOX from './inside-my-toolbox';
 import ROLES_I_SERVE from './roles-I-serve';
 
 type AboutMeSectionName =
-  | 'By the numbers'
+  | 'Get to know me'
   | 'Inside my toolbox'
   | 'The roles I serve'
   | 'As an asynchronous communicator'
@@ -15,7 +15,7 @@ type AboutMeSectionName =
 type AboutMeContentSection = ContentSection<AboutMeSectionName, JSX.Element>;
 
 const ABOUT_ME_SECTIONS: AboutMeContentSection[] = [
-  BY_THE_NUMBERS,
+  GET_TO_KNOW_ME,
   INSIDE_MY_TOOLBOX,
   ROLES_I_SERVE,
 ];

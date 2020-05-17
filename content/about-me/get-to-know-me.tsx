@@ -6,15 +6,15 @@ import useDimensions from '../../common/hooks/useDimensions';
 import useDisplaySize from '../../common/hooks/useDisplaySize';
 import generateTitleProps from '../utilities/for-content';
 
-/** The content for the By-the-numbers section of the About Me page */
-const ByTheNumbersContent: FC<{}> = () => {
+/** The content for the Get-to-know-me section of the About Me page */
+const GetToKnowMeContent: FC<{}> = () => {
   const [displaySize] = useDisplaySize();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const dimensions = useDimensions(containerRef);
   const containerWidth = dimensions?.width || 0;
 
   /**
-   * The subsections of "By the numbers" are laid out in columns based on the
+   * The subsections of "Get to know me" are laid out in columns based on the
    * width of the parent container. The layout takes one of the following forms:
    *
    * three:
@@ -93,7 +93,7 @@ const ByTheNumbersContent: FC<{}> = () => {
         <h3 className="margin-0-bottom">Background</h3>
         <p className="large">
           Remote full-stack web developer with a penchant for type systems, state
-          management, and clean documentation.
+          management, and effective documentation.
         </p>
         <div className="flex-row flex-align-center padding-sm-bottom">
           <IoMdSchool size={24} />
@@ -170,6 +170,6 @@ const ByTheNumbersContent: FC<{}> = () => {
 };
 
 export default {
-  ...generateTitleProps('By the numbers'),
-  content: <ByTheNumbersContent key="by-the-numbers" />,
+  ...generateTitleProps('Get to know me'),
+  content: <GetToKnowMeContent key="get-to-know-me" />,
 };

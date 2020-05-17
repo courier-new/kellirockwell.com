@@ -17,6 +17,12 @@ import {
 /* eslint-disable jsdoc/require-jsdoc */
 export const CONFERENCES: Conference[] = [
   {
+    date: DateTime.fromObject({ day: 23, month: 7, year: 2020 }),
+    location: VIRTUAL,
+    name: 'CodeLand: Distributed',
+    website: 'https://www.react-europe.org/',
+  },
+  {
     date: Interval.fromDateTimes(
       DateTime.fromObject({ day: 14, month: 5, year: 2020 }),
       DateTime.fromObject({ day: 15, month: 5, year: 2020 }),

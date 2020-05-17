@@ -94,9 +94,7 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
             {/* Cap width of content and center within <main> but keep content's
             internal alignment */}
             <div style={{ maxWidth: 900, width: '100%' }}>
-              {shouldShowBreadcrumbs ? (
-                <Breadcrumbs activePage={activeParentPage} />
-              ) : null}
+              {shouldShowBreadcrumbs ? <Breadcrumbs activePage={activePageSlug} /> : null}
               {children}
             </div>
           </main>

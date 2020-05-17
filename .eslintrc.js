@@ -44,12 +44,20 @@ module.exports = {
   ],
   rules: {
     // @typescript-eslint-plugin
+    '@typescript-eslint/member-ordering': [2, { default: { order: 'alphabetically' } }],
     '@typescript-eslint/no-unused-expressions': 0, // Misfires with optional chaining, prefer babel plugin rule
     '@typescript-eslint/no-unused-vars': [2, { argsIgnorePattern: '^_' }],
     '@typescript-eslint/no-use-before-define': 0,
-    '@typescript-eslint/member-ordering': [2, { default: { order: 'alphabetically' } }],
     // eslint-plugin-babel
     'babel/no-unused-expressions': 1,
+    // Base ESLint rule
+    'global-require': 0,
+    // eslint-plugin-imports
+    'import/extensions': [1, 'never'],
+    'import/first': 2,
+    'import/newline-after-import': 2,
+    'import/no-duplicates': 2,
+    'import/order': 0, // Prefer eslint-plugin-simple-import-sort
     // eslint-plugin-jsdoc
     'jsdoc/check-access': 1, // Recommended
     'jsdoc/check-alignment': 1, // Recommended
@@ -67,22 +75,14 @@ module.exports = {
     'jsdoc/newline-after-description': 1, // Recommended
     'jsdoc/no-types': 1, // Turned on b/c using TS
     'jsdoc/no-undefined-types': 0, // Turned off b/c using TS
-    'jsdoc/require-description-complete-sentence': 0,
     'jsdoc/require-description': 1,
+    'jsdoc/require-description-complete-sentence': 0,
     'jsdoc/require-example': 0,
     'jsdoc/require-file-overview': 0,
     'jsdoc/require-hyphen-before-param-description': [0, 'never'],
     'jsdoc/require-jsdoc': [
       1,
       {
-        require: {
-          ArrowFunctionExpression: true,
-          ClassDeclaration: true,
-          ClassExpression: true,
-          FunctionDeclaration: true,
-          FunctionExpression: true,
-          MethodDefinition: true,
-        },
         contexts: [
           // https://eslint.org/docs/developer-guide/selectors
           // https://astexplorer.net/ with @typescript-eslint/parser selected
@@ -100,21 +100,44 @@ module.exports = {
           'ExportNamedDeclaration Identifier:not([key.name=/.*style.*/i]) ObjectExpression',
           'ExportNamedDeclaration Identifier:not([key.name=/.*style.*/i]) ObjectExpression Property',
         ],
+        require: {
+          ArrowFunctionExpression: true,
+          ClassDeclaration: true,
+          ClassExpression: true,
+          FunctionDeclaration: true,
+          FunctionExpression: true,
+          MethodDefinition: true,
+        },
       },
     ], // Recommended
+    'jsdoc/require-param': 1, // Recommended
     'jsdoc/require-param-description': 1, // Recommended
     'jsdoc/require-param-name': 1, // Recommended
     'jsdoc/require-param-type': 0, // Turned off b/c using TS
-    'jsdoc/require-param': 1, // Recommended
     'jsdoc/require-property': 0,
     'jsdoc/require-property-description': 0,
     'jsdoc/require-property-name': 0,
     'jsdoc/require-property-type': 0,
+    'jsdoc/require-returns': 0, // Turned off b/c using TS
     'jsdoc/require-returns-check': 0, // Turned off b/c using TS
     'jsdoc/require-returns-description': 0, // Turned off b/c using TS
     'jsdoc/require-returns-type': 0, // Turned off b/c using TS
-    'jsdoc/require-returns': 0, // Turned off b/c using TS
     'jsdoc/valid-types': 0, // Turned off b/c using TS
+    // jsx-ally
+    'jsx-a11y/anchor-is-valid': 0, // Prefer Next Link accessibility
+    // Base ESLint rules
+    'max-len': [
+      1,
+      {
+        code: 90,
+        ignoreComments: false,
+        ignoreStrings: true,
+        ignoreUrls: true,
+      },
+    ],
+    'no-unused-expressions': 0, // Misfires with optional chaining, prefer babel plugin rule
+    // prettier plugin
+    'prettier/prettier': 1,
     // eslint-plugin-react
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'react/jsx-one-expression-per-line': 0, // Conflicts with prettier formatting
@@ -127,34 +150,14 @@ module.exports = {
     ],
     'react/prop-types': 0,
     // eslint-plugin-react-hooks
-    'react-hooks/rules-of-hooks': 2,
     'react-hooks/exhaustive-deps': 1,
-    // eslint-plugin-imports
-    'import/extensions': [1, 'never'],
-    'import/first': 2,
-    'import/newline-after-import': 2,
-    'import/no-duplicates': 2,
-    'import/order': 0, // Prefer eslint-plugin-simple-import-sort
+    'react-hooks/rules-of-hooks': 2,
     // eslint-plugin-simple-import-sort
     'simple-import-sort/sort': 2,
-    // prettier plugin
-    'prettier/prettier': 1,
-    // jsx-ally
-    'jsx-a11y/anchor-is-valid': 0, // Prefer Next Link accessibility
     // sort-destructure-keys plugin
     'sort-destructure-keys/sort-destructure-keys': 1,
     // Base ESLint rules
-    'max-len': [
-      1,
-      {
-        code: 90,
-        ignoreComments: false,
-        ignoreStrings: true,
-        ignoreUrls: true,
-      },
-    ],
-    'no-unused-expressions': 0, // Misfires with optional chaining, prefer babel plugin rule
-    'sort-keys': 2,
     'sort-imports': 0, // Prefer eslint-plugin-simple-import-sort
+    'sort-keys': 2,
   },
 };

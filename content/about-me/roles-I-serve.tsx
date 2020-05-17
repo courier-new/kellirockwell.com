@@ -71,6 +71,7 @@ const RoleContent: FC<RoleContentProps> = ({
           exampleItems={exampleItems}
           exampleLabel={exampleLabel}
           Icon={Icon}
+          key={exampleLabel}
           layout={examplesLayout}
         />
       ))}

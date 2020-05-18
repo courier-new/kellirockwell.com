@@ -41,20 +41,22 @@ const getDisplaySizeFromWindowWidth = (windowWidth: number): DisplaySize => {
 
 /**
  * Determines the DisplaySize of the current window based on the window width
- * and returns a tuple of the DisplaySize with the window width itself
+ * and returns a tuple of the DisplaySize with the window width and height
+ * themselves
  */
-const useDisplaySize = (): [DisplaySize, number] => {
+const useDisplaySize = (): [DisplaySize, number, number] => {
   const [windowWidth, setWindowWidth] = useState<number>(0);
+  const [windowHeight, setWindowHeight] = useState<number>(0);
 
   useEffect(() => {
     // Throttle request to not overload with repaints
     let requestRunning: number | null = null;
     // We start a timer when handling a resize to check the size again once the
     // user finishes resizing. This way, even with the throttling, we can be
-    // sure our windowWidth is accurate at the end of the resize. We assign the
-    // timer to a variable so that we can clear it every time the handler is
-    // re-run. That way, only the last timer (when the user actually stops
-    // resizing) will fire
+    // sure our windowWidth/Height is accurate at the end of the resize. We
+    // assign the timer to a variable so that we can clear it every time the
+    // handler is re-run. That way, only the last timer (when the user actually
+    // stops resizing) will fire
     let lastResizeTimeout: NodeJS.Timeout | undefined;
 
     /** Remeasures and sets the window width */
@@ -67,13 +69,17 @@ const useDisplaySize = (): [DisplaySize, number] => {
         }
         requestRunning = 1;
         setWindowWidth(window.innerWidth);
+        setWindowHeight(window.innerHeight);
 
         setTimeout(() => {
           requestRunning = null;
         }, 400);
 
         // Set a timer to check the size again later
-        lastResizeTimeout = setTimeout(() => setWindowWidth(window.innerWidth), 500);
+        lastResizeTimeout = setTimeout(() => {
+          setWindowWidth(window.innerWidth);
+          setWindowHeight(window.innerHeight);
+        }, 500);
       }
     };
 
@@ -87,7 +93,7 @@ const useDisplaySize = (): [DisplaySize, number] => {
     windowWidth,
   ]);
 
-  return [memoizedDisplaySize, windowWidth];
+  return [memoizedDisplaySize, windowWidth, windowHeight];
 };
 
 export default useDisplaySize;

@@ -8,7 +8,7 @@ import useDisplaySize from '../common/hooks/useDisplaySize';
 
 /** Root of Index screen */
 const Root: FC<{}> = () => {
-  const [displaySize, windowWidth] = useDisplaySize();
+  const [displaySize, windowWidth, windowHeight] = useDisplaySize();
 
   const isMobile = displaySize === 'MOBILE';
 
@@ -45,7 +45,7 @@ const Root: FC<{}> = () => {
         <div
           className="absolute"
           style={{
-            height: '100vh',
+            height: windowHeight,
             left: '50%',
             marginLeft: '-50vw',
             width: '100vw',
@@ -81,7 +81,7 @@ const Root: FC<{}> = () => {
   return (
     <div
       className="flex-column flex-align-center flex-justify-center full-width padding-0"
-      style={{ minHeight: '100vh' }}
+      style={{ minHeight: windowHeight }}
     >
       <Head>
         <title>KELLI ROCKWELL | Home</title>

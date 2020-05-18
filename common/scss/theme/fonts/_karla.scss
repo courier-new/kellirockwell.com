@@ -1,12 +1,14 @@
 $karla: 'Karla';
 
 @font-face {
+  font-display: swap;
   font-family: $karla;
   font-weight: normal;
   src: url('/fonts/Karla/Karla-Regular.ttf');
 }
 
 @font-face {
+  font-display: swap;
   font-family: $karla;
   font-style: italic;
   font-weight: normal;
@@ -14,6 +16,7 @@ $karla: 'Karla';
 }
 
 @font-face {
+  font-display: swap;
   font-family: $karla;
   font-style: italic;
   font-weight: bold;
@@ -21,6 +24,7 @@ $karla: 'Karla';
 }
 
 @font-face {
+  font-display: swap;
   font-family: $karla;
   font-weight: bold;
   src: url('/fonts/Karla/Karla-Bold.ttf');

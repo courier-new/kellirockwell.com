@@ -1,12 +1,9 @@
-import capitalize from 'lodash/capitalize';
-import flow from 'lodash/flow';
-import join from 'lodash/join';
 import map from 'lodash/map';
-import split from 'lodash/split';
 import Link from 'next/link';
 import React, { FC } from 'react';
 
 import { Slug, SLUGS } from '../constants/slugs';
+import { toTitleCase } from '../utilities/string-case';
 
 type MainNavigationProps = {
   /** The url slug corresponding to the screen that is currently open */
@@ -22,11 +19,7 @@ type MainNavigationProps = {
  * the current slug, otherwise undefined
  */
 const renderLink = (slug: Slug, active?: 'active'): JSX.Element => {
-  const linkText = flow([
-    (s: Slug): string[] => split(s, '-'), // Split into words along dashes
-    (w: string[]): string[] => map(w, capitalize), // Capitalize each word
-    (w: string[]): string => join(w, ' '), // Rejoin words
-  ])(slug);
+  const linkText = toTitleCase(slug);
   return (
     <li key={slug}>
       <style jsx>

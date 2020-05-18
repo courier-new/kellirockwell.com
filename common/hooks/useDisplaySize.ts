@@ -21,7 +21,7 @@ type BreakpointObj = { name: DisplaySize; size: DisplaySizeWidth };
  * @param windowWidth the current width of the window
  */
 const getDisplaySizeFromWindowWidth = (windowWidth: number): DisplaySize => {
-  return flow([
+  return flow(
     // Map breakpoints to an array of objects for more explicit key-based access
     // on each entity
     (bs: typeof BREAKPOINT_SIZES): BreakpointObj[] =>
@@ -36,7 +36,7 @@ const getDisplaySizeFromWindowWidth = (windowWidth: number): DisplaySize => {
       filter(bs, ({ size }) => size <= windowWidth),
     // The name of the head one is our display size, default is mobile
     (bs: BreakpointObj[]): DisplaySize => head(bs)?.name || 'MOBILE',
-  ])(BREAKPOINT_SIZES);
+  )(BREAKPOINT_SIZES);
 };
 
 /**

@@ -17,7 +17,7 @@ const LoadingOverlay: FC<{}> = () => {
         colors={{
           // TODO: replace hardcoded colors
           mask: '#fff',
-          primary: '#ef2860',
+          primary: '#e80645',
         }}
         size="large"
       />

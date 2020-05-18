@@ -104,6 +104,7 @@ const iconProps = {
   className: 'text-black',
 };
 
+/** A small tag-like label for a Conference */
 const ConferenceCardLabel: FC<{ backgroundColorClass: string; labelText: string }> = ({
   backgroundColorClass,
   labelText,

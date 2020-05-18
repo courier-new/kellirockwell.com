@@ -1,12 +1,14 @@
 $titillium: 'TitilliumWeb';
 
 @font-face {
+  font-display: swap;
   font-family: $titillium;
   font-weight: normal;
   src: url('/fonts/TitilliumWeb/TitilliumWeb-Regular.ttf');
 }
 
 @font-face {
+  font-display: swap;
   font-family: $titillium;
   font-style: italic;
   font-weight: normal;
@@ -14,6 +16,7 @@ $titillium: 'TitilliumWeb';
 }
 
 @font-face {
+  font-display: swap;
   font-family: $titillium;
   font-style: italic;
   font-weight: bold;
@@ -21,12 +24,14 @@ $titillium: 'TitilliumWeb';
 }
 
 @font-face {
+  font-display: swap;
   font-family: $titillium;
   font-weight: bold;
   src: url('/fonts/TitilliumWeb/TitilliumWeb-Bold.ttf');
 }
 
 @font-face {
+  font-display: swap;
   font-family: $titillium;
   font-style: italic;
   font-weight: lighter;
@@ -34,6 +39,7 @@ $titillium: 'TitilliumWeb';
 }
 
 @font-face {
+  font-display: swap;
   font-family: $titillium;
   font-weight: lighter;
   src: url('/fonts/TitilliumWeb/TitilliumWeb-Light.ttf');

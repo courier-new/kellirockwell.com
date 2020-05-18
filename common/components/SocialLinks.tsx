@@ -24,13 +24,13 @@ const SocialLinks: FC<SocialLinksProps> = ({ className, size }) => {
           }
         `}
       </style>
-      <a href="https://www.linkedin.com/in/kellirockwell/">
+      <a href="https://www.linkedin.com/in/kellirockwell/" title="LinkedIn">
         <AiFillLinkedin {...iconProps} />
       </a>
-      <a href="https://twitter.com/courierneue">
+      <a href="https://twitter.com/courierneue" title="Twitter">
         <AiOutlineTwitter {...iconProps} />
       </a>
-      <a href="https://github.com/courier-new">
+      <a href="https://github.com/courier-new" title="GitHub">
         <AiFillGithub {...iconProps} />
       </a>
     </div>

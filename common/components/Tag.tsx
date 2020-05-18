@@ -2,12 +2,14 @@ import isUndefined from 'lodash/isUndefined';
 import React, { FC } from 'react';
 
 type TagProps = {
+  /** Optional class to apply for the tag background color, defaults to space */
   backgroundColorClass?: string;
   /** Optional handler on interacting with the tag */
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  /** Size of the text, scales the rest of the tag */
+  /** Optional size of the text, scales the rest of the tag, defaults to small */
   size?: 'small' | 'medium';
-  /** String specification for spacing between this tag and those adjacent to it */
+  /** Optional string specification for spacing between this tag and anything
+   * adjacent to it, defaults to 0 */
   spacing?: string;
 };
 
@@ -32,7 +34,8 @@ const Tag: FC<TagProps> = ({
         `}
       </style>
       <span
-        className={`${size} ${backgroundColorClass} flex-align-center flex-row text-white karla`}
+        className={`${size} ${backgroundColorClass} flex-align-center flex-row
+        text-white karla`}
       >
         {children}
       </span>

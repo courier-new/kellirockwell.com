@@ -1,6 +1,10 @@
+import capitalize from 'lodash/capitalize';
 import flow from 'lodash/flow';
+import join from 'lodash/join';
 import kebabCase from 'lodash/kebabCase';
+import map from 'lodash/map';
 import replace from 'lodash/replace';
+import split from 'lodash/split';
 import toLower from 'lodash/toLower';
 import upperFirst from 'lodash/upperFirst';
 
@@ -31,6 +35,20 @@ export const toKebabCase = (s: string): KebabCaseString =>
 export const isKebabCase = (s: string): s is KebabCaseString => {
   return toKebabCase(s) === s;
 };
+
+/**
+ * Converts the provided string to Title case, preserving punctuation
+ *
+ * @param s the string to convert
+ * @example toTitleCase('hello'); // 'Hello'
+ * toTitleCase('hello there kebab-case'); // 'Hello There Kebab Case'
+ */
+export const toTitleCase = (s: string): string =>
+  flow(
+    (os: string): string[] => split(os, '-'), // Split into words along dashes
+    (w: string[]): string[] => map(w, capitalize), // Capitalize each word
+    (w: string[]): string => join(w, ' '), // Rejoin words
+  )(s);
 
 /** Branded type to distinguish a string in Sentence case capitalization */
 export type SentenceCaseString = string & { __brand: '@brand/sentence-case-string' };

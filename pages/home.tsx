@@ -147,7 +147,7 @@ const IntroContent: FC<{ isMobile: boolean }> = ({ isMobile }) => (
         </>
       )}
     </div>
-    <SocialLinks className="text-space" size={24} />
+    <SocialLinks className="text-button" size={24} />
   </>
 );
 

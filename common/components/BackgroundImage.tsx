@@ -34,7 +34,7 @@ const BackgroundImage: FC<BackgroundImageProps> = ({ path, resizeWidth }) => {
             backdrop-filter: blur(15px);
           }
           .${backgroundImageClassName} {
-            background-image: url('${require(`../../images/${sizedPath}`)}');
+            background-image: url('${require(`../../images/${sizedPath}?webp`)}');
           }
         `}
       </style>

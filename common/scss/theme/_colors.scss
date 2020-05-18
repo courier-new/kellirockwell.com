@@ -117,6 +117,15 @@ https://frontstuff.io/generate-all-your-utility-classes-with-sass-maps */
       background: map-get($color-set, 'raspberry');
     }
   }
+
+  .text-button {
+    color: map-get($color-set, 'space');
+    transition: all 0.2s linear;
+
+    &:hover {
+      color: map-get($color-set, 'raspberry');
+    }
+  }
 }
 
 /* LIGHT THEME */

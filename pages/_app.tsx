@@ -5,14 +5,17 @@ import get from 'lodash/get';
 import replace from 'lodash/replace';
 import { NextComponentType } from 'next';
 import { AppContext, AppProps } from 'next/app';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { FC, useEffect, useRef, useState } from 'react';
 
 import Screen from '../common/components/Screen';
+import { Slug } from '../common/constants/slugs';
 import CombinedProvider from '../common/context';
 import { useSectionHeightsState } from '../common/context/sectionHeightsState';
 import useCurrentSectionIndex from '../common/hooks/useCurrentSectionIndex';
 import useScrollInfo from '../common/hooks/useScrollInfo';
+import { toTitleCase } from '../common/utilities/string-case';
 import { getSectionsForPage } from '../content/utilities/for-pages';
 
 /**
@@ -39,10 +42,12 @@ const InContext: FC<{}> = ({ children }) => {
   const [rendering, setRendering] = useState(false);
 
   const router = useRouter();
-  const isIndex = router.route === '/';
+  // TODO: Remove me when site goes live and home -> index
+  const isIndex = router.route === '/' || router.route === '/home';
   // Strip starting "/" in path to get the slug
   // router.asPath contains any hash in link, too
   const slug = replace(router.pathname, /^\//, '');
+  const activeParentPage = replace(slug, /\/.*/, '') as Slug;
   // Dictionary of section starting heights for each page in the app,
   // retrievable by the page's slug
   const state = useSectionHeightsState();
@@ -106,8 +111,19 @@ const InContext: FC<{}> = ({ children }) => {
     };
   }, [recalculateSectionIndex, router.events]);
 
+  const head = (
+    <Head>
+      <title>KELLI ROCKWELL | {toTitleCase(activeParentPage)}</title>
+      <link href="/favicon.ico" rel="icon" />
+    </Head>
+  );
+
+  // Index screen is not rendered in standard Screen container
   return isIndex ? (
-    <>{children}</>
+    <>
+      {head}
+      {children}
+    </>
   ) : (
     <Screen
       activePageSlug={slug}
@@ -123,6 +139,7 @@ const InContext: FC<{}> = ({ children }) => {
       rendering={rendering}
       scrollPercent={scrollPercent}
     >
+      {head}
       {children}
     </Screen>
   );

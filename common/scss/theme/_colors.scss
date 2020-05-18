@@ -105,14 +105,26 @@ https://frontstuff.io/generate-all-your-utility-classes-with-sass-maps */
       map-get($color-set, 'cheddar') 72vw,
       map-get($color-set, 'raspberry') 94vw);
   }
+
+  .button {
+    background: map-get($color-set, 'space');
+    border-radius: 3em;
+    margin: 0 0.5em 0.5em 0;
+    padding: 0.5em 0.8em;
+    transition: all 0.2s linear;
+
+    &:hover {
+      background: map-get($color-set, 'raspberry');
+    }
+  }
 }
 
 /* LIGHT THEME */
-#__next [data-theme='light'] {
+[data-theme='light'] {
   @include use-theme-colors($light-colors);
 }
 
 /* DARK THEME */
-#__next [data-theme='dark'] {
+[data-theme='dark'] {
   @include use-theme-colors($dark-colors);
 }

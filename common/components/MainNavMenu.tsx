@@ -21,7 +21,7 @@ const MainNavMenu: FC<MainNavMenuProps> = ({ activePage }) => {
       {/* The top-aligned part */}
       <div>
         <div className="flex-column flex-1 flex-align-center">
-          <ProfileImage shape="round" size="100%" />
+          <ProfileImage resizeWidth={200} shape="round" size="100%" />
           <h5 className="text-turquoise">Kelli Rockwell</h5>
         </div>
         <MainNavigation activePage={activePage} />

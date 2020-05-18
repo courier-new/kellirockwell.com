@@ -1,5 +1,7 @@
+import Link from 'next/link';
 import React, { FC } from 'react';
 
+import Image from '../../common/components/Image';
 import useDisplaySize from '../../common/hooks/useDisplaySize';
 
 /**
@@ -30,14 +32,18 @@ const WhyILoveConferencesScreen: FC<{}> = () => {
         I applied to attend.
       </p>
       <aside className={`flex-column ${useFullSizeImage ? '' : 'margin-med-left'}`}>
-        <img
+        <Image
           alt="The majority of the attendees of the CUWiP conference seated together in an auditorium. The site author is circled towards the middle back."
-          src="/images/cuwip2014.jpg"
+          path="cuwip2014.jpg"
+          resizeWidth={displaySize === 'MOBILE' ? 400 : 600}
           width="100%"
         />
         <p className="xsmall">
           Most of the attendees of CUWiP &apos;14 @ UC Berkeley gathered for the final
-          session of the conference, including me!
+          session of the conference, including me!{' '}
+          <Link href={require('../../images/cuwip2014@original.jpg')}>
+            <a title="View full size">(View full size)</a>
+          </Link>
         </p>
       </aside>
       <p>

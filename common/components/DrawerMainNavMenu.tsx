@@ -96,7 +96,7 @@ const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
                   minWidth: 'max(50px, min(40%, 100px))',
                 }}
               >
-                <ProfileImage shape="round" size="100%" />
+                <ProfileImage resizeWidth={100} shape="round" size="100%" />
               </div>
               <h3 className="text-turquoise">Kelli Rockwell</h3>
             </div>

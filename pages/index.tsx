@@ -1,5 +1,3 @@
-import '../common/scss/main.scss';
-
 import Head from 'next/head';
 import Link from 'next/link';
 import React, { FC } from 'react';

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 
@@ -88,18 +89,24 @@ const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
         <div className="background-maastricht full-height full-width flex-1 flex-column flex-space-between text-magnolia non-scrollable padding-med border-box">
           {/* The top-aligned part */}
           <div>
-            <div className="flex-row flex-align-center" style={{ marginBottom: '1em' }}>
-              {/* Restrain min/max width of ProfileImage while preserving aspect ratio */}
-              <div
-                style={{
-                  maxWidth: 'max(50px, min(40%, 100px))',
-                  minWidth: 'max(50px, min(40%, 100px))',
-                }}
+            <Link href="/home">
+              <a
+                className="flex-row flex-align-center no-decoration"
+                style={{ marginBottom: '1em' }}
+                title="Home"
               >
-                <ProfileImage resizeWidth={100} shape="round" size="100%" />
-              </div>
-              <h3 className="text-turquoise">Kelli Rockwell</h3>
-            </div>
+                {/* Restrain min/max width of ProfileImage while preserving aspect ratio */}
+                <div
+                  style={{
+                    maxWidth: 'max(50px, min(40%, 100px))',
+                    minWidth: 'max(50px, min(40%, 100px))',
+                  }}
+                >
+                  <ProfileImage resizeWidth={100} shape="round" size="100%" />
+                </div>
+                <h3 className="text-turquoise">Kelli Rockwell</h3>
+              </a>
+            </Link>
             <MainNavigation activePage={activePage} />
           </div>
           {/* The bottom-aligned part */}

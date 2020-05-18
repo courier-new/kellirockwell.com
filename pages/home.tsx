@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import React, { FC, useRef } from 'react';
+import React, { FC } from 'react';
 
 import BackgroundImage from '../common/components/BackgroundImage';
 import SocialLinks from '../common/components/SocialLinks';

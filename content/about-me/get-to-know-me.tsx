@@ -35,12 +35,20 @@ const GetToKnowMeContent: FC<{}> = () => {
    * | 3 |
    */
   let columns: 'three' | 'one/two' | 'one/two-staggered' | 'one' = 'one';
+  let likesFontSize: 'medium' | 'small' = 'medium';
   if (containerWidth > 620) {
     columns = 'three';
-  } else if (containerWidth > 430) {
+    likesFontSize = 'small';
+  } else if (containerWidth > 390) {
     columns = 'one/two';
+    if (containerWidth < 500) {
+      likesFontSize = 'small';
+    }
   } else if (containerWidth > 300) {
     columns = 'one/two-staggered';
+    if (containerWidth < 324) {
+      likesFontSize = 'small';
+    }
   }
 
   /** If the layout is one/two or one/two-staggered, the dislikes section will
@@ -123,7 +131,7 @@ const GetToKnowMeContent: FC<{}> = () => {
           {/* Margin behaves differently in flex-box and margins below h3 and above
           paragraphs are not merged */}
           <h3 className="margin-0-bottom">Likes</h3>
-          <ul className="padding-0-h no-default-bullets small">
+          <ul className={`padding-0-h no-default-bullets ${likesFontSize}`}>
             <li>Strongly-typed languages</li>
             <li>Boba (bubble tea)</li>
             <li>Cats</li>
@@ -141,7 +149,8 @@ const GetToKnowMeContent: FC<{}> = () => {
             alignSelf: dislikesAlignEnd ? 'flex-end' : undefined,
             flexBasis: dislikesFlexBasis,
             // Create a staggered effect for the one/two-staggered layout
-            marginTop: columns === 'one/two-staggered' ? '-6em' : undefined,
+            marginBottom: columns === 'one/two-staggered' ? '-2em' : undefined,
+            marginTop: columns === 'one/two-staggered' ? '-7em' : undefined,
             minWidth: 150,
           }}
         >
@@ -151,7 +160,7 @@ const GetToKnowMeContent: FC<{}> = () => {
             Dislikes
           </h3>
           <ul
-            className={`padding-0-h no-default-bullets small ${
+            className={`padding-0-h no-default-bullets small ${likesFontSize} ${
               dislikesAlignEnd ? 'text-align-right' : ''
             }`}
           >

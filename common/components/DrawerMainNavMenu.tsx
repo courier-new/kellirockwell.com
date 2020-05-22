@@ -95,7 +95,8 @@ const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
                 style={{ marginBottom: '1em' }}
                 title="Home"
               >
-                {/* Restrain min/max width of ProfileImage while preserving aspect ratio */}
+                {/* Restrain min/max width of ProfileImage while preserving aspect
+                ratio */}
                 <div
                   style={{
                     maxWidth: 'max(50px, min(40%, 100px))',

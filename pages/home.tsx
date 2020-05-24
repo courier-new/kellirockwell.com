@@ -81,7 +81,7 @@ const Root: FC<{}> = () => {
   return (
     <div
       className="flex-column flex-align-center flex-justify-center full-width padding-0"
-      style={{ minHeight: windowHeight }}
+      style={{ minHeight: windowHeight || '100vh' }}
     >
       <Head>
         <title>KELLI ROCKWELL | Home</title>

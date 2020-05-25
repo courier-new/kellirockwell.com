@@ -117,6 +117,14 @@ https://frontstuff.io/generate-all-your-utility-classes-with-sass-maps */
     background-color: map-get($color-set, 'low-opacity-white');
   }
 
+  .main-gradient-background {
+    background: map-get($color-set, 'white');
+    background:
+      linear-gradient(180deg,
+      map-get($color-set, 'white') 0,
+      map-get($color-set, 'magnolia') 92%);
+  }
+
   /* Border color styles */
   .border-color {
     @include color-modifiers('border-color', $color-set);

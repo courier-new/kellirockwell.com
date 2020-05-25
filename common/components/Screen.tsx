@@ -106,7 +106,8 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
           </div>
           {/* Lock scroll when screen is rendering */}
           <main
-            className={`relative flex-align-center flex-1 flex-column padding-med ${
+            className={`main-gradient-background relative flex-align-center
+            flex-1 flex-column padding-med ${
               rendering ? 'non-scrollable' : 'scrollable-y'
             }`}
             ref={ref}

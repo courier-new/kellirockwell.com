@@ -5,22 +5,8 @@ import LoadingSpinner from './LoadingSpinner';
 /** Low-opacity full size overlay component with loading spinner */
 const LoadingOverlay: FC<{}> = () => {
   return (
-    <div
-      className="absolute flex-column flex-justify-center flex-align-center z-index-middle"
-      style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.4)',
-        height: '100%',
-        width: '100%',
-      }}
-    >
-      <LoadingSpinner
-        colors={{
-          // TODO: replace hardcoded colors
-          mask: '#fff',
-          primary: '#e80645',
-        }}
-        size="large"
-      />
+    <div className="absolute background-low-opacity flex-column flex-justify-center flex-align-center full-width full-height z-index-middle">
+      <LoadingSpinner primaryColor="#e80645" size="large" />
     </div>
   );
 };

@@ -2,13 +2,8 @@ import React, { FC } from 'react';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 type LoadingSpinnerProps = {
-  /** Colors to style the loading spinner icon */
-  colors: {
-    /** The color for the interior overlay spinner masking the main spinner */
-    mask: string;
-    /** The main color for the spinner icon */
-    primary: string;
-  };
+  /** The main color for the spinner icon */
+  primaryColor: string;
   /** The size of the spinner icon to show */
   size: 'small' | 'medium' | 'large';
 };
@@ -30,7 +25,7 @@ const getIconSize = (size: 'small' | 'medium' | 'large'): number => {
 };
 
 /** A simple loading spinner component */
-const LoadingSpinner: FC<LoadingSpinnerProps> = ({ colors, size }) => {
+const LoadingSpinner: FC<LoadingSpinnerProps> = ({ primaryColor, size }) => {
   const iconSize = getIconSize(size);
   const offsetSize = 0.7 * iconSize;
   const maskSize = iconSize / 2 + offsetSize;
@@ -39,7 +34,6 @@ const LoadingSpinner: FC<LoadingSpinnerProps> = ({ colors, size }) => {
       <style jsx>
         {`
           .sized {
-            background-color: ${colors.mask};
             border-radius: 50%;
             height: ${iconSize}px;
             width: ${iconSize}px;
@@ -51,14 +45,17 @@ const LoadingSpinner: FC<LoadingSpinnerProps> = ({ colors, size }) => {
           }
 
           .mask {
-            animation: spin-mask 1.3s linear infinite;
+            animation: spin-mask 1.5s linear infinite;
             height: ${maskSize}px;
             width: 0;
             left: -${offsetSize}px;
             top: -${offsetSize}px;
-            border-left: 60px solid transparent;
-            border-right: 60px solid transparent;
-            border-bottom: 60px solid ${colors.mask};
+            border-style: solid;
+            border-left-color: transparent;
+            border-left-width: 60px;
+            border-right-color: transparent;
+            border-right-width: 60px;
+            border-bottom-width: 60px;
             transform-origin: center center;
           }
 
@@ -73,25 +70,25 @@ const LoadingSpinner: FC<LoadingSpinnerProps> = ({ colors, size }) => {
 
           @keyframes spin-mask {
             0% {
-              transform: rotate(200deg) scaleY(0.5);
+              transform: rotate(200deg) scaleY(0.45) scaleX(2);
             }
-            33% {
-              transform: rotate(400deg) scaleY(3);
+            40% {
+              transform: rotate(400deg) scaleY(2);
             }
-            75% {
+            60% {
               transform: rotate(500deg) scaleY(1);
             }
             100% {
-              transform: rotate(560deg) scaleY(0.5);
+              transform: rotate(560deg) scaleY(0.45) scaleX(2);
             }
           }
         `}
       </style>
-      <div className="relative non-scrollable sized">
+      <div className="relative non-scrollable sized background-white">
         <div className="absolute spinner sized">
-          <AiOutlineLoading3Quarters color={colors.primary} size={iconSize} />
+          <AiOutlineLoading3Quarters color={primaryColor} size={iconSize} />
         </div>
-        <div className="absolute mask" />
+        <div className="absolute mask border-color-white" />
       </div>
     </>
   );

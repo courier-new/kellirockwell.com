@@ -67,10 +67,6 @@ const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
             }
           }
 
-          button:focus {
-            outline: none;
-          }
-
           h3 {
             font-size: 6vw;
             margin-left: 1em;
@@ -117,7 +113,7 @@ const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
           </div>
         </div>
         <button
-          className="z-index-top margin-0 padding-med-v padding-0-h border-0 background-none width-0"
+          className="cursor-pointer z-index-top margin-0 padding-med-v padding-0-h border-0 background-none width-0"
           onClick={toggleDrawerIsOpen}
           type="button"
         >

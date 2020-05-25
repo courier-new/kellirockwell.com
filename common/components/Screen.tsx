@@ -1,7 +1,7 @@
 import includes from 'lodash/includes';
 import isUndefined from 'lodash/isUndefined';
 import replace from 'lodash/replace';
-import React, { PropsWithChildren, useMemo } from 'react';
+import React, { PropsWithChildren, useMemo, useState, useEffect } from 'react';
 
 import { ContentSection } from '../../content/utilities/types';
 import {
@@ -10,7 +10,7 @@ import {
 } from '../constants/breakpoint-sizes';
 import { Slug } from '../constants/slugs';
 import useDisplaySize from '../hooks/useDisplaySize';
-import useMediaQuery from '../hooks/useMediaQuery';
+import { usePrefersDarkMode } from '../hooks/useMediaQuery';
 import { Percent } from '../utilities/percent';
 import Breadcrumbs from './Breadcrumbs';
 import DrawerMainNavMenu from './DrawerMainNavMenu';
@@ -19,6 +19,7 @@ import MainNavMenu from './MainNavMenu';
 import ProgressBar from './ProgressBar';
 import SideNavMenu from './SideNavMenu';
 import UnsupportedBrowserBanner from './UnsupportedBrowserBanner';
+import DarkModeToggle from './DarkModeToggle';
 
 type ScreenProps = {
   /** The url slug corresponding to the screen that is currently open */
@@ -51,6 +52,14 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
   ({ activePageSlug, children, contentSections, rendering, scrollPercent }, ref) => {
     const [displaySize] = useDisplaySize();
 
+    /** True if the user system preference is for a dark color scheme */
+    const prefersDarkMode = !usePrefersDarkMode();
+    const [theme, setTheme] = useState<'dark' | 'light'>(
+      prefersDarkMode ? 'dark' : 'light',
+    );
+
+    useEffect(() => setTheme(prefersDarkMode ? 'dark' : 'light'), [prefersDarkMode]);
+
     /** If true, will always show the main left-hand navigation menu; otherwise,
     will show collapsible navigation menu drawer */
     const shouldShowMainNav = useMemo(() => shouldShowMainNavMenu(displaySize), [
@@ -60,9 +69,6 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
     const shouldShowSideNav = useMemo(() => shouldShowSideNavMenu(displaySize), [
       displaySize,
     ]);
-
-    /** True if the user system preference is for a dark color scheme */
-    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
     /** If true, will show a breadcrumbs-like indicator of where the user is */
     const shouldShowBreadcrumbs = includes(activePageSlug, '/');
@@ -75,9 +81,18 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
     return (
       <div
         className="full-width full-height flex-column non-scrollable"
-        data-theme={prefersDarkMode ? 'dark' : 'light'}
+        data-theme={theme}
       >
         <UnsupportedBrowserBanner />
+        <div
+          className="absolute z-index-top"
+          style={{ bottom: '0.75em', right: '0.75em' }}
+        >
+          <DarkModeToggle
+            current={theme}
+            onToggle={(): void => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          />
+        </div>
         {isUndefined(scrollPercent) ? null : (
           <ProgressBar scrollPercent={scrollPercent} />
         )}

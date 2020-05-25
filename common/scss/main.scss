@@ -69,6 +69,10 @@ body,
   display: grid;
 }
 
+.block {
+  display: block;
+}
+
 .absolute {
   position: absolute;
 }
@@ -261,6 +265,10 @@ $space-sizes: (
   border: 0;
 }
 
+button:focus {
+  outline: none;
+}
+
 /* BACKGROUND */
 
 .background-none {
@@ -271,4 +279,15 @@ $space-sizes: (
 
 .minimum-opacity {
   opacity: 0.4;
+}
+
+/* DROP SHADOW */
+.drop-shadow {
+  filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.3));
+}
+
+/* CURSOR */
+
+.cursor-pointer {
+  cursor: pointer;
 }

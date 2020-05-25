@@ -41,4 +41,9 @@ const useMediaQuery = (query: string): boolean => {
   return doesMatch;
 };
 
+/** Tracks if the current device environment matches the media query to prefer a
+ * dark color scheme */
+export const usePrefersDarkMode = (): boolean =>
+  useMediaQuery('(prefers-color-scheme: dark)');
+
 export default useMediaQuery;

@@ -14,7 +14,8 @@ const Root: FC<{}> = () => {
 
   let content: JSX.Element;
 
-  if (windowWidth < 320) {
+  // Default to non-mobile view to avoid apparent FOUC
+  if (windowWidth && windowWidth < 320) {
     content = (
       <main className="flex-align-center padding-med" data-theme="light">
         <IntroContent isMobile />

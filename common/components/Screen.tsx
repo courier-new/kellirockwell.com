@@ -68,6 +68,10 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
     const shouldShowBreadcrumbs = includes(activePageSlug, '/');
     const activeParentPage = replace(activePageSlug, /\/.*/, '') as Slug;
 
+    /** Match the width/alignment of the main content when it does or does not
+     * have a side nav menu based on the side nav menu's width (240) */
+    const contentMaxWidth = shouldShowSideNav && contentSections ? 900 : 1140;
+
     return (
       <div
         className="full-width full-height flex-column non-scrollable"
@@ -93,12 +97,17 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
             {rendering ? <LoadingOverlay /> : null}
             {/* Cap width of content and center within <main> but keep content's
             internal alignment */}
-            <div style={{ maxWidth: 900, width: '100%' }}>
+            <div
+              style={{
+                maxWidth: contentMaxWidth,
+                width: '100%',
+              }}
+            >
               {shouldShowBreadcrumbs ? <Breadcrumbs activePage={activePageSlug} /> : null}
               {children}
             </div>
           </main>
-          {contentSections && shouldShowSideNav ? (
+          {shouldShowSideNav && contentSections ? (
             <SideNavMenu
               activeSectionIndex={contentSections.currentSectionIndex}
               contentSections={contentSections.sections}

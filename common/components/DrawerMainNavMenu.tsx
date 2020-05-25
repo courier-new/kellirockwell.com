@@ -43,6 +43,9 @@ const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
     return (): void => router.events.off('routeChangeStart', closeDrawer);
   }, [router.events]);
 
+  // TODO: Remove hard-coded colors
+  const menuIconColor = drawerIsOpen ? '#fdf4fc' : '#7d94a8';
+
   return (
     <>
       <style jsx>
@@ -117,8 +120,7 @@ const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
           onClick={toggleDrawerIsOpen}
           type="button"
         >
-          {/* TOOD: remove hardcoded colors */}
-          <MenuIcon color={drawerIsOpen ? '#fdf4fc' : '#061826'} isOpen={drawerIsOpen} />
+          <MenuIcon color={menuIconColor} isOpen={drawerIsOpen} />
         </button>
       </div>
     </>

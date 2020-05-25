@@ -103,24 +103,36 @@ const IntroContent: FC<{ isMobile: boolean }> = ({ isMobile }) => (
     <p>
       I&apos;m a{' '}
       <Link href="/projects">
-        <a title="See my work">
-          <strong className="text-turquoise">full-stack web developer</strong>
+        <a className="text-turquoise" title="See my work">
+          <strong>full-stack web developer</strong>
         </a>
       </Link>{' '}
       with a penchant for type systems, state management, and effective documentation.
     </p>
     <p>
       Talk to me about using{' '}
-      <a href="https://www.typescriptlang.org/" title="TypeScript homepage">
-        <strong className="text-turquoise">TypeScript</strong>
+      <a
+        className="text-turquoise"
+        href="https://www.typescriptlang.org/"
+        title="TypeScript homepage"
+      >
+        <strong>TypeScript</strong>
       </a>
       , your favorite tea to pair with{' '}
-      <a href="https://en.wikipedia.org/wiki/Bubble_tea" title="Bubble tea on Wikipedia">
-        <strong className="text-turquoise">boba</strong>
+      <a
+        className="text-turquoise"
+        href="https://en.wikipedia.org/wiki/Bubble_tea"
+        title="Bubble tea on Wikipedia"
+      >
+        <strong>boba</strong>
       </a>
       , or whether or not there is a{' '}
-      <a href="http://isitapipelineproblem.com/" title="Is it a pipeline problem?">
-        <strong className="text-turquoise">pipeline problem</strong>
+      <a
+        className="text-turquoise"
+        href="http://isitapipelineproblem.com/"
+        title="Is it a pipeline problem?"
+      >
+        <strong>pipeline problem</strong>
       </a>{' '}
       in tech.
     </p>
@@ -130,20 +142,24 @@ const IntroContent: FC<{ isMobile: boolean }> = ({ isMobile }) => (
       } flex-row flex-wrap`}
     >
       <Link href="/about-me">
-        <a className="button no-decoration text-white large karla">
+        <a className="button no-hover no-decoration text-white large karla">
           {isMobile ? 'More about me' : 'About me'}
         </a>
       </Link>
       {isMobile ? null : (
         <>
           <Link href="/projects">
-            <a className="button no-decoration text-white large karla">Projects</a>
+            <a className="button no-hover no-decoration text-white large karla">
+              Projects
+            </a>
           </Link>
           <Link href="/resume">
-            <a className="button no-decoration text-white large karla">Resume</a>
+            <a className="button no-hover no-decoration text-white large karla">Resume</a>
           </Link>
           <Link href="/conferences">
-            <a className="button no-decoration text-white large karla">Conferences</a>
+            <a className="button no-hover no-decoration text-white large karla">
+              Conferences
+            </a>
           </Link>
         </>
       )}

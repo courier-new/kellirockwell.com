@@ -17,6 +17,10 @@ body,
   width: 100%;
 }
 
+* {
+  transition: color 0.2s linear, background 0.2s linear;
+}
+
 /* LAYOUT */
 
 .flex-row {

@@ -15,7 +15,8 @@ $low-opacity-white: rgba(255, 255, 255, 0.4);
 $light-sapphire: desaturate(lighten($sapphire, 15%), 20%);
 $light-space: lighten($space, 20%);
 $medium-cheddar: darken($cheddar, 25%);
-$medium-magnolia: desaturate(darken($magnolia, 20%), 50%);
+$medium-magnolia: desaturate(darken($magnolia, 15%), 40%);
+$dark-magnolia: desaturate(darken($magnolia, 20%), 50%);
 $medium-mauve: desaturate(darken($mauve, 10%), 10%);
 $medium-turquoise: saturate(darken($turquoise, 30%), 100%);
 $medium-raspberry: desaturate($raspberry, 20%);
@@ -37,7 +38,7 @@ $light-colors: (
 
 $dark-colors: (
   'maastricht': $white,
-  'space': $medium-magnolia,
+  'space': $dark-magnolia,
   'sapphire': $light-sapphire,
   'turquoise': $medium-turquoise,
   'magnolia': $maastricht,
@@ -99,6 +100,14 @@ https://frontstuff.io/generate-all-your-utility-classes-with-sass-maps */
     color: map-get($color-set, 'raspberry');
   }
 
+  a:not(.no-hover):hover {
+    color: map-get($color-set, 'maastricht');
+  }
+
+  :not(.no-hover).text-turquoise:hover {
+    color: map-get($color-set, 'space');
+  }
+
   /* Background color styles */
   .background {
     @include color-modifiers('background-color', $color-set);
@@ -142,6 +151,10 @@ https://frontstuff.io/generate-all-your-utility-classes-with-sass-maps */
 
 #nav {
   @include use-theme-colors($light-colors);
+
+  a:hover .text-magnolia {
+    color: $light-space;
+  }
 }
 
 /* DARK THEME */

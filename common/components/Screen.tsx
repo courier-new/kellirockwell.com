@@ -1,7 +1,7 @@
 import includes from 'lodash/includes';
 import isUndefined from 'lodash/isUndefined';
 import replace from 'lodash/replace';
-import React, { PropsWithChildren, useMemo, useState, useEffect } from 'react';
+import React, { PropsWithChildren, useEffect, useMemo, useState } from 'react';
 
 import { ContentSection } from '../../content/utilities/types';
 import {
@@ -13,13 +13,13 @@ import useDisplaySize from '../hooks/useDisplaySize';
 import { usePrefersDarkMode } from '../hooks/useMediaQuery';
 import { Percent } from '../utilities/percent';
 import Breadcrumbs from './Breadcrumbs';
+import DarkModeToggle from './DarkModeToggle';
 import DrawerMainNavMenu from './DrawerMainNavMenu';
 import LoadingOverlay from './LoadingOverlay';
 import MainNavMenu from './MainNavMenu';
 import ProgressBar from './ProgressBar';
 import SideNavMenu from './SideNavMenu';
 import UnsupportedBrowserBanner from './UnsupportedBrowserBanner';
-import DarkModeToggle from './DarkModeToggle';
 
 type ScreenProps = {
   /** The url slug corresponding to the screen that is currently open */
@@ -53,7 +53,7 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
     const [displaySize] = useDisplaySize();
 
     /** True if the user system preference is for a dark color scheme */
-    const prefersDarkMode = !usePrefersDarkMode();
+    const prefersDarkMode = usePrefersDarkMode();
     const [theme, setTheme] = useState<'dark' | 'light'>(
       prefersDarkMode ? 'dark' : 'light',
     );

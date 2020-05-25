@@ -9,10 +9,15 @@ $raspberry: #e80645;
 $white: #fff;
 $black: #000;
 
-$light-sapphire: lighten(#17179f, 20%);
-$medium-magnolia: desaturate(darken(#fdf4fc, 20%), 60%);
-$medium-turquoise: saturate(darken(#4cdbc8, 30%), 100%);
-$darker-maastricht: darken(#061826, 3%);
+$low-opacity-maastricht: rgba(4, 17, 26, 0.4);
+$low-opacity-white: rgba(255, 255, 255, 0.4);
+
+$light-sapphire: desaturate(lighten($sapphire, 15%), 20%);
+$light-space: lighten($space, 20%);
+$medium-magnolia: desaturate(darken($magnolia, 20%), 50%);
+$medium-turquoise: saturate(darken($turquoise, 30%), 100%);
+$medium-raspberry: desaturate($raspberry, 20%);
+$darker-maastricht: darken($maastricht, 3%);
 
 $light-colors: (
   'maastricht': $maastricht,
@@ -24,20 +29,22 @@ $light-colors: (
   'cheddar': $cheddar,
   'raspberry': $raspberry,
   'white': $white,
+  'low-opacity-white': $low-opacity-white,
   'black': $darker-maastricht,
 );
 
 $dark-colors: (
-  'maastricht': $medium-magnolia,
-  'space': $space,
-  'sapphire': $medium-turquoise,
-  'turquoise': $light-sapphire,
+  'maastricht': $white,
+  'space': $medium-magnolia,
+  'sapphire': $light-sapphire,
+  'turquoise': $medium-turquoise,
   'magnolia': $maastricht,
   'mauve': $mauve,
   'cheddar': $cheddar,
-  'raspberry': $raspberry,
+  'raspberry': $medium-raspberry,
   'white': $darker-maastricht,
-  'black': $white,
+  'low-opacity-white': $low-opacity-maastricht,
+  'black': $light-space,
 );
 
 /* Mixin to generate styles based on the theme colors for a given attribute, one
@@ -95,15 +102,13 @@ https://frontstuff.io/generate-all-your-utility-classes-with-sass-maps */
     @include color-modifiers('background-color', $color-set);
   }
 
-  .gradient-background {
-    background: map-get($color-set, 'maastricht');
-    background:
-      linear-gradient(108deg,
-      map-get($color-set, 'sapphire') 6vw,
-      map-get($color-set, 'turquoise') 28vw,
-      map-get($color-set, 'magnolia') 50vw,
-      map-get($color-set, 'cheddar') 72vw,
-      map-get($color-set, 'raspberry') 94vw);
+  .background-low-opacity {
+    background-color: map-get($color-set, 'low-opacity-white');
+  }
+
+  /* Border color styles */
+  .border-color {
+    @include color-modifiers('border-color', $color-set);
   }
 
   .button {
@@ -133,7 +138,23 @@ https://frontstuff.io/generate-all-your-utility-classes-with-sass-maps */
   @include use-theme-colors($light-colors);
 }
 
+#nav {
+  @include use-theme-colors($light-colors);
+}
+
 /* DARK THEME */
 [data-theme='dark'] {
   @include use-theme-colors($dark-colors);
+}
+
+/* EXCLUDED FROM THEME */
+.gradient-background {
+  background: map-get($light-colors, 'maastricht');
+  background:
+    linear-gradient(108deg,
+    map-get($light-colors, 'sapphire') 6vw,
+    map-get($light-colors, 'turquoise') 28vw,
+    map-get($light-colors, 'magnolia') 50vw,
+    map-get($light-colors, 'cheddar') 72vw,
+    map-get($light-colors, 'raspberry') 94vw);
 }

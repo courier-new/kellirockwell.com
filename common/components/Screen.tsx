@@ -10,6 +10,7 @@ import {
 } from '../constants/breakpoint-sizes';
 import { Slug } from '../constants/slugs';
 import useDisplaySize from '../hooks/useDisplaySize';
+import useMediaQuery from '../hooks/useMediaQuery';
 import { Percent } from '../utilities/percent';
 import Breadcrumbs from './Breadcrumbs';
 import DrawerMainNavMenu from './DrawerMainNavMenu';
@@ -61,8 +62,7 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
     ]);
 
     /** True if the user system preference is for a dark color scheme */
-    // TODO: Re-enable after tweaking dark mode color scheme
-    const prefersDarkMode = false; // useMediaQuery('(prefers-color-scheme: dark)');
+    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
     /** If true, will show a breadcrumbs-like indicator of where the user is */
     const shouldShowBreadcrumbs = includes(activePageSlug, '/');
@@ -82,11 +82,13 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
           <ProgressBar scrollPercent={scrollPercent} />
         )}
         <div className="full-width flex-1 flex-row non-scrollable border-box">
-          {shouldShowMainNav ? (
-            <MainNavMenu activePage={activeParentPage} />
-          ) : (
-            <DrawerMainNavMenu activePage={activeParentPage} />
-          )}
+          <div className="flex-row" id="nav">
+            {shouldShowMainNav ? (
+              <MainNavMenu activePage={activeParentPage} />
+            ) : (
+              <DrawerMainNavMenu activePage={activeParentPage} />
+            )}
+          </div>
           {/* Lock scroll when screen is rendering */}
           <main
             className={`relative flex-align-center flex-1 flex-column padding-med ${

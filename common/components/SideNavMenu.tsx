@@ -31,8 +31,11 @@ const renderLink = (
   const isActiveSection = anchor === activeSection;
   const paddingAmount = 1.5 * level;
   const linkStyle: React.CSSProperties = {
-    // TODO: replace hardcoded color
-    borderLeft: `2px solid ${isActiveSection ? '#17179f' : 'transparent'}`,
+    borderBottomColor: 'transparent',
+    borderLeftColor: isActiveSection ? undefined : 'transparent',
+    borderLeftStyle: 'solid',
+    borderRightColor: 'transparent',
+    borderTopColor: 'transparent',
     paddingLeft: `${paddingAmount}em`,
     transition: 'all 0.2s',
   };
@@ -45,7 +48,7 @@ const renderLink = (
     <li key={anchor}>
       <Link href={`#${anchor}`}>
         <a
-          className="no-decoration flex-row padding-xs-v"
+          className="border-color-sapphire no-decoration flex-row padding-xs-v"
           style={linkStyle}
           title={title}
         >

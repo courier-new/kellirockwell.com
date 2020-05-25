@@ -29,9 +29,10 @@ const InsideMyToolboxContent: FC<{}> = () => {
 
   return (
     <>
-      <p>
-        <Heart /> = Love it!
-        <Star /> = Great at it!
+      <p className="padding-sm-bottom">
+        <Heart /> = Personal favorite!
+        {displaySize === 'MOBILE' ? <br /> : null}
+        <Star /> = Most experienced at it!
       </p>
       <div className="flex-row" style={{ flexWrap: 'wrap' }}>
         {flow(

@@ -14,7 +14,9 @@ $low-opacity-white: rgba(255, 255, 255, 0.4);
 
 $light-sapphire: desaturate(lighten($sapphire, 15%), 20%);
 $light-space: lighten($space, 20%);
+$medium-cheddar: darken($cheddar, 25%);
 $medium-magnolia: desaturate(darken($magnolia, 20%), 50%);
+$medium-mauve: desaturate(darken($mauve, 10%), 10%);
 $medium-turquoise: saturate(darken($turquoise, 30%), 100%);
 $medium-raspberry: desaturate($raspberry, 20%);
 $darker-maastricht: darken($maastricht, 3%);
@@ -39,8 +41,8 @@ $dark-colors: (
   'sapphire': $light-sapphire,
   'turquoise': $medium-turquoise,
   'magnolia': $maastricht,
-  'mauve': $mauve,
-  'cheddar': $cheddar,
+  'mauve': $medium-mauve,
+  'cheddar': $medium-cheddar,
   'raspberry': $medium-raspberry,
   'white': $darker-maastricht,
   'low-opacity-white': $low-opacity-maastricht,

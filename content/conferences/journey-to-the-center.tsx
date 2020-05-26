@@ -109,8 +109,8 @@ const JourneyContent: FC<{}> = () => {
             className="karla flex-row flex-align-center"
             title="Why do I love conferences?"
           >
-            <BsArrowRight className="text-space padding-sm-right" />
             Why do I love conferences?
+            <BsArrowRight className="text-space padding-sm-left" />
           </a>
         </Link>
         <style jsx>
@@ -121,11 +121,9 @@ const JourneyContent: FC<{}> = () => {
           `}
         </style>
         <span className="unavailable margin-sm-top minimum-opacity flex-wrap flex-row flex-align-center">
-          <BsArrowRight className="text-space padding-sm-right" />
           <a className="karla flex-row flex-1 flex-align-center flex-wrap">
-            <span className="karla text-space padding-sm-right">
-              Resources for conference-goers{' '}
-            </span>
+            <span className="karla text-space">Resources for conference-goers </span>
+            <BsArrowRight className="text-space padding-sm-h" />
             <span className="karla xsmall text-space">(Coming soon!)</span>
           </a>
         </span>

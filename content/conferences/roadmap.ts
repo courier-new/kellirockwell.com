@@ -127,8 +127,8 @@ export const CONFERENCES: Conference[] = [
   },
   {
     date: Interval.fromDateTimes(
-      DateTime.fromObject({ day: 26, month: 5, year: 2020 }),
-      DateTime.fromObject({ day: 29, month: 5, year: 2020 }),
+      DateTime.fromObject({ day: 27, month: 5, year: 2020 }),
+      DateTime.fromObject({ day: 28, month: 5, year: 2020 }),
     ),
     location: VIRTUAL,
     name: 'ForwardJS Ottawa',

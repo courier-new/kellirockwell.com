@@ -20,7 +20,7 @@ $dark-magnolia: desaturate(darken($magnolia, 20%), 50%);
 $medium-mauve: desaturate(darken($mauve, 10%), 10%);
 $medium-turquoise: saturate(darken($turquoise, 30%), 100%);
 $medium-raspberry: desaturate($raspberry, 20%);
-$darker-maastricht: darken($maastricht, 3%);
+$darker-maastricht: desaturate(darken($maastricht, 1%), 10%);
 
 $light-colors: (
   'maastricht': $maastricht,

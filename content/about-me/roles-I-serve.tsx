@@ -214,7 +214,11 @@ const dxheroContentProps: RoleContentProps = {
 
 export default {
   ...generateTitleProps('The roles I serve'),
-  content: <React.Fragment key="roles-intro">Asdf</React.Fragment>,
+  content: (
+    <React.Fragment key="roles-intro">
+      <p>Asdf</p>
+    </React.Fragment>
+  ),
   subsections: [
     {
       ...generateTitleProps('As an asynchronous communicator'),

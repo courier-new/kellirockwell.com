@@ -104,13 +104,13 @@ const GetToKnowMeContent: FC<{}> = () => {
           management, and effective documentation.
         </p>
         <div className="flex-row flex-align-center padding-sm-bottom">
-          <IoMdSchool size={24} />
+          <IoMdSchool className="text-black" size={24} />
           <span className="small padding-sm-left">
             Pomona College ‘17, Physics + Computer Science
           </span>
         </div>
         <div className="flex-row flex-align-center">
-          <IoIosPin size={24} />
+          <IoIosPin className="text-black" size={24} />
           <span className="small padding-sm-left">
             Phoenix &rsaquo; Los Angeles &rsaquo; San Francisco &rsaquo; Seattle
           </span>

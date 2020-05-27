@@ -49,7 +49,11 @@ const VerticalProjectCard: FC<ProjectCardProps> = ({
 }) => {
   return (
     <div className="full-height full-width flex-column" key={`project-${name}`}>
-      <div className="padding-med" style={{ backgroundColor: primaryColor }}>
+      <div
+        className="padding-med"
+        id="project-card-heading"
+        style={{ backgroundColor: primaryColor }}
+      >
         {/* Row of logo, name, and description */}
         <div className="flex-row padding-sm-bottom flex-justify-start flex-align-center">
           <div

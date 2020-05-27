@@ -24,7 +24,7 @@ $dark-magnolia: desaturate(darken($magnolia, 20%), 50%);
 $medium-mauve: desaturate(darken($mauve, 10%), 10%);
 $medium-turquoise: saturate(darken($turquoise, 30%), 100%);
 $medium-raspberry: desaturate($raspberry, 20%);
-$darker-maastricht: desaturate(darken($maastricht, 1%), 10%);
+$darker-maastricht: desaturate(darken($maastricht, 3%), 10%);
 
 $light-colors: (
   'maastricht': $maastricht,
@@ -173,7 +173,9 @@ https://frontstuff.io/generate-all-your-utility-classes-with-sass-maps */
   @include use-theme-colors($light-colors);
 }
 
-#nav {
+/* SPECIFIC ID'D ELEMENTS THAT DON'T CHANGE THEME */
+#nav,
+#project-card-heading {
   @include use-theme-colors($light-colors);
 
   a:hover .text-magnolia {

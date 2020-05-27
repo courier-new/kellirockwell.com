@@ -1,4 +1,3 @@
-import includes from 'lodash/includes';
 import isUndefined from 'lodash/isUndefined';
 import replace from 'lodash/replace';
 import React, { PropsWithChildren, useEffect, useMemo, useState } from 'react';
@@ -12,7 +11,6 @@ import { Slug } from '../constants/slugs';
 import useDisplaySize from '../hooks/useDisplaySize';
 import { usePrefersDarkMode } from '../hooks/useMediaQuery';
 import { Percent } from '../utilities/percent';
-import Breadcrumbs from './Breadcrumbs';
 import DarkModeToggle from './DarkModeToggle';
 import DrawerMainNavMenu from './DrawerMainNavMenu';
 import LoadingOverlay from './LoadingOverlay';
@@ -71,6 +69,7 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
     ]);
 
     const activeParentPage = replace(activePageSlug, /\/.*/, '') as Slug;
+    const hasStickyContent = activeParentPage === 'projects';
 
     /** Match the width/alignment of the main content when it does or does not
      * have a side nav menu based on the side nav menu's width (240) */
@@ -110,8 +109,10 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
           >
             {rendering ? <LoadingOverlay /> : null}
             {/* Cap width of content and center within <main> but keep content's
-            internal alignment */}
+            internal alignment; Make this container non-scrollable and let the
+            children control scrolling if the page has sticky content */}
             <div
+              className={hasStickyContent ? 'flex-row non-scrollable' : ''}
               style={{
                 maxWidth: contentMaxWidth,
                 width: '100%',

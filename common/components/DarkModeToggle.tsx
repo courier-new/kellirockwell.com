@@ -13,6 +13,7 @@ const DarkModeToggle: FC<DarkModeToggleProps> = ({ current, onToggle }) => {
   const iconProps = { className: 'block padding-sm text-magnolia', size: '24px' };
   return (
     <button
+      aria-label="Toggle dark mode"
       className="cursor-pointer drop-shadow margin-0 padding-0 border-0 background-maastricht"
       onClick={onToggle}
       style={{ borderRadius: '50%' }}

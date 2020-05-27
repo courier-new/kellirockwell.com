@@ -116,6 +116,7 @@ const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
           </div>
         </div>
         <button
+          aria-label={drawerIsOpen ? 'Close menu drawer' : 'Open menu drawer'}
           className="cursor-pointer z-index-top margin-0 padding-med-v padding-0-h border-0 background-none width-0"
           onClick={toggleDrawerIsOpen}
           type="button"

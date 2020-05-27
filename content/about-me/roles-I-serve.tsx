@@ -222,11 +222,11 @@ export default {
   subsections: [
     {
       ...generateTitleProps('As an asynchronous communicator'),
-      content: <RoleContent {...asynchronousContentProps} />,
+      content: <RoleContent key="async-comm" {...asynchronousContentProps} />,
     },
     {
       ...generateTitleProps('As a developer experience hero'),
-      content: <RoleContent {...dxheroContentProps} />,
+      content: <RoleContent key="dx-hero" {...dxheroContentProps} />,
     },
     { ...generateTitleProps('As a state management manager') },
     { ...generateTitleProps('As an equity and inclusion advocate') },

@@ -10,7 +10,11 @@ $white: #fff;
 $black: #000;
 
 $low-opacity-maastricht: rgba(4, 17, 26, 0.4);
+$medium-opacity-maastricht: rgba(4, 17, 26, 0.7);
+$high-opacity-maastricht: rgba(4, 17, 26, 0.8);
 $low-opacity-white: rgba(255, 255, 255, 0.4);
+$medium-opacity-white: rgba(255, 255, 255, 0.7);
+$high-opacity-white: rgba(255, 255, 255, 0.8);
 
 $light-sapphire: desaturate(lighten($sapphire, 15%), 20%);
 $light-space: lighten($space, 20%);
@@ -33,6 +37,8 @@ $light-colors: (
   'raspberry': $raspberry,
   'white': $white,
   'low-opacity-white': $low-opacity-white,
+  'medium-opacity-white': $medium-opacity-white,
+  'high-opacity-white': $high-opacity-white,
   'black': $darker-maastricht,
 );
 
@@ -47,6 +53,8 @@ $dark-colors: (
   'raspberry': $medium-raspberry,
   'white': $darker-maastricht,
   'low-opacity-white': $low-opacity-maastricht,
+  'medium-opacity-white': $medium-opacity-maastricht,
+  'high-opacity-white': $high-opacity-maastricht,
   'black': $light-space,
 );
 
@@ -115,6 +123,14 @@ https://frontstuff.io/generate-all-your-utility-classes-with-sass-maps */
 
   .background-low-opacity {
     background-color: map-get($color-set, 'low-opacity-white');
+  }
+
+  .background-medium-opacity {
+    background-color: map-get($color-set, 'medium-opacity-white');
+  }
+
+  .background-high-opacity {
+    background-color: map-get($color-set, 'high-opacity-white');
   }
 
   .main-gradient-background {

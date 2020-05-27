@@ -5,7 +5,6 @@ import { Slug } from '../../common/constants/slugs';
 import { KebabCaseString } from '../../common/utilities/string-case';
 import ABOUT_ME_SECTIONS from '../about-me';
 import CONFERENCES_SECTIONS from '../conferences';
-import PROJECTS_SECTIONS from '../projects';
 import { ContentSection } from './types';
 
 /**
@@ -40,8 +39,6 @@ export const getSectionsForPage = (
       return ABOUT_ME_SECTIONS;
     case 'conferences':
       return CONFERENCES_SECTIONS;
-    case 'projects':
-      return PROJECTS_SECTIONS;
     default:
       return [];
   }

@@ -5,7 +5,7 @@ import { DateTime, Interval } from 'luxon';
 
 import generateTitleProps from '../utilities/for-content';
 import {
-  addNextUpLabel,
+  addNextUpLabels,
   CANCELLED,
   Conference,
   groupByYears,
@@ -194,7 +194,7 @@ export default {
     conferences: flow(
       (c: Conference[]): Conference[] => reject(c, hasPassed),
       (c: Conference[]): Conference[] => sortByDate(c),
-      (c: Conference[]): Conference[] => addNextUpLabel(c),
+      (c: Conference[]): Conference[] => addNextUpLabels(c),
     )(CONFERENCES),
   },
   subsections: [

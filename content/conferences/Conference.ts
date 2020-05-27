@@ -1,6 +1,7 @@
 import flow from 'lodash/flow';
 import groupBy from 'lodash/groupBy';
 import map from 'lodash/map';
+import reduce from 'lodash/reduce';
 import reverse from 'lodash/reverse';
 import sortBy from 'lodash/sortBy';
 import { DateTime, Interval } from 'luxon';
@@ -87,20 +88,45 @@ export const sortByDate = (
 };
 
 /**
- * Applies a label of "next up" to the first conference of the list
+ * Applies a label of "happening now" to any conferences that are currently
+ * happening and "next up" to any conferences on or starting on the next closest
+ * date
  *
  * @param conferences the list of conferences, sorted from earliest to latest
  */
-export const addNextUpLabel = (conferences: Conference[]): Conference[] => {
-  const [firstConference, ...rest] = conferences;
-  return [
-    {
-      // Allow the current Conference dateLabel property to overwrite this
-      dateLabel: NEXT,
-      ...firstConference,
+export const addNextUpLabels = (conferences: Conference[]): Conference[] => {
+  let nextUpDate: DateTime | null = null;
+  return reduce(
+    conferences,
+    (acc: Conference[], conference: Conference) => {
+      let dateLabel: string | undefined;
+
+      if (isCurrentlyHappening(conference)) {
+        dateLabel = NOW;
+      } else if (nextUpDate) {
+        const conferenceStartDate = Interval.isInterval(conference.date)
+          ? conference.date.start
+          : conference.date;
+        if (nextUpDate.equals(conferenceStartDate)) {
+          dateLabel = NEXT;
+        }
+      } else {
+        dateLabel = NEXT;
+        nextUpDate = Interval.isInterval(conference.date)
+          ? conference.date.start
+          : conference.date;
+      }
+      return [
+        ...acc,
+        {
+          // Allow the current Conference dateLabel property to overwrite this
+          dateLabel,
+          ...conference,
+        },
+      ];
     },
-    ...rest,
-  ];
+    [],
+  );
 };
 
 type ConferencesKeyedByYear = { [year: string]: Conference[] };

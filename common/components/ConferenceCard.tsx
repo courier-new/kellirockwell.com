@@ -67,6 +67,8 @@ const ConferenceCard: FC<Conference> = (conference) => {
       labelClass = 'background-raspberry';
       break;
     case NOW:
+      labelClass = 'background-mauve';
+      break;
     case NEXT:
       labelClass = 'background-turquoise';
       break;

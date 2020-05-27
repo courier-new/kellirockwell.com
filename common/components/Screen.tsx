@@ -70,8 +70,6 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
       displaySize,
     ]);
 
-    /** If true, will show a breadcrumbs-like indicator of where the user is */
-    const shouldShowBreadcrumbs = includes(activePageSlug, '/');
     const activeParentPage = replace(activePageSlug, /\/.*/, '') as Slug;
 
     /** Match the width/alignment of the main content when it does or does not
@@ -107,9 +105,7 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
           {/* Lock scroll when screen is rendering */}
           <main
             className={`main-gradient-background relative flex-align-center
-            flex-1 flex-column padding-med ${
-              rendering ? 'non-scrollable' : 'scrollable-y'
-            }`}
+            flex-1 flex-column ${rendering ? 'non-scrollable' : 'scrollable-y'}`}
             ref={ref}
           >
             {rendering ? <LoadingOverlay /> : null}
@@ -121,7 +117,6 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
                 width: '100%',
               }}
             >
-              {shouldShowBreadcrumbs ? <Breadcrumbs activePage={activePageSlug} /> : null}
               {children}
             </div>
           </main>

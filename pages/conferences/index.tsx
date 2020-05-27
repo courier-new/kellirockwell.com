@@ -94,6 +94,7 @@ const ConferencesScreen: FC<{}> = () => {
   return (
     <ScreenContent
       activePage="conferences"
+      containerClassName="padding-med"
       renderSections={
         renderConferencesSections as ContentRenderer<ContentSection<string, ReactNode>[]>
       }

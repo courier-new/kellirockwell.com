@@ -108,6 +108,7 @@ export const renderAboutMeSections: ContentRenderer<typeof ABOUT_ME_SECTIONS> = 
 const AboutMeScreen: FC<{}> = () => (
   <ScreenContent
     activePage="about-me"
+    containerClassName="padding-med"
     renderSections={
       renderAboutMeSections as ContentRenderer<ContentSection<string, ReactNode>[]>
     }

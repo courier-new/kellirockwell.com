@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React, { FC } from 'react';
 
+import Breadcrumbs from '../../common/components/Breadcrumbs';
 import Image from '../../common/components/Image';
 import useDisplaySize from '../../common/hooks/useDisplaySize';
 
@@ -13,7 +14,7 @@ const WhyILoveConferencesScreen: FC<{}> = () => {
   // otherwise show it inline floating to the right
   const useFullSizeImage = displaySize === 'MOBILE' || displaySize === 'SMALL';
   return (
-    <>
+    <div className="padding-med">
       <style jsx>
         {`
           aside {
@@ -22,6 +23,7 @@ const WhyILoveConferencesScreen: FC<{}> = () => {
           }
         `}
       </style>
+      <Breadcrumbs />
       <h3>My first conference</h3>
       <p>
         My freshman year of college, our physics department sent out an email announcing{' '}
@@ -138,7 +140,7 @@ const WhyILoveConferencesScreen: FC<{}> = () => {
         and to continue emphasizing ways conference organizers can prioritize making their
         events more equitable and accessible for everyone.
       </p>
-    </>
+    </div>
   );
 };
 

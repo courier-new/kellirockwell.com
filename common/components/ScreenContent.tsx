@@ -13,6 +13,8 @@ import useMeasureSectionHeights from '../hooks/useMeasureSectionHeights';
 type ScreenContentProps = {
   /** The url slug corresponding to the screen that is currently open */
   activePage: Slug;
+  /** Optional class to apply to outer container for padding */
+  containerClassName?: string;
   /** The method to use to render the sections content for the current screen */
   renderSections: ContentRenderer;
   /** The sections of the current screen, used to determine the section anchors */
@@ -25,6 +27,7 @@ type ScreenContentProps = {
  */
 const ScreenContent: FC<ScreenContentProps> = ({
   activePage,
+  containerClassName,
   renderSections,
   sections,
 }) => {
@@ -56,7 +59,7 @@ const ScreenContent: FC<ScreenContentProps> = ({
     renderSections,
   ]);
 
-  return <>{renderedSections}</>;
+  return <div className={containerClassName}>{renderedSections}</div>;
 };
 
 export default ScreenContent;

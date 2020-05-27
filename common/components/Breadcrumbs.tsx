@@ -1,16 +1,16 @@
 import map from 'lodash/map';
 import replace from 'lodash/replace';
 import split from 'lodash/split';
+import { useRouter } from 'next/router';
 import React, { FC } from 'react';
 import { MdNavigateNext } from 'react-icons/md';
 
-type BreadcrumbsProps = {
-  /** The url slug corresponding to the screen that is currently open */
-  activePage: string;
-};
-
 /** A breadcrumbs-like indication of where the user is on the site */
-const Breadcrumbs: FC<BreadcrumbsProps> = ({ activePage }) => {
+const Breadcrumbs: FC<{}> = () => {
+  const router = useRouter();
+  // Strip starting "/" in path to get the active page slug
+  // router.asPath contains any hash in link, too
+  const activePage = replace(router.pathname, /^\//, '');
   const pathComponents = split(activePage, '/');
 
   return (

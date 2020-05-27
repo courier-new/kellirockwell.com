@@ -7,7 +7,7 @@ type ResumeScreenProps = {};
  */
 const ResumeScreen: FC<ResumeScreenProps> = () => {
   return (
-    <>
+    <div className="padding-med">
       <h1>Resume</h1>
       <section>Stuff 1</section>
       <section>Stuff 2</section>
@@ -29,7 +29,7 @@ const ResumeScreen: FC<ResumeScreenProps> = () => {
         architecto commodi exercitationem velit. Eius ipsam, quod asperiores perspiciatis,
         nihil omnis tenetur saepe deserunt sed, cumque magnam?
       </section>
-    </>
+    </div>
   );
 };
 

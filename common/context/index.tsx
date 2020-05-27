@@ -1,6 +1,7 @@
 import React, { FC, PropsWithChildren } from 'react';
 
 import { SectionHeightsProvider } from './sectionHeightsState';
+import { ThemeProvider } from './themeState';
 
 /**
  * Wrapper component that composes all individual providers in the app and
@@ -8,7 +9,9 @@ import { SectionHeightsProvider } from './sectionHeightsState';
  * root component
  */
 const CombinedProvider: FC<PropsWithChildren<{}>> = ({ children }) => (
-  <SectionHeightsProvider>{children}</SectionHeightsProvider>
+  <ThemeProvider>
+    <SectionHeightsProvider>{children}</SectionHeightsProvider>
+  </ThemeProvider>
 );
 
 export default CombinedProvider;

@@ -1,6 +1,6 @@
 import isUndefined from 'lodash/isUndefined';
 import replace from 'lodash/replace';
-import React, { PropsWithChildren, useEffect, useMemo, useState } from 'react';
+import React, { PropsWithChildren, useEffect, useMemo } from 'react';
 
 import { ContentSection } from '../../content/utilities/types';
 import {
@@ -8,6 +8,7 @@ import {
   shouldShowSideNavMenu,
 } from '../constants/breakpoint-sizes';
 import { Slug } from '../constants/slugs';
+import { useThemeDispatch, useThemeState } from '../context/themeState';
 import useDisplaySize from '../hooks/useDisplaySize';
 import { usePrefersDarkMode } from '../hooks/useMediaQuery';
 import { Percent } from '../utilities/percent';
@@ -52,11 +53,18 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
 
     /** True if the user system preference is for a dark color scheme */
     const prefersDarkMode = usePrefersDarkMode();
-    const [theme, setTheme] = useState<'dark' | 'light'>(
-      prefersDarkMode ? 'dark' : 'light',
-    );
+    const themeState = useThemeState();
+    const themeDispatch = useThemeDispatch();
+    const theme = themeState?.theme || 'light';
 
-    useEffect(() => setTheme(prefersDarkMode ? 'dark' : 'light'), [prefersDarkMode]);
+    useEffect(() => {
+      const preferredTheme = prefersDarkMode ? 'dark' : 'light';
+      if (preferredTheme !== theme) {
+        themeDispatch?.({ type: '@theme-state/toggle-theme' });
+      }
+      // Only rerun the effect on mount or if the user preference changes
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [prefersDarkMode]);
 
     /** If true, will always show the main left-hand navigation menu; otherwise,
     will show collapsible navigation menu drawer */
@@ -87,7 +95,7 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
         >
           <DarkModeToggle
             current={theme}
-            onToggle={(): void => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            onToggle={(): void => themeDispatch?.({ type: '@theme-state/toggle-theme' })}
           />
         </div>
         {isUndefined(scrollPercent) ? null : (

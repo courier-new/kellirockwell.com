@@ -93,6 +93,14 @@ body,
   overflow: hidden;
 }
 
+.non-scrollable-y {
+  overflow-y: hidden;
+}
+
+.non-scrollable-x {
+  overflow-x: hidden;
+}
+
 .scrollable-y {
   overflow-y: auto;
 }

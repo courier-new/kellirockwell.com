@@ -112,7 +112,7 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
             internal alignment; Make this container non-scrollable and let the
             children control scrolling if the page has sticky content */}
             <div
-              className={hasStickyContent ? 'flex-row non-scrollable' : ''}
+              className={hasStickyContent ? 'flex-row full-height non-scrollable' : ''}
               style={{
                 maxWidth: contentMaxWidth,
                 width: '100%',

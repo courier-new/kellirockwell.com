@@ -7,9 +7,9 @@ import { BsFillPeopleFill } from 'react-icons/bs';
 import { Project } from '../../content/projects';
 import Tag from './Tag';
 
-type ProjectCardProps = {
-  /** The project to feature in this card */
-  project: Project;
+type ProjectCardProps = Project & {
+  /** Overall size of the tags featured in this card */
+  tagSize: 'small' | 'medium';
   /** String specification for spacing between tags featured in this card */
   tagSpacing: string;
 };
@@ -35,24 +35,23 @@ const formatDate = (
  * A mobile-oriented (vertical) project card block detailing info about a Project
  */
 const VerticalProjectCard: FC<ProjectCardProps> = ({
-  project: {
-    accomplishments,
-    dates,
-    logo,
-    name,
-    primaryColor,
-    shortDescription,
-    stack,
-    tags,
-    teamSize,
-  },
+  accomplishments,
+  dates,
+  logo,
+  name,
+  primaryColor,
+  shortDescription,
+  stack,
+  tagSize,
   tagSpacing,
+  tags,
+  teamSize,
 }) => {
   return (
-    <div className="full-width flex-column" key={`project-${name}`}>
-      <div className="flex-1 padding-med" style={{ backgroundColor: primaryColor }}>
+    <div className="full-height full-width flex-column" key={`project-${name}`}>
+      <div className="padding-med" style={{ backgroundColor: primaryColor }}>
         {/* Row of logo, name, and description */}
-        <div className="flex-row padding-sm-bottom flex-justify-start">
+        <div className="flex-row padding-sm-bottom flex-justify-start flex-align-center">
           <div
             className="flex-row flex-align-center flex-justify-center background-white circular"
             style={{ color: primaryColor, height: 70, width: 70 }}
@@ -61,20 +60,23 @@ const VerticalProjectCard: FC<ProjectCardProps> = ({
           </div>
           {/* Column of name and description */}
           <div className="flex-column padding-sm-left flex-1">
-            <h2 className="margin-0 text-white" style={{ lineHeight: 1.5 }}>
+            <h1
+              className="karla font-bold margin-0 text-white"
+              style={{ lineHeight: 1.5 }}
+            >
               {name}
-            </h2>
-            <p className="margin-0 small text-white">{shortDescription}</p>
+            </h1>
+            <p className="margin-0 text-white">{shortDescription}</p>
           </div>
         </div>
         {/* Rows of team and dates */}
-        <div className="flex-row flex-align-center">
-          <BsFillPeopleFill className="text-white padding-xs-right" size="1.2em" />
-          <span className="text-white">{teamSize}</span>
+        <div className="flex-row flex-align-center padding-xs-bottom">
+          <BsFillPeopleFill className="text-white padding-xs-right" size="1.8em" />
+          <span className="text-white large">{teamSize}</span>
         </div>
-        <div className="flex-row flex-align-center padding-sm-bottom">
-          <AiFillCalendar className="text-white padding-xs-right" size="1.2em" />
-          <span className="text-white">{formatDate(dates)}</span>
+        <div className="flex-row flex-align-center padding-med-bottom">
+          <AiFillCalendar className="text-white padding-xs-right" size="1.8em" />
+          <span className="text-white large">{formatDate(dates)}</span>
         </div>
         {/* Row of tags */}
         <div className="flex-row flex-align-center flex-wrap">
@@ -82,6 +84,7 @@ const VerticalProjectCard: FC<ProjectCardProps> = ({
             <Tag
               backgroundColorClass="background-high-opacity"
               key={tag}
+              size={tagSize}
               spacing={tagSpacing}
             >
               <span className="karla" style={{ color: primaryColor }}>
@@ -91,21 +94,18 @@ const VerticalProjectCard: FC<ProjectCardProps> = ({
           ))}
         </div>
       </div>
-      <div className="background-white padding-med">
-        <h5 className="margin-0 padding-sm-bottom">Stack</h5>
+      <div className="background-white padding-med flex-1">
+        <h3 className="text-black margin-0 padding-sm-bottom">Stack</h3>
         <div className="flex-row flex-align-center flex-wrap padding-sm-bottom">
           {map(stack, (tool) => (
-            <Tag key={tool} spacing={tagSpacing}>
+            <Tag key={tool} size={tagSize} spacing={tagSpacing}>
               {tool}
             </Tag>
           ))}
         </div>
-        <h5 className="margin-0 padding-sm-bottom">Accomplishments</h5>
+        <h3 className="text-black margin-0 padding-sm-bottom">Accomplishments</h3>
         {map(accomplishments, (accomplishment) => (
-          <p
-            className="small margin-0-top margin-sm-bottom"
-            key={accomplishment.substr(0, 15)}
-          >
+          <p className="margin-0-top margin-sm-bottom" key={accomplishment.substr(0, 15)}>
             {accomplishment}
           </p>
         ))}

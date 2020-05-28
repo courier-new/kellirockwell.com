@@ -1,5 +1,9 @@
 import { DateTime, Interval } from 'luxon';
 
+import RivalsLogoIcon from '../../common/svgs/RivalsLogoIcon.svg';
+import SutroLogoIcon from '../../common/svgs/SutroLogoIcon.svg';
+import PilonLogoIcon from '../../images/pi.png';
+
 /** Union of team size strings */
 export type TeamSize = '1' | '2-5' | '5-10' | '10-15' | '15-20';
 
@@ -17,8 +21,11 @@ export type Project = {
         /** The start DateTime for an ongoing project */
         start: DateTime;
       };
-  /** Image path for the project's logo */
-  logo: string;
+  /** Image source (string) for project's logo */
+  logo?: SVGSource | ImageSource;
+  /** Optionally, the factor to scale the logo to normalize amongst the other
+   * project logos */
+  logoSizeFactor?: number;
   /** Name of the project */
   name: string;
   /** Accent color for this project */
@@ -46,9 +53,10 @@ const PROJECTS: Project[] = [
       end: 'current',
       start: DateTime.fromObject({ month: 7, year: 2019 }),
     },
-    logo: 'none',
+    logo: SutroLogoIcon,
+    logoSizeFactor: 1.15,
     name: 'Sutro',
-    primaryColor: '#1E7F8E',
+    primaryColor: '#005C67',
     shortDescription: 'A smart monitoring system for your pool or spa',
     stack: ['TypeScript', 'Elixir', 'GraphQL', 'React Native', 'PostgreSQL', 'AWS'],
     tags: ['IoT', 'Fullstack', 'API', 'Mobile', 'Data'],
@@ -65,9 +73,10 @@ const PROJECTS: Project[] = [
       end: 'current',
       start: DateTime.fromObject({ month: 6, year: 2018 }),
     },
-    logo: 'none',
+    logo: RivalsLogoIcon,
+    logoSizeFactor: 1.2,
     name: 'Rivals',
-    primaryColor: '#093BBC',
+    primaryColor: '#094EA3',
     shortDescription: 'A network for pre-professional sports news',
     stack: ['TypeScript', 'React Native', 'Redux', 'Firebase', 'Ruby on Rails'],
     tags: ['Mobile', 'Fullstack', 'Subscription'],
@@ -79,7 +88,8 @@ const PROJECTS: Project[] = [
       'Supplied comprehensive JSDoc comments for all exported entities',
     ],
     dates: DateTime.fromObject({ month: 3, year: 2020 }),
-    logo: 'none',
+    logo: PilonLogoIcon,
+    logoSizeFactor: 0.7,
     name: 'Pilon',
     primaryColor: '#ADADAD',
     shortDescription: 'A game for learning pi built for Pi Day 2020',

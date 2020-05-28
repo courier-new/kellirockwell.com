@@ -1,10 +1,10 @@
 import map from 'lodash/map';
-import React, { FC, Reducer } from 'react';
+import React, { FC, Reducer, useReducer } from 'react';
 import { useSwipeable } from 'react-swipeable';
 
-const RESET = 'RESET';
 const NEXT = 'NEXT';
 const PREV = 'PREV';
+const RESET = 'RESET';
 const STOP = 'STOP';
 
 type CarouselState = {
@@ -13,6 +13,12 @@ type CarouselState = {
   sliding: boolean;
 };
 type CarouselAction = typeof RESET | typeof NEXT | typeof PREV | typeof STOP;
+export const CAROUSEL_ACTIONS = {
+  NEXT,
+  PREV,
+  RESET,
+  STOP,
+} as const;
 
 const INITIAL_CAROUSEL_STATE: CarouselState = {
   direction: NEXT,
@@ -25,7 +31,7 @@ const INITIAL_CAROUSEL_STATE: CarouselState = {
  *
  * @param numberOfItems the total number of items in the carousel
  */
-const carouselReducer = (
+export const carouselReducer = (
   numberOfItems: number,
 ): Reducer<CarouselState, CarouselAction> => (state, action): CarouselState => {
   switch (action) {
@@ -53,6 +59,16 @@ const carouselReducer = (
 };
 
 /**
+ * Shorthand to instantiate and use a new carousel reducer
+ *
+ * @param numberOfItems the number of items in the carousel
+ */
+export const useCarouselReducer = (
+  numberOfItems: number,
+): [CarouselState, React.Dispatch<CarouselAction>] =>
+  useReducer(carouselReducer(numberOfItems), INITIAL_CAROUSEL_STATE);
+
+/**
  * Gets the (flex-box) ordered position for an item based on its index in the
  * items array and the current visible item position in the carousel, shifting
  * based on the total number of items to achieve a virtual ordering
@@ -76,6 +92,9 @@ const getOrderPosition = (
 };
 
 type CarouselProps = {
+  /** State of the carousel from a reducer; lifted to the parent component so
+   * that siblings can listen in on properties of the carousel */
+  carouselState: CarouselState;
   /** Ordered array of items to display in slots on the carousel */
   items: {
     /** The JSX element to render in a slot of the carousel */
@@ -83,6 +102,8 @@ type CarouselProps = {
     /** The key to provide to this item's slot */
     key: string;
   }[];
+  /** Handler called on slide event of the carousel */
+  onSlide: (slideDirection: typeof NEXT | typeof PREV) => void;
 };
 
 /**
@@ -91,24 +112,11 @@ type CarouselProps = {
  * carousel slots can be browsed by swiping through them, in the order that the
  * items are provided
  */
-const Carousel: FC<CarouselProps> = ({ items }) => {
-  const numberOfItems = items.length;
-
-  const [{ direction, position, sliding }, dispatch] = React.useReducer(
-    carouselReducer(numberOfItems),
-    INITIAL_CAROUSEL_STATE,
-  );
-
-  /**
-   * Handler to trigger a sliding animation
-   *
-   * @param slideDirection the direction to slide the contents of the carousel
-   */
-  const onSlide = (slideDirection: typeof NEXT | typeof PREV): void => {
-    dispatch(slideDirection);
-    setTimeout(() => dispatch(STOP), 50);
-  };
-
+const Carousel: FC<CarouselProps> = ({
+  carouselState: { direction, position, sliding },
+  items,
+  onSlide,
+}) => {
   /**
    * Returns the container's CSS transform property based on qualities of the
    * carousel state
@@ -149,7 +157,7 @@ const Carousel: FC<CarouselProps> = ({ items }) => {
           <div
             className="full-height slot scrollable-y"
             key={key}
-            style={{ order: getOrderPosition(index, position, numberOfItems) }}
+            style={{ order: getOrderPosition(index, position, items.length) }}
           >
             {element}
           </div>

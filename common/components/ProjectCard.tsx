@@ -76,9 +76,9 @@ const VerticalProjectCard: FC<ProjectCardProps> = ({
         style={{ backgroundColor: primaryColor }}
       >
         {/* Row of logo, name, and description */}
-        <div className="flex-row padding-sm-bottom flex-justify-start flex-align-center">
+        <div className="flex-row padding-sm-bottom flex-justify-start flex-align-start">
           <div
-            className="flex-row flex-align-center flex-justify-center background-white circular"
+            className="flex-row flex-align-center flex-justify-center background-white circular margin-sm-top"
             style={{ color: primaryColor, height: LOGO_SIZE, width: LOGO_SIZE }}
           >
             {logoComponent}
@@ -86,8 +86,8 @@ const VerticalProjectCard: FC<ProjectCardProps> = ({
           {/* Column of name and description */}
           <div className="flex-column padding-sm-left flex-1">
             <h1
-              className="karla font-bold margin-0 text-white"
-              style={{ lineHeight: 1.5 }}
+              className="karla font-bold text-white"
+              style={{ lineHeight: 1, margin: '0.2em 0' }}
             >
               {name}
             </h1>
@@ -148,7 +148,7 @@ type PlaceholderLogoProps = {
 
 /** A component to render for a project with no logo */
 const PlaceholderLogo: FC<PlaceholderLogoProps> = ({ color, letter }) => (
-  <span style={{ color, fontSize: 60, lineHeight: LOGO_SIZE }}>{letter}</span>
+  <span style={{ color, fontSize: 55, lineHeight: LOGO_SIZE }}>{letter}</span>
 );
 
 /** A project card block */

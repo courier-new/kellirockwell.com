@@ -26,6 +26,7 @@ const Root: FC = () => {
         {`
           .container {
             align-items: center;
+            background-color: white;
             display: flex;
             flex-direction: column;
             justify-content: center;

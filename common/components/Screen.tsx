@@ -7,6 +7,7 @@ import {
   shouldShowMainNavMenu,
   shouldShowSideNavMenu,
 } from '../constants/breakpoint-sizes';
+import { MAIN_CONTENT_MAX_WIDTH, SIDEBAR_WIDTH } from '../constants/content-sizes';
 import { Slug } from '../constants/slugs';
 import { useThemeDispatch, useThemeState } from '../context/themeState';
 import useDisplaySize from '../hooks/useDisplaySize';
@@ -80,8 +81,11 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
     const hasStickyContent = activeParentPage === 'projects';
 
     /** Match the width/alignment of the main content when it does or does not
-     * have a side nav menu based on the side nav menu's width (240) */
-    const contentMaxWidth = shouldShowSideNav && contentSections ? 900 : 1140;
+     * have a side nav menu based on the side nav menu's width */
+    const contentMaxWidth =
+      shouldShowSideNav && contentSections
+        ? MAIN_CONTENT_MAX_WIDTH
+        : MAIN_CONTENT_MAX_WIDTH + SIDEBAR_WIDTH;
 
     return (
       <div
@@ -116,13 +120,20 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
             ref={ref}
           >
             {rendering ? <LoadingOverlay /> : null}
-            {/* Cap width of content and center within <main> but keep content's
-            internal alignment; Make this container non-scrollable and let the
-            children control scrolling if the page has sticky content */}
+            {/*
+            If the screen has sticky content, we make this container non-scrollable
+            and let the children control scrolling.
+
+            We by default cap the width of content and center it within <main>,
+            preserving any internal alignment decisions of the children, but for pages
+            with sticky content this must again be controlled at the child level or
+            else the scrollbar appears inset on very wide desktop screens since it is
+            only applied to the capped width area
+            */}
             <div
               className={hasStickyContent ? 'flex-row full-height non-scrollable' : ''}
               style={{
-                maxWidth: contentMaxWidth,
+                maxWidth: hasStickyContent ? undefined : contentMaxWidth,
                 width: '100%',
               }}
             >

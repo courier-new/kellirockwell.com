@@ -1,13 +1,37 @@
+import Color from 'color';
 import map from 'lodash/map';
 import { DateTime, Interval } from 'luxon';
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { AiFillCalendar } from 'react-icons/ai';
 import { BsFillPeopleFill } from 'react-icons/bs';
 
 import { Project } from '../../content/projects';
+import { useThemeState } from '../context/themeState';
 import Tag from './Tag';
 
 const LOGO_SIZE = 70;
+
+/**
+ * Custom hook to listen for changes in the site theme and return a darker
+ * version of the provided color if the theme is set to "dark", otherwise
+ * returns just the initial color
+ *
+ * @param initialColor the starting color, to be darkened
+ */
+const useDarkerColor = (initialColor: string): string => {
+  const themeState = useThemeState();
+  const [color, setColor] = useState<string>(initialColor);
+
+  useEffect(() => {
+    if (themeState?.theme === 'dark') {
+      setColor(Color(initialColor).darken(0.4).hex());
+    } else {
+      setColor(initialColor);
+    }
+  }, [themeState, initialColor]);
+
+  return color;
+};
 
 type ProjectCardProps = Project & {
   /** Overall size of the tags featured in this card */
@@ -16,6 +40,10 @@ type ProjectCardProps = Project & {
   tagSpacing: string;
 };
 
+type VerticalProjectCardProps = ProjectCardProps & {
+  /** JSX that renders a logo icon for this project */
+  logoComponent: JSX.Element;
+};
 /**
  * Formats a project date by its month and year.
  *
@@ -36,11 +64,10 @@ const formatDate = (
 /**
  * A mobile-oriented (vertical) project card block detailing info about a Project
  */
-const VerticalProjectCard: FC<ProjectCardProps> = ({
+const VerticalProjectCard: FC<VerticalProjectCardProps> = ({
   accomplishments,
   dates,
-  logo,
-  logoSizeFactor,
+  logoComponent,
   name,
   primaryColor,
   shortDescription,
@@ -49,59 +76,40 @@ const VerticalProjectCard: FC<ProjectCardProps> = ({
   tagSpacing,
   tags,
   teamSize,
-}) => {
-  const logoComponent = logo ? (
-    <div className="relative width-0 height-0">
-      <img
-        alt={`${name} logo`}
-        className="absolute"
-        src={logo}
-        style={{
-          height: (logoSizeFactor || 1) * LOGO_SIZE,
-          left: (-(logoSizeFactor || 1) * LOGO_SIZE) / 2,
-          top: (-(logoSizeFactor || 1) * LOGO_SIZE) / 2,
-          width: (logoSizeFactor || 1) * LOGO_SIZE,
-        }}
-      />
-    </div>
-  ) : (
-    <PlaceholderLogo color={primaryColor} letter={name.charAt(0)} />
-  );
-
-  return (
-    <div className="full-height full-width flex-column" key={`project-${name}`}>
-      <div
-        className="padding-med"
-        id="project-card-heading"
-        style={{ backgroundColor: primaryColor }}
-      >
-        {/* Row of logo, name, and description */}
-        <div className="flex-row padding-sm-bottom flex-justify-start flex-align-start">
-          <div
-            className="flex-row flex-align-center flex-justify-center background-white circular margin-sm-top"
-            style={{ color: primaryColor, height: LOGO_SIZE, width: LOGO_SIZE }}
+}) => (
+  <div className="full-height full-width flex-column" key={`project-${name}`}>
+    <div
+      className="padding-med"
+      id="project-card-heading"
+      style={{ backgroundColor: primaryColor }}
+    >
+      {/* Row of logo, name, and description */}
+      <div className="flex-row padding-sm-bottom flex-justify-start flex-align-start">
+        <div
+          className="flex-row flex-align-center flex-justify-center background-white circular margin-sm-top"
+          style={{ color: primaryColor, height: LOGO_SIZE, width: LOGO_SIZE }}
+        >
+          {logoComponent}
+        </div>
+        {/* Column of name and description */}
+        <div className="flex-column padding-sm-left flex-1">
+          <h1
+            className="karla font-bold text-white"
+            style={{ lineHeight: 1, margin: '0.2em 0' }}
           >
-            {logoComponent}
-          </div>
-          {/* Column of name and description */}
-          <div className="flex-column padding-sm-left flex-1">
-            <h1
-              className="karla font-bold text-white"
-              style={{ lineHeight: 1, margin: '0.2em 0' }}
-            >
-              {name}
-            </h1>
-            <p className="margin-0 text-white">{shortDescription}</p>
-          </div>
+            {name}
+          </h1>
+          <p className="margin-0 text-white">{shortDescription}</p>
         </div>
-        {/* Rows of team and dates */}
-        <div className="flex-row flex-align-center padding-xs-bottom">
-          <BsFillPeopleFill className="text-white padding-xs-right" size="1.8em" />
-          <span className="text-white large">{teamSize}</span>
-        </div>
-        <div className="flex-row flex-align-center padding-med-bottom">
-          <AiFillCalendar className="text-white padding-xs-right" size="1.8em" />
-          <span className="text-white large">{formatDate(dates)}</span>
+      </div>
+      {/* Rows of team and dates */}
+      <div className="flex-row flex-align-center padding-xs-bottom">
+        <BsFillPeopleFill className="text-white padding-xs-right" size="1.8em" />
+        <span className="text-white large">{teamSize}</span>
+      </div>
+      <div className="flex-row flex-align-center padding-med-bottom">
+        <AiFillCalendar className="text-white padding-xs-right" size="1.8em" />
+        <span className="text-white large">{formatDate(dates)}</span>
         </div>
         {/* Row of tags */}
         <div className="flex-row flex-align-center flex-wrap">
@@ -148,13 +156,48 @@ type PlaceholderLogoProps = {
 
 /** A component to render for a project with no logo */
 const PlaceholderLogo: FC<PlaceholderLogoProps> = ({ color, letter }) => (
-  <span style={{ color, fontSize: 55, lineHeight: LOGO_SIZE }}>{letter}</span>
+  <span style={{ color, fontSize: 55, lineHeight: `${LOGO_SIZE}px` }}>{letter}</span>
 );
 
 /** A project card block */
 const ProjectCard: FC<ProjectCardProps & { orientation: 'vertical' | 'horizontal' }> = ({
+  logo,
+  logoSizeFactor,
   orientation,
   ...props
-}) => (orientation === 'horizontal' ? null : <VerticalProjectCard {...props} />);
+}) => {
+  const { name, primaryColor } = props;
+  const logoComponent = logo ? (
+    <div className="relative width-0 height-0">
+      <img
+        alt={`${name} logo`}
+        className="absolute"
+        src={logo}
+        style={{
+          height: (logoSizeFactor || 1) * LOGO_SIZE,
+          left: (-(logoSizeFactor || 1) * LOGO_SIZE) / 2,
+          top: (-(logoSizeFactor || 1) * LOGO_SIZE) / 2,
+          width: (logoSizeFactor || 1) * LOGO_SIZE,
+        }}
+      />
+    </div>
+  ) : (
+    <PlaceholderLogo color={primaryColor} letter={name.charAt(0)} />
+  );
+
+  const themeModifiedPrimaryColor = useDarkerColor(primaryColor);
+
+  const cardProps = {
+    ...props,
+    logoComponent,
+    primaryColor: themeModifiedPrimaryColor,
+  };
+
+  return orientation === 'horizontal' ? (
+    <HorizontalProjectCard {...cardProps} />
+  ) : (
+    <VerticalProjectCard {...cardProps} />
+  );
+};
 
 export default ProjectCard;

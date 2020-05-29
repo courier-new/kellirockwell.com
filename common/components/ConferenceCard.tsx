@@ -40,12 +40,13 @@ const formatDate = (date: DateTime | Interval): string => {
 };
 
 /**
- * Strips out the protocol prefix from a website URL
+ * Strips out the protocol prefix and any trailing slash from a website URL
  *
  * @param url the website URL to format
  */
 // TODO: Use URL branded type
-const formatURL = (url: string): string => replace(url, /https?:\/\//i, '');
+const formatURL = (url: string): string =>
+  replace(replace(url, /https?:\/\/(www\.)?/i, ''), /\/$/, '');
 
 /**
  * A component card block detailing info about a Conference

@@ -17,10 +17,16 @@ import {
 /* eslint-disable jsdoc/require-jsdoc */
 export const CONFERENCES: Conference[] = [
   {
+    date: DateTime.fromObject({ day: 25, month: 9, year: 2020 }),
+    location: VIRTUAL,
+    name: 'FemTechConf',
+    website: 'https://femtechconf.com/',
+  },
+  {
     date: DateTime.fromObject({ day: 23, month: 7, year: 2020 }),
     location: VIRTUAL,
     name: 'CodeLand: Distributed',
-    website: 'https://www.react-europe.org/',
+    website: 'https://codelandconf.com/',
   },
   {
     date: Interval.fromDateTimes(
@@ -157,7 +163,7 @@ export const CONFERENCES: Conference[] = [
       DateTime.fromObject({ day: 13, month: 8, year: 2020 }),
       DateTime.fromObject({ day: 14, month: 8, year: 2020 }),
     ),
-    location: 'Salt Lake City, Utah, US',
+    location: VIRTUAL,
     name: 'React Rally 2020',
     website: 'https://reactrally.com',
   },

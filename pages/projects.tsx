@@ -18,32 +18,19 @@ const ProjectsScreen: FC<{}> = () => {
     <MobileProjectCarousel projects={PROJECTS} />
   ) : (
     <div className="padding-med scrollable-y">
+      {map(PROJECTS, (project, index) => (
+        <div
+          className={index === PROJECTS.length - 1 ? '' : 'margin-med-bottom'}
+          key={project.name}
+        >
+          <ProjectCard
+            orientation={displaySize === 'SMALL' ? 'vertical' : 'horizontal'}
+            {...project}
+            tagSize="medium"
+            tagSpacing="0.6em"
           />
         </div>
-        <section className="full-height scrollable-y">
-          <Carousel
-            carouselState={carouselState}
-            items={map(PROJECTS, (project) => ({
-              element: (
-                <ProjectCard
-                  {...project}
-                  orientation={cardOrientation}
-                  primaryColor={
-                    themeState?.theme === 'dark'
-                      ? Color(project.primaryColor).darken(0.4).hex()
-                      : project.primaryColor
-                  }
-                  tagSize={tagSize}
-                  tagSpacing={tagSpacing}
-                />
-              ),
-              key: project.name,
-            }))}
-            onSlide={onSlide}
-          />
-        </section>
-      </div>
-    </>
+      ))}
     </div>
   );
 };

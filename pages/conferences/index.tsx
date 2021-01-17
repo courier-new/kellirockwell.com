@@ -90,7 +90,7 @@ export const renderConferencesSections: ContentRenderer<typeof CONFERENCES_SECTI
 /**
  * Screen component for primary screen "Conferences"
  */
-const ConferencesScreen: FC<{}> = () => {
+const ConferencesScreen: FC = () => {
   return (
     <ScreenContent
       activePage="conferences"

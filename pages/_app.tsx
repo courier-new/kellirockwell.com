@@ -25,7 +25,10 @@ import { getSectionsForPage } from '../content/utilities/for-pages';
  * Used to persist layout and context between pages as well as apply css
  * globally
  */
-const App: NextComponentType<AppContext, {}, AppProps> = ({ Component, pageProps }) => (
+const App: NextComponentType<AppContext, never, AppProps> = ({
+  Component,
+  pageProps,
+}) => (
   <CombinedProvider>
     <InContext>
       <Component {...pageProps} />
@@ -36,7 +39,7 @@ const App: NextComponentType<AppContext, {}, AppProps> = ({ Component, pageProps
 /**
  * Parent container component one level deeper in order to access context
  */
-const InContext: FC<{}> = ({ children }) => {
+const InContext: FC = ({ children }) => {
   // React `RefObject` to attach to the outermost `Screen` component
   const outerRef = useRef<HTMLDivElement>(null);
   const [rendering, setRendering] = useState(false);

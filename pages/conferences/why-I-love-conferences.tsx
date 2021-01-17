@@ -8,7 +8,7 @@ import useDisplaySize from '../../common/hooks/useDisplaySize';
 /**
  * Screen component for primary screen "Conferences"
  */
-const WhyILoveConferencesScreen: FC<{}> = () => {
+const WhyILoveConferencesScreen: FC = () => {
   const [displaySize] = useDisplaySize();
   // We display the image at full size if the device screen size is small enough,
   // otherwise show it inline floating to the right

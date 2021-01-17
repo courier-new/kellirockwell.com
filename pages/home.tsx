@@ -7,7 +7,7 @@ import SocialLinks from '../common/components/SocialLinks';
 import useDisplaySize from '../common/hooks/useDisplaySize';
 
 /** Root of Index screen */
-const Root: FC<{}> = () => {
+const Root: FC = () => {
   const [displaySize, windowWidth, windowHeight] = useDisplaySize();
 
   const isMobile = displaySize === 'MOBILE';

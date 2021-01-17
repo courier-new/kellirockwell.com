@@ -10,7 +10,7 @@ import PROJECTS from '../content/projects';
 /**
  * Screen component for primary screen "Projects"
  */
-const ProjectsScreen: FC<{}> = () => {
+const ProjectsScreen: FC = () => {
   const [displaySize] = useDisplaySize();
 
   return displaySize === 'MOBILE' ? (

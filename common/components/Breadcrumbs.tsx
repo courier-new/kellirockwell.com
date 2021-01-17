@@ -6,7 +6,7 @@ import React, { FC } from 'react';
 import { MdNavigateNext } from 'react-icons/md';
 
 /** A breadcrumbs-like indication of where the user is on the site */
-const Breadcrumbs: FC<{}> = () => {
+const Breadcrumbs: FC = () => {
   const router = useRouter();
   // Strip starting "/" in path to get the active page slug
   // router.asPath contains any hash in link, too

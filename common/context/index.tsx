@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren } from 'react';
+import React, { FC } from 'react';
 
 import { SectionHeightsProvider } from './sectionHeightsState';
 import { ThemeProvider } from './themeState';
@@ -8,7 +8,7 @@ import { ThemeProvider } from './themeState';
  * wraps children in them to make context available; should be applied to the
  * root component
  */
-const CombinedProvider: FC<PropsWithChildren<{}>> = ({ children }) => (
+const CombinedProvider: FC = ({ children }) => (
   <ThemeProvider>
     <SectionHeightsProvider>{children}</SectionHeightsProvider>
   </ThemeProvider>

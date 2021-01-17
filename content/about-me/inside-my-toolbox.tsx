@@ -13,17 +13,17 @@ import generateTitleProps from '../utilities/for-content';
 import TOOLS, { Tool } from './tools';
 
 /** Styled heart icon */
-const Heart: FC<{}> = () => (
+const Heart: FC = () => (
   <FaHeart className="text-mauve" size="0.7em" style={{ margin: '.05em 0 0 .3em' }} />
 );
 
 /** Styled star icon */
-const Star: FC<{}> = () => (
+const Star: FC = () => (
   <FaStar className="text-cheddar" size="0.75em" style={{ margin: '0 0 0 .3em' }} />
 );
 
 /** The content for the Inside-my-toolbox section of the About Me page */
-const InsideMyToolboxContent: FC<{}> = () => {
+const InsideMyToolboxContent: FC = () => {
   const [displaySize] = useDisplaySize();
   const tagSpacing = displaySize === 'MOBILE' ? '0.4em' : '0.6em';
 
@@ -51,6 +51,17 @@ const InsideMyToolboxContent: FC<{}> = () => {
             )),
         )(TOOLS)}
       </div>
+      <p>
+        I built this site with{' '}
+        <a href="https://nextjs.org/" title="Next.js homepage">
+          Next.js
+        </a>{' '}
+        and deployed it with{' '}
+        <a href="https://vercel.com/" title="Vercel homepage">
+          Vercel
+        </a>
+        .
+      </p>
     </>
   );
 };

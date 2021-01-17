@@ -24,7 +24,7 @@ const countConferencesAttended = (conferences: Conference[] | Conference[][]): n
   }).length + 4; // Add 4 for CUWiPs
 
 /** The content for the Journey-to-the-center section of the Conferences page */
-const JourneyContent: FC<{}> = () => {
+const JourneyContent: FC = () => {
   const [displaySize] = useDisplaySize();
 
   let twoColumns = true;

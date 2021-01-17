@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  FC,
-  PropsWithChildren,
-  useContext,
-  useReducer,
-} from 'react';
+import React, { createContext, FC, useContext, useReducer } from 'react';
 
 import { Slug } from '../constants/slugs';
 
@@ -47,7 +41,7 @@ const SectionHeightsDispatchContext = createContext<SectionHeightsDispatch | und
  * - Context will not be defined outside of provider
  * - The length of the list of heights should match the combined length of all
  *   sections plus nested subsections, when flattened
- * @example const Comp: FC<{}> = () => {const state = useSectionHeightsState();
+ * @example const Comp: FC = () => {const state = useSectionHeightsState();
  *   const sectionHeights = state?.["about-me"]; // [0, 867.22, 1411.03, etc.]
  * };
  */
@@ -60,9 +54,9 @@ export const useSectionHeightsState = (): SectionHeightsState | undefined =>
  * `useMeasureSectionHeights()` hook, which computes the section heights
  *
  * @notes it appears to be possible to use dispatch outside of provider
- * @example const Comp: FC<{}> = () => {
+ * @example const Comp: FC = () => {
  *   const state = useSectionHeightsDispatch();
- * @example const Comp: FC<{}> = () => {
+ * @example const Comp: FC = () => {
  *   const dispatch = useThemeDispatch();
  *   dispatch({
  *    payload: {
@@ -106,7 +100,7 @@ const sectionHeightsReducer = (
  * the app, retrievable by their slugs, and its `Dispatch` enables setting the
  * heights
  */
-export const SectionHeightsProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
+export const SectionHeightsProvider: FC = ({ children }) => {
   const [state, dispatch] = useReducer(sectionHeightsReducer, {});
   return (
     <SectionHeightsStateContext.Provider value={state}>

@@ -105,7 +105,7 @@ export const renderAboutMeSections: ContentRenderer<typeof ABOUT_ME_SECTIONS> = 
 /**
  * Screen component for primary screen "About Me"
  */
-const AboutMeScreen: FC<{}> = () => (
+const AboutMeScreen: FC = () => (
   <ScreenContent
     activePage="about-me"
     containerClassName="padding-med"

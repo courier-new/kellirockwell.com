@@ -7,7 +7,7 @@ import useDisplaySize from '../../common/hooks/useDisplaySize';
 import generateTitleProps from '../utilities/for-content';
 
 /** The content for the Get-to-know-me section of the About Me page */
-const GetToKnowMeContent: FC<{}> = () => {
+const GetToKnowMeContent: FC = () => {
   const [displaySize] = useDisplaySize();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const dimensions = useDimensions(containerRef);

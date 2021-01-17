@@ -26,7 +26,7 @@ const MainNavMenu: FC<MainNavMenuProps> = ({ activePage }) => {
             className="flex-column flex-1 flex-align-center margin-med-bottom"
             title="Home"
           >
-            <ProfileImage shape="round" />
+            <ProfileImage maxSize={160} shape="round" />
             <h5 className="text-turquoise margin-0-bottom">Kelli Rockwell</h5>
           </a>
         </Link>

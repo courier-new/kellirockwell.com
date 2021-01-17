@@ -3,8 +3,9 @@ import Image from 'next/image';
 
 /** Component for my profile image */
 const ProfileImage: FC<{
+  maxSize?: number;
   shape: 'round' | 'square';
-}> = ({ shape }) => {
+}> = ({ maxSize = 1000, shape }) => {
   return (
     <>
       <style global jsx>
@@ -17,9 +18,9 @@ const ProfileImage: FC<{
       <Image
         alt="Closeup of the site author, smiling. Welcome to my site!"
         className="profile-image"
-        height="1200"
+        height={maxSize}
         src="/images/me@original.jpg"
-        width="1200"
+        width={maxSize}
       />
     </>
   );

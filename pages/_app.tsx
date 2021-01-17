@@ -7,7 +7,7 @@ import { NextComponentType } from 'next';
 import { AppContext, AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 
 import Screen from '../common/components/Screen';
 import { Slug } from '../common/constants/slugs';
@@ -68,20 +68,23 @@ const InContext: FC = ({ children }) => {
   const sections = getSectionsForPage(slug);
 
   // The percent of the page the user has scrolled
-  const scrollPercent = useScrollInfo(outerRef)[1];
+  const { percent: scrollPercent, reset: resetScroll } = useScrollInfo(outerRef);
+
+  /** Handler to set rendering state and reset scroll position */
+  const onRouteStart = useCallback((): void => {
+    resetScroll();
+    setRendering(true);
+  }, [resetScroll]);
+
+  /** Scroll handler to scroll to top of outer `Screen` component */
+  const onRouteCompleteScroll = useCallback((): void => {
+    outerRef.current?.scrollTo({ top: 0 });
+    setRendering(false);
+  }, []);
 
   useEffect(() => {
     /** Array to hold event listener clean up functions */
     let removeEventListenerFns: (() => void)[] = [];
-
-    /** Handler to set rendering state */
-    const onRouteStart = (): void => setRendering(true);
-
-    /** Scroll handler to scroll to top of outer `Screen` component */
-    const onRouteCompleteScroll = (): void => {
-      outerRef.current?.scrollTo({ top: 0 });
-      setRendering(false);
-    };
 
     // Attach handler to router route change events (does not fire on hash link
     // changes like "#section2")

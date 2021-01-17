@@ -1,21 +1,27 @@
 import React, { FC } from 'react';
-
-import Image from './Image';
+import Image from 'next/image';
 
 /** Component for my profile image */
 const ProfileImage: FC<{
-  resizeWidth?: number;
   shape: 'round' | 'square';
-  size?: number | string;
-}> = ({ resizeWidth, shape, size }) => {
+}> = ({ shape }) => {
   return (
-    <Image
-      alt="Closeup of the site author, smiling. Welcome to my site!"
-      path="me.jpg"
-      resizeWidth={resizeWidth}
-      style={{ clipPath: shape === 'round' ? 'circle(50% at 50% 50%)' : '' }}
-      width={size}
-    />
+    <>
+      <style global jsx>
+        {`
+          .profile-image {
+            border-radius: ${shape === 'round' ? '50%' : '0'};
+          }
+        `}
+      </style>
+      <Image
+        alt="Closeup of the site author, smiling. Welcome to my site!"
+        className="profile-image"
+        height="1200"
+        src="/images/me@original.jpg"
+        width="1200"
+      />
+    </>
   );
 };
 

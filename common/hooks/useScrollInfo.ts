@@ -43,9 +43,16 @@ const getElementScrollPercent = (
  *
  * @param ref React `RefObject` for the element to get the scroll info for
  */
-const useScrollInfo = (ref: React.RefObject<HTMLElement>): [ScrollPosition, Percent] => {
+const useScrollInfo = (
+  ref: React.RefObject<HTMLElement>,
+): { percent: Percent; position: ScrollPosition; reset: () => void } => {
   const [position, setScrollPosition] = useState<ScrollPosition>({ x: 0, y: 0 });
   const [percent, setScrollPercent] = useState<Percent>(asPercent(0));
+
+  const reset = () => {
+    setScrollPercent(asPercent(0));
+    setScrollPosition({ x: 0, y: 0 });
+  };
 
   useDeepCompareEffect(() => {
     const { current: currentEl } = ref;
@@ -108,7 +115,7 @@ const useScrollInfo = (ref: React.RefObject<HTMLElement>): [ScrollPosition, Perc
     return undefined;
   }, [ref.current]);
 
-  return [position, percent];
+  return { percent, position, reset };
 };
 
 export default useScrollInfo;

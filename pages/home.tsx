@@ -22,19 +22,15 @@ const Root: FC = () => {
       </main>
     );
   } else {
-    let backgroundImageResize: 768 | 1024 | 1600 | undefined = 768;
     let paddingSize: 'lg' | 'med' = 'med';
     switch (displaySize) {
       case 'XLARGE':
-        backgroundImageResize = undefined;
         paddingSize = 'lg';
         break;
       case 'LARGE':
-        backgroundImageResize = 1600;
         paddingSize = 'lg';
         break;
       case 'MEDIUM':
-        backgroundImageResize = 1024;
         paddingSize = 'lg';
         break;
       default:
@@ -52,7 +48,7 @@ const Root: FC = () => {
             width: '100vw',
           }}
         >
-          <BackgroundImage path="homebg.jpg" resizeWidth={backgroundImageResize} />
+          <BackgroundImage path="/images/homebg@original.jpg" />
         </div>
 
         <div className="z-index-top blurred flex-row flex-1 flex-justify-center flex-align-center full-width full-height">
@@ -142,24 +138,20 @@ const IntroContent: FC<{ isMobile: boolean }> = ({ isMobile }) => (
       } flex-row flex-wrap`}
     >
       <Link href="/about-me">
-        <a className="button no-hover no-decoration text-white large karla">
+        <a className="button no-hover text-white large karla">
           {isMobile ? 'More about me' : 'About me'}
         </a>
       </Link>
       {isMobile ? null : (
         <>
           <Link href="/projects">
-            <a className="button no-hover no-decoration text-white large karla">
-              Projects
-            </a>
+            <a className="button no-hover text-white large karla">Projects</a>
           </Link>
           <Link href="/resume">
-            <a className="button no-hover no-decoration text-white large karla">Resume</a>
+            <a className="button no-hover text-white large karla">Resume</a>
           </Link>
           <Link href="/conferences">
-            <a className="button no-hover no-decoration text-white large karla">
-              Conferences
-            </a>
+            <a className="button no-hover text-white large karla">Conferences</a>
           </Link>
         </>
       )}

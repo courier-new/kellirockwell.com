@@ -17,7 +17,7 @@ const QuickNav: FC<QuickNavProps> = ({ sections }) => {
         <li className="karla xsmall" key={`link-${section}`}>
           <Link href={`#${section}`}>
             <a
-              className="karla xsmall no-decoration uppercase padding-sm-h"
+              className="karla xsmall no-box-shadow uppercase padding-sm-h"
               title={section}
             >
               {replace(section, '-', ' ')}

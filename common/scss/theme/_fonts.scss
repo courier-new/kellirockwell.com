@@ -74,6 +74,10 @@ em,
   text-decoration: none;
 }
 
+.no-box-shadow {
+  box-shadow: none;
+}
+
 /** Main text font sizs */
 
 $font-sizes: (
@@ -91,7 +95,9 @@ $font-sizes: (
   }
 }
 
-@include font-size-classes($font-sizes);
+* {
+  @include font-size-classes($font-sizes);
+}
 
 /** Main text font names */
 
@@ -109,4 +115,6 @@ $font-names: (
   }
 }
 
-@include font-name-classes($font-names);
+* {
+  @include font-name-classes($font-names);
+}

@@ -30,6 +30,7 @@
     "scale-unlimited/declaration-strict-value": ["/color/", "font-size", "font-family"],
     "selector-class-pattern": "^[a-z][a-z0-9-]+$",
     "selector-max-id": 2,
+    "selector-no-qualifying-type": null,
     "suitcss/custom-property-no-outside-root": true,
     "suitcss/root-no-standard-properties": true,
     "suitcss/selector-root-no-composition": true

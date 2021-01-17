@@ -28,7 +28,11 @@ const renderLink = (slug: Slug, active?: 'active'): JSX.Element => {
             line-height: 23px;
             margin: 0;
             margin-bottom: 23px;
-            transition: all 0.3s;
+            transition: color 300ms ease 0s;
+          }
+
+          h4:hover {
+            transition: color 100ms ease 0s;
           }
 
           h4.active {
@@ -38,7 +42,7 @@ const renderLink = (slug: Slug, active?: 'active'): JSX.Element => {
         `}
       </style>
       <Link href={`/${slug}`}>
-        <a className="no-decoration" title={linkText}>
+        <a title={linkText}>
           <h4 className={`${active} text-magnolia`}>{linkText}</h4>
         </a>
       </Link>

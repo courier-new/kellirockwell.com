@@ -30,15 +30,6 @@ const renderLink = (
 ): JSX.Element | null => {
   const isActiveSection = anchor === activeSection;
   const paddingAmount = 1.5 * level;
-  const linkStyle: React.CSSProperties = {
-    borderBottomColor: 'transparent',
-    borderLeftColor: isActiveSection ? undefined : 'transparent',
-    borderLeftStyle: 'solid',
-    borderRightColor: 'transparent',
-    borderTopColor: 'transparent',
-    paddingLeft: `${paddingAmount}em`,
-    transition: 'all 0.2s',
-  };
 
   const subsectionNavigation = subsections
     ? renderNavigation(subsections, activeSection, level + 1)
@@ -46,10 +37,26 @@ const renderLink = (
 
   return (
     <li key={anchor}>
+      <style jsx>
+        {`
+          .side-nav-link {
+            border-bottom-color: transparent;
+            border-left-color: ${isActiveSection ? undefined : 'transparent'};
+            border-left-style: solid;
+            border-right-color: transparent;
+            border-top-color: transparent;
+            padding-left: ${paddingAmount}em;
+            transition: color 300ms ease 0s;
+          }
+
+          .side-nav-link:hover {
+            transition: color 100ms ease 0s;
+          }
+        `}
+      </style>
       <Link href={`#${anchor}`}>
         <a
-          className="border-color-sapphire no-decoration flex-row padding-xs-v"
-          style={linkStyle}
+          className="border-color-sapphire no-box-shadow flex-row padding-xs-v side-nav-link"
           title={title}
         >
           {title}

@@ -52,7 +52,7 @@ const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
         {`
           .outer-container {
             left: -80%;
-            transition: all 0.3s ease-out;
+            transition: all 300ms ease-out;
             width: 80%;
           }
 
@@ -90,7 +90,7 @@ const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
           <div>
             <Link href="/home">
               <a
-                className="flex-row flex-align-center no-decoration"
+                className="flex-row flex-align-center"
                 style={{ marginBottom: '1em' }}
                 title="Home"
               >

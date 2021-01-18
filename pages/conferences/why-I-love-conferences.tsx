@@ -1,8 +1,8 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import React, { FC } from 'react';
 
 import Breadcrumbs from '../../common/components/Breadcrumbs';
-import Image from '../../common/components/Image';
 import useDisplaySize from '../../common/hooks/useDisplaySize';
 
 /**
@@ -36,14 +36,15 @@ const WhyILoveConferencesScreen: FC = () => {
       <aside className={`flex-column ${useFullSizeImage ? '' : 'margin-med-left'}`}>
         <Image
           alt="The majority of the attendees of the CUWiP conference seated together in an auditorium. The site author is circled towards the middle back."
-          path="cuwip2014.jpg"
-          resizeWidth={displaySize === 'MOBILE' ? 400 : 600}
-          width="100%"
+          height={useFullSizeImage ? 361 : 241}
+          layout={useFullSizeImage ? 'responsive' : 'intrinsic'}
+          src="/images/cuwip2014@original.jpg"
+          width={useFullSizeImage ? 600 : 400}
         />
         <p className="xsmall">
           Most of the attendees of CUWiP &apos;14 @ UC Berkeley gathered for the final
           session of the conference, including me!{' '}
-          <Link href={require('../../images/cuwip2014@original.jpg')}>
+          <Link href="/images/cuwip2014@original.jpg">
             <a title="View full size">(View full size)</a>
           </Link>
         </p>

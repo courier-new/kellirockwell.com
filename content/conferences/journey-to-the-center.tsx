@@ -104,24 +104,34 @@ const JourneyContent: FC = () => {
       {/* Raise up this section in two column orientation to cut down on whitespace */}
       <div style={{ marginTop: twoColumns ? '-2em' : undefined }}>
         <h3 className="margin-0-top">Resources and info</h3>
-        <Link href="/conferences/why-I-love-conferences">
-          <a
-            className="karla flex-row flex-align-center"
-            title="Why do I love conferences?"
-          >
-            Why do I love conferences?
-            <BsArrowRight className="text-space padding-sm-left" />
-          </a>
-        </Link>
-        <style jsx>
+        {/* Arrow style needs to be global since it's nested in Link */}
+        <style global jsx>
           {`
+            a svg.arrow {
+              transition: padding 100ms ease 0s;
+            }
+
+            a:hover svg.arrow {
+              transition: padding 300ms ease 0s;
+              padding-left: 1.5em;
+            }
+
             .unavailable {
               cursor: not-allowed;
             }
           `}
         </style>
+        <Link href="/conferences/why-I-love-conferences">
+          <a
+            className="karla flex-row flex-align-center no-box-shadow"
+            title="Why do I love conferences?"
+          >
+            Why do I love conferences?
+            <BsArrowRight className="arrow text-space padding-sm-left" />
+          </a>
+        </Link>
         <span className="unavailable margin-sm-top minimum-opacity flex-wrap flex-row flex-align-center">
-          <a className="karla flex-row flex-1 flex-align-center flex-wrap">
+          <a className="karla flex-row flex-1 flex-align-center flex-wrap no-box-shadow">
             <span className="karla text-space">Resources for conference-goers </span>
             <BsArrowRight className="text-space padding-sm-h" />
             <span className="karla xsmall text-space">(Coming soon!)</span>

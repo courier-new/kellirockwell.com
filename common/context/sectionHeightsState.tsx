@@ -50,8 +50,8 @@ export const useSectionHeightsState = (): SectionHeightsState | undefined =>
 /**
  * Named export shorthand to use `SectionHeightsDispatchContext` as a hook
  *
- * `SectionHeightsState` is intended to be used in conjunction with the
- * `useMeasureSectionHeights()` hook, which computes the section heights
+ * `SectionHeightsDispatch` is intended to be used in conjunction with the
+ * `useSectionHeightsController()` hook, which computes the section heights
  *
  * @notes it appears to be possible to use dispatch outside of provider
  * @example const Comp: FC = () => {

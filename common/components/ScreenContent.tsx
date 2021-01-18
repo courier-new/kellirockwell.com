@@ -8,7 +8,7 @@ import {
   SectionRefsMap,
 } from '../../content/utilities/types';
 import { Slug } from '../constants/slugs';
-import useMeasureSectionHeights from '../hooks/useMeasureSectionHeights';
+import useSectionHeightsController from '../hooks/sections/useSectionHeightsController';
 
 type ScreenContentProps = {
   /** The url slug corresponding to the screen that is currently open */
@@ -50,7 +50,7 @@ const ScreenContent: FC<ScreenContentProps> = ({
   }, [flattenedSectionAnchors]);
 
   // Measure the section starting positions for each section on this screen
-  useMeasureSectionHeights(map(sectionRefs, 'ref') || [], activePage);
+  useSectionHeightsController(map(sectionRefs, 'ref') || [], activePage);
 
   // Memoize the rendered sections of content
   const renderedSections = useMemo(() => renderSections(sections, sectionRefs), [

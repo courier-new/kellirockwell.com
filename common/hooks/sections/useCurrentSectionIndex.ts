@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
 import { useState } from 'react';
 
-import { shouldShowSideNavMenu } from '../constants/breakpoint-sizes';
-import useDeepCompareEffect from './useDeepCompareEffect';
-import useDisplaySize from './useDisplaySize';
+import { shouldShowSideNavMenu } from '../../constants/breakpoint-sizes';
+import useDeepCompareEffect from '../useDeepCompareEffect';
+import useDisplaySize from '../useDisplaySize';
 
 type ScrollPosition = {
   x: number;
@@ -60,7 +60,7 @@ const hasNullRef = (parentRef: React.RefObject<Element>): boolean => {
 const useCurrentSectionIndex = (
   parentRef: React.RefObject<Element>,
   sectionStartingPositions: number[],
-): [number, (() => void) | undefined] => {
+): [sectionIndex: number, recalculate: (() => void) | undefined] => {
   const [sectionIndex, setSectionIndex] = useState<number>(0);
   // State to hold main calculating function (second item returned in tuple)
   const [calculateSectionIndexFn, setCalculateSectionIndexFn] = useState<

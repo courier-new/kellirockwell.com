@@ -50,13 +50,17 @@ export const useScrollPositionState = (): ScrollPositionState | undefined =>
 /**
  * Named export shorthand to use `ScrollPositionDispatchContext` as a hook
  *
+ * `ScrollPositionDispatch` is intended to be used in conjunction with the
+ * `useScrollPositionController()` hook, which computes the scroll position and
+ * percent
+ *
  * @notes it appears to be possible to use dispatch outside of provider
  * @example const Comp: FC = () => {
  *   const dispatch = useScrollPositionDispatch();
  *   dispatch({
- *    payload: {
- *      percent: asPercent(50),
- *      position: { x: 0, y: 1000 }
+ *     payload: {
+ *       percent: asPercent(50),
+ *       position: { x: 0, y: 1000 }
  *    },
  *    type: '@scroll-position-state/set-position',
  *  });

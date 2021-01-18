@@ -13,7 +13,7 @@ import Screen from '../common/components/Screen';
 import { Slug } from '../common/constants/slugs';
 import CombinedProvider from '../common/context';
 import { useSectionHeightsState } from '../common/context/sectionHeightsState';
-import useCurrentSectionIndex from '../common/hooks/useCurrentSectionIndex';
+import useCurrentSectionIndex from '../common/hooks/sections/useCurrentSectionIndex';
 import useScrollPositionController from '../common/hooks/useScrollPositionController';
 import { toTitleCase } from '../common/utilities/string-case';
 import { getSectionsForPage } from '../content/utilities/for-pages';

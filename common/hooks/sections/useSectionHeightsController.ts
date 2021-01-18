@@ -3,9 +3,9 @@ import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import { useState } from 'react';
 
-import { Slug } from '../constants/slugs';
-import { useSectionHeightsDispatch } from '../context/sectionHeightsState';
-import useDeepCompareEffect from './useDeepCompareEffect';
+import { Slug } from '../../constants/slugs';
+import { useSectionHeightsDispatch } from '../../context/sectionHeightsState';
+import useDeepCompareEffect from '../useDeepCompareEffect';
 
 /**
  * Returns `true` if any of the `ref`s are null. Logs a message to the console
@@ -58,10 +58,10 @@ const getSectionStartingPositions = (sectionRefCurrentValues: HTMLElement[]): nu
  * @param slug slug for the parent page of the sections, for mapping it to the
  * right key in SectionHeightsContext
  */
-const useMeasureSectionHeights = <Element extends HTMLElement = HTMLElement>(
+const useSectionHeightsController = <Element extends HTMLElement = HTMLElement>(
   sectionRefs: React.RefObject<Element>[],
   slug: Slug,
-): [number[]] => {
+): [sectionPositions: number[]] => {
   const [sectionHeights, setSectionHeights] = useState<number[]>([]);
   const dispatch = useSectionHeightsDispatch();
   /**
@@ -148,4 +148,4 @@ const useMeasureSectionHeights = <Element extends HTMLElement = HTMLElement>(
   return [sectionHeights];
 };
 
-export default useMeasureSectionHeights;
+export default useSectionHeightsController;

@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 
+import { ScrollPositionProvider } from './scrollPositionState';
 import { SectionHeightsProvider } from './sectionHeightsState';
 import { ThemeProvider } from './themeState';
 
@@ -10,7 +11,9 @@ import { ThemeProvider } from './themeState';
  */
 const CombinedProvider: FC = ({ children }) => (
   <ThemeProvider>
-    <SectionHeightsProvider>{children}</SectionHeightsProvider>
+    <ScrollPositionProvider>
+      <SectionHeightsProvider>{children}</SectionHeightsProvider>
+    </ScrollPositionProvider>
   </ThemeProvider>
 );
 

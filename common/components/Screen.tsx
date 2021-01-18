@@ -39,9 +39,6 @@ type ScreenProps = {
   };
   /** Whether or not the current screen is undergoing a server render */
   rendering: boolean;
-  /** The current scroll position of the Screen ref, used to render the
-   * ProgressBar component */
-  scrollPercent?: Percent;
 };
 
 /**
@@ -49,7 +46,7 @@ type ScreenProps = {
  * navigation and adjusts layout to display size.
  */
 const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
-  ({ activePageSlug, children, contentSections, rendering, scrollPercent }, ref) => {
+  ({ activePageSlug, children, contentSections, rendering }, ref) => {
     const [displaySize] = useDisplaySize();
 
     /** True if the user system preference is for a dark color scheme */
@@ -86,7 +83,6 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
       shouldShowSideNav && contentSections
         ? MAIN_CONTENT_MAX_WIDTH
         : MAIN_CONTENT_MAX_WIDTH + SIDEBAR_WIDTH;
-
     return (
       <div
         className="full-width full-height flex-column non-scrollable"
@@ -102,9 +98,7 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
             onToggle={(): void => themeDispatch?.({ type: '@theme-state/toggle-theme' })}
           />
         </div>
-        {isUndefined(scrollPercent) ? null : (
-          <ProgressBar scrollPercent={scrollPercent} />
-        )}
+        <ProgressBar />
         <div className="full-width flex-1 flex-row non-scrollable border-box">
           <div className="flex-row" id="nav">
             {shouldShowMainNav ? (

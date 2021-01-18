@@ -54,7 +54,7 @@ const ScreenContent: FC<ScreenContentProps> = ({
 
   // Memoize the rendered sections of content
   const renderedSections = useMemo(() => renderSections(sections, sectionRefs), [
-    sectionRefs,
+    // sectionRefs,
     sections,
     renderSections,
   ]);

@@ -14,7 +14,7 @@ import { Slug } from '../common/constants/slugs';
 import CombinedProvider from '../common/context';
 import { useSectionHeightsState } from '../common/context/sectionHeightsState';
 import useCurrentSectionIndex from '../common/hooks/useCurrentSectionIndex';
-import useScrollInfo from '../common/hooks/useScrollInfo';
+import useScrollPositionController from '../common/hooks/useScrollPositionController';
 import { toTitleCase } from '../common/utilities/string-case';
 import { getSectionsForPage } from '../content/utilities/for-pages';
 
@@ -68,7 +68,7 @@ const InContext: FC = ({ children }) => {
   const sections = getSectionsForPage(slug);
 
   // The percent of the page the user has scrolled
-  const { percent: scrollPercent, reset: resetScroll } = useScrollInfo(outerRef);
+  const { reset: resetScroll } = useScrollPositionController(outerRef);
 
   /** Handler to set rendering state and reset scroll position */
   const onRouteStart = useCallback((): void => {
@@ -115,7 +115,7 @@ const InContext: FC = ({ children }) => {
     return (): void => {
       forEach(removeEventListenerFns, (fn) => fn());
     };
-  }, [recalculateSectionIndex, router.events]);
+  }, [onRouteCompleteScroll, onRouteStart, recalculateSectionIndex, router.events]);
 
   const head = (
     <Head>
@@ -143,7 +143,6 @@ const InContext: FC = ({ children }) => {
       }
       ref={outerRef}
       rendering={rendering}
-      scrollPercent={scrollPercent}
     >
       {head}
       {children}

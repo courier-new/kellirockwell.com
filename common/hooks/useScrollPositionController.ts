@@ -1,12 +1,11 @@
-import { useState } from 'react';
+import { useCallback } from 'react';
+import {
+  ScrollPosition,
+  useScrollPositionDispatch,
+} from '../context/scrollPositionState';
 
 import { asPercent, Percent } from '../utilities/percent';
 import useDeepCompareEffect from './useDeepCompareEffect';
-
-type ScrollPosition = {
-  x: number;
-  y: number;
-};
 
 /**
  * Gets the x and y scroll position of a given element
@@ -38,25 +37,47 @@ const getElementScrollPercent = (
 };
 
 /**
- * Provides the current scroll position in an element as well as the percentage
- * amount of the scroll position down the element
+ * Sets up an event listener on scroll of the provided `ref` to compute the
+ * position and percentage the user has scrolled.
  *
- * @param ref React `RefObject` for the element to get the scroll info for
+ * @notes
+ * - Only one controller should be active at a time or else multiple,
+ *   conflicting scroll positions will be reported at the same time
+ * @param ref React `RefObject` for the element to watch for computing the
+ * scroll position
  */
-const useScrollInfo = (
+const useScrollPositionController = (
   ref: React.RefObject<HTMLElement>,
-): { percent: Percent; position: ScrollPosition; reset: () => void } => {
-  const [position, setScrollPosition] = useState<ScrollPosition>({ x: 0, y: 0 });
-  const [percent, setScrollPercent] = useState<Percent>(asPercent(0));
+): { reset: () => void } => {
+  const scrollPositionDispatch = useScrollPositionDispatch();
 
-  const reset = () => {
-    setScrollPercent(asPercent(0));
-    setScrollPosition({ x: 0, y: 0 });
-  };
+  /**
+   * Shorthand to dispatch a new scroll position and percent
+   *
+   * @param position the new `ScrollPosition` to set
+   * @param percent the equivalent new `Percent` the page has been scrolled to set
+   */
+  const setScrollPosition = useCallback(
+    (position: ScrollPosition, percent: Percent) =>
+      scrollPositionDispatch?.({
+        payload: {
+          percent,
+          position,
+        },
+        type: '@scroll-position-state/set-position',
+      }),
+    [scrollPositionDispatch],
+  );
+
+  /** Method to reset scroll position on-demand */
+  const reset = useCallback(() => setScrollPosition({ x: 0, y: 0 }, asPercent(0)), [
+    setScrollPosition,
+  ]);
 
   useDeepCompareEffect(() => {
-    const { current: currentEl } = ref;
-    if (currentEl) {
+    if (ref.current) {
+      const { current: currentEl } = ref;
+
       // Throttle request to not overload with repaints
       let requestRunning: number | null = null;
       // We start a timer when handling a scroll to check the scroll position
@@ -74,8 +95,11 @@ const useScrollInfo = (
        */
       const setScrollInfo = (el: HTMLElement): void => {
         const currentScrollPosition = getElementScrollPosition(el);
-        setScrollPosition(currentScrollPosition);
-        setScrollPercent(getElementScrollPercent(el, currentScrollPosition.y));
+
+        setScrollPosition(
+          currentScrollPosition,
+          getElementScrollPercent(el, currentScrollPosition.y),
+        );
       };
 
       /** Handler to set scroll position */
@@ -115,7 +139,7 @@ const useScrollInfo = (
     return undefined;
   }, [ref.current]);
 
-  return { percent, position, reset };
+  return { reset };
 };
 
-export default useScrollInfo;
+export default useScrollPositionController;

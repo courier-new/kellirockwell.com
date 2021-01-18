@@ -55,9 +55,7 @@ export const useSectionHeightsState = (): SectionHeightsState | undefined =>
  *
  * @notes it appears to be possible to use dispatch outside of provider
  * @example const Comp: FC = () => {
- *   const state = useSectionHeightsDispatch();
- * @example const Comp: FC = () => {
- *   const dispatch = useThemeDispatch();
+ *   const dispatch = useSectionHeightsDispatch();
  *   dispatch({
  *    payload: {
  *      [120, 464.3, 889.1],

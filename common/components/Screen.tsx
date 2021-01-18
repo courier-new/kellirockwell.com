@@ -1,4 +1,3 @@
-import isUndefined from 'lodash/isUndefined';
 import replace from 'lodash/replace';
 import React, { PropsWithChildren, useEffect, useMemo } from 'react';
 
@@ -12,7 +11,6 @@ import { Slug } from '../constants/slugs';
 import { useThemeDispatch, useThemeState } from '../context/themeState';
 import useDisplaySize from '../hooks/useDisplaySize';
 import { usePrefersDarkMode } from '../hooks/useMediaQuery';
-import { Percent } from '../utilities/percent';
 import DarkModeToggle from './DarkModeToggle';
 import DrawerMainNavMenu from './DrawerMainNavMenu';
 import LoadingOverlay from './LoadingOverlay';

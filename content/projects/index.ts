@@ -1,13 +1,5 @@
 import { DateTime, Interval } from 'luxon';
 
-import EBayLogoIcon from '../../common/svgs/EBayLogoIcon.svg';
-import KPLogoIcon from '../../common/svgs/KPLogoIcon.svg';
-import MomentLogoIcon from '../../common/svgs/MomentLogoIcon.svg';
-import RivalsLogoIcon from '../../common/svgs/RivalsLogoIcon.svg';
-import SutroLogoIcon from '../../common/svgs/SutroLogoIcon.svg';
-import APSLogoIcon from '../../images/aps.png';
-import PilonLogoIcon from '../../images/pi.png';
-
 /** Union of team size strings */
 export type TeamSize = '1' | '2-5' | '5-10' | '10-15' | '15-20';
 
@@ -26,7 +18,7 @@ export type Project = {
         start: DateTime;
       };
   /** Image source (string) for project's logo */
-  logo?: SVGSource | ImageSource;
+  logo?: string;
   /** Optionally, the factor to scale the logo to normalize amongst the other
    * project logos */
   logoSizeFactor?: number;
@@ -57,7 +49,7 @@ const PROJECTS: Project[] = [
       end: 'current',
       start: DateTime.fromObject({ month: 7, year: 2019 }),
     },
-    logo: SutroLogoIcon,
+    logo: '/images/svgs/SutroLogoIcon.svg',
     logoSizeFactor: 1.15,
     name: 'Sutro',
     primaryColor: '#005C67',
@@ -77,7 +69,7 @@ const PROJECTS: Project[] = [
       end: 'current',
       start: DateTime.fromObject({ month: 6, year: 2018 }),
     },
-    logo: RivalsLogoIcon,
+    logo: '/images/svgs/RivalsLogoIcon.svg',
     logoSizeFactor: 1.3,
     name: 'Rivals',
     primaryColor: '#094EA3',
@@ -92,7 +84,7 @@ const PROJECTS: Project[] = [
       'Supplied comprehensive JSDoc comments for all exported entities',
     ],
     dates: DateTime.fromObject({ month: 3, year: 2020 }),
-    logo: PilonLogoIcon,
+    logo: '/images/pi.png',
     logoSizeFactor: 0.7,
     name: 'Pilon',
     primaryColor: '#ADADAD',
@@ -111,7 +103,7 @@ const PROJECTS: Project[] = [
       DateTime.fromObject({ month: 11, year: 2017 }),
       DateTime.fromObject({ month: 6, year: 2018 }),
     ),
-    logo: MomentLogoIcon,
+    logo: '/images/svgs/MomentLogoIcon.svg',
     logoSizeFactor: 0.75,
     name: 'Moment',
     primaryColor: '#2B4E56',
@@ -130,7 +122,7 @@ const PROJECTS: Project[] = [
       DateTime.fromObject({ month: 1, year: 2018 }),
       DateTime.fromObject({ month: 6, year: 2018 }),
     ),
-    logo: KPLogoIcon,
+    logo: '/images/svgs/KPLogoIcon.svg',
     logoSizeFactor: 0.55,
     name: 'Kleiner-Perkins',
     primaryColor: '#000',
@@ -158,7 +150,7 @@ const PROJECTS: Project[] = [
       DateTime.fromObject({ month: 3, year: 2017 }),
       DateTime.fromObject({ month: 1, year: 2018 }),
     ),
-    logo: APSLogoIcon,
+    logo: '/images/aps.png',
     logoSizeFactor: 0.75,
     name: 'CUWiP 2018',
     primaryColor: '#7F2857',
@@ -176,7 +168,7 @@ const PROJECTS: Project[] = [
       DateTime.fromObject({ month: 5, year: 2016 }),
       DateTime.fromObject({ month: 8, year: 2016 }),
     ),
-    logo: EBayLogoIcon,
+    logo: '/images/svgs/EBayLogoIcon.svg',
     logoSizeFactor: 0.8,
     name: 'eBay',
     primaryColor: '#E63238',

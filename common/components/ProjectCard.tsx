@@ -1,6 +1,8 @@
 import Color from 'color';
 import map from 'lodash/map';
+import toUpper from 'lodash/toUpper';
 import { DateTime, Interval } from 'luxon';
+import Image from 'next/image';
 import React, { FC, useEffect, useState } from 'react';
 import { AiFillCalendar } from 'react-icons/ai';
 import { BsFillPeopleFill } from 'react-icons/bs';
@@ -171,7 +173,7 @@ const HorizontalProjectCard: FC<HorizontalProjectCardProps> = ({
       style={{ backgroundColor: primaryColor, width: 255 }}
     >
       {/* Row of logo, name, and description */}
-      <div className="flex-row padding-sm-bottom flex-justify-start flex-align-start">
+      <div className="relative flex-row padding-sm-bottom flex-justify-start flex-align-start">
         <div
           className="flex-row flex-align-center flex-justify-center background-white circular margin-sm-top"
           style={{ color: primaryColor, height: LOGO_SIZE, width: LOGO_SIZE }}
@@ -242,7 +244,9 @@ type PlaceholderLogoProps = {
 
 /** A component to render for a project with no logo */
 const PlaceholderLogo: FC<PlaceholderLogoProps> = ({ color, letter }) => (
-  <span style={{ color, fontSize: 55, lineHeight: `${LOGO_SIZE}px` }}>{letter}</span>
+  <span style={{ color, fontSize: 55, lineHeight: `${LOGO_SIZE}px` }}>
+    {toUpper(letter)}
+  </span>
 );
 
 /** A project card block */
@@ -254,18 +258,14 @@ const ProjectCard: FC<ProjectCardProps & { orientation: 'vertical' | 'horizontal
 }) => {
   const { name, primaryColor } = props;
   const logoComponent = logo ? (
-    <div className="relative width-0 height-0">
-      <img
-        alt={`${name} logo`}
-        className="absolute"
-        src={logo}
-        style={{
-          height: (logoSizeFactor || 1) * LOGO_SIZE,
-          left: (-(logoSizeFactor || 1) * LOGO_SIZE) / 2,
-          top: (-(logoSizeFactor || 1) * LOGO_SIZE) / 2,
-          width: (logoSizeFactor || 1) * LOGO_SIZE,
-        }}
-      />
+    <div
+      className="absolute width-0 height-0"
+      style={{
+        height: (logoSizeFactor || 1) * LOGO_SIZE,
+        width: (logoSizeFactor || 1) * LOGO_SIZE,
+      }}
+    >
+      <Image alt={`${name} logo`} className="absolute" layout="fill" src={logo} />
     </div>
   ) : (
     <PlaceholderLogo color={primaryColor} letter={name.charAt(0)} />

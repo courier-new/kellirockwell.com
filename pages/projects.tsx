@@ -5,8 +5,8 @@ import MobileProjectCarousel from '../common/components/MobileProjectCarousel';
 import ProjectCard from '../common/components/ProjectCard';
 import { MAIN_CONTENT_MAX_WIDTH, SIDEBAR_WIDTH } from '../common/constants/content-sizes';
 import useDisplaySize from '../common/hooks/useDisplaySize';
-import PROJECTS from '../content/projects';
 import useScrollPositionController from '../common/hooks/useScrollPositionController';
+import PROJECTS from '../content/projects';
 
 /**
  * Screen component for primary screen "Projects"

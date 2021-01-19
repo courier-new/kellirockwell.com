@@ -46,12 +46,6 @@ $headers: (
 
 @include header-modifiers($headers);
 
-/* Default font */
-* {
-  font-family: $titillium;
-  font-weight: lighter;
-}
-
 strong,
 .font-bold {
   font-weight: bold;
@@ -95,10 +89,6 @@ $font-sizes: (
   }
 }
 
-* {
-  @include font-size-classes($font-sizes);
-}
-
 /** Main text font names */
 
 $font-names: (
@@ -116,5 +106,10 @@ $font-names: (
 }
 
 * {
+  /** Default font */
+  font-family: $titillium;
+  font-weight: lighter;
+
+  @include font-size-classes($font-sizes);
   @include font-name-classes($font-names);
 }

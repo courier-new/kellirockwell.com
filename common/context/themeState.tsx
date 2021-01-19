@@ -67,6 +67,9 @@ const themeReducer = (state: ThemeState, action: ThemeAction): ThemeState => {
  *
  * `ThemeState` tracks the theme currently set for the site, and its `Dispatch`
  * enables toggling the theme
+ *
+ * @param props the functional component props
+ * @param props.children children to the provider will have access to its context
  */
 export const ThemeProvider: FC = ({ children }) => {
   const [state, dispatch] = useReducer(themeReducer, { theme: 'light' });

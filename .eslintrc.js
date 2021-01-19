@@ -154,7 +154,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 1,
     'react-hooks/rules-of-hooks': 2,
     // eslint-plugin-simple-import-sort
-    // 'simple-import-sort/imports': 2,
+    'simple-import-sort/imports': 2,
     // sort-destructure-keys plugin
     'sort-destructure-keys/sort-destructure-keys': 1,
     // Base ESLint rules

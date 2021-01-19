@@ -1,11 +1,18 @@
-import React, { FC } from 'react';
 import Image from 'next/image';
+import React, { FC } from 'react';
 
-/** Component for my profile image */
+/**
+ * Component for my profile image
+ *
+ * @param props the functional component props
+ * @param props.maxSize the maximum expected width or height of the component
+ * @param props.shape whether the image should be displayed with rounded corners
+ * or as a plain square, defaults to square
+ */
 const ProfileImage: FC<{
   maxSize?: number;
-  shape: 'round' | 'square';
-}> = ({ maxSize = 1000, shape }) => {
+  shape?: 'round' | 'square';
+}> = ({ maxSize = 1000, shape = 'square' }) => {
   return (
     <>
       <style global jsx>

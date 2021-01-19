@@ -12,16 +12,18 @@ export type ScrollPosition = {
 
 type ScrollPositionAction =
   /** Set the current scroll position */
-  Action<
-    '@scroll-position-state/set-position',
-    { percent: Percent; position: ScrollPosition }
-  >;
+  | Action<
+      '@scroll-position-state/set-position',
+      { percent: Percent; position: ScrollPosition }
+    >
+  | Action<'@scroll-position-state/set-section-index', { index: number }>;
 
 type ScrollPositionDispatch = Dispatch<ScrollPositionAction>;
 
 type ScrollPositionState = {
   percent: Percent;
   position: ScrollPosition;
+  sectionIndex: number;
 };
 
 const ScrollPositionStateContext = createContext<ScrollPositionState | undefined>(
@@ -35,7 +37,9 @@ const ScrollPositionDispatchContext = createContext<ScrollPositionDispatch | und
  * Named export shorthand to use `ScrollPositionStateContext` as a hook
  *
  * `ScrollPositionState` tracks the current scroll position coordinates and as a
- * percent using an element ref to recalculate on scroll.
+ * percent using an element ref to recalculate on scroll. It also stores the
+ * index corresponding to section of the screen containing the current scroll
+ * position
  *
  * @notes
  * - Context will not be defined outside of provider
@@ -43,6 +47,7 @@ const ScrollPositionDispatchContext = createContext<ScrollPositionDispatch | und
  *   const scrollPercent = state?.percent; // 50
  *   const scrollX = state?.position.x; // 0
  *   const scrollY = state?.position.y; // 1000
+ *   const sectionIndex = state?.sectionIndex; // 2
  * };
  */
 export const useScrollPositionState = (): ScrollPositionState | undefined =>
@@ -51,16 +56,14 @@ export const useScrollPositionState = (): ScrollPositionState | undefined =>
  * Named export shorthand to use `ScrollPositionDispatchContext` as a hook
  *
  * `ScrollPositionDispatch` is intended to be used in conjunction with the
- * `useScrollPositionController()` hook, which computes the scroll position and
- * percent
+ * `useScrollPositionController()` and `useSectionIndexController()` hooks,
+ * which compute the scroll position, percent, and current section based on the
+ * scroll position
  *
  * @notes it appears to be possible to use dispatch outside of provider
- * @example const Comp: FC = () => {
- *   const dispatch = useScrollPositionDispatch();
- *   dispatch({
- *     payload: {
- *       percent: asPercent(50),
- *       position: { x: 0, y: 1000 }
+ * @example const Comp: FC = () => {const dispatch =
+ *   useScrollPositionDispatch(); dispatch({payload: {percent: asPercent(50),
+ *   position: { x: 0, y: 1000 }
  *    },
  *    type: '@scroll-position-state/set-position',
  *  });
@@ -80,8 +83,14 @@ const scrollPositionReducer = (
   action: ScrollPositionAction,
 ): ScrollPositionState => {
   switch (action.type) {
+    case '@scroll-position-state/set-section-index':
+      return {
+        ...state,
+        sectionIndex: action.payload.index,
+      };
     case '@scroll-position-state/set-position':
       return {
+        ...state,
         ...action.payload,
       };
     default:
@@ -93,14 +102,19 @@ const scrollPositionReducer = (
  * Wrapper component that composes the `ScrollPositionState` and `Dispatch`
  * `Context` providers to make the context available to its children
  *
- * `ScrollPositionState` provides a dictionary of section heights for pages in
- * the app, retrievable by their slugs, and its `Dispatch` enables setting the
- * heights
+ * `ScrollPositionState` tracks the user's current scroll position on the page
+ * as absolute coordinates and as a percent as well as the index corresponding
+ * to section of the screen containing the current scroll position, and its
+ * `Dispatch` enables setting the positions or index
+ *
+ * @param props the functional component props
+ * @param props.children children to the provider will have access to its context
  */
 export const ScrollPositionProvider: FC = ({ children }) => {
   const [state, dispatch] = useReducer(scrollPositionReducer, {
     percent: asPercent(0),
     position: { x: 0, y: 0 },
+    sectionIndex: 0,
   });
   return (
     <ScrollPositionStateContext.Provider value={state}>

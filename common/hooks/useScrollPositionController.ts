@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
+
 import {
   ScrollPosition,
   useScrollPositionDispatch,
 } from '../context/scrollPositionState';
-
 import { asPercent, Percent } from '../utilities/percent';
 import useDeepCompareEffect from './useDeepCompareEffect';
 

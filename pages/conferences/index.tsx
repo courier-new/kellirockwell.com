@@ -1,13 +1,14 @@
 import find from 'lodash/find';
 import flatMap from 'lodash/flatMap';
 import map from 'lodash/map';
-import React, { FC, ReactNode } from 'react';
+import React, { FC } from 'react';
 
 import ConferenceCardGrid from '../../common/components/ConferenceCardGrid';
-// import QuickNav from '../../common/components/QuickNav';
-import ScreenContent from '../../common/components/ScreenContent';
+import Screen from '../../common/components/Screen';
+import SideNavMenu from '../../common/components/SideNavMenu';
+import useScreenSections from '../../common/hooks/sections/useScreenSections';
 import CONFERENCES_SECTIONS from '../../content/conferences';
-import { ContentRenderer, ContentSection } from '../../content/utilities/types';
+import { ContentRenderer } from '../../content/utilities/types';
 
 /**
  * Maps each section to a `<section>` of JSX to render, providing the section
@@ -91,32 +92,19 @@ export const renderConferencesSections: ContentRenderer<typeof CONFERENCES_SECTI
  * Screen component for primary screen "Conferences"
  */
 const ConferencesScreen: FC = () => {
+  const { ref, resetScroll, sectionRefsMap } = useScreenSections(CONFERENCES_SECTIONS);
+
   return (
-    <ScreenContent
-      activePage="conferences"
-      containerClassName="padding-med"
-      renderSections={
-        renderConferencesSections as ContentRenderer<ContentSection<string, ReactNode>[]>
-      }
-      sections={CONFERENCES_SECTIONS}
-    />
+    <Screen
+      ref={ref}
+      resetScroll={resetScroll}
+      sideNav={<SideNavMenu contentSections={CONFERENCES_SECTIONS} />}
+    >
+      <div className="padding-med">
+        {renderConferencesSections(CONFERENCES_SECTIONS, sectionRefsMap)}
+      </div>
+    </Screen>
   );
 };
-
-/** Get conferences for static screen props */
-// export const getStaticProps: GetStaticProps<ConferencesScreenProps> = async () => {
-//   const conferences: any[] = await new Promise(() => {
-//     setTimeout(() => {
-//       return map(CONFERENCES_2020, (conference) => ({
-//         ...conference,
-//         date: conference.date.toString(),
-//       }));
-//     }, 100);
-//   });
-
-//   return {
-//     props: { conferences },
-//   };
-// };
 
 export default ConferencesScreen;

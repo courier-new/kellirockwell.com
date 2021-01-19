@@ -76,16 +76,27 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
     const prefersDarkMode = usePrefersDarkMode();
     const themeState = useThemeState();
     const themeDispatch = useThemeDispatch();
+    const setting = themeState?.setting || 'auto';
     const theme = themeState?.theme || 'light';
 
     useEffect(() => {
-      const preferredTheme = prefersDarkMode ? 'dark' : 'light';
-      if (preferredTheme !== theme) {
-        themeDispatch?.({ type: '@theme-state/toggle-theme' });
+      if (setting === 'auto') {
+        const preferredTheme = prefersDarkMode ? 'dark' : 'light';
+        if (preferredTheme !== theme) {
+          themeDispatch?.({ type: '@theme-state/toggle-theme' });
+        }
       }
       // Only rerun the effect on mount or if the user preference changes
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [prefersDarkMode]);
+    }, [prefersDarkMode, setting, themeDispatch]);
+
+    /** Handler to toggle the theme and change the setting to manual */
+    const onToggleTheme = useCallback(() => {
+      if (setting === 'auto') {
+        themeDispatch?.({ type: '@theme-state/toggle-setting' });
+      }
+      themeDispatch?.({ type: '@theme-state/toggle-theme' });
+    }, [themeDispatch, setting]);
 
     /** If true, will always show the main left-hand navigation menu; otherwise
      * will show collapsible navigation menu drawer */
@@ -113,10 +124,7 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
           className="absolute z-index-top"
           style={{ bottom: '0.75em', right: '0.75em' }}
         >
-          <DarkModeToggle
-            current={theme}
-            onToggle={(): void => themeDispatch?.({ type: '@theme-state/toggle-theme' })}
-          />
+          <DarkModeToggle current={theme} onToggle={onToggleTheme} />
         </div>
         <ProgressBar />
         <div className="full-width flex-1 flex-row non-scrollable border-box">

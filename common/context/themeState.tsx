@@ -1,13 +1,13 @@
 import React, { createContext, FC, useContext, useReducer } from 'react';
 
 type ThemeAction =
-  /** Toggle the theme for the site */
-  Action<'@theme-state/toggle-theme'>;
+  /** Toggle the theme or setting for the site */
+  Action<'@theme-state/toggle-theme'> | Action<'@theme-state/toggle-setting'>;
 
 type ThemeDispatch = Dispatch<ThemeAction>;
 
 /** Tracks whether the site is currently using the dark or light theme */
-type ThemeState = { theme: 'dark' | 'light' };
+type ThemeState = { setting: 'auto' | 'manual'; theme: 'dark' | 'light' };
 
 const ThemeStateContext = createContext<ThemeState | undefined>(undefined);
 const ThemeDispatchContext = createContext<ThemeDispatch | undefined>(undefined);
@@ -51,6 +51,11 @@ export const useThemeDispatch = (): ThemeDispatch | undefined =>
  */
 const themeReducer = (state: ThemeState, action: ThemeAction): ThemeState => {
   switch (action.type) {
+    case '@theme-state/toggle-setting':
+      return {
+        ...state,
+        setting: state.setting === 'auto' ? 'manual' : 'auto',
+      };
     case '@theme-state/toggle-theme':
       return {
         ...state,
@@ -72,7 +77,7 @@ const themeReducer = (state: ThemeState, action: ThemeAction): ThemeState => {
  * @param props.children children to the provider will have access to its context
  */
 export const ThemeProvider: FC = ({ children }) => {
-  const [state, dispatch] = useReducer(themeReducer, { theme: 'light' });
+  const [state, dispatch] = useReducer(themeReducer, { setting: 'auto', theme: 'light' });
   return (
     <ThemeStateContext.Provider value={state}>
       <ThemeDispatchContext.Provider value={dispatch}>

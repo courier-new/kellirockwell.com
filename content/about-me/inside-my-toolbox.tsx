@@ -8,23 +8,11 @@ import uniqBy from 'lodash/uniqBy';
 import React, { FC } from 'react';
 import { FaBolt, FaHeart, FaStar } from 'react-icons/fa';
 
+import { Tool } from '../../api/tools';
 import Tag from '../../common/components/Tag';
 import useDisplaySize from '../../common/hooks/useDisplaySize';
 import generateTitleProps from '../utilities/for-content';
 import { ContentSection } from '../utilities/types';
-
-/** Type of a tool in my toolbox */
-export type Tool = {
-  /** Unique identifier */
-  _id: string;
-  /**
-   * A list of ways a tool can be highlighted; "hearted" indicates a tool I
-   * really enjoy and "starred" indicates a tool I have a lot of experience using
-   */
-  marks?: ('HEARTED' | 'STARRED' | 'LEARNING')[];
-  /** The display name for the tool */
-  name: string;
-};
 
 /** Styled heart icon */
 const Heart: FC = () => (

@@ -6,10 +6,13 @@ import { AppContext, AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { FC } from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { Slug } from '../common/constants/slugs';
 import CombinedProvider from '../common/context';
 import { toTitleCase } from '../common/utilities/string-case';
+
+const queryClient = new QueryClient();
 
 // eslint-disable-next-line jsdoc/require-param
 /**
@@ -24,9 +27,11 @@ const App: NextComponentType<AppContext, never, AppProps> = ({
   pageProps,
 }) => (
   <CombinedProvider>
-    <InContext>
-      <Component {...pageProps} />
-    </InContext>
+    <QueryClientProvider client={queryClient}>
+      <InContext>
+        <Component {...pageProps} />
+      </InContext>
+    </QueryClientProvider>
   </CombinedProvider>
 );
 

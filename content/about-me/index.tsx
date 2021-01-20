@@ -1,6 +1,7 @@
+import { Tool } from '../../api/tools';
 import { ContentSection } from '../utilities/types';
 import GET_TO_KNOW_ME from './get-to-know-me';
-import buildInsideMyToolbox, { Tool } from './inside-my-toolbox';
+import buildInsideMyToolbox from './inside-my-toolbox';
 import ROLES_I_SERVE from './roles-I-serve';
 
 type AboutMeSectionName =

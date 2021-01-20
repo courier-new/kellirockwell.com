@@ -1,5 +1,10 @@
 import { gql } from 'graphql-request';
-import { QueryObserverResult, useQuery, UseQueryResult } from 'react-query';
+import {
+  QueryObserverResult,
+  useQuery,
+  UseQueryOptions,
+  UseQueryResult,
+} from 'react-query';
 
 import request from './client';
 
@@ -20,15 +25,16 @@ export const TOOLS_CACHE_KEYS = {
   getTools: '@tools/get-tools',
 };
 
-type GetToolsResponse = {
+/** Response type of getTools query */
+export type GetToolsResponse = {
+  /** Page of tools */
   tools: {
+    /** The tools themselves */
     data: Tool[];
   };
 };
 
-/**
- * Query tools I use
- */
+/** Query tools I use */
 export const getTools = (): Promise<GetToolsResponse> =>
   request<GetToolsResponse>(
     'FAUNADB',
@@ -48,9 +54,14 @@ export const getTools = (): Promise<GetToolsResponse> =>
 /**
  * Hook to query the tools I use, which is cached indefinitely and not refreshed
  * throughout the duration of the time the user is on the site
+ *
+ * @param options (optional) any `UseQueryOptions` to apply to this query
  */
-export const useTools = (): QueryObserverResult<GetToolsResponse, unknown> =>
+export const useTools = (
+  options?: UseQueryOptions<GetToolsResponse>,
+): QueryObserverResult<GetToolsResponse, unknown> =>
   useQuery(TOOLS_CACHE_KEYS.getTools, getTools, {
     cacheTime: Infinity,
     staleTime: Infinity,
+    ...options,
   });

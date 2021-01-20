@@ -1,8 +1,9 @@
 import find from 'lodash/find';
 import flatMap from 'lodash/flatMap';
+import { GetStaticProps } from 'next';
 import React, { FC, useCallback, useMemo, useRef } from 'react';
 
-import { Tool, useTools } from '../api/tools';
+import { getTools, GetToolsResponse, Tool, useTools } from '../api/tools';
 import Screen from '../common/components/Screen';
 import SideNavMenu from '../common/components/SideNavMenu';
 import useSectionIndexController from '../common/hooks/sections/useSectionIndexController';
@@ -107,11 +108,19 @@ export const renderAboutMeSections = (
   });
 };
 
+type StaticProps = {
+  /** Tools I use prefetched at build time to pass as initial data to query */
+  tools: GetToolsResponse;
+};
+
 /**
  * Screen component for primary screen "About Me"
+ *
+ * @param props the functional component props
+ * @param props.tools array of `Tool`s I use, fetched from the server
  */
-const AboutMeScreen: FC = () => {
-  const { data: toolsResponse } = useTools();
+const AboutMeScreen: FC<StaticProps> = ({ tools }) => {
+  const { data: toolsResponse } = useTools({ initialData: tools });
 
   const sections = useMemo(() => {
     const tools: Tool[] = toolsResponse?.tools.data || [];
@@ -145,3 +154,11 @@ const AboutMeScreen: FC = () => {
 };
 
 export default AboutMeScreen;
+
+/**
+ * Prefetch tools at build time to pass as initial data to query
+ */
+export const getStaticProps: GetStaticProps<StaticProps> = async () => {
+  const tools = await getTools();
+  return { props: { tools } };
+};

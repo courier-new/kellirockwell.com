@@ -45,13 +45,13 @@ const WhyILoveConferencesScreen: FC = () => {
             alt="The majority of the attendees of the CUWiP conference seated together in an auditorium. The site author is circled towards the middle back."
             height={useFullSizeImage ? 361 : 241}
             layout={useFullSizeImage ? 'responsive' : 'intrinsic'}
-            src="/images/cuwip2014@original.jpg"
+            src="/images/cuwip2014.jpg"
             width={useFullSizeImage ? 600 : 400}
           />
           <p className="xsmall">
             Most of the attendees of CUWiP &apos;14 @ UC Berkeley gathered for the final
             session of the conference, including me!{' '}
-            <Link href="/images/cuwip2014@original.jpg">
+            <Link href="/images/cuwip2014.jpg">
               <a title="View full size">(View full size)</a>
             </Link>
           </p>

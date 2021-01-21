@@ -1,10 +1,5 @@
 import { gql } from 'graphql-request';
-import {
-  QueryObserverResult,
-  useQuery,
-  UseQueryOptions,
-  UseQueryResult,
-} from 'react-query';
+import { QueryObserverResult, useQuery, UseQueryOptions } from 'react-query';
 
 import request from './client';
 

@@ -4,10 +4,10 @@ import Link from 'next/link';
 import React, { FC } from 'react';
 import { BsArrowRight } from 'react-icons/bs';
 
+import { CANCELLED, Conference, hasPassed } from '../../api/conferences';
 import useDisplaySize from '../../common/hooks/useDisplaySize';
 import generateTitleProps from '../utilities/for-content';
-import { CANCELLED, Conference, hasPassed } from './Conference';
-import { CONFERENCES } from './roadmap';
+import { ContentSection } from '../utilities/types';
 
 /**
  * Tallies how many conferences I have attended based on the following criteria:
@@ -23,8 +23,13 @@ const countConferencesAttended = (conferences: Conference[] | Conference[][]): n
     return hasPassed(conference);
   }).length + 4; // Add 4 for CUWiPs
 
-/** The content for the Journey-to-the-center section of the Conferences page */
-const JourneyContent: FC = () => {
+/**
+ * The content for the Journey-to-the-center section of the Conferences page
+ *
+ * @param props the functional component props
+ * @param props.conferences array of `Conference`s to render
+ */
+const JourneyContent: FC<{ conferences: Conference[] }> = ({ conferences }) => {
   const [displaySize] = useDisplaySize();
 
   let twoColumns = true;
@@ -75,7 +80,7 @@ const JourneyContent: FC = () => {
           <h3 className="margin-0-bottom">Conference stats</h3>
           <ul className="padding-0-h no-default-bullets">
             <ConferenceStat
-              stat={countConferencesAttended(CONFERENCES)}
+              stat={countConferencesAttended(conferences)}
               statClass="text-raspberry"
               statLabel="attended"
               statWidth={statWidth}
@@ -95,10 +100,11 @@ const JourneyContent: FC = () => {
             <ConferenceStat
               stat={0}
               statClass="text-space"
-              statLabel="spoken at"
+              statLabel="spoken at*"
               statWidth={statWidth}
             />
           </ul>
+          <span className="text-align-right xsmall">* ...yet ;)</span>
         </div>
       </div>
       {/* Raise up this section in two column orientation to cut down on whitespace */}
@@ -153,7 +159,17 @@ type ConferenceStatProps = {
   statWidth: 'small' | 'large';
 };
 
-/** A component that builds an <li> for a given stat about conference participation */
+/**
+ * A component that builds an <li> for a given stat about conference
+ * participation
+ *
+ * @param props the functional component props
+ * @param props.stat the actual stat number
+ * @param props.statClass the class (for color) to apply to the stat number
+ * @param props.statLabel the label for the stat
+ * @param props.statWidth the size for the box containing the stat number, to
+ * change spacing
+ */
 const ConferenceStat: FC<ConferenceStatProps> = ({
   stat,
   statClass,
@@ -171,7 +187,16 @@ const ConferenceStat: FC<ConferenceStatProps> = ({
   </li>
 );
 
-export default {
+/**
+ * Builder for journey to the center content
+ *
+ * @param conferences array of `Conference`s to use to render the section content
+ */
+const buildJourneyToTheCenter = (
+  conferences: Conference[],
+): ContentSection<'Journey to the center of the community', JSX.Element> => ({
   ...generateTitleProps('Journey to the center of the community'),
-  content: <JourneyContent key="journey" />,
-};
+  content: <JourneyContent conferences={conferences} key="journey" />,
+});
+
+export default buildJourneyToTheCenter;

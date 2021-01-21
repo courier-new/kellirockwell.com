@@ -5,13 +5,7 @@ import { AiFillCalendar } from 'react-icons/ai';
 import { FiLink } from 'react-icons/fi';
 import { IoIosPin } from 'react-icons/io';
 
-import {
-  CANCELLED,
-  Conference,
-  hasPassed,
-  NEXT,
-  NOW,
-} from '../../content/conferences/Conference';
+import { CANCELLED, Conference, hasPassed, NEXT, NOW } from '../../api/conferences';
 import Tag from './Tag';
 
 /**
@@ -25,18 +19,24 @@ import Tag from './Tag';
  *    if the date is just a single DateTime, formats the date as "(Start)Month
  *    (Start)Day, (Start)Year (- EndMonth EndDay, EndYear)"
  *
- * @param date the DateTime or Interval to format
+ * @param conference the `Conference` whose date to format
  */
-const formatDate = (date: DateTime | Interval): string => {
-  if (Interval.isInterval(date)) {
-    if (date.hasSame('year') && date.hasSame('month')) {
-      return `${date.start.toFormat('LLLL')} ${date.toFormat('d')}, ${date.start.year}`;
+const formatDate = (conference: Conference): string => {
+  const { endDate, startDate } = conference;
+
+  if (endDate) {
+    if (startDate.year === endDate.year && startDate.month === endDate.month) {
+      return `${startDate.toFormat('LLLL')} ${startDate.toFormat(
+        'd',
+      )} – ${endDate.toFormat('d')}, ${startDate.year}`;
     }
-    if (date.hasSame('year')) {
-      return `${date.toFormat('LLLL d')}, ${date.start.year}`;
+    if (startDate.year === endDate.year) {
+      return `${startDate.toFormat('LLLL d')} – ${endDate.toFormat('LLLL d')}, ${
+        startDate.year
+      }`;
     }
   }
-  return date.toFormat('LLLL d, y');
+  return startDate.toFormat('LLLL d, y');
 };
 
 /**
@@ -54,7 +54,7 @@ const formatURL = (url: string): string =>
  * @param conference the Conference to render
  */
 const ConferenceCard: FC<Conference> = (conference) => {
-  const { date, dateLabel, label, location, name, website } = conference;
+  const { dateLabel, label, location, name, website } = conference;
 
   const opacityClass = hasPassed(conference) ? 'minimum-opacity' : '';
 
@@ -78,12 +78,12 @@ const ConferenceCard: FC<Conference> = (conference) => {
   }
 
   return (
-    <div className={`background-magnolia border-box flex-column ${opacityClass}`}>
+    <div className="background-magnolia border-box flex-column">
       {labelText ? (
         <ConferenceCardLabel backgroundColorClass={labelClass} labelText={labelText} />
       ) : null}
       <div
-        className={`${
+        className={`${opacityClass} ${
           labelText ? 'padding-sm-top' : 'padding-med-top'
         } padding-med-h padding-med-bottom`}
       >
@@ -94,7 +94,7 @@ const ConferenceCard: FC<Conference> = (conference) => {
           {name}
         </h3>
         <ul className="no-default-bullets padding-0">
-          <ConferenceCardDate formattedDate={formatDate(date)} />
+          <ConferenceCardDate formattedDate={formatDate(conference)} />
           <ConferenceCardLocation location={location} />
           <ConferenceCardWebsite website={website} />
         </ul>
@@ -123,7 +123,12 @@ const ConferenceCardLabel: FC<{ backgroundColorClass: string; labelText: string 
 
 const TEXT_BREAK_LENGTH = 22;
 
-/** Line of a ConferenceCard for the date */
+/**
+ * Line of a ConferenceCard for the date
+ *
+ * @param props the functional component props
+ * @param props.
+ */
 const ConferenceCardDate: FC<{ formattedDate: string }> = ({ formattedDate }) => {
   const label = (
     <span className={formattedDate.length > TEXT_BREAK_LENGTH ? 'small' : ''}>
@@ -133,7 +138,12 @@ const ConferenceCardDate: FC<{ formattedDate: string }> = ({ formattedDate }) =>
   return <ConferenceCardLine icon={<AiFillCalendar {...iconProps} />} label={label} />;
 };
 
-/** Line of a ConferenceCard for the location */
+/**
+ * Line of a ConferenceCard for the location
+ *
+ * @param props the functional component props
+ * @param props.location the location to display
+ */
 const ConferenceCardLocation: FC<{ location: string }> = ({ location }) => {
   const label = (
     <span className={location.length > TEXT_BREAK_LENGTH ? 'small' : ''}>{location}</span>
@@ -143,7 +153,12 @@ const ConferenceCardLocation: FC<{ location: string }> = ({ location }) => {
   );
 };
 
-/** Line of a ConferenceCard for the website */
+/**
+ * Line of a ConferenceCard for the website
+ *
+ * @param props the functional component props
+ * @param props.website the website URL to display
+ */
 const ConferenceCardWebsite: FC<{ website: string }> = ({ website }) => {
   const formattedURL = formatURL(website);
   const linkAnchor = (
@@ -164,7 +179,13 @@ const ConferenceCardWebsite: FC<{ website: string }> = ({ website }) => {
   );
 };
 
-/** Line of a ConferenceCard, as an <li>, composed of an icon and label */
+/**
+ * Line of a ConferenceCard, as an <li>, composed of an icon and label
+ *
+ * @param props the functional component props
+ * @param props.icon the `JSX.Element` to use for the icon of this line
+ * @param props.label the `JSX.Element` to use for the label of this line
+ */
 const ConferenceCardLine: FC<{ icon: JSX.Element; label: JSX.Element }> = ({
   icon,
   label,

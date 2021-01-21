@@ -40,10 +40,12 @@ export type Project = {
 const PROJECTS: Project[] = [
   {
     accomplishments: [
-      'Audited, overhauled, and maintained comprehensive technical documentation',
-      'Architected new chemical recommendations engine and reading processor',
-      'Reduced TypeScript compiler errors by 95% in large React Native codebase',
-      'Automated collection of open source package licenses, presentation of GraphQL API consumer doc',
+      'Architected new chemical recommendations engine to scale to production-level reading processing capability',
+      'Guided adoption of GraphQL APIs across all products in Sutro ecosystem',
+      'Audited, overhauled, and maintained 80-page technical documentation',
+      'Led refactor of app data layer, resulting in 50% fewer lines of dedicated state management code',
+      'Reduced TypeScript compiler errors by 98% in large React Native codebase',
+      'Rolled out command line tools to automate 90% of release tasks',
     ],
     dates: {
       end: 'current',
@@ -60,8 +62,8 @@ const PROJECTS: Project[] = [
   },
   {
     accomplishments: [
-      'Scaled monolithic forums integration to support infinite scrolling, inline emojis, embedded media, and premium content upsells',
-      'Defined high level API for switching sport team to handle deep links, UI skin, and data source',
+      'Transitioned more than 60% of web consumer features to new white-label mobile app',
+      'Defined high level API and built out infrastructure for switching theme and data source for each sports team',
       'Delivered proof of concept system for dynamically categorized push notifications',
       'Onboarded and mentored other developers to grow team to 3x',
     ],
@@ -81,7 +83,7 @@ const PROJECTS: Project[] = [
   {
     accomplishments: [
       'Leveraged system of branded types to distinguish types of string data in app',
-      'Supplied comprehensive JSDoc comments for all exported entities',
+      'Supplied comprehensive JSDoc comments for all shared entities',
     ],
     dates: DateTime.fromObject({ month: 3, year: 2020 }),
     logo: '/images/pi.png',
@@ -95,9 +97,10 @@ const PROJECTS: Project[] = [
   },
   {
     accomplishments: [
-      'Designed and built API for scheduled notifications management',
-      'Automated invoice creation by integrating invoicing process with Quickbooks API',
+      'Redesigned and built notification system API to support third-party integrations',
+      'Automated invoice creation workflow with Quickbooks API',
       'Corrected inaccuracies and tricky edge cases in multiple invoice calculations',
+      'Cut backlog of bugs reported by more than 80%',
     ],
     dates: Interval.fromDateTimes(
       DateTime.fromObject({ month: 11, year: 2017 }),
@@ -114,9 +117,9 @@ const PROJECTS: Project[] = [
   },
   {
     accomplishments: [
-      'Devised robust CSV import tool using flexible entity-attribute-value model',
-      'Reconciled 50+ separate instances of modal UI components into a single modal with a unified API and global state',
+      'Devised robust CSV upload and import tool using flexible entity-attribute-value model',
       'Incrementally converted 75% of a large React codebase to TypeScript',
+      'Reconciled 50+ separate instances of modal UI components into a single modal with a unified API and global state',
     ],
     dates: Interval.fromDateTimes(
       DateTime.fromObject({ month: 1, year: 2018 }),
@@ -142,7 +145,7 @@ const PROJECTS: Project[] = [
   },
   {
     accomplishments: [
-      'Formalized and delivered 3-month plan to design, implement, and compile content for informational website for conference',
+      'Completed design and development of informational website 2 weeks ahead of schedule',
       'Eliminated the need for large physical schedule printouts by delivering CUWiP’s first mobile-first online schedule',
       'Facilitated meetings between the three academic host institutions and APS to solicit feedback and perform content research',
     ],
@@ -161,8 +164,8 @@ const PROJECTS: Project[] = [
   },
   {
     accomplishments: [
-      "Designed and built a scalable, live dashboard interface of operational statistics of eBay's physical infrastructure",
-      'Reorganized internal communications web platform',
+      'Led development from zero to release on web platform for internal communications and database server administration',
+      "Designed and built a scalable, live dashboard interface of operational statistics of organization's physical infrastructure",
     ],
     dates: Interval.fromDateTimes(
       DateTime.fromObject({ month: 5, year: 2016 }),
@@ -179,8 +182,8 @@ const PROJECTS: Project[] = [
   },
   {
     accomplishments: [
-      'Designed websites, marketing materials, art pieces, infographics, and photomanipulations for diverse purposes/platforms',
-      'Built "Thiink" brand for a client-based poster design service with the tagline "unique posters for unique people"',
+      'Designed websites, marketing materials, art pieces, infographics, and photomanipulations for diverse purposes and platforms',
+      'Operated poster commission business and "Thiink" brand for a client-based design services',
     ],
     dates: Interval.fromDateTimes(
       DateTime.fromObject({ month: 6, year: 2007 }),

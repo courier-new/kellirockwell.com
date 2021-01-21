@@ -147,7 +147,7 @@ const IntroContent: FC<{ isMobile: boolean }> = ({ isMobile }) => (
           <Link href="/projects">
             <a className="button no-hover text-white large karla">Projects</a>
           </Link>
-          <Link href="/resume">
+          <Link href="/files/kelli-rockwell-resume-2021.pdf">
             <a className="button no-hover text-white large karla">Resume</a>
           </Link>
           <Link href="/conferences">

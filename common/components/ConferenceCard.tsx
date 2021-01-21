@@ -1,5 +1,4 @@
 import replace from 'lodash/replace';
-import { DateTime, Interval } from 'luxon';
 import React, { FC } from 'react';
 import { AiFillCalendar } from 'react-icons/ai';
 import { FiLink } from 'react-icons/fi';
@@ -107,7 +106,14 @@ const iconProps = {
   className: 'text-black',
 };
 
-/** A small tag-like label for a Conference */
+/**
+ * A small tag-like label for a Conference
+ *
+ * @param props the functional component props
+ * @param props.backgroundColorClass the classname to set the background color
+ * of the tag
+ * @param props.labelText the text to display in this label
+ */
 const ConferenceCardLabel: FC<{ backgroundColorClass: string; labelText: string }> = ({
   backgroundColorClass,
   labelText,
@@ -127,7 +133,7 @@ const TEXT_BREAK_LENGTH = 22;
  * Line of a ConferenceCard for the date
  *
  * @param props the functional component props
- * @param props.
+ * @param props.formattedDate the date to display on this line
  */
 const ConferenceCardDate: FC<{ formattedDate: string }> = ({ formattedDate }) => {
   const label = (
@@ -166,6 +172,7 @@ const ConferenceCardWebsite: FC<{ website: string }> = ({ website }) => {
       className={formattedURL.length > TEXT_BREAK_LENGTH ? 'small' : ''}
       href={website}
       style={{ wordWrap: 'break-word' }}
+      target="blank"
       title={formattedURL}
     >
       {formattedURL}

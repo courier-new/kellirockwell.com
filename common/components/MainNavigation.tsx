@@ -2,7 +2,7 @@ import map from 'lodash/map';
 import Link from 'next/link';
 import React, { FC } from 'react';
 
-import { Slug, SLUGS } from '../constants/slugs';
+import { Slug } from '../constants/slugs';
 import { toTitleCase } from '../utilities/string-case';
 
 type MainNavigationProps = {
@@ -10,18 +10,20 @@ type MainNavigationProps = {
   activePage: Slug;
 };
 
+type NavLink = { route?: string; slug: Slug | string };
+
 /**
  * Renders an <li> element with link for a provided slug, applying additional
  * formatting to the link to the screen that is currently open
  *
- * @param slug the url slug to render a link for
- * @param active 'active' if the screen that is currently open corresponds to
+ * @param link the `NavLink` to render a link for
+ * @param active true if the screen that is currently open corresponds to
  * the current slug, otherwise undefined
  */
-const renderLink = (slug: Slug, active?: 'active'): JSX.Element => {
-  const linkText = toTitleCase(slug);
+const renderLink = (link: NavLink, active = false): JSX.Element => {
+  const linkText = toTitleCase(link.slug);
   return (
-    <li key={slug}>
+    <li key={link.slug}>
       <style jsx>
         {`
           h4 {
@@ -41,9 +43,9 @@ const renderLink = (slug: Slug, active?: 'active'): JSX.Element => {
           }
         `}
       </style>
-      <Link href={`/${slug}`}>
-        <a title={linkText}>
-          <h4 className={`${active} text-magnolia`}>{linkText}</h4>
+      <Link href={link.route || `/${link.slug}`}>
+        <a target={link.route ? 'blank' : undefined} title={linkText}>
+          <h4 className={`${active ? 'active' : ''} text-magnolia`}>{linkText}</h4>
         </a>
       </Link>
     </li>
@@ -53,23 +55,35 @@ const renderLink = (slug: Slug, active?: 'active'): JSX.Element => {
 /**
  * Renders a <ul> element of links for the list of provided slugs
  *
- * @param slugs the list of url slugs to render links for
+ * @param links the list of page `NavLink`s to render links for
  * @param activePage the slug corresponding to the screen that is currently open
  */
-const renderLinks = (slugs: readonly Slug[], activePage: Slug): JSX.Element => (
+const renderLinks = (links: readonly NavLink[], activePage: Slug): JSX.Element => (
   <ul className="no-default-bullets padding-0 margin-0">
-    {map(slugs, (slug) =>
-      slug === activePage ? renderLink(slug, 'active') : renderLink(slug),
-    )}
+    {map(links, (link) => renderLink(link, link.slug === activePage))}
   </ul>
 );
 
 /**
  * Component for primary navigation links.
+ *
+ * @param props the functional component props
+ * @param props.activePage the url slug corresponding to the screen that is
+ * currently open
  */
 const MainNavigation: FC<MainNavigationProps> = ({ activePage }) => (
   <>
-    <nav>{renderLinks(SLUGS, activePage)}</nav>
+    <nav>
+      {renderLinks(
+        [
+          { slug: 'about-me' },
+          { slug: 'projects' },
+          { route: '/files/kelli-rockwell-resume-2021.pdf', slug: 'resume' },
+          { slug: 'conferences' },
+        ],
+        activePage,
+      )}
+    </nav>
   </>
 );
 

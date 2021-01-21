@@ -177,6 +177,7 @@ const asynchronousContentProps: RoleContentProps = {
 };
 
 const dxheroContentProps: RoleContentProps = {
+  // TODO: Mention considerate API design
   practiceExamples: [
     {
       exampleItems: [

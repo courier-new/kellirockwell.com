@@ -48,7 +48,7 @@ const Root: FC = () => {
             width: '100vw',
           }}
         >
-          <BackgroundImage path="/images/homebg@original.jpg" />
+          <BackgroundImage path="/images/homebg.jpg" />
         </div>
 
         <div className="z-index-top blurred flex-row flex-1 flex-justify-center flex-align-center full-width full-height">

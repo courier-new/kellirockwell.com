@@ -165,11 +165,11 @@ const GetToKnowMeContent: FC = () => {
             }`}
           >
             <li>Manual formatting</li>
-            <li>Comic Sans</li>
             <li>Carbonated beverages</li>
             <li>Unintelligible errors</li>
-            <li>Class-based components</li>
+            <li>Clickbait</li>
             <li>Spicy food</li>
+            <li>Comic Sans</li>
             <li>Egotism</li>
           </ul>
         </div>

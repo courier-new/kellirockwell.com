@@ -17,7 +17,11 @@ type DrawerMainNavMenuProps = {
 
 /**
  * Component for primary navigation bar wrapped in a collapsible drawer for
- * mobile support.
+ * mobile support
+ *
+ * @param props the functional component props
+ * @param props.activePage the url slug corresponding to the screen that is
+ * currently open
  */
 const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
   const drawerRef = useRef<HTMLDivElement | null>(null);
@@ -102,7 +106,7 @@ const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
                     minWidth: 'max(50px, min(40%, 100px))',
                   }}
                 >
-                  <ProfileImage maxSize={100} shape="round" />
+                  <ProfileImage maxSize={100} />
                 </div>
                 <h3 className="text-turquoise">Kelli Rockwell</h3>
               </a>

@@ -1,14 +1,12 @@
 import find from 'lodash/find';
 import flatMap from 'lodash/flatMap';
 import { GetStaticProps } from 'next';
-import React, { FC, useCallback, useMemo, useRef } from 'react';
+import React, { FC, useMemo } from 'react';
 
 import { getTools, GetToolsResponse, Tool, useTools } from '../api/tools';
 import Screen from '../common/components/Screen';
 import SideNavMenu from '../common/components/SideNavMenu';
-import useSectionIndexController from '../common/hooks/sections/useSectionIndexController';
-import useSectionRefs from '../common/hooks/sections/useSectionRefs';
-import useScrollPositionController from '../common/hooks/useScrollPositionController';
+import useScreenSections from '../common/hooks/sections/useScreenSections';
 import buildAboutMeSections from '../content/about-me';
 import { ContentSection, SectionRefsMap } from '../content/utilities/types';
 
@@ -127,20 +125,7 @@ const AboutMeScreen: FC<StaticProps> = ({ tools }) => {
     return buildAboutMeSections(tools);
   }, [toolsResponse]);
 
-  /** Attach a section index and scroll position controller to the ref of the
-   * outermost scrollable container of the main screen content */
-  const ref = useRef<HTMLDivElement>(null);
-
-  const sectionRefsMap = useSectionRefs(sections);
-
-  // Measure the section starting positions for each section on this screen
-  useSectionIndexController(ref, sectionRefsMap);
-  const { reset } = useScrollPositionController(ref);
-
-  const resetScroll = useCallback(() => {
-    reset();
-    ref.current?.scrollTo({ top: 0 });
-  }, [reset]);
+  const { ref, resetScroll, sectionRefsMap } = useScreenSections(sections);
 
   return (
     <Screen
@@ -153,8 +138,6 @@ const AboutMeScreen: FC<StaticProps> = ({ tools }) => {
   );
 };
 
-export default AboutMeScreen;
-
 /**
  * Prefetch tools at build time to pass as initial data to query
  */
@@ -162,3 +145,5 @@ export const getStaticProps: GetStaticProps<StaticProps> = async () => {
   const tools = await getTools();
   return { props: { tools } };
 };
+
+export default AboutMeScreen;

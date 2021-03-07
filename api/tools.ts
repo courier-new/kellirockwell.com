@@ -57,6 +57,7 @@ export const useTools = (
 ): QueryObserverResult<GetToolsResponse, unknown> =>
   useQuery(TOOLS_CACHE_KEYS.getTools, getTools, {
     cacheTime: Infinity,
-    staleTime: Infinity,
+    // an hour
+    staleTime: 3600000,
     ...options,
   });

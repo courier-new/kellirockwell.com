@@ -1,12 +1,12 @@
 import map from 'lodash/map';
-import React, { FC, useRef } from 'react';
+import React, { FC } from 'react';
 
 import MobileProjectCarousel from '../common/components/MobileProjectCarousel';
 import ProjectCard from '../common/components/ProjectCard';
 import Screen from '../common/components/Screen';
 import { MAIN_CONTENT_MAX_WIDTH, SIDEBAR_WIDTH } from '../common/constants/content-sizes';
 import useDisplaySize from '../common/hooks/useDisplaySize';
-import useScrollPositionController from '../common/hooks/useScrollPositionController';
+import useScreen from '../common/hooks/useScreen';
 import PROJECTS from '../content/projects';
 
 /**
@@ -15,18 +15,14 @@ import PROJECTS from '../content/projects';
 const ProjectsScreen: FC = () => {
   const [displaySize] = useDisplaySize();
 
-  const outerRef = useRef<HTMLDivElement>(null);
-  useScrollPositionController(outerRef);
+  const { ref, resetScroll } = useScreen();
 
   const content =
     displaySize === 'MOBILE' ? (
       <MobileProjectCarousel projects={PROJECTS} />
     ) : (
       <>
-        <div
-          className="flex-column flex-align-center full-width padding-med scrollable-y"
-          ref={outerRef}
-        >
+        <div className="flex-column flex-align-center padding-med">
           <div style={{ maxWidth: MAIN_CONTENT_MAX_WIDTH + SIDEBAR_WIDTH }}>
             {map(PROJECTS, (project, index) => (
               <div
@@ -46,7 +42,11 @@ const ProjectsScreen: FC = () => {
       </>
     );
 
-  return <Screen>{content}</Screen>;
+  return (
+    <Screen ref={ref} resetScroll={resetScroll}>
+      {content}
+    </Screen>
+  );
 };
 
 export default ProjectsScreen;

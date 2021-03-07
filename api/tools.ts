@@ -35,7 +35,7 @@ export const getTools = (): Promise<GetToolsResponse> =>
     'FAUNADB',
     gql`
       query {
-        tools {
+        tools(_size: 100) {
           data {
             _id
             name

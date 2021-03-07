@@ -92,11 +92,11 @@ const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
         <div className="background-maastricht full-height full-width flex-1 flex-column flex-space-between text-magnolia non-scrollable padding-med border-box">
           {/* The top-aligned part */}
           <div>
-            <Link href="/home">
+            <Link href="/">
               <a
                 className="flex-row flex-align-center"
                 style={{ marginBottom: '1em' }}
-                title="Home"
+                title="Index"
               >
                 {/* Restrain min/max width of ProfileImage while preserving aspect
                 ratio */}

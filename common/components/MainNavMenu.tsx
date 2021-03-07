@@ -25,10 +25,10 @@ const MainNavMenu: FC<MainNavMenuProps> = ({ activePage }) => {
       {/* Use space-between to split flex column to top and bottom part */}
       {/* The top-aligned part */}
       <div>
-        <Link href="/home">
+        <Link href="/">
           <a
             className="flex-column flex-1 flex-align-center margin-lg-bottom"
-            title="Home"
+            title="Index"
           >
             <ProfileImage maxSize={160} />
             <h5 className="text-turquoise margin-sm-top margin-0-bottom">

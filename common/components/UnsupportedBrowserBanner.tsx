@@ -37,7 +37,7 @@ const isOperaMini = (): boolean => includes(navigator.userAgent, 'Opera Mini');
  * Warning banner to indicate to users if the site will not work in their
  * current browser and suggest that they switch
  */
-const UnsupportedBrowserBanner: FC<{}> = () => {
+const UnsupportedBrowserBanner: FC = () => {
   const [isUnsupportedBrowser, setIsUnsupportedBrowser] = useState(false);
 
   // We check using useEffect hook because window isn't available until after

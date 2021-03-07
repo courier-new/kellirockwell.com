@@ -1,6 +1,7 @@
+import { Tool } from '../../api/tools';
 import { ContentSection } from '../utilities/types';
 import GET_TO_KNOW_ME from './get-to-know-me';
-import INSIDE_MY_TOOLBOX from './inside-my-toolbox';
+import buildInsideMyToolbox from './inside-my-toolbox';
 import ROLES_I_SERVE from './roles-I-serve';
 
 type AboutMeSectionName =
@@ -14,10 +15,15 @@ type AboutMeSectionName =
 
 type AboutMeContentSection = ContentSection<AboutMeSectionName, JSX.Element>;
 
-const ABOUT_ME_SECTIONS: AboutMeContentSection[] = [
+/**
+ * Builder for toolbox content
+ *
+ * @param tools array of `Tool`s to use to build the "Inside My Toolbox" section
+ */
+const buildAboutMeSections = (tools: Tool[]): AboutMeContentSection[] => [
   GET_TO_KNOW_ME,
-  INSIDE_MY_TOOLBOX,
+  buildInsideMyToolbox(tools),
   ROLES_I_SERVE,
 ];
 
-export default ABOUT_ME_SECTIONS;
+export default buildAboutMeSections;

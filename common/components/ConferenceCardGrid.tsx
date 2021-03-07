@@ -1,7 +1,7 @@
 import map from 'lodash/map';
 import React, { FC, useRef } from 'react';
 
-import { Conference } from '../../content/conferences/Conference';
+import { Conference } from '../../api/conferences';
 import useDimensions from '../hooks/useDimensions';
 import useDisplaySize from '../hooks/useDisplaySize';
 import ConferenceCard from './ConferenceCard';
@@ -15,6 +15,9 @@ const GRID_GAP = 20;
 
 /**
  * Builds a <ul> of ConferenceCards for a list of conferences in a grid layout
+ *
+ * @param props the functional component props
+ * @param props.conferences the list of conferences to render in this grid
  */
 const ConferenceCardGrid: FC<ConferenceCardGridProps> = ({ conferences }) => {
   const [displaySize] = useDisplaySize();
@@ -59,7 +62,8 @@ const ConferenceCardGrid: FC<ConferenceCardGridProps> = ({ conferences }) => {
       style={conferenceListStyle}
     >
       {map(conferences, (conference) => (
-        <li key={`conference-${conference.name}`}>
+        // eslint-disable-next-line no-underscore-dangle
+        <li key={`conference-${conference._id}`}>
           <ConferenceCard {...conference} />
         </li>
       ))}

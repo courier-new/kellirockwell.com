@@ -1,10 +1,14 @@
 import find from 'lodash/find';
 import flatMap from 'lodash/flatMap';
-import React, { FC, ReactNode } from 'react';
+import { GetStaticProps } from 'next';
+import React, { FC, useMemo } from 'react';
 
-import ScreenContent from '../common/components/ScreenContent';
-import ABOUT_ME_SECTIONS from '../content/about-me';
-import { ContentRenderer, ContentSection } from '../content/utilities/types';
+import { getTools, GetToolsResponse, Tool, useTools } from '../api/tools';
+import Screen from '../common/components/Screen';
+import SideNavMenu from '../common/components/SideNavMenu';
+import useScreenSections from '../common/hooks/sections/useScreenSections';
+import buildAboutMeSections from '../content/about-me';
+import { ContentSection, SectionRefsMap } from '../content/utilities/types';
 
 /* eslint-disable-next-line jsdoc/require-jsdoc */
 const FAKE_CONTENT = (key: string): JSX.Element => (
@@ -55,9 +59,9 @@ const FAKE_CONTENT = (key: string): JSX.Element => (
  * @param headingLevel the level of heading to render for this section (e.g.
  * `headingLevel: 1` => `h1`, `headingLevel: 2` => `h2`)
  */
-export const renderAboutMeSections: ContentRenderer<typeof ABOUT_ME_SECTIONS> = (
-  sections,
-  sectionRefs,
+export const renderAboutMeSections = (
+  sections: ContentSection<string, JSX.Element>[],
+  sectionRefs: SectionRefsMap,
   headingLevel = 1,
 ): JSX.Element[] => {
   let headingTag = `h${headingLevel}`;
@@ -102,18 +106,44 @@ export const renderAboutMeSections: ContentRenderer<typeof ABOUT_ME_SECTIONS> = 
   });
 };
 
+type StaticProps = {
+  /** Tools I use prefetched at build time to pass as initial data to query */
+  tools: GetToolsResponse;
+};
+
 /**
  * Screen component for primary screen "About Me"
+ *
+ * @param props the functional component props
+ * @param props.tools array of `Tool`s I use, fetched from the server
  */
-const AboutMeScreen: FC<{}> = () => (
-  <ScreenContent
-    activePage="about-me"
-    containerClassName="padding-med"
-    renderSections={
-      renderAboutMeSections as ContentRenderer<ContentSection<string, ReactNode>[]>
-    }
-    sections={ABOUT_ME_SECTIONS}
-  />
-);
+const AboutMeScreen: FC<StaticProps> = ({ tools }) => {
+  const { data: toolsResponse } = useTools({ initialData: tools });
+
+  const sections = useMemo(() => {
+    const tools: Tool[] = toolsResponse?.tools.data || [];
+    return buildAboutMeSections(tools);
+  }, [toolsResponse]);
+
+  const { ref, resetScroll, sectionRefsMap } = useScreenSections(sections);
+
+  return (
+    <Screen
+      ref={ref}
+      resetScroll={resetScroll}
+      sideNav={<SideNavMenu contentSections={sections} />}
+    >
+      <div className="padding-med">{renderAboutMeSections(sections, sectionRefsMap)}</div>
+    </Screen>
+  );
+};
+
+/**
+ * Prefetch tools at build time to pass as initial data to query
+ */
+export const getStaticProps: GetStaticProps<StaticProps> = async () => {
+  const tools = await getTools();
+  return { props: { tools } };
+};
 
 export default AboutMeScreen;

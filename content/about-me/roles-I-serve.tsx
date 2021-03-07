@@ -177,6 +177,7 @@ const asynchronousContentProps: RoleContentProps = {
 };
 
 const dxheroContentProps: RoleContentProps = {
+  // TODO: Mention considerate API design
   practiceExamples: [
     {
       exampleItems: [
@@ -212,7 +213,8 @@ const dxheroContentProps: RoleContentProps = {
     'I firmly believe that great UX is a byproduct of great DX, and one of our uniquest strengths is that we can develop software to make us better at developing software.',
 };
 
-export default {
+// eslint-disable-next-line
+const futureExportDefault = {
   ...generateTitleProps('The roles I serve'),
   content: (
     <React.Fragment key="roles-intro">
@@ -231,4 +233,13 @@ export default {
     { ...generateTitleProps('As a state management manager') },
     { ...generateTitleProps('As an equity and inclusion advocate') },
   ],
+};
+
+export default {
+  ...generateTitleProps('The roles I serve'),
+  content: (
+    <React.Fragment key="roles-intro">
+      <p>Get to know me in the context of my work. Coming soon!</p>
+    </React.Fragment>
+  ),
 };

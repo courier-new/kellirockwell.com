@@ -17,7 +17,7 @@ const MenuIcon: FC<{ color: string; isOpen: boolean }> = ({ color, isOpen }) => 
           display: block;
           height: 0.15em;
           margin: 0.3em 0;
-          transition: all 0.6s ease-in-out;
+          transition: all 600ms ease-in-out;
         }
 
         .menu-icon.open {

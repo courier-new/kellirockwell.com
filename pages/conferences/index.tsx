@@ -1,13 +1,22 @@
 import find from 'lodash/find';
 import flatMap from 'lodash/flatMap';
 import map from 'lodash/map';
-import React, { FC, ReactNode } from 'react';
+import { GetStaticProps } from 'next';
+import React, { FC, useMemo } from 'react';
 
+import {
+  Conference,
+  convertRawDates,
+  getConferences,
+  GetConferencesRawResponse,
+  useConferences,
+} from '../../api/conferences';
 import ConferenceCardGrid from '../../common/components/ConferenceCardGrid';
-// import QuickNav from '../../common/components/QuickNav';
-import ScreenContent from '../../common/components/ScreenContent';
-import CONFERENCES_SECTIONS from '../../content/conferences';
-import { ContentRenderer, ContentSection } from '../../content/utilities/types';
+import Screen from '../../common/components/Screen';
+import SideNavMenu from '../../common/components/SideNavMenu';
+import useScreenSections from '../../common/hooks/sections/useScreenSections';
+import buildConferencesSections from '../../content/conferences';
+import { SectionRefsMap } from '../../content/utilities/types';
 
 /**
  * Maps each section to a `<section>` of JSX to render, providing the section
@@ -19,9 +28,9 @@ import { ContentRenderer, ContentSection } from '../../content/utilities/types';
  * @param headingLevel the level of heading to render for this section (e.g.
  * `headingLevel: 1` => `h1`, `headingLevel: 2` => `h2`)
  */
-export const renderConferencesSections: ContentRenderer<typeof CONFERENCES_SECTIONS> = (
-  sections,
-  sectionRefs,
+export const renderConferencesSections = (
+  sections: ReturnType<typeof buildConferencesSections>,
+  sectionRefs: SectionRefsMap,
   headingLevel = 1,
 ): JSX.Element[] => {
   let headingTag = `h${headingLevel}`;
@@ -87,36 +96,48 @@ export const renderConferencesSections: ContentRenderer<typeof CONFERENCES_SECTI
   });
 };
 
+type StaticProps = {
+  /** Conferences prefetched at build time to pass as initial data to query */
+  conferences: GetConferencesRawResponse;
+};
+
 /**
  * Screen component for primary screen "Conferences"
+ *
+ * @param props the functional component props
+ * @param props.conferences array of `Conference`s I am participating in
  */
-const ConferencesScreen: FC<{}> = () => {
+const ConferencesScreen: FC<StaticProps> = ({ conferences }) => {
+  const { data: conferencesResponse } = useConferences({ initialData: conferences });
+
+  const sections = useMemo(() => {
+    const conferences: Conference[] = conferencesResponse
+      ? convertRawDates(conferencesResponse).conferences.data
+      : [];
+    return buildConferencesSections(conferences);
+  }, [conferencesResponse]);
+
+  const { ref, resetScroll, sectionRefsMap } = useScreenSections(sections);
+
   return (
-    <ScreenContent
-      activePage="conferences"
-      containerClassName="padding-med"
-      renderSections={
-        renderConferencesSections as ContentRenderer<ContentSection<string, ReactNode>[]>
-      }
-      sections={CONFERENCES_SECTIONS}
-    />
+    <Screen
+      ref={ref}
+      resetScroll={resetScroll}
+      sideNav={<SideNavMenu contentSections={sections} />}
+    >
+      <div className="padding-med">
+        {renderConferencesSections(sections, sectionRefsMap)}
+      </div>
+    </Screen>
   );
 };
 
-/** Get conferences for static screen props */
-// export const getStaticProps: GetStaticProps<ConferencesScreenProps> = async () => {
-//   const conferences: any[] = await new Promise(() => {
-//     setTimeout(() => {
-//       return map(CONFERENCES_2020, (conference) => ({
-//         ...conference,
-//         date: conference.date.toString(),
-//       }));
-//     }, 100);
-//   });
-
-//   return {
-//     props: { conferences },
-//   };
-// };
+/**
+ * Prefetch conferences at build time to pass as initial data to query
+ */
+export const getStaticProps: GetStaticProps<StaticProps> = async () => {
+  const conferences = await getConferences();
+  return { props: { conferences } };
+};
 
 export default ConferencesScreen;

@@ -1,7 +1,7 @@
+import { Conference } from '../../api/conferences';
 import { ContentSection } from '../utilities/types';
-import { Conference } from './Conference';
-import JOURNEY_TO_THE_CENTER from './journey-to-the-center';
-import ROADMAP from './roadmap';
+import buildJourneyToTheCenter from './journey-to-the-center';
+import buildRoadmap from './roadmap';
 
 type ConferencesSectionName =
   | 'Journey to the center of the community'
@@ -16,9 +16,16 @@ type ConferencesContentSection = ContentSection<
   | { pastConferences: { conferences: Conference[]; year: string }[] }
 >;
 
-const CONFERENCES_SECTIONS: ConferencesContentSection[] = [
-  JOURNEY_TO_THE_CENTER,
-  ROADMAP,
+/**
+ * Builder for conferences content
+ *
+ * @param conferences array of `Conference`s to use to build the "Roadmap" section
+ */
+const buildConferencesSections = (
+  conferences: Conference[],
+): ConferencesContentSection[] => [
+  buildJourneyToTheCenter(conferences),
+  buildRoadmap(conferences),
 ];
 
-export default CONFERENCES_SECTIONS;
+export default buildConferencesSections;

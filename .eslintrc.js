@@ -47,7 +47,6 @@ module.exports = {
     '@typescript-eslint/member-ordering': [2, { default: { order: 'alphabetically' } }],
     '@typescript-eslint/no-unused-expressions': 0, // Misfires with optional chaining, prefer babel plugin rule
     '@typescript-eslint/no-unused-vars': [2, { argsIgnorePattern: '^_' }],
-    '@typescript-eslint/no-use-before-define': 0,
     // eslint-plugin-babel
     'babel/no-unused-expressions': 1,
     // Base ESLint rule
@@ -135,7 +134,9 @@ module.exports = {
         ignoreUrls: true,
       },
     ],
+    'no-shadow': 0, // False positives on TypeScript types
     'no-unused-expressions': 0, // Misfires with optional chaining, prefer babel plugin rule
+    'no-use-before-define': 0, // Prefer @typescript-eslint rule of the same name
     // prettier plugin
     'prettier/prettier': 1,
     // eslint-plugin-react
@@ -153,7 +154,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 1,
     'react-hooks/rules-of-hooks': 2,
     // eslint-plugin-simple-import-sort
-    'simple-import-sort/sort': 2,
+    'simple-import-sort/imports': 2,
     // sort-destructure-keys plugin
     'sort-destructure-keys/sort-destructure-keys': 1,
     // Base ESLint rules

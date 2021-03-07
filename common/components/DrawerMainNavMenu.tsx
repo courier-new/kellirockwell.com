@@ -17,7 +17,11 @@ type DrawerMainNavMenuProps = {
 
 /**
  * Component for primary navigation bar wrapped in a collapsible drawer for
- * mobile support.
+ * mobile support
+ *
+ * @param props the functional component props
+ * @param props.activePage the url slug corresponding to the screen that is
+ * currently open
  */
 const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
   const drawerRef = useRef<HTMLDivElement | null>(null);
@@ -52,7 +56,7 @@ const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
         {`
           .outer-container {
             left: -80%;
-            transition: all 0.3s ease-out;
+            transition: all 300ms ease-out;
             width: 80%;
           }
 
@@ -88,11 +92,11 @@ const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
         <div className="background-maastricht full-height full-width flex-1 flex-column flex-space-between text-magnolia non-scrollable padding-med border-box">
           {/* The top-aligned part */}
           <div>
-            <Link href="/home">
+            <Link href="/">
               <a
-                className="flex-row flex-align-center no-decoration"
+                className="flex-row flex-align-center"
                 style={{ marginBottom: '1em' }}
-                title="Home"
+                title="Index"
               >
                 {/* Restrain min/max width of ProfileImage while preserving aspect
                 ratio */}
@@ -102,7 +106,7 @@ const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
                     minWidth: 'max(50px, min(40%, 100px))',
                   }}
                 >
-                  <ProfileImage resizeWidth={100} shape="round" size="100%" />
+                  <ProfileImage maxSize={100} />
                 </div>
                 <h3 className="text-turquoise">Kelli Rockwell</h3>
               </a>

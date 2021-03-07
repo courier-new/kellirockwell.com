@@ -1,5 +1,3 @@
-import '../common/scss/main.scss';
-
 /* eslint-disable jsdoc/require-jsdoc */
 import Document, { Head, Main, NextScript } from 'next/document';
 import React from 'react';

@@ -84,7 +84,8 @@ https://frontstuff.io/generate-all-your-utility-classes-with-sass-maps */
 
   a {
     color: map-get($color-set, 'space');
-    text-decoration-color: map-get($color-set, 'turquoise');
+    text-decoration: none;
+    transition: box-shadow 300ms ease 0s;
   }
 
   /* Text color styles */
@@ -108,12 +109,24 @@ https://frontstuff.io/generate-all-your-utility-classes-with-sass-maps */
     color: map-get($color-set, 'raspberry');
   }
 
-  a:not(.no-hover):hover {
-    color: map-get($color-set, 'maastricht');
+  a:not(.no-hover):not(.no-box-shadow):hover {
+    box-shadow: 0 2px 0 map-get($color-set, 'maastricht');
+    transition: box-shadow 100ms ease 0s;
   }
 
-  :not(.no-hover).text-turquoise:hover {
+  a:not(.no-hover).no-box-shadow:hover {
+    color: map-get($color-set, 'maastricht');
+    transition: color 100ms ease 0s;
+  }
+
+  a:not(.no-hover):not(.no-box-shadow).text-turquoise:hover {
+    box-shadow: 0 2px 0 map-get($color-set, 'space');
+    transition: box-shadow 100ms ease 0s;
+  }
+
+  a:not(.no-hover).no-box-shadow.test-turquoise:hover {
     color: map-get($color-set, 'space');
+    transition: color 100ms ease 0s;
   }
 
   /* Background color styles */
@@ -151,16 +164,16 @@ https://frontstuff.io/generate-all-your-utility-classes-with-sass-maps */
     border-radius: 3em;
     margin: 0 0.5em 0.5em 0;
     padding: 0.5em 0.8em;
-    transition: all 0.2s linear;
+    transition: background 300ms ease 0s;
 
     &:hover {
       background: map-get($color-set, 'raspberry');
+      transition: background 100ms ease 0s;
     }
   }
 
   .text-button {
     color: map-get($color-set, 'space');
-    transition: all 0.2s linear;
 
     &:hover {
       color: map-get($color-set, 'raspberry');
@@ -177,6 +190,14 @@ https://frontstuff.io/generate-all-your-utility-classes-with-sass-maps */
 #nav,
 #project-card-heading {
   @include use-theme-colors($light-colors);
+
+  a > * {
+    transition: color 300ms ease 0s;
+  }
+
+  a:hover > * {
+    transition: color 100ms ease 0s;
+  }
 
   a:hover .text-magnolia {
     color: $light-space;

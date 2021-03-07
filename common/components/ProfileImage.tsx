@@ -1,22 +1,22 @@
+import Image from 'next/image';
 import React, { FC } from 'react';
 
-import Image from './Image';
-
-/** Component for my profile image */
+/**
+ * Component for my profile image
+ *
+ * @param props the functional component props
+ * @param props.maxSize the maximum expected width or height of the component
+ */
 const ProfileImage: FC<{
-  resizeWidth?: number;
-  shape: 'round' | 'square';
-  size?: number | string;
-}> = ({ resizeWidth, shape, size }) => {
-  return (
-    <Image
-      alt="Closeup of the site author, smiling. Welcome to my site!"
-      path="me.jpg"
-      resizeWidth={resizeWidth}
-      style={{ clipPath: shape === 'round' ? 'circle(50% at 50% 50%)' : '' }}
-      width={size}
-    />
-  );
-};
+  maxSize?: number;
+}> = ({ maxSize = 1000 }) => (
+  <Image
+    alt="Closeup of the site author, smiling. Welcome to my site!"
+    className="profile-image"
+    height={maxSize}
+    src="/images/me-sketchy.png"
+    width={maxSize}
+  />
+);
 
 export default ProfileImage;

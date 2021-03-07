@@ -17,10 +17,6 @@ body,
   width: 100%;
 }
 
-* {
-  transition: color 0.2s linear, background 0.2s linear;
-}
-
 /* LAYOUT */
 
 .flex-row {
@@ -251,7 +247,9 @@ $space-sizes: (
   }
 }
 
-@include padding-margin-classes($space-sizes);
+* {
+  @include padding-margin-classes($space-sizes);
+}
 
 .margin-0 {
   margin: 0;
@@ -290,7 +288,7 @@ button:focus {
 /* OPACITY */
 
 .minimum-opacity {
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
 /* DROP SHADOW */

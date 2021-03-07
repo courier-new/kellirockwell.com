@@ -38,7 +38,8 @@ const useDeepCompareEffect = (
   callback: EffectCallback,
   dependencies: DependencyList,
 ): void => {
-  useEffect(callback, useDeepCompareMemoize(dependencies));
+  const newDependencies = useDeepCompareMemoize(dependencies) || [];
+  useEffect(callback, [...newDependencies, callback]);
 };
 
 export default useDeepCompareEffect;

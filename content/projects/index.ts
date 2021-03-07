@@ -1,13 +1,5 @@
 import { DateTime, Interval } from 'luxon';
 
-import EBayLogoIcon from '../../common/svgs/EBayLogoIcon.svg';
-import KPLogoIcon from '../../common/svgs/KPLogoIcon.svg';
-import MomentLogoIcon from '../../common/svgs/MomentLogoIcon.svg';
-import RivalsLogoIcon from '../../common/svgs/RivalsLogoIcon.svg';
-import SutroLogoIcon from '../../common/svgs/SutroLogoIcon.svg';
-import APSLogoIcon from '../../images/aps.png';
-import PilonLogoIcon from '../../images/pi.png';
-
 /** Union of team size strings */
 export type TeamSize = '1' | '2-5' | '5-10' | '10-15' | '15-20';
 
@@ -26,7 +18,7 @@ export type Project = {
         start: DateTime;
       };
   /** Image source (string) for project's logo */
-  logo?: SVGSource | ImageSource;
+  logo?: string;
   /** Optionally, the factor to scale the logo to normalize amongst the other
    * project logos */
   logoSizeFactor?: number;
@@ -48,16 +40,18 @@ export type Project = {
 const PROJECTS: Project[] = [
   {
     accomplishments: [
-      'Audited, overhauled, and maintained comprehensive technical documentation',
-      'Architected new chemical recommendations engine and reading processor',
-      'Reduced TypeScript compiler errors by 95% in large React Native codebase',
-      'Automated collection of open source package licenses, presentation of GraphQL API consumer doc',
+      'Architected new chemical recommendations engine to scale to production-level reading processing capability',
+      'Guided adoption of GraphQL APIs across all products in Sutro ecosystem',
+      'Audited, overhauled, and maintained 80-page technical documentation',
+      'Led refactor of app data layer, resulting in 50% fewer lines of dedicated state management code',
+      'Reduced TypeScript compiler errors by 98% in large React Native codebase',
+      'Rolled out command line tools to automate 90% of release tasks',
     ],
     dates: {
       end: 'current',
       start: DateTime.fromObject({ month: 7, year: 2019 }),
     },
-    logo: SutroLogoIcon,
+    logo: '/images/svgs/SutroLogoIcon.svg',
     logoSizeFactor: 1.15,
     name: 'Sutro',
     primaryColor: '#005C67',
@@ -68,8 +62,8 @@ const PROJECTS: Project[] = [
   },
   {
     accomplishments: [
-      'Scaled monolithic forums integration to support infinite scrolling, inline emojis, embedded media, and premium content upsells',
-      'Defined high level API for switching sport team to handle deep links, UI skin, and data source',
+      'Transitioned more than 60% of web consumer features to new white-label mobile app',
+      'Defined high level API and built out infrastructure for switching theme and data source for each sports team',
       'Delivered proof of concept system for dynamically categorized push notifications',
       'Onboarded and mentored other developers to grow team to 3x',
     ],
@@ -77,7 +71,7 @@ const PROJECTS: Project[] = [
       end: 'current',
       start: DateTime.fromObject({ month: 6, year: 2018 }),
     },
-    logo: RivalsLogoIcon,
+    logo: '/images/svgs/RivalsLogoIcon.svg',
     logoSizeFactor: 1.3,
     name: 'Rivals',
     primaryColor: '#094EA3',
@@ -89,10 +83,10 @@ const PROJECTS: Project[] = [
   {
     accomplishments: [
       'Leveraged system of branded types to distinguish types of string data in app',
-      'Supplied comprehensive JSDoc comments for all exported entities',
+      'Supplied comprehensive JSDoc comments for all shared entities',
     ],
     dates: DateTime.fromObject({ month: 3, year: 2020 }),
-    logo: PilonLogoIcon,
+    logo: '/images/pi.png',
     logoSizeFactor: 0.7,
     name: 'Pilon',
     primaryColor: '#ADADAD',
@@ -103,15 +97,16 @@ const PROJECTS: Project[] = [
   },
   {
     accomplishments: [
-      'Designed and built API for scheduled notifications management',
-      'Automated invoice creation by integrating invoicing process with Quickbooks API',
+      'Redesigned and built notification system API to support third-party integrations',
+      'Automated invoice creation workflow with Quickbooks API',
       'Corrected inaccuracies and tricky edge cases in multiple invoice calculations',
+      'Cut backlog of bugs reported by more than 80%',
     ],
     dates: Interval.fromDateTimes(
       DateTime.fromObject({ month: 11, year: 2017 }),
       DateTime.fromObject({ month: 6, year: 2018 }),
     ),
-    logo: MomentLogoIcon,
+    logo: '/images/svgs/MomentLogoIcon.svg',
     logoSizeFactor: 0.75,
     name: 'Moment',
     primaryColor: '#2B4E56',
@@ -122,15 +117,15 @@ const PROJECTS: Project[] = [
   },
   {
     accomplishments: [
-      'Devised robust CSV import tool using flexible entity-attribute-value model',
-      'Reconciled 50+ separate instances of modal UI components into a single modal with a unified API and global state',
+      'Devised robust CSV upload and import tool using flexible entity-attribute-value model',
       'Incrementally converted 75% of a large React codebase to TypeScript',
+      'Reconciled 50+ separate instances of modal UI components into a single modal with a unified API and global state',
     ],
     dates: Interval.fromDateTimes(
       DateTime.fromObject({ month: 1, year: 2018 }),
       DateTime.fromObject({ month: 6, year: 2018 }),
     ),
-    logo: KPLogoIcon,
+    logo: '/images/svgs/KPLogoIcon.svg',
     logoSizeFactor: 0.55,
     name: 'Kleiner-Perkins',
     primaryColor: '#000',
@@ -150,7 +145,7 @@ const PROJECTS: Project[] = [
   },
   {
     accomplishments: [
-      'Formalized and delivered 3-month plan to design, implement, and compile content for informational website for conference',
+      'Completed design and development of informational website 2 weeks ahead of schedule',
       'Eliminated the need for large physical schedule printouts by delivering CUWiP’s first mobile-first online schedule',
       'Facilitated meetings between the three academic host institutions and APS to solicit feedback and perform content research',
     ],
@@ -158,7 +153,7 @@ const PROJECTS: Project[] = [
       DateTime.fromObject({ month: 3, year: 2017 }),
       DateTime.fromObject({ month: 1, year: 2018 }),
     ),
-    logo: APSLogoIcon,
+    logo: '/images/aps.png',
     logoSizeFactor: 0.75,
     name: 'CUWiP 2018',
     primaryColor: '#7F2857',
@@ -169,14 +164,14 @@ const PROJECTS: Project[] = [
   },
   {
     accomplishments: [
-      "Designed and built a scalable, live dashboard interface of operational statistics of eBay's physical infrastructure",
-      'Reorganized internal communications web platform',
+      'Led development from zero to release on web platform for internal communications and database server administration',
+      "Designed and built a scalable, live dashboard interface of operational statistics of organization's physical infrastructure",
     ],
     dates: Interval.fromDateTimes(
       DateTime.fromObject({ month: 5, year: 2016 }),
       DateTime.fromObject({ month: 8, year: 2016 }),
     ),
-    logo: EBayLogoIcon,
+    logo: '/images/svgs/EBayLogoIcon.svg',
     logoSizeFactor: 0.8,
     name: 'eBay',
     primaryColor: '#E63238',
@@ -187,8 +182,8 @@ const PROJECTS: Project[] = [
   },
   {
     accomplishments: [
-      'Designed websites, marketing materials, art pieces, infographics, and photomanipulations for diverse purposes/platforms',
-      'Built "Thiink" brand for a client-based poster design service with the tagline "unique posters for unique people"',
+      'Designed websites, marketing materials, art pieces, infographics, and photomanipulations for diverse purposes and platforms',
+      'Operated poster commission business and "Thiink" brand for a client-based design services',
     ],
     dates: Interval.fromDateTimes(
       DateTime.fromObject({ month: 6, year: 2007 }),

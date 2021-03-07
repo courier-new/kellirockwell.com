@@ -1,8 +1,14 @@
-import isUndefined from 'lodash/isUndefined';
+import noop from 'lodash/noop';
 import replace from 'lodash/replace';
-import React, { PropsWithChildren, useEffect, useMemo } from 'react';
+import { useRouter } from 'next/router';
+import React, {
+  PropsWithChildren,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
-import { ContentSection } from '../../content/utilities/types';
 import {
   shouldShowMainNavMenu,
   shouldShowSideNavMenu,
@@ -12,36 +18,27 @@ import { Slug } from '../constants/slugs';
 import { useThemeDispatch, useThemeState } from '../context/themeState';
 import useDisplaySize from '../hooks/useDisplaySize';
 import { usePrefersDarkMode } from '../hooks/useMediaQuery';
-import { Percent } from '../utilities/percent';
+import useOnRouteChange from '../hooks/useOnRouteChange';
 import DarkModeToggle from './DarkModeToggle';
 import DrawerMainNavMenu from './DrawerMainNavMenu';
 import LoadingOverlay from './LoadingOverlay';
 import MainNavMenu from './MainNavMenu';
 import ProgressBar from './ProgressBar';
-import SideNavMenu from './SideNavMenu';
 import UnsupportedBrowserBanner from './UnsupportedBrowserBanner';
 
 type ScreenProps = {
-  /** The url slug corresponding to the screen that is currently open */
-  activePageSlug: string;
-  /** Represents the sections of content on the screen and the index of the
-   * current section */
-  contentSections?: {
-    /** The index of the section corresponding to the current scroll position */
-    currentSectionIndex: number;
-    /** Handler to fire on route hash change to recalculate the section index.
-     * "onScroll" event does not consistently fire when following a hash link to
-     * a same-page anchor, so we hook into the Next router's event instead to
-     * manually recalculate the section index */
-    recalculateSectionIndex?: () => void;
-    /** The sections of the screen */
-    sections: ContentSection<string>[];
-  };
-  /** Whether or not the current screen is undergoing a server render */
-  rendering: boolean;
-  /** The current scroll position of the Screen ref, used to render the
-   * ProgressBar component */
-  scrollPercent?: Percent;
+  /**
+   * Instructs the screen to make the main content container non-scrollable and
+   * delegate scroll controls to the children. Using this option means the
+   * parent of `Screen` will also be responsible for assigning the `ref` for the
+   * scroll position and current section index controls to the appropriate
+   * scrollable component, if such features are desired.
+   */
+  hasStickyContent?: boolean;
+  /** If provided, will be called on route change to reset the page to the top */
+  resetScroll?: () => void;
+  /** The optional side navigation menu to display alongside the page content */
+  sideNav?: JSX.Element;
 };
 
 /**
@@ -49,26 +46,60 @@ type ScreenProps = {
  * navigation and adjusts layout to display size.
  */
 const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
-  ({ activePageSlug, children, contentSections, rendering, scrollPercent }, ref) => {
+  ({ children, hasStickyContent, resetScroll = noop, sideNav }, ref) => {
+    /** Compute the parent slug from the current raw page slug to show the active
+     * parent page in the main navigation menu */
+    const router = useRouter();
+    // Strip starting "/" in path to get the slug
+    // router.asPath contains any hash in link, too
+    const slug = replace(router.pathname, /^\//, '');
+    const activeParentSlug = replace(slug, /\/.*/, '') as Slug;
+
+    const [rendering, setRendering] = useState(false);
+
+    /** Handler to set rendering state and reset scroll position on route change */
+    const onRouteChangeStart = useCallback((): void => setRendering(true), []);
+
+    /** Handler to scroll to top of outermost scrollable component (does not fire
+     * on hash link changes like "#section2") */
+    const onRouteChangeComplete = useCallback((): void => {
+      resetScroll();
+      setRendering(false);
+    }, [resetScroll]);
+
+    /** Attach handlers to route change event */
+    useOnRouteChange({ onRouteChangeComplete, onRouteChangeStart });
+
     const [displaySize] = useDisplaySize();
 
     /** True if the user system preference is for a dark color scheme */
     const prefersDarkMode = usePrefersDarkMode();
     const themeState = useThemeState();
     const themeDispatch = useThemeDispatch();
+    const setting = themeState?.setting || 'auto';
     const theme = themeState?.theme || 'light';
 
     useEffect(() => {
-      const preferredTheme = prefersDarkMode ? 'dark' : 'light';
-      if (preferredTheme !== theme) {
-        themeDispatch?.({ type: '@theme-state/toggle-theme' });
+      if (setting === 'auto') {
+        const preferredTheme = prefersDarkMode ? 'dark' : 'light';
+        if (preferredTheme !== theme) {
+          themeDispatch?.({ type: '@theme-state/toggle-theme' });
+        }
       }
       // Only rerun the effect on mount or if the user preference changes
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [prefersDarkMode]);
+    }, [prefersDarkMode, setting, themeDispatch]);
 
-    /** If true, will always show the main left-hand navigation menu; otherwise,
-    will show collapsible navigation menu drawer */
+    /** Handler to toggle the theme and change the setting to manual */
+    const onToggleTheme = useCallback(() => {
+      if (setting === 'auto') {
+        themeDispatch?.({ type: '@theme-state/toggle-setting' });
+      }
+      themeDispatch?.({ type: '@theme-state/toggle-theme' });
+    }, [themeDispatch, setting]);
+
+    /** If true, will always show the main left-hand navigation menu; otherwise
+     * will show collapsible navigation menu drawer */
     const shouldShowMainNav = useMemo(() => shouldShowMainNavMenu(displaySize), [
       displaySize,
     ]);
@@ -77,16 +108,12 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
       displaySize,
     ]);
 
-    const activeParentPage = replace(activePageSlug, /\/.*/, '') as Slug;
-    const hasStickyContent = activeParentPage === 'projects';
-
     /** Match the width/alignment of the main content when it does or does not
      * have a side nav menu based on the side nav menu's width */
     const contentMaxWidth =
-      shouldShowSideNav && contentSections
+      shouldShowSideNav && sideNav
         ? MAIN_CONTENT_MAX_WIDTH
         : MAIN_CONTENT_MAX_WIDTH + SIDEBAR_WIDTH;
-
     return (
       <div
         className="full-width full-height flex-column non-scrollable"
@@ -97,29 +124,24 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
           className="absolute z-index-top"
           style={{ bottom: '0.75em', right: '0.75em' }}
         >
-          <DarkModeToggle
-            current={theme}
-            onToggle={(): void => themeDispatch?.({ type: '@theme-state/toggle-theme' })}
-          />
+          <DarkModeToggle current={theme} onToggle={onToggleTheme} />
         </div>
-        {isUndefined(scrollPercent) ? null : (
-          <ProgressBar scrollPercent={scrollPercent} />
-        )}
+        <ProgressBar />
         <div className="full-width flex-1 flex-row non-scrollable border-box">
           <div className="flex-row" id="nav">
             {shouldShowMainNav ? (
-              <MainNavMenu activePage={activeParentPage} />
+              <MainNavMenu activePage={activeParentSlug} />
             ) : (
-              <DrawerMainNavMenu activePage={activeParentPage} />
+              <DrawerMainNavMenu activePage={activeParentSlug} />
             )}
           </div>
+          {rendering ? <LoadingOverlay /> : null}
           {/* Lock scroll when screen is rendering */}
           <main
             className={`main-gradient-background relative flex-align-center
             flex-1 flex-column ${rendering ? 'non-scrollable' : 'scrollable-y'}`}
             ref={ref}
           >
-            {rendering ? <LoadingOverlay /> : null}
             {/*
             If the screen has sticky content, we make this container non-scrollable
             and let the children control scrolling.
@@ -140,12 +162,7 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
               {children}
             </div>
           </main>
-          {shouldShowSideNav && contentSections ? (
-            <SideNavMenu
-              activeSectionIndex={contentSections.currentSectionIndex}
-              contentSections={contentSections.sections}
-            />
-          ) : null}
+          {shouldShowSideNav ? sideNav : null}
         </div>
       </div>
     );

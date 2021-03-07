@@ -1,0 +1,83 @@
+enum ToolMark {
+  HEARTED
+  STARRED
+  LEARNING
+}
+
+type Tool @collection(name: "tools") {
+  name: String! @unique(index: "unique_tool")
+  marks: [ToolMark]
+}
+
+type Conference @collection(name: "conferences") {
+  endDate: Date
+  favorite: Boolean!
+  label: String
+  location: String!
+  name: String!
+  startDate: Date!
+  website: String!
+}
+
+type Query {
+  conferences: [Conference!] @index(name: "all_conferences")
+  tools: [Tool!] @index(name: "all_tools")
+  drinks: [Drink!] @index(name: "all_drinks")
+  drinksOrdered: [Drink!] @resolver(name: "get_drinks_newest_to_oldest", paginated: true)
+}
+
+type Mutation {
+  createDrink(data: DrinkInput!): Drink! @resolver(name: "create_drink_with_timestamp")
+  rateDrink(id: ID!, rating: RateDrinkInput!): Drink! @resolver(name: "rate_drink")
+  rateLastDrink(rating: RateDrinkInput!): Drink! @resolver(name: "rate_last_drink")
+}
+
+enum Topping {
+  BOBA
+  TARO_BALLS
+  GRASS_JELLY
+  ALOE
+  PUDDING
+}
+
+enum StarRating {
+  ONE
+  TWO
+  THREE
+  FOUR
+  FIVE
+}
+
+enum AdjustmentDecision {
+  UP
+  DOWN
+  OKAY
+}
+
+type Drink @collection(name: "drinks") {
+  name: String!
+  sweetness: Int!
+  source: String!
+  toppings: [Topping]
+  rating: StarRating
+  sweetnessDecision: AdjustmentDecision
+  notes: String
+  insertedAt: Time!
+}
+
+input DrinkInput {
+  insertedAt: Time
+  name: String!
+  sweetness: Int!
+  source: String!
+  toppings: [Topping]
+  rating: StarRating
+  sweetnessDecision: AdjustmentDecision
+  notes: String
+}
+
+input RateDrinkInput {
+  rating: StarRating
+  sweetnessDecision: AdjustmentDecision
+  notes: String
+}

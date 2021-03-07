@@ -1,50 +1,41 @@
-import split from 'lodash/split';
+import Image from 'next/image';
 import React, { FC } from 'react';
 
 type BackgroundImageProps = {
   /** The absolute path to the image from within 'images' */
   path: string;
-  /** If provided, gets resized image */
-  resizeWidth?: number;
 };
 
-/** A wrapper for an optimized covering background image that conforms to the
- * size of its container */
-const BackgroundImage: FC<BackgroundImageProps> = ({ path, resizeWidth }) => {
-  const [imageName, extension] = split(path, '.');
-  const lqBackgroundImageClassName = `low-quality-background-image-${imageName}`;
-  const backgroundImageClassName = `background-image-${imageName}`;
-  const sizedPath = `${imageName}@${resizeWidth || 'original'}.${extension}`;
-
+/**
+ * A wrapper for an optimized covering background image that conforms to the
+ * size of its container
+ *
+ * @param props the functional component props
+ * @param props.path the path to the image to serve as the background, ex.
+ * "/images/my-cool-image.jpg"
+ */
+const BackgroundImage: FC<BackgroundImageProps> = ({ path }) => {
   return (
-    <div className="full-height full-width">
-      {/* eslint-disable import/no-dynamic-require */}
-      {/* NOTE: We must hardcode the relative path to '../../images' every time in order
-      for the dynamic requires to work */}
+    <div className="full-width full-height relative">
       <style jsx>
         {`
-          .${lqBackgroundImageClassName},
-          .${backgroundImageClassName} {
-            background-image: url('${require(`../../images/${sizedPath}?lqip`)}');
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-          }
-          .blur-filter {
-            backdrop-filter: blur(15px);
-          }
-          .${backgroundImageClassName} {
-            background-image: url('${require(`../../images/${sizedPath}?webp`)}');
+          .background-image {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            object-fit: cover;
+            object-position: center;
+            pointer-events: none;
           }
         `}
       </style>
-      {/* The low quality placeholder is rendered as a background image */}
-      <div className={`full-width full-height ${lqBackgroundImageClassName}`}>
-        {/* Apply an extra blur to the image */}
-        <div className="z-index-top full-width full-height blur-filter">
-          <div className={`full-width full-height ${backgroundImageClassName}`} />
-        </div>
-      </div>
+      <Image
+        className="absolute full-width full-height background-image"
+        layout="fill"
+        src={path}
+      />
+      <div className="relative z-index-top">my content</div>
     </div>
   );
 };

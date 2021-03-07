@@ -1,19 +1,13 @@
-import React, {
-  createContext,
-  FC,
-  PropsWithChildren,
-  useContext,
-  useReducer,
-} from 'react';
+import React, { createContext, FC, useContext, useReducer } from 'react';
 
 type ThemeAction =
-  /** Toggle the theme for the site */
-  Action<'@theme-state/toggle-theme'>;
+  /** Toggle the theme or setting for the site */
+  Action<'@theme-state/toggle-theme'> | Action<'@theme-state/toggle-setting'>;
 
 type ThemeDispatch = Dispatch<ThemeAction>;
 
 /** Tracks whether the site is currently using the dark or light theme */
-type ThemeState = { theme: 'dark' | 'light' };
+type ThemeState = { setting: 'auto' | 'manual'; theme: 'dark' | 'light' };
 
 const ThemeStateContext = createContext<ThemeState | undefined>(undefined);
 const ThemeDispatchContext = createContext<ThemeDispatch | undefined>(undefined);
@@ -29,7 +23,7 @@ const ThemeDispatchContext = createContext<ThemeDispatch | undefined>(undefined)
  * - Most components are styled based on the data-theme property applied at the
  *   root of the Screen component; this context should only be used for JS that
  *   relies on knowing the theme
- * @example const Comp: FC<{}> = () => {
+ * @example const Comp: FC = () => {
  *   const state = useThemeState();
  *   console.log(state === 'dark' ? 'night time!' : 'day time!');
  * };
@@ -39,7 +33,7 @@ export const useThemeState = (): ThemeState | undefined => useContext(ThemeState
  * Named export shorthand to use `ThemeDispatchContext` as a hook
  *
  * @notes it appears to be possible to use dispatch outside of provider
- * @example const Comp: FC<{}> = () => {
+ * @example const Comp: FC = () => {
  *   const dispatch = useThemeDispatch();
  *   dispatch({
  *    type: '@theme-state/toggle-theme',
@@ -57,6 +51,11 @@ export const useThemeDispatch = (): ThemeDispatch | undefined =>
  */
 const themeReducer = (state: ThemeState, action: ThemeAction): ThemeState => {
   switch (action.type) {
+    case '@theme-state/toggle-setting':
+      return {
+        ...state,
+        setting: state.setting === 'auto' ? 'manual' : 'auto',
+      };
     case '@theme-state/toggle-theme':
       return {
         ...state,
@@ -73,9 +72,12 @@ const themeReducer = (state: ThemeState, action: ThemeAction): ThemeState => {
  *
  * `ThemeState` tracks the theme currently set for the site, and its `Dispatch`
  * enables toggling the theme
+ *
+ * @param props the functional component props
+ * @param props.children children to the provider will have access to its context
  */
-export const ThemeProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
-  const [state, dispatch] = useReducer(themeReducer, { theme: 'light' });
+export const ThemeProvider: FC = ({ children }) => {
+  const [state, dispatch] = useReducer(themeReducer, { setting: 'auto', theme: 'light' });
   return (
     <ThemeStateContext.Provider value={state}>
       <ThemeDispatchContext.Provider value={dispatch}>

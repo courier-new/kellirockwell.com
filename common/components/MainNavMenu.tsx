@@ -13,7 +13,11 @@ type MainNavMenuProps = {
 };
 
 /**
- * Component for primary navigation bar with nav links on left side of screen.
+ * Component for primary navigation bar with nav links on left side of screen
+ *
+ * @param props the functional component props
+ * @param props.activePage the url slug corresponding to the screen that is
+ * currently open
  */
 const MainNavMenu: FC<MainNavMenuProps> = ({ activePage }) => {
   return (
@@ -21,13 +25,15 @@ const MainNavMenu: FC<MainNavMenuProps> = ({ activePage }) => {
       {/* Use space-between to split flex column to top and bottom part */}
       {/* The top-aligned part */}
       <div>
-        <Link href="/home">
+        <Link href="/">
           <a
-            className="flex-column flex-1 flex-align-center no-decoration margin-med-bottom"
-            title="Home"
+            className="flex-column flex-1 flex-align-center margin-lg-bottom"
+            title="Index"
           >
-            <ProfileImage resizeWidth={200} shape="round" size="100%" />
-            <h5 className="text-turquoise margin-0-bottom">Kelli Rockwell</h5>
+            <ProfileImage maxSize={160} />
+            <h5 className="text-turquoise margin-sm-top margin-0-bottom">
+              Kelli Rockwell
+            </h5>
           </a>
         </Link>
         <MainNavigation activePage={activePage} />

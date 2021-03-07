@@ -2,13 +2,11 @@ import map from 'lodash/map';
 import Link from 'next/link';
 import React, { FC } from 'react';
 
-import { flattenAllAnchors } from '../../content/utilities/for-pages';
+import flattenAllAnchors from '../../content/utilities/for-pages';
 import { ContentSection } from '../../content/utilities/types';
+import { useScrollPositionState } from '../context/scrollPositionState';
 
 type SideNavMenuProps = {
-  /** The index corresponding to section of the screen containing the current
-   * scroll position */
-  activeSectionIndex: number;
   /** The sections of content on the screen to represent in the nav menu */
   contentSections: ContentSection<string>[];
 };
@@ -24,21 +22,13 @@ type SideNavMenuProps = {
  * @param level the level that this link is nested at, used to compute padding
  */
 const renderLink = (
-  { anchor, subsections, title }: ContentSection<string>,
+  contentSection: ContentSection<string>,
   activeSection: string,
   level = 1,
 ): JSX.Element | null => {
+  const { anchor, subsections, title } = contentSection;
   const isActiveSection = anchor === activeSection;
   const paddingAmount = 1.5 * level;
-  const linkStyle: React.CSSProperties = {
-    borderBottomColor: 'transparent',
-    borderLeftColor: isActiveSection ? undefined : 'transparent',
-    borderLeftStyle: 'solid',
-    borderRightColor: 'transparent',
-    borderTopColor: 'transparent',
-    paddingLeft: `${paddingAmount}em`,
-    transition: 'all 0.2s',
-  };
 
   const subsectionNavigation = subsections
     ? renderNavigation(subsections, activeSection, level + 1)
@@ -46,10 +36,26 @@ const renderLink = (
 
   return (
     <li key={anchor}>
+      <style jsx>
+        {`
+          .side-nav-link {
+            border-bottom-color: transparent;
+            border-left-color: ${isActiveSection ? undefined : 'transparent'};
+            border-left-style: solid;
+            border-right-color: transparent;
+            border-top-color: transparent;
+            padding-left: ${paddingAmount}em;
+            transition: color 300ms ease 0s;
+          }
+
+          .side-nav-link:hover {
+            transition: color 100ms ease 0s;
+          }
+        `}
+      </style>
       <Link href={`#${anchor}`}>
         <a
-          className="border-color-sapphire no-decoration flex-row padding-xs-v"
-          style={linkStyle}
+          className="border-color-sapphire no-box-shadow flex-row padding-xs-v side-nav-link"
           title={title}
         >
           {title}
@@ -81,8 +87,16 @@ const renderNavigation = (
 /**
  * Component for secondary (same-page) navigation bar with nav links on right
  * side of screen.
+ *
+ * @param props the `SideNavMenuProps` for the functional component
+ * @param props.contentSections the sections of content on the screen to
+ * represent in the nav menu
  */
-const SideNavMenu: FC<SideNavMenuProps> = ({ activeSectionIndex, contentSections }) => {
+const SideNavMenu: FC<SideNavMenuProps> = ({ contentSections }) => {
+  /** The index corresponding to section of the screen containing the current
+   * scroll position */
+  const activeSectionIndex = useScrollPositionState()?.sectionIndex || 0;
+
   const flattenedSectionAnchors = flattenAllAnchors(contentSections);
   const activeSectionAnchor = flattenedSectionAnchors[activeSectionIndex];
 

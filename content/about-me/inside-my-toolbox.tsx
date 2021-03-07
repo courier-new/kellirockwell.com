@@ -3,27 +3,44 @@ import includes from 'lodash/includes';
 import map from 'lodash/map';
 import reverse from 'lodash/reverse';
 import sortBy from 'lodash/sortBy';
+import toLower from 'lodash/toLower';
 import uniqBy from 'lodash/uniqBy';
 import React, { FC } from 'react';
-import { FaHeart, FaStar } from 'react-icons/fa';
+import { FaBolt, FaHeart, FaStar } from 'react-icons/fa';
 
+import { Tool } from '../../api/tools';
 import Tag from '../../common/components/Tag';
 import useDisplaySize from '../../common/hooks/useDisplaySize';
 import generateTitleProps from '../utilities/for-content';
-import TOOLS, { Tool } from './tools';
+import { ContentSection } from '../utilities/types';
 
 /** Styled heart icon */
-const Heart: FC<{}> = () => (
+const Heart: FC = () => (
   <FaHeart className="text-mauve" size="0.7em" style={{ margin: '.05em 0 0 .3em' }} />
 );
 
 /** Styled star icon */
-const Star: FC<{}> = () => (
+const Star: FC = () => (
   <FaStar className="text-cheddar" size="0.75em" style={{ margin: '0 0 0 .3em' }} />
 );
 
-/** The content for the Inside-my-toolbox section of the About Me page */
-const InsideMyToolboxContent: FC<{}> = () => {
+/**
+ * Styled lightning icon
+ *
+ * @param props the functional component props
+ * @param props.className the classname to assign to the lightning bolt element
+ */
+const Lightning: FC<{ className?: string }> = ({ className = 'text-magnolia' }) => (
+  <FaBolt className={className} size="0.75em" style={{ margin: '.1em -.1em 0 .2em' }} />
+);
+
+/**
+ * The content for the Inside-my-toolbox section of the About Me page
+ *
+ * @param props the functional component props
+ * @param props.tools array of `Tool`s to render
+ */
+const InsideMyToolboxContent: FC<{ tools: Tool[] }> = ({ tools }) => {
   const [displaySize] = useDisplaySize();
   const tagSpacing = displaySize === 'MOBILE' ? '0.4em' : '0.6em';
 
@@ -33,29 +50,53 @@ const InsideMyToolboxContent: FC<{}> = () => {
         <Heart /> = Personal favorite!
         {displaySize === 'MOBILE' ? <br /> : null}
         <Star /> = Most experienced at it!
+        {displaySize === 'MOBILE' ? <br /> : null}
+        <Lightning className="text-maastricht" /> = Learning it!
       </p>
       <div className="flex-row" style={{ flexWrap: 'wrap' }}>
         {flow(
           (tools: Tool[]): Tool[] => uniqBy(tools, 'name'),
-          (tools: Tool[]): Tool[] => sortBy(tools, 'name'),
+          (tools: Tool[]): Tool[] => sortBy(tools, (tool) => toLower(tool.name)),
           reverse,
           (tools: Tool[]): Tool[] => sortBy(tools, (tool) => tool.marks?.length || 0),
           reverse,
           (tools: Tool[]): JSX.Element[] =>
             map(tools, (tool) => (
-              <Tag key={tool.name} spacing={tagSpacing}>
+              // eslint-disable-next-line no-underscore-dangle
+              <Tag key={tool._id} spacing={tagSpacing}>
                 {tool.name}
-                {includes(tool.marks || [], 'hearted') ? <Heart /> : null}
-                {includes(tool.marks || [], 'starred') ? <Star /> : null}
+                {includes(tool.marks || [], 'HEARTED') ? <Heart /> : null}
+                {includes(tool.marks || [], 'STARRED') ? <Star /> : null}
+                {includes(tool.marks || [], 'LEARNING') ? <Lightning /> : null}
               </Tag>
             )),
-        )(TOOLS)}
+        )(tools)}
       </div>
+      <p>
+        I built this site with{' '}
+        <a href="https://nextjs.org/" title="Next.js homepage">
+          Next.js
+        </a>{' '}
+        and deployed it with{' '}
+        <a href="https://vercel.com/" title="Vercel homepage">
+          Vercel
+        </a>
+        .
+      </p>
     </>
   );
 };
 
-export default {
+/**
+ * Builder for toolbox content
+ *
+ * @param tools array of `Tool`s to use to render the section content
+ */
+const buildInsideMyToolbox = (
+  tools: Tool[],
+): ContentSection<'Inside my toolbox', JSX.Element> => ({
   ...generateTitleProps('Inside my toolbox'),
-  content: <InsideMyToolboxContent key="inside-my-toolbox" />,
-};
+  content: <InsideMyToolboxContent key="inside-my-toolbox" tools={tools} />,
+});
+
+export default buildInsideMyToolbox;

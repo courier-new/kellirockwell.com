@@ -65,6 +65,7 @@ const formatDate = (
   return `${date.start.toFormat('LLL y')} - Current`;
 };
 
+/* eslint-disable jsdoc/require-param */
 /**
  * A mobile-oriented (vertical) project card block detailing info about a Project
  */
@@ -285,5 +286,6 @@ const ProjectCard: FC<ProjectCardProps & { orientation: 'vertical' | 'horizontal
     <VerticalProjectCard {...cardProps} />
   );
 };
+/* eslint-enable jsdoc/require-param */
 
 export default ProjectCard;

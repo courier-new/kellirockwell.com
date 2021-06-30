@@ -22,7 +22,7 @@ export type SectionRefsMap = {
  * providing the section with the appropriate `ref` prop and page anchor id
  */
 export type ContentRenderer<
-  SectionsType extends ContentSection<string>[] = ContentSection<string>[]
+  SectionsType extends ContentSection<string>[] = ContentSection<string>[],
 > = (
   sections: SectionsType,
   sectionRefs: SectionRefsMap,
@@ -32,7 +32,7 @@ export type ContentRenderer<
 /** Represents a distinct section of screen content */
 export type ContentSection<
   Name extends string,
-  ContentType extends ReactNode = ReactNode
+  ContentType extends ReactNode = ReactNode,
 > = {
   /** The url anchor without "#" for the section; should use kebab-case */
   readonly anchor: KebabCaseString;

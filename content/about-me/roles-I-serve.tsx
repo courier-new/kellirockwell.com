@@ -24,6 +24,7 @@ type RoleContentProps = {
   whyItsMyPriority: string | JSX.Element;
 };
 
+/* eslint-disable jsdoc/require-param */
 /** A block of a section detailing what a role is and how it manifests in my work */
 const RoleContent: FC<RoleContentProps> = ({
   practiceExamples,
@@ -234,6 +235,7 @@ const futureExportDefault = {
     { ...generateTitleProps('As an equity and inclusion advocate') },
   ],
 };
+/* eslint-enable jsdoc/require-param */
 
 export default {
   ...generateTitleProps('The roles I serve'),

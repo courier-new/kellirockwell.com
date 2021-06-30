@@ -8,6 +8,7 @@ type DarkModeToggleProps = {
   onToggle: () => void;
 };
 
+/* eslint-disable jsdoc/require-param */
 /** A simple toggle switch to flip dark mode on or off */
 const DarkModeToggle: FC<DarkModeToggleProps> = ({ current, onToggle }) => {
   const iconProps = { className: 'block padding-sm text-magnolia', size: '24px' };

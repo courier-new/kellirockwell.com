@@ -142,7 +142,7 @@ const AboutMeScreen: FC<StaticProps> = ({ tools }) => {
  * Prefetch tools at build time to pass as initial data to query
  */
 export const getStaticProps: GetStaticProps<StaticProps> = async () => {
-  const tools = await getTools();
+  const tools = (await getTools()) || null;
   return { props: { tools } };
 };
 

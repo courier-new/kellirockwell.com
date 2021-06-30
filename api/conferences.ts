@@ -127,7 +127,7 @@ export const useConferences = (
   useQuery(CONFERENCES_CACHE_KEYS.getConferences, getConferences, {
     cacheTime: 1000 * 60 * 60 * 24,
     // an hour
-    staleTime: 1000 * 60 * 60,
+    staleTime: 0,
     ...options,
   });
 

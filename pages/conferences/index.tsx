@@ -136,7 +136,7 @@ const ConferencesScreen: FC<StaticProps> = ({ conferences }) => {
  * Prefetch conferences at build time to pass as initial data to query
  */
 export const getStaticProps: GetStaticProps<StaticProps> = async () => {
-  const conferences = await getConferences();
+  const conferences = (await getConferences()) || null;
   return { props: { conferences } };
 };
 

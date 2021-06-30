@@ -27,9 +27,10 @@ const DrawerMainNavMenu: FC<DrawerMainNavMenuProps> = ({ activePage }) => {
   const drawerRef = useRef<HTMLDivElement | null>(null);
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
-  const toggleDrawerIsOpen = useCallback(() => setDrawerIsOpen(!drawerIsOpen), [
-    drawerIsOpen,
-  ]);
+  const toggleDrawerIsOpen = useCallback(
+    () => setDrawerIsOpen(!drawerIsOpen),
+    [drawerIsOpen],
+  );
 
   // Toggle drawer closed on click outside when drawer is open
   const onClickOutside = useCallback(() => {

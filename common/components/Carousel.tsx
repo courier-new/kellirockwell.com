@@ -31,32 +31,32 @@ const INITIAL_CAROUSEL_STATE: CarouselState = {
  *
  * @param numberOfItems the total number of items in the carousel
  */
-export const carouselReducer = (
-  numberOfItems: number,
-): Reducer<CarouselState, CarouselAction> => (state, action): CarouselState => {
-  switch (action) {
-    case RESET:
-      return INITIAL_CAROUSEL_STATE;
-    case PREV:
-      return {
-        ...state,
-        direction: PREV,
-        position: state.position === 0 ? numberOfItems - 1 : state.position - 1,
-        sliding: true,
-      };
-    case NEXT:
-      return {
-        ...state,
-        direction: NEXT,
-        position: state.position === numberOfItems - 1 ? 0 : state.position + 1,
-        sliding: true,
-      };
-    case STOP:
-      return { ...state, sliding: false };
-    default:
-      return state;
-  }
-};
+export const carouselReducer =
+  (numberOfItems: number): Reducer<CarouselState, CarouselAction> =>
+  (state, action): CarouselState => {
+    switch (action) {
+      case RESET:
+        return INITIAL_CAROUSEL_STATE;
+      case PREV:
+        return {
+          ...state,
+          direction: PREV,
+          position: state.position === 0 ? numberOfItems - 1 : state.position - 1,
+          sliding: true,
+        };
+      case NEXT:
+        return {
+          ...state,
+          direction: NEXT,
+          position: state.position === numberOfItems - 1 ? 0 : state.position + 1,
+          sliding: true,
+        };
+      case STOP:
+        return { ...state, sliding: false };
+      default:
+        return state;
+    }
+  };
 
 /**
  * Shorthand to instantiate and use a new carousel reducer
@@ -106,6 +106,7 @@ type CarouselProps = {
   onSlide: (slideDirection: typeof NEXT | typeof PREV) => void;
 };
 
+/* eslint-disable jsdoc/require-param */
 /**
  * A horizontal swipeable carousel component where each element is placed on
  * display in a carousel "slot" and only one slot is visible at a time. The
@@ -132,7 +133,9 @@ const Carousel: FC<CarouselProps> = ({
    * Hook returns handlers to attach to the outermost container of the carousel
    */
   const swipeHandlers = useSwipeable({
+    /** Handler to swipe the carousel to the left */
     onSwipedLeft: (): void => onSlide(NEXT),
+    /** Handler to swipe the carousel to the right */
     onSwipedRight: (): void => onSlide(PREV),
     preventDefaultTouchmoveEvent: true,
     trackMouse: true,
@@ -166,5 +169,6 @@ const Carousel: FC<CarouselProps> = ({
     </div>
   );
 };
+/* eslint-enable jsdoc/require-param */
 
 export default Carousel;

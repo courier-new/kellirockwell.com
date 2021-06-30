@@ -89,9 +89,10 @@ const useDisplaySize = (): [DisplaySize, number, number] => {
     return (): void => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const memoizedDisplaySize = useMemo(() => getDisplaySizeFromWindowWidth(windowWidth), [
-    windowWidth,
-  ]);
+  const memoizedDisplaySize = useMemo(
+    () => getDisplaySizeFromWindowWidth(windowWidth),
+    [windowWidth],
+  );
 
   return [memoizedDisplaySize, windowWidth, windowHeight];
 };

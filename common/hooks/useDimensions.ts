@@ -39,11 +39,6 @@ interface ResizeObserverEntry {
   readonly target: Element;
 }
 
-// See https://github.com/Microsoft/TypeScript/issues/28502
-declare global {
-  const ResizeObserver: ResizeObserver;
-}
-
 /**
  * Returns the bounds of an HTML element as a DimensionObject
  *

@@ -100,13 +100,15 @@ const Screen = React.forwardRef<HTMLDivElement, PropsWithChildren<ScreenProps>>(
 
     /** If true, will always show the main left-hand navigation menu; otherwise
      * will show collapsible navigation menu drawer */
-    const shouldShowMainNav = useMemo(() => shouldShowMainNavMenu(displaySize), [
-      displaySize,
-    ]);
+    const shouldShowMainNav = useMemo(
+      () => shouldShowMainNavMenu(displaySize),
+      [displaySize],
+    );
     /** If true, will show the secondary right-hand navigation menu */
-    const shouldShowSideNav = useMemo(() => shouldShowSideNavMenu(displaySize), [
-      displaySize,
-    ]);
+    const shouldShowSideNav = useMemo(
+      () => shouldShowSideNavMenu(displaySize),
+      [displaySize],
+    );
 
     /** Match the width/alignment of the main content when it does or does not
      * have a side nav menu based on the side nav menu's width */

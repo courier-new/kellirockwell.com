@@ -70,9 +70,10 @@ const useScrollPositionController = (
   );
 
   /** Method to reset scroll position on-demand */
-  const reset = useCallback(() => setScrollPosition({ x: 0, y: 0 }, asPercent(0)), [
-    setScrollPosition,
-  ]);
+  const reset = useCallback(
+    () => setScrollPosition({ x: 0, y: 0 }, asPercent(0)),
+    [setScrollPosition],
+  );
 
   useDeepCompareEffect(() => {
     if (ref.current) {

@@ -200,7 +200,7 @@ export const addNextUpLabels = (conferences: Conference[]): Conference[] => {
         dateLabel = NOW;
       } else if (nextUpDate && nextUpDate.equals(conference.startDate)) {
         dateLabel = NEXT;
-      } else {
+      } else if (!nextUpDate) {
         dateLabel = NEXT;
         nextUpDate = conference.startDate;
       }

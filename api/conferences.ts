@@ -117,8 +117,7 @@ export const getConferences = (): Promise<GetConferencesRawResponse> =>
 
 /**
  * Hook to query the conferences I am participating in, which is cached
- * indefinitely and not refreshed throughout the duration of the time the user
- * is on the site
+ * for 24 hours
  *
  * @param options (optional) any `UseQueryOptions` to apply to this query
  */
@@ -126,8 +125,9 @@ export const useConferences = (
   options?: UseQueryOptions<GetConferencesRawResponse>,
 ): QueryObserverResult<GetConferencesRawResponse, unknown> =>
   useQuery(CONFERENCES_CACHE_KEYS.getConferences, getConferences, {
-    cacheTime: Infinity,
-    staleTime: Infinity,
+    cacheTime: 1000 * 60 * 60 * 24,
+    // an hour
+    staleTime: 1000 * 60 * 60,
     ...options,
   });
 

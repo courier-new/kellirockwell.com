@@ -47,8 +47,7 @@ export const getTools = (): Promise<GetToolsResponse> =>
   );
 
 /**
- * Hook to query the tools I use, which is cached indefinitely and not refreshed
- * throughout the duration of the time the user is on the site
+ * Hook to query the tools I use, which is cached for 24 hours
  *
  * @param options (optional) any `UseQueryOptions` to apply to this query
  */
@@ -56,8 +55,8 @@ export const useTools = (
   options?: UseQueryOptions<GetToolsResponse>,
 ): QueryObserverResult<GetToolsResponse, unknown> =>
   useQuery(TOOLS_CACHE_KEYS.getTools, getTools, {
-    cacheTime: Infinity,
+    cacheTime: 1000 * 60 * 60 * 24,
     // an hour
-    staleTime: 3600000,
+    staleTime: 1000 * 60 * 60,
     ...options,
   });

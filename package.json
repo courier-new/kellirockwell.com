@@ -22,7 +22,7 @@
     "graphql": "^15.4.0",
     "graphql-request": "^3.4.0",
     "lodash": "^4.17.20",
-    "luxon": "^1.25.0",
+    "luxon": "^2.5.2",
     "next": "^10.0.5",
     "next-compose-plugins": "^2.2.1",
     "next-svgr": "^0.0.2",
